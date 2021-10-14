@@ -5,7 +5,7 @@
       "projectVersion": "v3",
       "projectType": "dashboard",
       "imports": [],
-      "css": ".main {\n    background-color:#e0e0e0;\n}\n\n.error {\n    color:red;  \n}"
+      "css": ".main {\n    background-color:#e0e0e0;\n}\n\n.error {\n    color:red;  \n}\n\n.warning {\n    color:darkorange;\n}"
     },
     "build": {
       "configurations": [
@@ -59,6 +59,16 @@
       },
       {
         "name": "module_id",
+        "type": "string",
+        "defaultValue": "\"\""
+      },
+      {
+        "name": "module_sno",
+        "type": "string",
+        "defaultValue": "\"\""
+      },
+      {
+        "name": "module_exists",
         "type": "string",
         "defaultValue": "\"\""
       }
@@ -6277,8 +6287,8 @@
           "type": "StartActionComponent",
           "left": -734,
           "top": -194,
-          "width": 60,
-          "height": 21,
+          "width": 89,
+          "height": 31,
           "wireID": "31c64b98-1f43-417d-c2a2-697118c31a70",
           "customInputs": [],
           "customOutputs": []
@@ -6287,8 +6297,8 @@
           "type": "EndActionComponent",
           "left": 1020,
           "top": -17,
-          "width": 60,
-          "height": 21,
+          "width": 89,
+          "height": 31,
           "wireID": "24bad5e3-abf2-40d0-bb13-5ca8f8c6bd26",
           "customInputs": [],
           "customOutputs": []
@@ -6297,8 +6307,8 @@
           "type": "eez-flow-ext-postgres/PostgresActionComponent",
           "left": -182,
           "top": -194,
-          "width": 311,
-          "height": 45,
+          "width": 465,
+          "height": 67,
           "wireID": "68ca61fa-fd72-472f-9e3d-a85b0a55df17",
           "customInputs": [
             {
@@ -6314,8 +6324,8 @@
           "type": "SCPIActionComponent",
           "left": -604,
           "top": -194,
-          "width": 233,
-          "height": 72,
+          "width": 348,
+          "height": 107,
           "wireID": "7f4556ed-4335-4ad9-f7e7-c271e72679fb",
           "customInputs": [],
           "customOutputs": [
@@ -6339,8 +6349,8 @@
           "type": "EvalExprActionComponent",
           "left": 338,
           "top": -194,
-          "width": 159,
-          "height": 56,
+          "width": 237,
+          "height": 83,
           "wireID": "1af3be93-7c78-4204-f938-cd57cb10f142",
           "customInputs": [
             {
@@ -6356,8 +6366,8 @@
           "type": "eez-flow-ext-postgres/PostgresActionComponent",
           "left": -182,
           "top": -17,
-          "width": 432,
-          "height": 72,
+          "width": 645,
+          "height": 107,
           "wireID": "44950a15-dd1a-4221-aed6-78a78f3435e6",
           "customInputs": [
             {
@@ -6381,8 +6391,8 @@
           "type": "EvalExprActionComponent",
           "left": 531,
           "top": -17,
-          "width": 154,
-          "height": 45,
+          "width": 229,
+          "height": 67,
           "wireID": "aae029bc-2d18-428b-cdd7-4421da52fbcb",
           "customInputs": [
             {
@@ -6398,8 +6408,8 @@
           "type": "SetVariableActionComponent",
           "left": 817,
           "top": -17,
-          "width": 88,
-          "height": 45,
+          "width": 131,
+          "height": 67,
           "wireID": "8402206c-819a-4352-f294-3ce038c179e4",
           "customInputs": [
             {
@@ -6410,6 +6420,47 @@
           "customOutputs": [],
           "variable": "module_id",
           "value": "value"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -182,
+          "top": -295,
+          "width": 138,
+          "height": 67,
+          "wireID": "737a07f2-eb4b-4d26-9072-1660d36b3647",
+          "customInputs": [
+            {
+              "name": "value",
+              "type": "any"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "module_sno",
+          "value": "value"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 708,
+          "top": -194,
+          "width": 379,
+          "height": 68,
+          "wireID": "bfd5bc4f-d0fd-48a0-cd70-f51d29259ca7",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "module_exists",
+          "value": "\"Module is already registered!\""
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 708,
+          "top": -111,
+          "width": 166,
+          "height": 68,
+          "wireID": "e7749738-0720-4e40-fcff-4c311707a413",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "module_exists",
+          "value": "\"\""
         }
       ],
       "connectionLines": [
@@ -6484,6 +6535,24 @@
           "output": "result",
           "target": "aae029bc-2d18-428b-cdd7-4421da52fbcb",
           "input": "value"
+        },
+        {
+          "source": "7f4556ed-4335-4ad9-f7e7-c271e72679fb",
+          "output": "serial",
+          "target": "737a07f2-eb4b-4d26-9072-1660d36b3647",
+          "input": "value"
+        },
+        {
+          "source": "1af3be93-7c78-4204-f938-cd57cb10f142",
+          "output": "result",
+          "target": "bfd5bc4f-d0fd-48a0-cd70-f51d29259ca7",
+          "input": "@seqin"
+        },
+        {
+          "source": "1af3be93-7c78-4204-f938-cd57cb10f142",
+          "output": "@error",
+          "target": "e7749738-0720-4e40-fcff-4c311707a413",
+          "input": "@seqin"
         }
       ],
       "localVariables": [],
@@ -6958,6 +7027,49 @@
           "customInputs": [],
           "customOutputs": [],
           "action": "db_init"
+        },
+        {
+          "type": "TextWidget",
+          "left": 150,
+          "top": 670,
+          "width": 280,
+          "height": 32,
+          "wireID": "629956f8-1bc8-4b80-ed83-fe2b1a96f767",
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "module_sno",
+          "style": {
+            "inheritFrom": "default"
+          }
+        },
+        {
+          "type": "TextWidget",
+          "left": 81,
+          "top": 670,
+          "width": 69,
+          "height": 32,
+          "wireID": "3f38f09c-8626-4277-bfe5-82f509a7f2c8",
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "inheritFrom": "default"
+          },
+          "text": "Ser. No.:"
+        },
+        {
+          "type": "TextWidget",
+          "left": 81,
+          "top": 638,
+          "width": 349,
+          "height": 32,
+          "wireID": "0ca6935f-c4fe-4497-9d1f-13c8cf01b031",
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "module_exists",
+          "className": "warning",
+          "style": {
+            "inheritFrom": "default"
+          }
         }
       ],
       "connectionLines": [
