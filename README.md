@@ -1,2 +1,7 @@
 # bb3-dib-ate
-EEZ Flows for DIB modules test automation
+EEZ Flows for DIB modules test automation:
+
+* DCP405 module test and calibration (_dcp_ate_)
+* MIO168 + AFE3 calibration (_mio_ate_)
+
+PostgreSQL database is used for module registration and calibration parameters (use _bb3_ate.sql_ to create tables).
