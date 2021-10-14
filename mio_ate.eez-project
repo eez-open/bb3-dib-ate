@@ -5,7 +5,7 @@
       "projectVersion": "v3",
       "projectType": "dashboard",
       "imports": [],
-      "css": ".main {\n    background-color:#e0e0e0;\n}"
+      "css": ".main {\n    background-color:#e0e0e0;\n}\n\n.error {\n    color:red;  \n}"
     },
     "build": {
       "configurations": [
@@ -387,7 +387,7 @@
           "customOutputs": [],
           "catchError": true,
           "instrument": "bb3_1",
-          "scpi": "rout:clos (@301)\nrout:open (@302:303)\nrout:clos (@203)\nrout:clos (@215)\ninst (@101)\nvolt {channel.cal_value}\ncurr 0.2\noutp 1\n*OPC?\nsyst:del 200"
+          "scpi": "rout:clos (@301)\nrout:open (@302:303)\nrout:clos (@203)\nrout:clos (@215)\ninst (@101)\ncurr 0.2\nvolt {channel.cal_value}\noutp 1\n*OPC?\nsyst:del 200"
         },
         {
           "type": "SCPIActionComponent",
@@ -1639,12 +1639,12 @@
           "left": 1485,
           "top": 537,
           "width": 138,
-          "height": 117,
+          "height": 135,
           "wireID": "9e483d52-fff1-45d9-a074-850a937bfce1",
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
-          "scpi": "inst (@101)\noutp 0\nrout:clos (@203)\n*OPC?"
+          "scpi": "inst (@101)\ncurr 0\noutp 0\nrout:clos (@203)\n*OPC?"
         },
         {
           "type": "SCPIActionComponent",
@@ -6887,6 +6887,7 @@
           ],
           "customOutputs": [],
           "data": "data",
+          "className": "error",
           "style": {
             "inheritFrom": "default"
           }

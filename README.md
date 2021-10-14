@@ -1,5 +1,5 @@
 # bb3-dib-ate
-EEZ Flows for DIB modules test automation:
+EEZ Flows for DIB modules test automation (requires BB3 firmware v1.7.3. or newer):
 
 * DCP405 module test and calibration (_dcp_ate_)
 * MIO168 + AFE3 calibration (_mio_ate_)
