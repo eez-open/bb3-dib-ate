@@ -174,7 +174,7 @@
         {
           "name": "nplc",
           "type": "integer",
-          "defaultValue": "10"
+          "defaultValue": "5"
         }
       ],
       "name": "keithley_init",
@@ -416,7 +416,7 @@
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
-          "scpi": "rout:clos (@302:303)\n*OPC?\nsyst:del 200"
+          "scpi": "rout:clos (@302:303)\nsyst:del 200\n*OPC?"
         },
         {
           "type": "SCPIActionComponent",
@@ -3506,7 +3506,7 @@
           "left": 531,
           "top": -282,
           "width": 167,
-          "height": 63,
+          "height": 99,
           "wireID": "da71f9ec-9262-4fbb-c54f-94d7ae7cf950",
           "customInputs": [],
           "customOutputs": [
@@ -3516,7 +3516,7 @@
             }
           ],
           "instrument": "bb3_2",
-          "scpi": "{meas} = meas?"
+          "scpi": "syst:del 400\n*OPC?\n{meas} = meas?"
         },
         {
           "type": "SetVariableActionComponent",
@@ -3564,7 +3564,7 @@
           "left": 455,
           "top": 125,
           "width": 167,
-          "height": 81,
+          "height": 99,
           "wireID": "caa6ab51-a4d3-4c49-d288-a860fb0d553f",
           "customInputs": [],
           "customOutputs": [
@@ -3574,7 +3574,7 @@
             }
           ],
           "instrument": "bb3_2",
-          "scpi": "syst:del 500\n{meas} = meas?"
+          "scpi": "syst:del 500\n*OPC?\n{meas} = meas?"
         },
         {
           "type": "SetVariableActionComponent",
@@ -3833,18 +3833,18 @@
           "type": "SwitchActionComponent",
           "left": -386,
           "top": 24,
-          "width": 414,
+          "width": 293,
           "height": 121,
           "wireID": "1006ad2e-cfc9-41ba-8802-52d8748d8a54",
           "customInputs": [],
           "customOutputs": [],
           "tests": [
             {
-              "condition": "channel.range > 1 && channel.channel == 3",
-              "outputName": "ch3"
+              "condition": "channel.range > 1",
+              "outputName": "Ignore"
             },
             {
-              "condition": "channel.test2 < 0",
+              "condition": "channel.test2 <= 0",
               "outputName": "negative"
             },
             {
@@ -4160,6 +4160,12 @@
           "output": "@seqout",
           "target": "22c80948-ebc9-4f78-a753-32869a5946fe",
           "input": "@seqin"
+        },
+        {
+          "source": "1006ad2e-cfc9-41ba-8802-52d8748d8a54",
+          "output": "Ignore",
+          "target": "f8a31d83-d978-4876-ec07-bbc2276712f5",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -4278,7 +4284,7 @@
           "left": 496,
           "top": 245,
           "width": 204,
-          "height": 81,
+          "height": 99,
           "wireID": "da71f9ec-9262-4fbb-c54f-94d7ae7cf950",
           "customInputs": [],
           "customOutputs": [
@@ -4288,7 +4294,7 @@
             }
           ],
           "instrument": "bb3_2",
-          "scpi": "syst:del 300\n{meas} = meas:curr?"
+          "scpi": "syst:del 300\n*OPC?\n{meas} = meas:curr?"
         },
         {
           "type": "SetVariableActionComponent",
@@ -4434,7 +4440,7 @@
           "left": 509,
           "top": 612,
           "width": 204,
-          "height": 81,
+          "height": 99,
           "wireID": "bcf053f6-e22b-46a9-e2fe-565b8eb6ba49",
           "customInputs": [],
           "customOutputs": [
@@ -4444,7 +4450,7 @@
             }
           ],
           "instrument": "bb3_2",
-          "scpi": "syst:del 500\n{meas} = meas:curr?"
+          "scpi": "syst:del 500\n*OPC?\n{meas} = meas:curr?"
         },
         {
           "type": "SCPIActionComponent",
@@ -4488,7 +4494,7 @@
           "left": 509,
           "top": 936,
           "width": 204,
-          "height": 81,
+          "height": 99,
           "wireID": "689e75d7-6d0d-431a-bdec-41d71690e96e",
           "customInputs": [],
           "customOutputs": [
@@ -4498,7 +4504,7 @@
             }
           ],
           "instrument": "bb3_2",
-          "scpi": "syst:del 500\n{meas} = meas:curr?"
+          "scpi": "syst:del 500\n*OPC?\n{meas} = meas:curr?"
         },
         {
           "type": "SCPIActionComponent",
