@@ -3419,7 +3419,7 @@
           ],
           "customOutputs": [],
           "instrument": "bb3_2",
-          "scpi": "INST {\"(@\"+slot+\"0\"+(2+channel.channel)+\")\"}\nSENS:FUNC VOLT\nSENS:VOLT:RANG {channel.range}\nSENS:NPLC 10\n*OPC?"
+          "scpi": "INST {\"(@\"+slot+\"0\"+(2+channel.channel)+\")\"}\nSENS:FUNC VOLT\nSENS:VOLT:RANG {channel.range}\nSENS:NPLC 5\n*OPC?"
         },
         {
           "type": "InputActionComponent",
