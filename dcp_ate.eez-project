@@ -1,5 +1,4 @@
 {
-  "fullyLoaded": true,
   "settings": {
     "general": {
       "projectVersion": "v3",
@@ -21,21 +20,21 @@
       {
         "name": "bb3_1",
         "description": "BB3 #1",
-        "type": "custom:Instrument",
+        "type": "object:Instrument",
         "defaultValue": "null",
         "persistent": true
       },
       {
         "name": "bb3_2",
         "description": "BB3 #2",
-        "type": "custom:Instrument",
+        "type": "object:Instrument",
         "defaultValue": "null",
         "persistent": true
       },
       {
         "name": "postgresql_connection",
         "description": "PostgreSQL Connection",
-        "type": "custom:eez-flow-ext-postgres/PostgreSQLConnection",
+        "type": "object:eez-flow-ext-postgres/PostgreSQLConnection",
         "defaultValue": "null",
         "persistent": true
       },
@@ -243,7 +242,7 @@
           "name": "serial"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 608,
           "top": -3,
           "width": 236,
@@ -420,7 +419,7 @@
           "sql": "SELECT * FROM modules \nWHERE serial = '{serial}'"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -266,
           "top": -398,
           "width": 322,
@@ -437,7 +436,7 @@
           "expression": "new Date(\n    {value}.rows[0].created_at\n).toLocaleString()"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 197,
           "top": -295,
           "width": 169,
@@ -481,7 +480,7 @@
           "sql": "SELECT params AS cal_params\nFROM cal_params \nWHERE module_id = {module_id} \n  AND channel = 1"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -592,
           "top": 92,
           "width": 290,
@@ -535,7 +534,7 @@
           "value": "\"No\""
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -156,
           "top": -160,
           "width": 236,
@@ -551,7 +550,7 @@
           "expression": "{value}.rows[0].id"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -600,
           "top": 270,
           "width": 470,
@@ -578,7 +577,7 @@
           "scpi": "cal_params = diag:cal? {\"(@\" + slot + \"01)\"}"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -752,
           "top": -240,
           "width": 262,
@@ -683,7 +682,7 @@
           "name": "Save calibration button enabled?"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 110,
           "top": 159,
           "width": 457,
@@ -725,7 +724,7 @@
           "name": "slot"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -97,
           "top": 341,
           "width": 544,
@@ -1327,7 +1326,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -112,
           "top": -349,
           "width": 148,
@@ -1339,7 +1338,7 @@
           "scpi": "inst (@301)\noutp 0\nvolt 0\ncurr 0\nSENS:CURR:RANG BEST\ninst (@101)\ncurr 500mA"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 82,
           "top": -373,
           "width": 161,
@@ -1429,7 +1428,7 @@
           "variable": "test_start_time"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -410,
           "top": -152,
           "width": 198,
@@ -1455,7 +1454,7 @@
           "customOutputs": []
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -410,
           "top": -65,
           "width": 198,
@@ -1553,7 +1552,7 @@
           "variable": "test_phase"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -458,
           "top": 252,
           "width": 243,
@@ -1569,7 +1568,7 @@
           "expression": "\"'\" + {value} + \"'\""
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -458,
           "top": 336,
           "width": 243,
@@ -1585,7 +1584,7 @@
           "expression": "\"'\" + {value} + \"'\""
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -458,
           "top": 426,
           "width": 243,
@@ -1691,7 +1690,7 @@
           "value": "1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -620,
           "top": -436,
           "width": 163,
@@ -1709,7 +1708,7 @@
           "scpi": "inst (@301)\nis_cal = cal?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -284,
           "top": -469,
           "width": 121,
@@ -1781,7 +1780,7 @@
           "variable": "bb3_2"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -1044,
           "top": -436,
           "width": 211,
@@ -2116,7 +2115,7 @@
           "type": "StartActionComponent",
           "left": -347,
           "top": -161,
-          "width": 78,
+          "width": 89,
           "height": 31,
           "wireID": "10dafd25-326d-4250-a0c1-056280c1a861",
           "customInputs": [],
@@ -2126,7 +2125,7 @@
           "type": "EndActionComponent",
           "left": 241,
           "top": -15,
-          "width": 64,
+          "width": 89,
           "height": 31,
           "wireID": "5235a07d-0fa2-40bc-aca1-f0d56e23e83e",
           "customInputs": [],
@@ -2136,7 +2135,7 @@
           "type": "OutputActionComponent",
           "left": 453,
           "top": -15,
-          "width": 83,
+          "width": 89,
           "height": 31,
           "wireID": "59f2a19a-65af-4926-bf8d-05e64fd927aa",
           "customInputs": [],
@@ -2147,8 +2146,8 @@
           "type": "CallActionActionComponent",
           "left": 60,
           "top": 30,
-          "width": 133,
-          "height": 87,
+          "width": 118,
+          "height": 83,
           "wireID": "780d8e74-a9b5-4d47-d512-db7942cfc1b8",
           "customInputs": [],
           "customOutputs": [],
@@ -2159,8 +2158,8 @@
           "type": "CallActionActionComponent",
           "left": -85,
           "top": -130,
-          "width": 129,
-          "height": 61,
+          "width": 114,
+          "height": 59,
           "wireID": "111e376e-7234-45b1-bc5e-edcf8cd80e35",
           "customInputs": [],
           "customOutputs": [],
@@ -2170,7 +2169,7 @@
           "type": "InputActionComponent",
           "left": -347,
           "top": -93,
-          "width": 96,
+          "width": 89,
           "height": 31,
           "wireID": "08da31af-fd69-440f-963d-72502d7029ab",
           "customInputs": [],
@@ -2181,8 +2180,8 @@
           "type": "CallActionActionComponent",
           "left": -137,
           "top": 16,
-          "width": 97,
-          "height": 61,
+          "width": 89,
+          "height": 59,
           "wireID": "a3168fcd-f4d6-4b9d-abf3-0611c942bab8",
           "customInputs": [
             {
@@ -2198,7 +2197,7 @@
           "type": "InputActionComponent",
           "left": -347,
           "top": 30,
-          "width": 99,
+          "width": 89,
           "height": 31,
           "wireID": "e051cd39-6a0d-4412-c699-3c87dfef7931",
           "customInputs": [],
@@ -2209,8 +2208,8 @@
           "type": "ErrorActionComponent",
           "left": 362,
           "top": 143,
-          "width": 81,
-          "height": 61,
+          "width": 89,
+          "height": 59,
           "wireID": "74f4efb4-5f41-4d40-f60a-cbf0fe5e48e4",
           "customInputs": [
             {
@@ -2225,8 +2224,8 @@
           "type": "CatchErrorActionComponent",
           "left": 131,
           "top": 143,
-          "width": 120,
-          "height": 61,
+          "width": 105,
+          "height": 59,
           "wireID": "2b73aabd-13f7-4963-da98-88aca6120ed4",
           "customInputs": [],
           "customOutputs": []
@@ -2426,7 +2425,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -276,
           "top": -337,
           "width": 292,
@@ -2464,7 +2463,7 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -263,
           "top": -213,
           "width": 229,
@@ -2497,7 +2496,7 @@
           "variable": "bb3_1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -276,
           "top": -67,
           "width": 292,
@@ -2535,7 +2534,7 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -211,
           "top": 59,
           "width": 229,
@@ -2890,7 +2889,7 @@
           "type": "StartActionComponent",
           "left": -586,
           "top": -478,
-          "width": 78,
+          "width": 89,
           "height": 31,
           "wireID": "d0459860-a422-4357-84b7-096d1f4678f4",
           "customInputs": [],
@@ -2900,8 +2899,8 @@
           "type": "CallActionActionComponent",
           "left": -374,
           "top": -328,
-          "width": 157,
-          "height": 61,
+          "width": 142,
+          "height": 59,
           "wireID": "7ed38de0-7603-4599-b3e0-63e9c54881ec",
           "customInputs": [],
           "customOutputs": [],
@@ -2911,18 +2910,18 @@
           "type": "GetVariableActionComponent",
           "left": -547,
           "top": -328,
-          "width": 133,
-          "height": 61,
+          "width": 118,
+          "height": 59,
           "wireID": "abb9459a-eb82-4ee8-8a57-e390b471e7ff",
           "customInputs": [],
           "customOutputs": [],
           "variable": "bb3_1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -576,
           "top": -213,
-          "width": 233,
+          "width": 231,
           "height": 63,
           "wireID": "e7b11ad7-050c-4323-84c6-21fa477c2403",
           "customInputs": [],
@@ -2950,8 +2949,8 @@
           "type": "CompareActionComponent",
           "left": -311,
           "top": -213,
-          "width": 168,
-          "height": 87,
+          "width": 164,
+          "height": 83,
           "wireID": "78107f3e-9ae3-4fc0-93d0-0ceda6fd0c2b",
           "customInputs": [
             {
@@ -2976,10 +2975,10 @@
           "message": "\"SMX46 is not in Slot 2 on BB3_1\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -115,
           "top": -211,
-          "width": 244,
+          "width": 242,
           "height": 63,
           "wireID": "0efd7939-cfaa-4a23-e4d8-4b70a4e9d751",
           "customInputs": [],
@@ -2996,8 +2995,8 @@
           "type": "IsTrueActionComponent",
           "left": 163,
           "top": -211,
-          "width": 97,
-          "height": 87,
+          "width": 89,
+          "height": 83,
           "wireID": "7fd4699c-7675-449b-a247-6c6bc0931ef6",
           "customInputs": [
             {
@@ -3020,10 +3019,10 @@
           "message": "\"Module in Slot 2 on BB3_1 is not enabled\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 282,
           "top": -209,
-          "width": 211,
+          "width": 209,
           "height": 63,
           "wireID": "46b957fc-94bb-4536-ddde-9da7dd4a9fd8",
           "customInputs": [],
@@ -3040,8 +3039,8 @@
           "type": "CompareActionComponent",
           "left": 540,
           "top": -209,
-          "width": 121,
-          "height": 87,
+          "width": 117,
+          "height": 83,
           "wireID": "83c28664-3cb4-4b89-a4a3-3300c61a04b8",
           "customInputs": [
             {
@@ -3066,10 +3065,10 @@
           "message": "\"Error on module in Slot 2 on BB3_1\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -576,
           "top": -13,
-          "width": 233,
+          "width": 231,
           "height": 63,
           "wireID": "7f6f2f89-49a7-4d21-dcc6-06f320669e97",
           "customInputs": [],
@@ -3086,8 +3085,8 @@
           "type": "CompareActionComponent",
           "left": -311,
           "top": -13,
-          "width": 174,
-          "height": 87,
+          "width": 170,
+          "height": 83,
           "wireID": "20befad4-7450-430f-f3b7-9692f8b82e3f",
           "customInputs": [
             {
@@ -3112,10 +3111,10 @@
           "message": "\"MIO168 is not in Slot 3 on BB3_1\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -114,
           "top": -11,
-          "width": 244,
+          "width": 242,
           "height": 63,
           "wireID": "de947dc7-6d33-42e3-82c4-49587097b411",
           "customInputs": [],
@@ -3132,8 +3131,8 @@
           "type": "IsTrueActionComponent",
           "left": 163,
           "top": -11,
-          "width": 97,
-          "height": 87,
+          "width": 89,
+          "height": 83,
           "wireID": "5ccd5176-9f37-48d0-aeaa-35a11100d700",
           "customInputs": [
             {
@@ -3156,10 +3155,10 @@
           "message": "\"Module in Slot 3 on BB3_1 is not enabled\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 282,
           "top": -9,
-          "width": 211,
+          "width": 209,
           "height": 63,
           "wireID": "56ae7c2b-d8cb-4d45-ae9f-a12ef9cfe9d5",
           "customInputs": [],
@@ -3176,8 +3175,8 @@
           "type": "CompareActionComponent",
           "left": 540,
           "top": -9,
-          "width": 121,
-          "height": 87,
+          "width": 117,
+          "height": 83,
           "wireID": "6ed6f569-49a3-4a24-8273-76c768811b25",
           "customInputs": [
             {
@@ -3202,10 +3201,10 @@
           "message": "\"Error on module in Slot 3 on BB3_1\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -576,
           "top": 182,
-          "width": 233,
+          "width": 231,
           "height": 63,
           "wireID": "8ed4f0bb-ba12-46a4-e644-eaf2007346c1",
           "customInputs": [],
@@ -3222,8 +3221,8 @@
           "type": "CompareActionComponent",
           "left": -311,
           "top": 182,
-          "width": 174,
-          "height": 87,
+          "width": 170,
+          "height": 83,
           "wireID": "45581301-59ff-4615-c631-f9f13f62e2d1",
           "customInputs": [
             {
@@ -3248,10 +3247,10 @@
           "message": "\"DCP405 is not in Slot 1 on BB3_2\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -115,
           "top": 186,
-          "width": 244,
+          "width": 242,
           "height": 63,
           "wireID": "e6463c34-1304-4bb2-9405-1fb4d669824c",
           "customInputs": [],
@@ -3268,8 +3267,8 @@
           "type": "IsTrueActionComponent",
           "left": 163,
           "top": 184,
-          "width": 97,
-          "height": 87,
+          "width": 89,
+          "height": 83,
           "wireID": "9f2dde4c-1f2d-4c48-d6f8-4f8e6fbe1973",
           "customInputs": [
             {
@@ -3292,10 +3291,10 @@
           "message": "\"Module in Slot 1 on BB3_2 is not enabled\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 282,
           "top": 186,
-          "width": 211,
+          "width": 209,
           "height": 63,
           "wireID": "4a37dffe-7fed-420d-8cee-493f232e6b09",
           "customInputs": [],
@@ -3312,8 +3311,8 @@
           "type": "CompareActionComponent",
           "left": 540,
           "top": 186,
-          "width": 121,
-          "height": 87,
+          "width": 117,
+          "height": 83,
           "wireID": "1a69ae79-e785-4196-a18f-76a9c9c43ae8",
           "customInputs": [
             {
@@ -3338,10 +3337,10 @@
           "message": "\"Error on module in Slot 1 on BB3_2\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -599,
           "top": 391,
-          "width": 233,
+          "width": 231,
           "height": 63,
           "wireID": "4ceec4cd-508e-4f44-ed86-1676801f619c",
           "customInputs": [],
@@ -3358,8 +3357,8 @@
           "type": "CompareActionComponent",
           "left": -333,
           "top": 391,
-          "width": 174,
-          "height": 87,
+          "width": 170,
+          "height": 83,
           "wireID": "e723aed1-1c04-4ca8-d108-630065ee3e4a",
           "customInputs": [
             {
@@ -3373,10 +3372,10 @@
           "operator": "="
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -130,
           "top": 393,
-          "width": 258,
+          "width": 256,
           "height": 63,
           "wireID": "eede8b4c-84d9-42cb-e276-1afe4f2ec123",
           "customInputs": [],
@@ -3390,10 +3389,10 @@
           "scpi": "version = SYST:SLOT:VERS? 3"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 169,
           "top": 393,
-          "width": 233,
+          "width": 231,
           "height": 63,
           "wireID": "649d5b9b-e2e4-4e10-90e6-4829dd9e3b54",
           "customInputs": [],
@@ -3410,8 +3409,8 @@
           "type": "CallActionActionComponent",
           "left": 462,
           "top": 391,
-          "width": 159,
-          "height": 113,
+          "width": 144,
+          "height": 107,
           "wireID": "1d775480-09d3-452d-922b-8c051e450c66",
           "customInputs": [],
           "customOutputs": [],
@@ -3433,8 +3432,8 @@
           "type": "SetVariableActionComponent",
           "left": -563,
           "top": 536,
-          "width": 229,
-          "height": 70,
+          "width": 158,
+          "height": 67,
           "wireID": "45386773-777f-4691-9c41-84e20f3e2aaa",
           "customInputs": [
             {
@@ -3447,10 +3446,10 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -99,
           "top": 536,
-          "width": 244,
+          "width": 242,
           "height": 63,
           "wireID": "6c44d32f-f0db-425d-d000-3221d2a230c4",
           "customInputs": [],
@@ -3467,8 +3466,8 @@
           "type": "IsTrueActionComponent",
           "left": 192,
           "top": 536,
-          "width": 97,
-          "height": 87,
+          "width": 89,
+          "height": 83,
           "wireID": "63a739b5-e8d6-42bf-bd18-f22b2924eac8",
           "customInputs": [
             {
@@ -3480,10 +3479,10 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 379,
           "top": 640,
-          "width": 211,
+          "width": 209,
           "height": 63,
           "wireID": "9aa1854f-33f8-41a4-d183-4b615db41ac7",
           "customInputs": [],
@@ -3500,8 +3499,8 @@
           "type": "CompareActionComponent",
           "left": 640,
           "top": 640,
-          "width": 121,
-          "height": 87,
+          "width": 117,
+          "height": 83,
           "wireID": "975278b0-1a43-4d90-cccf-2cab97fd9668",
           "customInputs": [
             {
@@ -3515,7 +3514,7 @@
           "operator": "="
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -547,
           "top": 739,
           "width": 161,
@@ -3527,7 +3526,7 @@
           "scpi": "route:open (@211:246)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -360,
           "top": 739,
           "width": 128,
@@ -3539,10 +3538,10 @@
           "scpi": "OUTP:PROT:COUP 0\ninst (@301)\nOUTP:PROT:CLE\noutp 0\nvolt:prot:stat 0\nCURR:LIM MAX"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -114,
           "top": 803,
-          "width": 118,
+          "width": 105,
           "height": 63,
           "wireID": "53758824-ef05-496a-add7-f7e38bc84bf7",
           "customInputs": [],
@@ -3551,10 +3550,10 @@
           "scpi": "inst (@101)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 73,
           "top": 803,
-          "width": 118,
+          "width": 108,
           "height": 63,
           "wireID": "6d1a91fd-f4f6-4289-cb42-10b2e9af99c3",
           "customInputs": [],
@@ -3566,14 +3565,14 @@
           "type": "EndActionComponent",
           "left": 270,
           "top": 803,
-          "width": 64,
+          "width": 89,
           "height": 31,
           "wireID": "c60b18f4-e97b-4b03-d7ac-b1ea6e0e4318",
           "customInputs": [],
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 366,
           "top": 550,
           "width": 256,
@@ -3588,8 +3587,8 @@
           "type": "CallActionActionComponent",
           "left": 651,
           "top": 552,
-          "width": 157,
-          "height": 61,
+          "width": 142,
+          "height": 59,
           "wireID": "d2ffc1f1-248d-4470-cc6e-bd3f02b401d2",
           "customInputs": [],
           "customOutputs": [],
@@ -3599,8 +3598,8 @@
           "type": "CallActionActionComponent",
           "left": 56,
           "top": -328,
-          "width": 157,
-          "height": 61,
+          "width": 142,
+          "height": 59,
           "wireID": "3025e691-4ff3-413a-bd99-2ee0c1af373f",
           "customInputs": [],
           "customOutputs": [],
@@ -3610,8 +3609,8 @@
           "type": "GetVariableActionComponent",
           "left": -161,
           "top": -301,
-          "width": 133,
-          "height": 61,
+          "width": 118,
+          "height": 59,
           "wireID": "9c2186b6-21d8-4887-ff35-9deb0f1412eb",
           "customInputs": [],
           "customOutputs": [],
@@ -3621,8 +3620,8 @@
           "type": "CallActionActionComponent",
           "left": -403,
           "top": -478,
-          "width": 139,
-          "height": 87,
+          "width": 124,
+          "height": 83,
           "wireID": "9c1bfd3d-eb39-49b7-c7aa-d57d9a2adaf6",
           "customInputs": [],
           "customOutputs": [],
@@ -3643,8 +3642,8 @@
           "type": "CallActionActionComponent",
           "left": 43,
           "top": -478,
-          "width": 139,
-          "height": 87,
+          "width": 124,
+          "height": 83,
           "wireID": "a7f1b457-9edf-4855-c762-95cbbba4903f",
           "customInputs": [],
           "customOutputs": [],
@@ -3906,12 +3905,6 @@
         },
         {
           "source": "1d775480-09d3-452d-922b-8c051e450c66",
-          "output": "@Error",
-          "target": "2d9ed860-e4af-4d3b-e923-05aa101610bd",
-          "input": "@seqin"
-        },
-        {
-          "source": "1d775480-09d3-452d-922b-8c051e450c66",
           "output": "@error",
           "target": "2d9ed860-e4af-4d3b-e923-05aa101610bd",
           "input": "@seqin"
@@ -4076,7 +4069,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -204,
           "top": -149,
           "width": 313,
@@ -4126,7 +4119,7 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -204,
           "top": 84,
           "width": 217,
@@ -5408,7 +5401,7 @@
           "action": "init_check"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -28,
           "top": -140,
           "width": 145,
@@ -5477,7 +5470,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -92,
           "top": -147,
           "width": 189,
@@ -5530,7 +5523,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -273,
           "top": -106,
           "width": 245,
@@ -5563,7 +5556,7 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 174,
           "top": -75,
           "width": 118,
@@ -5645,7 +5638,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -384,
           "top": -177,
           "width": 183,
@@ -5696,7 +5689,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -144,
           "top": -268,
           "width": 271,
@@ -5777,7 +5770,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -362,
           "top": -281,
           "width": 260,
@@ -5810,7 +5803,7 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -333,
           "top": -161,
           "width": 249,
@@ -5822,7 +5815,7 @@
           "scpi": "INST:MEMO 3,0,2,405\nINST:MEMO 3,2,2,#H0302\nINST:MEMO 3,4,2,#HFFFF\nSYST:SLOT:STAT 3,0;:syst:delay 100"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -55,
           "top": -161,
           "width": 118,
@@ -6029,7 +6022,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -352,
           "top": -191,
           "width": 260,
@@ -6084,7 +6077,7 @@
           "variable": "bb3_2"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -163,
           "top": -56,
           "width": 498,
@@ -6195,7 +6188,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -353,
           "top": -90,
           "width": 181,
@@ -6247,7 +6240,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -123,
           "top": 117,
           "width": 512,
@@ -6328,7 +6321,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -418,
           "top": -167,
           "width": 188,
@@ -6359,7 +6352,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -179,
           "top": -167,
           "width": 172,
@@ -6392,7 +6385,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -207,
           "top": -7,
           "width": 491,
@@ -6498,7 +6491,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -259,
           "top": -72,
           "width": 198,
@@ -6531,7 +6524,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -244,
           "top": 108,
           "width": 528,
@@ -6612,7 +6605,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -207,
           "top": -84,
           "width": 256,
@@ -6693,7 +6686,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -77,
           "top": -130,
           "width": 183,
@@ -6729,7 +6722,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -304,
           "top": -130,
           "width": 204,
@@ -6757,7 +6750,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -185,
           "top": 116,
           "width": 499,
@@ -6844,7 +6837,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -330,
           "top": -152,
           "width": 183,
@@ -6896,7 +6889,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -117,
           "top": -30,
           "width": 499,
@@ -6977,7 +6970,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -398,
           "top": -91,
           "width": 256,
@@ -7030,7 +7023,7 @@
           "operator": ">="
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 24,
           "top": -91,
           "width": 267,
@@ -7099,7 +7092,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -63,
           "top": 90,
           "width": 365,
@@ -7228,7 +7221,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -371,
           "top": -134,
           "width": 121,
@@ -7240,7 +7233,7 @@
           "scpi": "outp 0\n:syst:delay 100"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 1,
           "top": -134,
           "width": 135,
@@ -7252,7 +7245,7 @@
           "scpi": "route:open (@203)\nsyst:delay 100\n*OPC?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -186,
           "top": -134,
           "width": 118,
@@ -7620,7 +7613,7 @@
           "action": "init_check"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -355,
           "top": -70,
           "width": 245,
@@ -7723,7 +7716,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -128,
           "top": -123,
           "width": 174,
@@ -8187,7 +8180,7 @@
           "action": "init_check"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -135,
           "top": -95,
           "width": 174,
@@ -8199,7 +8192,7 @@
           "scpi": "route:open (@211:246)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 90,
           "top": -95,
           "width": 119,
@@ -8264,7 +8257,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -212,
           "top": -104,
           "width": 119,
@@ -8276,7 +8269,7 @@
           "scpi": "outp 0\nvolt:sens EXT\n"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -60,
           "top": -104,
           "width": 182,
@@ -8288,7 +8281,7 @@
           "scpi": "route:close (@212,232)\nsyst:delay 100"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 139,
           "top": -104,
           "width": 123,
@@ -8353,7 +8346,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -420,
           "top": -143,
           "width": 118,
@@ -8365,7 +8358,7 @@
           "scpi": "outp 0"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -281,
           "top": -143,
           "width": 141,
@@ -8377,7 +8370,7 @@
           "scpi": "route:open (@232)\nroute:close (@222)\n"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 8,
           "top": -143,
           "width": 271,
@@ -8394,7 +8387,7 @@
           "scpi": "outp 1\nsyst:delay 100\nstatus = STAT:QUES:INST:ISUM2?\nvolt:sens INT"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -293,
           "top": 25,
           "width": 273,
@@ -9050,7 +9043,7 @@
           "action": "init_check"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -175,
           "top": -115,
           "width": 119,
@@ -9062,7 +9055,7 @@
           "scpi": "INST (@201)\nVOLT 0"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -33,
           "top": -115,
           "width": 145,
@@ -9074,7 +9067,7 @@
           "scpi": "INST (@301)\nVOLT:PROG EXT\nvolt:prot:type SW\n\n"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 139,
           "top": -115,
           "width": 174,
@@ -9086,7 +9079,7 @@
           "scpi": "route:open (@211:246)\nroute:close (@241)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 345,
           "top": -115,
           "width": 119,
@@ -9163,7 +9156,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -338,
           "top": -159,
           "width": 119,
@@ -9175,7 +9168,7 @@
           "scpi": "INST (@201)\nVOLT 0.5\n*OPC?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -154,
           "top": -159,
           "width": 181,
@@ -9227,7 +9220,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -137,
           "top": 27,
           "width": 475,
@@ -9314,7 +9307,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -298,
           "top": -153,
           "width": 119,
@@ -9326,7 +9319,7 @@
           "scpi": "INST (@201)\nVOLT 1.25\n*OPC?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -140,
           "top": -153,
           "width": 181,
@@ -9378,7 +9371,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -117,
           "top": 47,
           "width": 482,
@@ -9465,7 +9458,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -324,
           "top": -211,
           "width": 119,
@@ -9477,7 +9470,7 @@
           "scpi": "INST (@201)\nVOLT 1.8\n*OPC?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -166,
           "top": -211,
           "width": 181,
@@ -9529,7 +9522,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -135,
           "top": 0,
           "width": 482,
@@ -9616,7 +9609,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -104,
           "top": -121,
           "width": 119,
@@ -10120,7 +10113,7 @@
           "action": "init_check"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -30,
           "top": -139,
           "width": 145,
@@ -10179,7 +10172,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -396,
           "top": -69,
           "width": 637,
@@ -10230,7 +10223,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -159,
           "top": 133,
           "width": 379,
@@ -10311,7 +10304,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -361,
           "top": -101,
           "width": 637,
@@ -10362,7 +10355,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -121,
           "top": 97,
           "width": 379,
@@ -10443,7 +10436,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -94,
           "top": -205,
           "width": 119,
@@ -11391,7 +11384,7 @@
           "action": "init_check"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 259,
           "top": -457,
           "width": 128,
@@ -11403,7 +11396,7 @@
           "scpi": "*CLS\ninst (@301)\ncurr 0.1\noutp:dpr ON\nvolt 0\noutp 1\ncal:cle \"eezbb3\"\ncal 1, \"eezbb3\"\n"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -33,
           "top": -115,
           "width": 271,
@@ -11425,7 +11418,7 @@
           "scpi": "SYST:DELAY {delay}\nvolt = :MEAS:VOLT? (@304)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -21,
           "top": -457,
           "width": 195,
@@ -11456,7 +11449,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -227,
           "top": 85,
           "width": 158,
@@ -11489,7 +11482,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 38,
           "top": 85,
           "width": 537,
@@ -11505,7 +11498,7 @@
           "expression": "\"1st point voltage \" + {volt} + \" is not between 0.05 and 0.4 V\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -349,
           "top": -115,
           "width": 220,
@@ -11522,7 +11515,7 @@
           "scpi": "cal:volt:lev 1, {value}\n*OPC?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -302,
           "top": 254,
           "width": 271,
@@ -11563,7 +11556,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 258,
           "top": 360,
           "width": 158,
@@ -11596,7 +11589,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 331,
           "top": 254,
           "width": 531,
@@ -11612,7 +11605,7 @@
           "expression": "\"2nd point voltage \" + {volt} + \" is not between 35 and 37.5 V\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -503,
           "top": 254,
           "width": 155,
@@ -11624,7 +11617,7 @@
           "scpi": "cal:volt:lev 2, 36.0\n*OPC?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -508,
           "top": -441,
           "width": 211,
@@ -11670,7 +11663,7 @@
           "message": "\"Module in Slot 3 on BB3_2 failed!\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -746,
           "top": 254,
           "width": 195,
@@ -11712,7 +11705,7 @@
           "operator": "<"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -602,
           "top": -219,
           "width": 209,
@@ -11739,7 +11732,7 @@
           "value": "0.1"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -319,
           "top": -219,
           "width": 162,
@@ -11982,7 +11975,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 168,
           "top": -234,
           "width": 141,
@@ -11994,7 +11987,7 @@
           "scpi": "inst (@301)\ncal:curr:range LOW\nvolt 30"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -238,
           "top": 16,
           "width": 272,
@@ -12016,7 +12009,7 @@
           "scpi": "SYST:DELAY {delay}\ncurr = :MEAS:CURR? (@305)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -229,
           "top": -234,
           "width": 195,
@@ -12047,7 +12040,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 278,
           "top": 113,
           "width": 159,
@@ -12080,7 +12073,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 351,
           "top": 16,
           "width": 498,
@@ -12096,7 +12089,7 @@
           "expression": "\"current \" + {curr} + \" is not between 0.0003 and 0.001 A\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -454,
           "top": 16,
           "width": 168,
@@ -12108,7 +12101,7 @@
           "scpi": "cal:curr:lev 1, 0.0005"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -238,
           "top": 274,
           "width": 272,
@@ -12149,7 +12142,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 278,
           "top": 380,
           "width": 159,
@@ -12182,7 +12175,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 371,
           "top": 274,
           "width": 484,
@@ -12198,7 +12191,7 @@
           "expression": "\"current \" + {curr} + \" is not between 0.015 and 0.03 A\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -446,
           "top": 274,
           "width": 161,
@@ -12210,7 +12203,7 @@
           "scpi": "cal:curr:lev 2, 0.022"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 14,
           "top": -234,
           "width": 118,
@@ -12394,7 +12387,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 78,
           "top": -214,
           "width": 148,
@@ -12406,7 +12399,7 @@
           "scpi": "cal:curr:range HIGH"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -268,
           "top": 36,
           "width": 268,
@@ -12428,7 +12421,7 @@
           "scpi": "SYST:DELAY {delay}\ncurr = :MEAS:CURR? (@305)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -218,
           "top": -214,
           "width": 195,
@@ -12459,7 +12452,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 298,
           "top": 133,
           "width": 157,
@@ -12492,7 +12485,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 417,
           "top": 30,
           "width": 480,
@@ -12508,7 +12501,7 @@
           "expression": "\"current \" + {curr} + \" is not between 0.03 and 0.085 A\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -493,
           "top": 36,
           "width": 155,
@@ -12520,7 +12513,7 @@
           "scpi": "cal:curr:lev 1, 0.05"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -237,
           "top": 288,
           "width": 268,
@@ -12561,7 +12554,7 @@
           "operator": "BETWEEN"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 298,
           "top": 400,
           "width": 157,
@@ -12594,7 +12587,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 417,
           "top": 288,
           "width": 460,
@@ -12610,7 +12603,7 @@
           "expression": "\"current \" + {curr} + \" is not between 4.7 and 5.1 A\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -445,
           "top": 288,
           "width": 148,
@@ -12622,7 +12615,7 @@
           "scpi": "cal:curr:lev 2, 1\nSYST:DELAY 100\ncal:curr:lev 2, 2.4\nSYST:DELAY 100\ncal:curr:lev 2, 3.6\nSYST:DELAY 100\ncal:curr:lev 2, 4.8"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -422,
           "top": 530,
           "width": 188,
@@ -12634,7 +12627,7 @@
           "scpi": "CAL:REM \"ATE calibration\"\nCAL:SAVE\ncal 0, \"eezbb3\"\n*OPC?"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 5,
           "top": 530,
           "width": 128,
@@ -12679,7 +12672,7 @@
           "value": "10000"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -704,
           "top": 288,
           "width": 195,
@@ -12870,7 +12863,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -404,
           "top": -35,
           "width": 152,
@@ -12882,7 +12875,7 @@
           "scpi": "volt 30\nSENS:CURR:RANG LOW\ncurr 5mA\noutp 1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -228,
           "top": -35,
           "width": 235,
@@ -12934,7 +12927,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 102,
           "top": 102,
           "width": 506,
@@ -12950,7 +12943,7 @@
           "expression": "\"current \" + {curr} + \" is not between 4.8 and 5.2 mA\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -228,
           "top": -154,
           "width": 211,
@@ -12962,7 +12955,7 @@
           "scpi": ":SENSE:CURR:RANG 1, (@305)\nROUT:CLOSE (@203)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -389,
           "top": -154,
           "width": 119,
@@ -13057,7 +13050,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -315,
           "top": -2,
           "width": 152,
@@ -13069,7 +13062,7 @@
           "scpi": "volt 30\nSENS:CURR:RANG LOW\ncurr 45mA\noutp 1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -154,
           "top": -2,
           "width": 235,
@@ -13121,7 +13114,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 171,
           "top": 142,
           "width": 491,
@@ -13137,7 +13130,7 @@
           "expression": "\"current \" + {curr} + \" is not between 43 and 47 mA\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -154,
           "top": -121,
           "width": 211,
@@ -13149,7 +13142,7 @@
           "scpi": ":SENSE:CURR:RANG 2, (@305)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -315,
           "top": -121,
           "width": 119,
@@ -13244,7 +13237,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -366,
           "top": -113,
           "width": 160,
@@ -13256,7 +13249,7 @@
           "scpi": "volt 30\nSENS:CURR:RANG HIGH\ncurr:lim MAX\ncurr 55mA\noutp 1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -176,
           "top": -113,
           "width": 235,
@@ -13308,7 +13301,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 151,
           "top": 18,
           "width": 491,
@@ -13324,7 +13317,7 @@
           "expression": "\"current \" + {curr} + \" is not between 52 and 58 mA\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -176,
           "top": -221,
           "width": 211,
@@ -13336,7 +13329,7 @@
           "scpi": ":SENSE:CURR:RANG 2, (@305)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -337,
           "top": -221,
           "width": 119,
@@ -13431,7 +13424,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -317,
           "top": -93,
           "width": 160,
@@ -13443,7 +13436,7 @@
           "scpi": "volt 30\nSENS:CURR:RANG HIGH\ncurr 4.5\noutp 1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -156,
           "top": -93,
           "width": 235,
@@ -13495,7 +13488,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 200,
           "top": 58,
           "width": 513,
@@ -13511,7 +13504,7 @@
           "expression": "\"current \" + {curr} + \" is not between 4.49 and 4.51 A\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -156,
           "top": -201,
           "width": 211,
@@ -13523,7 +13516,7 @@
           "scpi": ":SENSE:CURR:RANG 3, (@305)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -317,
           "top": -201,
           "width": 119,
@@ -13618,7 +13611,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -297,
           "top": -73,
           "width": 119,
@@ -13630,7 +13623,7 @@
           "scpi": "volt 2\ncurr 20 mA\noutp 1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -136,
           "top": -73,
           "width": 233,
@@ -13682,7 +13675,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 181,
           "top": 90,
           "width": 512,
@@ -13698,7 +13691,7 @@
           "expression": "\"voltage \" + {volt} + \" is not between 1.98 and 2.02 V\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -136,
           "top": -181,
           "width": 211,
@@ -13710,7 +13703,7 @@
           "scpi": "ROUT:OPEN (@203)\n:SENSE:VOLT:RANG 1, (@304)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -297,
           "top": -181,
           "width": 119,
@@ -13805,7 +13798,7 @@
           "customOutputs": []
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -407,
           "top": -29,
           "width": 118,
@@ -13817,7 +13810,7 @@
           "scpi": "volt 35\ncurr 20 mA\noutp 1"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -246,
           "top": -29,
           "width": 218,
@@ -13869,7 +13862,7 @@
           "message": "message"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": 73,
           "top": 118,
           "width": 490,
@@ -13885,7 +13878,7 @@
           "expression": "\"voltage \" + {volt} + \" is not between 34.95 and 35.05 V\""
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -246,
           "top": -137,
           "width": 195,
@@ -13897,7 +13890,7 @@
           "scpi": ":SENSE:VOLT:RANG 2, (@304)"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -407,
           "top": -137,
           "width": 118,
@@ -14015,7 +14008,7 @@
           "variable": "test_module_id"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -669,
           "top": -14,
           "width": 293,
@@ -14032,7 +14025,7 @@
           "scpi": "cal_params = diag:cal? (@301)"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -341,
           "top": -104,
           "width": 544,
@@ -14145,7 +14138,7 @@
     {
       "components": [
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -383,
           "top": 0,
           "width": 161,
@@ -14189,7 +14182,7 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 113,
           "top": 0,
           "width": 148,
@@ -14212,7 +14205,7 @@
           "milliseconds": 4000
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": 409,
           "top": 0,
           "width": 161,
@@ -14376,7 +14369,7 @@
       "localVariables": [
         {
           "name": "Instrument",
-          "type": "custom:Instrument",
+          "type": "object:Instrument",
           "defaultValue": "null"
         }
       ],
@@ -14446,7 +14439,7 @@
           "type": "ShowPageActionComponent",
           "left": 216,
           "top": 654,
-          "width": 119,
+          "width": 104,
           "height": 67,
           "wireID": "22156ec9-593c-4a94-f65c-bee27bdacb93",
           "customInputs": [],
@@ -14457,8 +14450,8 @@
           "type": "GetVariableActionComponent",
           "left": -158,
           "top": 76,
-          "width": 133,
-          "height": 61,
+          "width": 118,
+          "height": 59,
           "wireID": "568f8560-c5c9-4b14-fc47-b99d5f26b455",
           "customInputs": [],
           "customOutputs": [],
@@ -14468,8 +14461,8 @@
           "type": "GetVariableActionComponent",
           "left": -158,
           "top": 353,
-          "width": 133,
-          "height": 61,
+          "width": 118,
+          "height": 59,
           "wireID": "d5748591-031f-4c00-e081-a5c1e9c0580d",
           "customInputs": [],
           "customOutputs": [],
@@ -14479,8 +14472,8 @@
           "type": "GetVariableActionComponent",
           "left": -527,
           "top": 554,
-          "width": 479,
-          "height": 61,
+          "width": 477,
+          "height": 59,
           "wireID": "736a24c4-d99c-4189-d002-de14b3369c3e",
           "customInputs": [],
           "customOutputs": [],
@@ -14493,18 +14486,6 @@
           "output": "action",
           "target": "22156ec9-593c-4a94-f65c-bee27bdacb93",
           "input": "@seqin"
-        },
-        {
-          "source": "568f8560-c5c9-4b14-fc47-b99d5f26b455",
-          "output": "variable",
-          "target": "3f1e1df9-2a64-4ab9-c745-52d1d907de2f",
-          "input": "f37a31c5-6b3c-4529-a6c1-05650031a072"
-        },
-        {
-          "source": "d5748591-031f-4c00-e081-a5c1e9c0580d",
-          "output": "variable",
-          "target": "eceb8986-94a1-449f-e9bd-3d61ad3bd489",
-          "input": "f37a31c5-6b3c-4529-a6c1-05650031a072"
         },
         {
           "source": "568f8560-c5c9-4b14-fc47-b99d5f26b455",
@@ -14735,7 +14716,7 @@
       "localVariables": [
         {
           "name": "instrument",
-          "type": "custom:Instrument",
+          "type": "object:Instrument",
           "defaultValue": "null"
         }
       ],
@@ -15153,7 +15134,7 @@
           "value": "value"
         },
         {
-          "type": "ScpiActionComponent",
+          "type": "SCPIActionComponent",
           "left": -602,
           "top": 26,
           "width": 410,
@@ -15822,7 +15803,7 @@
         },
         {
           "name": "instrument",
-          "type": "custom:Instrument",
+          "type": "object:Instrument",
           "defaultValue": "null"
         }
       ],
@@ -15967,8 +15948,8 @@
           "type": "CallActionActionComponent",
           "left": -362,
           "top": 138,
-          "width": 141,
-          "height": 61,
+          "width": 126,
+          "height": 59,
           "wireID": "5d865535-8db0-4823-af17-0719a87b6149",
           "customInputs": [],
           "customOutputs": [],
@@ -15978,8 +15959,8 @@
           "type": "ConstantActionComponent",
           "left": -515,
           "top": 138,
-          "width": 114,
-          "height": 61,
+          "width": 99,
+          "height": 59,
           "wireID": "c8de4a35-878d-44db-c740-c252c1884737",
           "customInputs": [],
           "customOutputs": [],
@@ -15989,8 +15970,8 @@
           "type": "CallActionActionComponent",
           "left": 1544,
           "top": 273,
-          "width": 111,
-          "height": 61,
+          "width": 96,
+          "height": 59,
           "wireID": "6da410a4-4ad4-438b-bae8-a96ff51e8033",
           "customInputs": [],
           "customOutputs": [],
@@ -16000,8 +15981,8 @@
           "type": "GetVariableActionComponent",
           "left": -578,
           "top": 353,
-          "width": 133,
-          "height": 61,
+          "width": 121,
+          "height": 59,
           "wireID": "ddf12a5a-b24d-4015-c4be-e1e24d86f868",
           "customInputs": [],
           "customOutputs": [],
@@ -16011,19 +15992,19 @@
           "type": "GetVariableActionComponent",
           "left": -578,
           "top": 423,
-          "width": 133,
-          "height": 61,
+          "width": 121,
+          "height": 59,
           "wireID": "12d2ee96-bb36-44b2-9a8b-381e7c19bc98",
           "customInputs": [],
           "customOutputs": [],
           "variable": "bb3_2.isConnected"
         },
         {
-          "type": "EvalActionComponent",
+          "type": "EvalJSExprActionComponent",
           "left": -418,
           "top": 392,
-          "width": 324,
-          "height": 113,
+          "width": 317,
+          "height": 107,
           "wireID": "5b162a81-27ef-4b0b-ff4c-341c78b44511",
           "customInputs": [
             {
@@ -16046,8 +16027,8 @@
           "type": "CatchErrorActionComponent",
           "left": 1356,
           "top": 314,
-          "width": 120,
-          "height": 61,
+          "width": 105,
+          "height": 59,
           "wireID": "09e3bb41-bf50-4b55-ef4e-123265f11668",
           "customInputs": [],
           "customOutputs": []
@@ -16056,8 +16037,8 @@
           "type": "ConstantActionComponent",
           "left": 1370,
           "top": 220,
-          "width": 114,
-          "height": 61,
+          "width": 99,
+          "height": 59,
           "wireID": "e93cc53d-c403-487f-a64e-c34c9d160d38",
           "customInputs": [],
           "customOutputs": [],
@@ -16067,8 +16048,8 @@
           "type": "GetVariableActionComponent",
           "left": -578,
           "top": 492,
-          "width": 133,
-          "height": 61,
+          "width": 118,
+          "height": 59,
           "wireID": "f46e8f71-d75e-433d-c507-b93cf9f244b7",
           "customInputs": [],
           "customOutputs": [],
@@ -16078,8 +16059,8 @@
           "type": "GetVariableActionComponent",
           "left": 310,
           "top": -77,
-          "width": 133,
-          "height": 61,
+          "width": 118,
+          "height": 59,
           "wireID": "a98c2080-3293-435b-8194-6cf642386336",
           "customInputs": [],
           "customOutputs": [],
@@ -16089,8 +16070,8 @@
           "type": "ConstantActionComponent",
           "left": -185,
           "top": 281,
-          "width": 114,
-          "height": 61,
+          "width": 99,
+          "height": 59,
           "wireID": "23b7652c-feab-432d-924a-3dac73a21a24",
           "customInputs": [],
           "customOutputs": [],
@@ -16170,7 +16151,7 @@
           "type": "ShowPageActionComponent",
           "left": -64,
           "top": -172,
-          "width": 119,
+          "width": 104,
           "height": 67,
           "wireID": "63adeb37-dc35-4581-e91b-01e1177bfea6",
           "customInputs": [],
@@ -16201,36 +16182,6 @@
           "source": "5b162a81-27ef-4b0b-ff4c-341c78b44511",
           "output": "result",
           "target": "d1a577f9-53d1-46e8-b6b3-e71bc345a244",
-          "input": "enabled"
-        },
-        {
-          "source": "5b162a81-27ef-4b0b-ff4c-341c78b44511",
-          "output": "result",
-          "target": "89b9b12d-ef82-4f2b-812b-56efea7b3e82",
-          "input": "enabled"
-        },
-        {
-          "source": "5b162a81-27ef-4b0b-ff4c-341c78b44511",
-          "output": "result",
-          "target": "c012a30c-17d8-4c96-b5a3-010c883d8388",
-          "input": "enabled"
-        },
-        {
-          "source": "5b162a81-27ef-4b0b-ff4c-341c78b44511",
-          "output": "result",
-          "target": "0381b81d-ec88-4d2f-a314-13a540f821d4",
-          "input": "enabled"
-        },
-        {
-          "source": "5b162a81-27ef-4b0b-ff4c-341c78b44511",
-          "output": "result",
-          "target": "ca17add6-3614-4c13-81c2-e4930c9c39c3",
-          "input": "enabled"
-        },
-        {
-          "source": "5b162a81-27ef-4b0b-ff4c-341c78b44511",
-          "output": "result",
-          "target": "f479ea8b-cb88-4762-b647-243db1171335",
           "input": "enabled"
         },
         {
@@ -16280,174 +16231,6 @@
           "output": "@seqout",
           "target": "23b7652c-feab-432d-924a-3dac73a21a24",
           "input": "@seqin"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "cd71edb9-bcb9-4ca1-99aa-b4b72a000740",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "1aef7d16-f884-4803-cc64-c72aaf3b7042",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "4998ebbb-d25d-43a1-9b72-3d75e9399d8e",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "0ee73517-650a-45fa-ef32-b5ebd29de4cd",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "47a49327-1db7-46bf-b560-efc90c8c6928",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "99299cb5-7465-4305-ef68-363ffd6ecee6",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "3fae1fd3-7e2b-44ad-db5f-4df48819d6ee",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "d21747c0-f903-4acc-c0d7-93096923c896",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "fcaba0c9-ae66-4e04-e27b-6f00bc18a2e3",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "00d54b8a-9de9-416f-d9e1-78f76875a7e1",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "e9490c46-f5bf-49ef-e3ad-883b3ae78ebc",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "a7c89331-fa29-4f37-d188-a1cb90fa05bf",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "bf34a18b-9dce-4b39-c8b6-8f47be8b2fb9",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "3ca7373f-c2a9-4a0c-a123-511a27d6e921",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "9bd00501-f528-40fb-efbc-6c0d571d1a5d",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "c485dedc-7cae-4174-b67e-6b86d47071e5",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "3a70edee-fa75-46d0-df9b-45f1f2af30e2",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "a3bf411f-60fc-4901-fe04-9b8a05d8bb82",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "20cbaa09-e9b8-473a-9eb7-212584e092b7",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "ef143c74-6046-4002-81fb-989a63a3ad50",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "b48eb744-1f7c-45c1-b0c5-90a731eb3023",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "d223baa3-1d0a-41f4-f6f3-429e61f9ef4c",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "ce7cf1d7-5ffc-48b0-e6e1-edf2b53c4e67",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "8576ce46-bd68-4eab-b9c3-1cebeec51d67",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "937fefa9-26fd-4978-ced2-9f67de2b2fc5",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "8363b1d2-0027-4887-c154-9aa435394ddb",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "81722a2a-ef11-432a-d4e7-0ecf5dfdbaa5",
-          "input": "data"
-        },
-        {
-          "source": "23b7652c-feab-432d-924a-3dac73a21a24",
-          "output": "value",
-          "target": "f939a431-f1cd-4f99-8fc2-397497bbae35",
-          "input": "data"
         },
         {
           "source": "23b7652c-feab-432d-924a-3dac73a21a24",
@@ -18906,8 +18689,8 @@
           "type": "CallActionActionComponent",
           "left": -235,
           "top": 126,
-          "width": 201,
-          "height": 321,
+          "width": 196,
+          "height": 299,
           "wireID": "262558f5-94af-4b16-b34c-9bb26c47bcba",
           "customInputs": [],
           "customOutputs": [],
@@ -18917,8 +18700,8 @@
           "type": "CallActionActionComponent",
           "left": -391,
           "top": 126,
-          "width": 118,
-          "height": 61,
+          "width": 100,
+          "height": 59,
           "wireID": "4042b156-0285-443c-afc8-1559a7b13dbb",
           "customInputs": [],
           "customOutputs": [],
@@ -18928,8 +18711,8 @@
           "type": "ConstantActionComponent",
           "left": -539,
           "top": 200,
-          "width": 116,
-          "height": 61,
+          "width": 99,
+          "height": 59,
           "wireID": "c68df5d5-646f-4602-ac8a-52081d6b8651",
           "customInputs": [],
           "customOutputs": [],
@@ -18939,7 +18722,7 @@
           "type": "EndActionComponent",
           "left": 94,
           "top": 447,
-          "width": 73,
+          "width": 89,
           "height": 31,
           "wireID": "7462ee4d-4cd8-45da-ed03-9a4babc99a81",
           "customInputs": [],
@@ -18949,7 +18732,7 @@
           "type": "InputActionComponent",
           "left": -167,
           "top": 40,
-          "width": 142,
+          "width": 126,
           "height": 31,
           "wireID": "4e1fad5b-8bbd-4fc3-b11e-19f75d0d51f7",
           "customInputs": [],
@@ -18960,7 +18743,7 @@
           "type": "StartActionComponent",
           "left": -381,
           "top": 54,
-          "width": 79,
+          "width": 89,
           "height": 31,
           "wireID": "93eb98ff-2995-481e-89cc-8e0485aadf3f",
           "customInputs": [],
@@ -18970,7 +18753,7 @@
           "type": "InputActionComponent",
           "left": 61,
           "top": -92,
-          "width": 93,
+          "width": 89,
           "height": 31,
           "wireID": "4a3d7a01-ca94-4887-82ab-c5ce7967917e",
           "customInputs": [],
@@ -19230,30 +19013,6 @@
           "output": "action",
           "target": "4042b156-0285-443c-afc8-1559a7b13dbb",
           "input": "@seqin"
-        },
-        {
-          "source": "262558f5-94af-4b16-b34c-9bb26c47bcba",
-          "output": "ee1e7f97-017e-4d83-adea-5d901a656f3a",
-          "target": "7462ee4d-4cd8-45da-ed03-9a4babc99a81",
-          "input": "@seqin"
-        },
-        {
-          "source": "262558f5-94af-4b16-b34c-9bb26c47bcba",
-          "output": "fa04d29e-3df0-44c2-d8b3-ead1c14b0d08",
-          "target": "937fefa9-26fd-4978-ced2-9f67de2b2fc5",
-          "input": "data"
-        },
-        {
-          "source": "262558f5-94af-4b16-b34c-9bb26c47bcba",
-          "output": "1d6a39a9-cd37-4afd-ea49-821f8e324ba8",
-          "target": "8363b1d2-0027-4887-c154-9aa435394ddb",
-          "input": "data"
-        },
-        {
-          "source": "262558f5-94af-4b16-b34c-9bb26c47bcba",
-          "output": "133b0d97-7fbc-4317-bc95-0549ad85028b",
-          "target": "81722a2a-ef11-432a-d4e7-0ecf5dfdbaa5",
-          "input": "data"
         },
         {
           "source": "93eb98ff-2995-481e-89cc-8e0485aadf3f",
