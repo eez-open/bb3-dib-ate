@@ -7201,17 +7201,12 @@
           "width": 110,
           "height": 32,
           "wireID": "f67c5cf2-997a-4bc5-c839-feddd4d0a8f2",
-          "customInputs": [
-            {
-              "name": "data",
-              "type": "string"
-            }
-          ],
+          "customInputs": [],
           "customOutputs": [],
           "asOutputProperties": [
             "action"
           ],
-          "data": "data",
+          "data": "cancelRequested ? \"Stopping...\" : \"Stop\"",
           "style": {
             "inheritFrom": "default"
           },
@@ -7244,17 +7239,6 @@
           "customOutputs": [],
           "variable": "cancelRequested",
           "value": "false"
-        },
-        {
-          "type": "WatchVariableActionComponent",
-          "left": -130,
-          "top": -85,
-          "width": 247,
-          "height": 63,
-          "wireID": "917f920c-8fa3-4af6-f33f-1ee589ed5fd7",
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "cancelRequested ? \"Stopping...\" : \"Stop\""
         },
         {
           "type": "SetVariableActionComponent",
@@ -7455,12 +7439,6 @@
           "output": "@seqout",
           "target": "085475f0-50e0-44f2-8c68-30ee9c422f34",
           "input": "@seqin"
-        },
-        {
-          "source": "917f920c-8fa3-4af6-f33f-1ee589ed5fd7",
-          "output": "variable",
-          "target": "f67c5cf2-997a-4bc5-c839-feddd4d0a8f2",
-          "input": "data"
         },
         {
           "source": "9b588820-4f93-443c-9ed0-01d6725d396a",
