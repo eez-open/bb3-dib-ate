@@ -3,5 +3,6 @@ EEZ Flows for DIB modules test automation. They require BB3 firmware [v1.8-Alpha
 
 * DCP405 module test and calibration (_dcp_ate_)
 * MIO168 + AFE3 calibration (_mio_ate_)
+* Relay loop test (_relay loop test_)
 
 PostgreSQL database is used for module registration and calibration parameters (use _bb3_ate.sql_ to create tables).
