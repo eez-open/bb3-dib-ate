@@ -529,7 +529,7 @@
           "customOutputs": [],
           "tests": [
             {
-              "condition": "voltage < 0 || voltage > max_volt",
+              "condition": "voltage < 3 || voltage > max_volt",
               "outputName": "invalid"
             }
           ]
@@ -576,7 +576,7 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 137,
+          "left": 106,
           "top": 617,
           "width": 408,
           "height": 83,
