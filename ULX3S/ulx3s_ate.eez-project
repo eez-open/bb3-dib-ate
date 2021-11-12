@@ -4,7 +4,7 @@
       "projectVersion": "v3",
       "projectType": "dashboard",
       "imports": [],
-      "css": ".page {\n    background-color: #eee;\n    border-radius: 4px;\n    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);\n}\n\n.device {\n    background-color: #ddd;\n    box-shadow: 1px 1px 4px rgb(133 133 133 / 50%);\n}\n\n.device_title {\n    font-weight: bold;\n}\n\n.blink_status {\n    color: blue;\n    font-weight: bold;\n    animation: blinker 1s linear infinite;\n}\n\n.success_status {\n    color: green;\n    font-weight: bold;\n}\n\n@keyframes blinker {\n  50% {\n    opacity: 0;\n  }\n}\n\n.success {\n    color: green;\n    font-weight: bold;\n}\n\n.error {\n    color: red;\n    font-weight: bold;\n}\n\n.help {\n    border: 1px solid #999;\n    padding: 10px;\n    background-color: white;\n}"
+      "css": ".page {\n    background-color: #eee;\n    border-radius: 4px;\n    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);\n}\n\n.device {\n    background-color: #ddd;\n    border-radius: 4px;\n    box-shadow: 1px 1px 4px rgb(133 133 133 / 50%);\n}\n\n.device_title {\n    font-weight: bold;\n}\n\n.blink_status {\n    color: blue;\n    font-weight: bold;\n    animation: blinker 1s linear infinite;\n}\n\n.success_status {\n    color: green;\n    font-weight: bold;\n}\n\n@keyframes blinker {\n  50% {\n    opacity: 0;\n  }\n}\n\n.success {\n    color: green;\n    font-weight: bold;\n}\n\n.error {\n    color: red;\n    font-weight: bold;\n}\n\n.help {\n    border: 1px solid #999;\n    padding: 10px;\n    background-color: white;\n}"
     },
     "build": {
       "configurations": [
