@@ -192,206 +192,6 @@
     {
       "components": [
         {
-          "type": "CallActionActionComponent",
-          "left": -282,
-          "top": -96,
-          "width": 120,
-          "height": 83,
-          "wireID": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "customInputs": [],
-          "customOutputs": [],
-          "action": "enum_devices"
-        },
-        {
-          "type": "IsTrueActionComponent",
-          "left": 257,
-          "top": -435,
-          "width": 168,
-          "height": 83,
-          "wireID": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "automatic_testing"
-        },
-        {
-          "type": "StartActionComponent",
-          "left": -444,
-          "top": -96,
-          "width": 87,
-          "height": 29,
-          "wireID": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
-          "customInputs": [],
-          "customOutputs": []
-        },
-        {
-          "type": "OutputActionComponent",
-          "left": 688,
-          "top": -87,
-          "width": 87,
-          "height": 29,
-          "wireID": "4dce99dd-a04a-4b68-847c-45a8215faea4",
-          "customInputs": [],
-          "customOutputs": [],
-          "name": "stdout",
-          "outputType": "string"
-        },
-        {
-          "type": "OutputActionComponent",
-          "left": 688,
-          "top": -42,
-          "width": 87,
-          "height": 29,
-          "wireID": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
-          "customInputs": [],
-          "customOutputs": [],
-          "name": "stderr",
-          "outputType": "string"
-        },
-        {
-          "type": "CallActionActionComponent",
-          "left": 492,
-          "top": -435,
-          "width": 113,
-          "height": 83,
-          "wireID": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
-          "customInputs": [],
-          "customOutputs": [],
-          "action": "do_auto_test"
-        },
-        {
-          "type": "IsTrueActionComponent",
-          "left": 714,
-          "top": -297,
-          "width": 478,
-          "height": 83,
-          "wireID": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "auto_refresh && (System.getTick() - lastAutoRefreshTick > 1000)"
-        },
-        {
-          "type": "SetVariableActionComponent",
-          "left": -122,
-          "top": -266,
-          "width": 294,
-          "height": 62,
-          "wireID": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "lastAutoRefreshTick",
-          "value": "System.getTick()"
-        },
-        {
-          "type": "CommentActionComponent",
-          "left": 714,
-          "top": -390,
-          "width": 435,
-          "height": 57,
-          "wireID": "e4640360-6f63-4959-ca9e-5374aa5c923d",
-          "customInputs": [],
-          "customOutputs": [],
-          "text": "<div><!--block-->Do auto refresh every 1 second if enabled</div>"
-        },
-        {
-          "type": "CommentActionComponent",
-          "left": 253,
-          "top": -503,
-          "width": 352,
-          "height": 57,
-          "wireID": "52938743-71ba-4c59-b983-ecb43c7bd215",
-          "customInputs": [],
-          "customOutputs": [],
-          "text": "<div><!--block-->Do auto test if enabled</div>"
-        }
-      ],
-      "connectionLines": [
-        {
-          "source": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
-          "output": "@seqout",
-          "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "input": "@seqin"
-        },
-        {
-          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "output": "245a891f-9fce-4e4b-a94b-37b2a018e1b9",
-          "target": "4dce99dd-a04a-4b68-847c-45a8215faea4",
-          "input": "@seqin"
-        },
-        {
-          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "output": "a61f4b3b-2c7a-447b-82da-9cec0ad5721a",
-          "target": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
-          "input": "@seqin"
-        },
-        {
-          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "output": "@seqout",
-          "target": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
-          "input": "@seqin"
-        },
-        {
-          "source": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
-          "output": "@seqout",
-          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "input": "@seqin"
-        },
-        {
-          "source": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "output": "True",
-          "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "input": "@seqin"
-        },
-        {
-          "source": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "output": "False",
-          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "input": "@seqin"
-        },
-        {
-          "source": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "output": "True",
-          "target": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
-          "input": "@seqin"
-        },
-        {
-          "source": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "output": "False",
-          "target": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "input": "@seqin"
-        },
-        {
-          "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
-          "output": "@seqout",
-          "target": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "input": "@seqin"
-        },
-        {
-          "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
-          "output": "867eb9aa-8a06-440c-9739-438fc92cb2f6",
-          "target": "4dce99dd-a04a-4b68-847c-45a8215faea4",
-          "input": "@seqin"
-        },
-        {
-          "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
-          "output": "5c0bddf6-a1e8-43cb-e6e4-cef69786e7f3",
-          "target": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
-          "input": "@seqin"
-        }
-      ],
-      "localVariables": [
-        {
-          "name": "lastAutoRefreshTick",
-          "type": "integer",
-          "defaultValue": "0",
-          "persistent": false
-        }
-      ],
-      "name": "main_loop",
-      "implementationType": "flow"
-    },
-    {
-      "components": [
-        {
           "type": "ExecuteCommand",
           "left": -83,
           "top": -90,
@@ -2137,6 +1937,206 @@
         }
       ],
       "name": "move_to_prev_step",
+      "implementationType": "flow"
+    },
+    {
+      "components": [
+        {
+          "type": "CallActionActionComponent",
+          "left": -282,
+          "top": -96,
+          "width": 120,
+          "height": 83,
+          "wireID": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "enum_devices"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 257,
+          "top": -435,
+          "width": 168,
+          "height": 83,
+          "wireID": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "automatic_testing"
+        },
+        {
+          "type": "StartActionComponent",
+          "left": -444,
+          "top": -96,
+          "width": 87,
+          "height": 29,
+          "wireID": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "type": "OutputActionComponent",
+          "left": 688,
+          "top": -87,
+          "width": 87,
+          "height": 29,
+          "wireID": "4dce99dd-a04a-4b68-847c-45a8215faea4",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "stdout",
+          "outputType": "string"
+        },
+        {
+          "type": "OutputActionComponent",
+          "left": 688,
+          "top": -42,
+          "width": 87,
+          "height": 29,
+          "wireID": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "stderr",
+          "outputType": "string"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 492,
+          "top": -435,
+          "width": 113,
+          "height": 83,
+          "wireID": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "do_auto_test"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 714,
+          "top": -297,
+          "width": 478,
+          "height": 83,
+          "wireID": "74f49669-fb21-4e17-cfab-a60fcc28c331",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "auto_refresh && (System.getTick() - lastAutoRefreshTick > 1000)"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -122,
+          "top": -266,
+          "width": 294,
+          "height": 62,
+          "wireID": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "lastAutoRefreshTick",
+          "value": "System.getTick()"
+        },
+        {
+          "type": "CommentActionComponent",
+          "left": 714,
+          "top": -390,
+          "width": 435,
+          "height": 57,
+          "wireID": "e4640360-6f63-4959-ca9e-5374aa5c923d",
+          "customInputs": [],
+          "customOutputs": [],
+          "text": "<div><!--block-->Do auto refresh every 1 second if enabled</div>"
+        },
+        {
+          "type": "CommentActionComponent",
+          "left": 253,
+          "top": -503,
+          "width": 352,
+          "height": 57,
+          "wireID": "52938743-71ba-4c59-b983-ecb43c7bd215",
+          "customInputs": [],
+          "customOutputs": [],
+          "text": "<div><!--block-->Do auto test if enabled</div>"
+        }
+      ],
+      "connectionLines": [
+        {
+          "source": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
+          "output": "@seqout",
+          "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "input": "@seqin"
+        },
+        {
+          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "output": "245a891f-9fce-4e4b-a94b-37b2a018e1b9",
+          "target": "4dce99dd-a04a-4b68-847c-45a8215faea4",
+          "input": "@seqin"
+        },
+        {
+          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "output": "a61f4b3b-2c7a-447b-82da-9cec0ad5721a",
+          "target": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
+          "input": "@seqin"
+        },
+        {
+          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "output": "@seqout",
+          "target": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
+          "input": "@seqin"
+        },
+        {
+          "source": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
+          "output": "@seqout",
+          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
+          "input": "@seqin"
+        },
+        {
+          "source": "74f49669-fb21-4e17-cfab-a60fcc28c331",
+          "output": "True",
+          "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "input": "@seqin"
+        },
+        {
+          "source": "74f49669-fb21-4e17-cfab-a60fcc28c331",
+          "output": "False",
+          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
+          "input": "@seqin"
+        },
+        {
+          "source": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
+          "output": "True",
+          "target": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
+          "input": "@seqin"
+        },
+        {
+          "source": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
+          "output": "False",
+          "target": "74f49669-fb21-4e17-cfab-a60fcc28c331",
+          "input": "@seqin"
+        },
+        {
+          "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
+          "output": "@seqout",
+          "target": "74f49669-fb21-4e17-cfab-a60fcc28c331",
+          "input": "@seqin"
+        },
+        {
+          "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
+          "output": "867eb9aa-8a06-440c-9739-438fc92cb2f6",
+          "target": "4dce99dd-a04a-4b68-847c-45a8215faea4",
+          "input": "@seqin"
+        },
+        {
+          "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
+          "output": "5c0bddf6-a1e8-43cb-e6e4-cef69786e7f3",
+          "target": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [
+        {
+          "name": "lastAutoRefreshTick",
+          "type": "integer",
+          "defaultValue": "0",
+          "persistent": false
+        }
+      ],
+      "name": "main_loop",
       "implementationType": "flow"
     },
     {
