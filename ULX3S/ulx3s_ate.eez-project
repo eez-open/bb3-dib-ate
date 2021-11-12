@@ -4,7 +4,7 @@
       "projectVersion": "v3",
       "projectType": "dashboard",
       "imports": [],
-      "css": ".page {\n    background-color: #eee;\n}\n\n.device {\n    background-color: #ddd;\n    box-shadow: 1px 1px 4px rgb(133 133 133 / 50%);\n}\n\n.device_title {\n    font-weight: bold;\n}\n\n.blink_status {\n    color: blue;\n    font-weight: bold;\n    animation: blinker 1s linear infinite;\n}\n\n.success_status {\n    color: green;\n    font-weight: bold;\n}\n\n@keyframes blinker {\n  50% {\n    opacity: 0;\n  }\n}\n\n.success {\n    color: green;\n    font-weight: bold;\n}\n\n.error {\n    color: red;\n    font-weight: bold;\n}"
+      "css": ".page {\n    background-color: #eee;\n    border-radius: 4px;\n    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);\n}\n\n.device {\n    background-color: #ddd;\n    box-shadow: 1px 1px 4px rgb(133 133 133 / 50%);\n}\n\n.device_title {\n    font-weight: bold;\n}\n\n.blink_status {\n    color: blue;\n    font-weight: bold;\n    animation: blinker 1s linear infinite;\n}\n\n.success_status {\n    color: green;\n    font-weight: bold;\n}\n\n@keyframes blinker {\n  50% {\n    opacity: 0;\n  }\n}\n\n.success {\n    color: green;\n    font-weight: bold;\n}\n\n.error {\n    color: red;\n    font-weight: bold;\n}\n\n.help {\n    border: 1px solid #999;\n    padding: 10px;\n    background-color: white;\n}"
     },
     "build": {
       "configurations": [
@@ -39,7 +39,7 @@
       {
         "name": "update_database",
         "type": "boolean",
-        "defaultValue": "false",
+        "defaultValue": "true",
         "persistent": true
       },
       {
@@ -3031,7 +3031,7 @@
           "customOutputs": [],
           "filePath": "filePath",
           "content": "content",
-          "encoding": "\"utf16le\""
+          "encoding": "\"utf8\""
         },
         {
           "type": "EvalExprActionComponent",
@@ -3210,7 +3210,7 @@
           "wireID": "37a54493-902a-4d0f-8c3f-a34bcc502221",
           "customInputs": [],
           "customOutputs": [],
-          "value": "false"
+          "value": "true"
         },
         {
           "type": "CommentActionComponent",
@@ -7488,9 +7488,22 @@
           "gap": 0
         },
         {
-          "type": "Container",
+          "type": "CheckboxWidget",
           "left": 500,
           "top": 10,
+          "width": 150,
+          "height": 22,
+          "wireID": "4ee65bbb-45e2-444e-9a21-7034deefcc0a",
+          "customInputs": [],
+          "customOutputs": [],
+          "asOutputProperties": [],
+          "data": "automatic_testing",
+          "label": "\"Automatic testing\""
+        },
+        {
+          "type": "Container",
+          "left": 500,
+          "top": 44,
           "width": 400,
           "height": 32,
           "wireID": "94e69b05-f54e-4a87-de4b-41f0595ced07",
@@ -7501,21 +7514,8 @@
           },
           "widgets": [
             {
-              "type": "CheckboxWidget",
-              "left": 0,
-              "top": 7,
-              "width": 150,
-              "height": 22,
-              "wireID": "4ee65bbb-45e2-444e-9a21-7034deefcc0a",
-              "customInputs": [],
-              "customOutputs": [],
-              "asOutputProperties": [],
-              "data": "automatic_testing",
-              "label": "\"Automatic testing\""
-            },
-            {
               "type": "Container",
-              "left": 190,
+              "left": 0,
               "top": 0,
               "width": 100,
               "height": 32,
@@ -7551,11 +7551,31 @@
             },
             {
               "type": "ButtonWidget",
-              "left": 300,
+              "left": 192,
               "top": 0,
               "width": 100,
               "height": 32,
               "wireID": "e7b0216b-8591-4a18-a7f9-a469cfa1a500",
+              "customInputs": [],
+              "customOutputs": [],
+              "asOutputProperties": [
+                "action"
+              ],
+              "data": "\"Help\"",
+              "style": {
+                "inheritFrom": "default"
+              },
+              "disabledStyle": {
+                "inheritFrom": "default"
+              }
+            },
+            {
+              "type": "ButtonWidget",
+              "left": 300,
+              "top": 0,
+              "width": 100,
+              "height": 32,
+              "wireID": "fce171ed-0cea-42f7-f784-71f05a2d2ea0",
               "customInputs": [],
               "customOutputs": [],
               "asOutputProperties": [
@@ -7574,9 +7594,9 @@
         {
           "type": "Container",
           "left": 500,
-          "top": 44,
+          "top": 76,
           "width": 400,
-          "height": 826,
+          "height": 794,
           "wireID": "56487202-2294-4223-d44a-775a153559b9",
           "customInputs": [],
           "customOutputs": [],
@@ -7604,7 +7624,7 @@
               "left": 0,
               "top": 32,
               "width": 400,
-              "height": 376,
+              "height": 368,
               "wireID": "06b3b7be-ee9c-4de5-e1fd-1e258ad83a42",
               "customInputs": [],
               "customOutputs": []
@@ -7612,7 +7632,7 @@
             {
               "type": "TextWidget",
               "left": 0,
-              "top": 402,
+              "top": 394,
               "width": 400,
               "height": 32,
               "wireID": "2298eba3-5b56-4b26-defd-a784f328999b",
@@ -7627,9 +7647,9 @@
             {
               "type": "TerminalWidget",
               "left": 0,
-              "top": 434,
+              "top": 426,
               "width": 400,
-              "height": 392,
+              "height": 368,
               "wireID": "c3b3866a-3796-4fcb-9ce5-3ec1ab9ef9c5",
               "customInputs": [],
               "customOutputs": []
@@ -7684,6 +7704,17 @@
           "customInputs": [],
           "customOutputs": [],
           "action": "main_loop"
+        },
+        {
+          "type": "ShowPageActionComponent",
+          "left": 1070,
+          "top": 76,
+          "width": 102,
+          "height": 62,
+          "wireID": "ed058437-1585-409d-c108-ad67e85349e6",
+          "customInputs": [],
+          "customOutputs": [],
+          "page": "help"
         }
       ],
       "connectionLines": [
@@ -7702,7 +7733,7 @@
         {
           "source": "e7b0216b-8591-4a18-a7f9-a469cfa1a500",
           "output": "action",
-          "target": "f36a40e5-c8dd-41c3-b5a5-728dc0aa0931",
+          "target": "ed058437-1585-409d-c108-ad67e85349e6",
           "input": "@seqin"
         },
         {
@@ -7752,6 +7783,12 @@
           "output": "a61f4b3b-2c7a-447b-82da-9cec0ad5721a",
           "target": "c3b3866a-3796-4fcb-9ce5-3ec1ab9ef9c5",
           "input": "data"
+        },
+        {
+          "source": "fce171ed-0cea-42f7-f784-71f05a2d2ea0",
+          "output": "action",
+          "target": "f36a40e5-c8dd-41c3-b5a5-728dc0aa0931",
+          "input": "@seqin"
         }
       ],
       "localVariables": [],
@@ -8660,6 +8697,19 @@
         {
           "type": "CheckboxWidget",
           "left": 20,
+          "top": 20,
+          "width": 160,
+          "height": 20,
+          "wireID": "5a165dcc-9860-4a5e-8906-129a9667def9",
+          "customInputs": [],
+          "customOutputs": [],
+          "asOutputProperties": [],
+          "data": "auto_refresh",
+          "label": "\"Auto refresh\""
+        },
+        {
+          "type": "CheckboxWidget",
+          "left": 20,
           "top": 45,
           "width": 160,
           "height": 20,
@@ -8774,6 +8824,68 @@
       "top": 0,
       "width": 408,
       "height": 313,
+      "css": "page"
+    },
+    {
+      "components": [
+        {
+          "type": "ButtonWidget",
+          "left": 440,
+          "top": 640,
+          "width": 120,
+          "height": 32,
+          "wireID": "a8987013-9cf6-4998-c84a-c17cdec19c05",
+          "customInputs": [],
+          "customOutputs": [],
+          "asOutputProperties": [
+            "action"
+          ],
+          "data": "\"Close\"",
+          "style": {
+            "inheritFrom": "default"
+          },
+          "disabledStyle": {
+            "inheritFrom": "default"
+          }
+        },
+        {
+          "type": "ShowPageActionComponent",
+          "left": 790,
+          "top": 705,
+          "width": 102,
+          "height": 62,
+          "wireID": "ffa0a5cc-4692-4d8e-a9b5-3a72cf940923",
+          "customInputs": [],
+          "customOutputs": [],
+          "page": "main_page"
+        },
+        {
+          "type": "MarkdownWidget",
+          "left": 20,
+          "top": 20,
+          "width": 1000,
+          "height": 600,
+          "wireID": "2ca25ba2-fc32-4ae4-95e4-bd6747c4593c",
+          "customInputs": [],
+          "customOutputs": [],
+          "className": "help",
+          "text": "BOM lista: https://github.com/emard/ulx3s/blob/master/1-click-bom.tsv\n\nAssembly guide: https://kitspace.org/interactive_bom/?github.com/emard/ulx3s\n\nČeste greške u proizvodnji:\n\n- HDMI ne sjedne do kraja pa se ne zalemi dobro\n- ADC čip krivo okrenut (postoji šansa da ih u pakiranju krivo okrenu pa pazite)\n- Krivo okrenut 25MHz kristal - molim pogledajte na sample pločici koju sam poslao\n- D28 se ne montira\n- RV2 se ne montira\n- RV3 se new montira\n- USB zna biti nezalemljen ali rijetko\n- ADC i FTDI često budu odlemljeni\n- ESP32: pogledajte kako stoji na sample pločici koju sam poslao\n\nDo sada problemi sa 3.1.7 koje sam primjetio:\n\n- Wrong ID - fujprog ne radi - FTDI čip nije zalemljen - FPGA nije zalemljen\n- Ne pali se - vjerojatno nije dobro zalemljen ili je US1 loše zalemljen - brika na BGA\n- HDMI - fale boje, EDID fail - nema slike\n- Ne pali kada je spojeno na US2 konektoru - US2 nije dobro zalemljen\n- ADC - ne radi neki od kanala ili ne radi niti jedan kanal - ADC nije dobro spojen - FPGA nije dobro zalemljen\n- Ne prolazi SDRAM memtest - FPGA ili SDRAM nisu dobro zalemljeni\n- Ne može se pristupiti ESP32 - HDMI je spojen pa su velike smetnje - ESP32 nije dobro spojen, FTDI nije dobro spojen - FPGA nije dobro spojen\n\n### Predkoraci prije uključivanja\n\n**Obavezno provjeriti da li je ADC dobro okrenut prije uključivanja, ako se uključi u USB ovisno kako je okrenut može izgoriti ADC čip ili FPGA.**\n     \nJa obično pogledam i HDMI pod mikroskopom, ali to se više manje vidi na testu ako nešto nije spojeno - nema slike ili nema neke boje.\n\n### Koraci koji se automatski testiraju\n\n1. FTDI programming\n\n\tAko ova naredba javi error - onda je vjerojatno FTDI ili US1 loše zalemljen.\n\n\tProbajte prvo na ispravnoj pločici. Ako ne prolazi na testnoj može biti i krivi driver instaliran.\n\thttps://github.com/kost/fujprog#change-ulx3s-driver-to-ftdi\n\thttps://ftdichip.com/drivers/d2xx-drivers/\n\n2. ESP32 passthru\n\n     Ako ovo javi error onda je vjerojatno loše zalemljen FTDI ili FPGA.\n     Obično javi neki krivi ID tipa ID 000000000 ili FFFFFFFFF - to znači da FPGA nije dobro spojen prema FPGA\n\n3. ESP32 erase\n\t\n4. ESP32 programming\n\n5. MP test\n\n6. Self-test programming\n\n7. Self-test\n\n     SDRAM možete provjeriti i sa - on će dati sliku na HDMI izlazu i smije smao brojati na zelenom brojaču - ledice se ne smiju paliti - ako se pale ledice ili broji crveno onda nešto ne radi sa SDRAM\n\n8. ESP32 passthru flash\n\n     Trajno programiranje passtrue - sa time isporučujemo korisniku.\n\n### Dodatni koraci koji se ručno obavljaju:\n\n9. Odspojiti US1 - spoijiti US2 da se vidi da li napajanje preko US2 radi\n\n10. Pakiranje, itd.\n"
+        }
+      ],
+      "connectionLines": [
+        {
+          "source": "a8987013-9cf6-4998-c84a-c17cdec19c05",
+          "output": "action",
+          "target": "ffa0a5cc-4692-4d8e-a9b5-3a72cf940923",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "name": "help",
+      "left": 0,
+      "top": 0,
+      "width": 1040,
+      "height": 692,
       "css": "page"
     }
   ],
