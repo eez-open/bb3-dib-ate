@@ -4,7 +4,7 @@
       "projectVersion": "v3",
       "projectType": "dashboard",
       "imports": [],
-      "css": ".page {\n    background-color: #eee;\n    border-radius: 4px;\n    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);\n}\n\n.device {\n    background-color: #ddd;\n    border-radius: 4px;\n    box-shadow: 1px 1px 4px rgb(133 133 133 / 50%);\n}\n\n.device_title {\n    font-weight: bold;\n}\n\n.blink_status {\n    color: blue;\n    font-weight: bold;\n    animation: blinker 1s linear infinite;\n}\n\n.success_status {\n    color: green;\n    font-weight: bold;\n}\n\n@keyframes blinker {\n  50% {\n    opacity: 0;\n  }\n}\n\n.success {\n    color: green;\n    font-weight: bold;\n}\n\n.error {\n    color: red;\n    font-weight: bold;\n}\n\n.help {\n    border: 1px solid #999;\n    padding: 10px;\n    background-color: white;\n}"
+      "css": ".page {\n    background-color: #eee;\n    border-radius: 4px;\n    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);\n}\n\n.device {\n    background-color: #ddd;\n    border-radius: 4px;\n    box-shadow: 1px 1px 4px rgb(133 133 133 / 50%);\n}\n\n.device_title {\n    font-weight: bold;\n}\n\n.blink_status {\n    color: blue;\n    font-weight: bold;\n    animation: blinker 1s linear infinite;\n}\n\n.success_status {\n    color: green;\n    font-weight: bold;\n}\n\n@keyframes blinker {\n  50% {\n    opacity: 0;\n  }\n}\n\n.success {\n    color: green;\n    font-weight: bold;\n}\n\n.error {\n    color: red;\n    font-weight: bold;\n}\n\n.help {\n    border: 1px solid #ccc;\n    padding: 10px;\n    background-color: white;\n}"
     },
     "build": {
       "configurations": [
@@ -8830,8 +8830,8 @@
       "components": [
         {
           "type": "ButtonWidget",
-          "left": 440,
-          "top": 640,
+          "left": 411,
+          "top": 818,
           "width": 120,
           "height": 32,
           "wireID": "a8987013-9cf6-4998-c84a-c17cdec19c05",
@@ -8850,8 +8850,8 @@
         },
         {
           "type": "ShowPageActionComponent",
-          "left": 790,
-          "top": 705,
+          "left": 765,
+          "top": 881,
           "width": 102,
           "height": 62,
           "wireID": "ffa0a5cc-4692-4d8e-a9b5-3a72cf940923",
@@ -8863,8 +8863,8 @@
           "type": "MarkdownWidget",
           "left": 20,
           "top": 20,
-          "width": 1000,
-          "height": 600,
+          "width": 870,
+          "height": 778,
           "wireID": "2ca25ba2-fc32-4ae4-95e4-bd6747c4593c",
           "customInputs": [],
           "customOutputs": [],
@@ -8884,8 +8884,8 @@
       "name": "help",
       "left": 0,
       "top": 0,
-      "width": 1040,
-      "height": 692,
+      "width": 910,
+      "height": 870,
       "css": "page"
     }
   ],
