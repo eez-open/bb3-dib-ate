@@ -270,7 +270,7 @@
           "left": 824,
           "top": -206,
           "width": 477,
-          "height": 206,
+          "height": 224,
           "wireID": "dae28c6f-0978-4cef-8c55-2bec450a1ce7",
           "customInputs": [
             {
@@ -280,7 +280,7 @@
           ],
           "customOutputs": [],
           "variable": "new_devices[match[1]]",
-          "value": "{\n  serialNumber: match[2],\n  deviceNumber: match[1],\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    message: \"\"\n  }\n}"
+          "value": "{\n  serialNumber: match[2],\n  deviceNumber: match[1],\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    message: \"\"\n  },\n  allStepsOK: false\n}"
         },
         {
           "type": "LoopActionComponent",
