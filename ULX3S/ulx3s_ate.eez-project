@@ -1023,7 +1023,7 @@
           "customInputs": [],
           "customOutputs": [],
           "command": "System.ProjectFolder + \"/fujprog\"",
-          "arguments": "[\n  \"-p\", device.deviceNumber, \n  System.ProjectFolder +\n    \"/ulx3s_85f_passthru.bit\"\n]"
+          "arguments": "[\n  \"-p\", device.deviceNumber, \n  System.ProjectFolder +\n    \"/ulx3s_12f_passthru.bit\"\n]"
         },
         {
           "type": "OutputActionComponent",
