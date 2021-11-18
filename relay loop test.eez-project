@@ -57,7 +57,7 @@
           "type": "SCPIActionComponent",
           "left": 910,
           "top": 669,
-          "width": 265,
+          "width": 494,
           "height": 134,
           "wireID": "80b3d949-1294-4883-dd93-867d57a5d1bc",
           "customInputs": [],
@@ -68,7 +68,7 @@
             }
           ],
           "instrument": "DC_source",
-          "scpi": "VOLT {voltage}\nSYST:DEL 10\n*OPC?\n{state} = SYST:DIG:INP:DATA? 1\n\n"
+          "scpi": "VOLT {voltage < 3 ? 3 : voltage > max_volt ? max_volt : voltage}\nSYST:DEL 10\n*OPC?\n{state} = SYST:DIG:INP:DATA? 1\n\n"
         },
         {
           "type": "TextWidget",
@@ -425,7 +425,7 @@
         },
         {
           "type": "SwitchActionComponent",
-          "left": 1251,
+          "left": 1437,
           "top": 669,
           "width": 148,
           "height": 84,
@@ -450,7 +450,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 1466,
+          "left": 1652,
           "top": 669,
           "width": 166,
           "height": 62,
@@ -462,7 +462,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 1466,
+          "left": 1652,
           "top": 750,
           "width": 220,
           "height": 62,
@@ -474,15 +474,15 @@
         },
         {
           "type": "SCPIActionComponent",
-          "left": 910,
-          "top": 953,
-          "width": 131,
+          "left": 964,
+          "top": 942,
+          "width": 399,
           "height": 116,
           "wireID": "ded0c116-eaa4-41ce-91cf-a31033ca3094",
           "customInputs": [],
           "customOutputs": [],
           "instrument": "DC_source",
-          "scpi": "VOLT min\nSYST:DEL {delay}\n*OPC?\n\n"
+          "scpi": "VOLT min\nSYST:DEL {delay < 10 ? 10 : delay > 2000 ? 2000 : delay}\n*OPC?\n\n"
         },
         {
           "type": "SetVariableActionComponent",
