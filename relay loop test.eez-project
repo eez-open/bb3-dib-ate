@@ -474,15 +474,15 @@
         },
         {
           "type": "SCPIActionComponent",
-          "left": 964,
-          "top": 942,
-          "width": 399,
+          "left": 1018,
+          "top": 907,
+          "width": 251,
           "height": 116,
           "wireID": "ded0c116-eaa4-41ce-91cf-a31033ca3094",
           "customInputs": [],
           "customOutputs": [],
           "instrument": "DC_source",
-          "scpi": "VOLT min\nSYST:DEL {delay < 10 ? 10 : delay > 2000 ? 2000 : delay}\n*OPC?\n\n"
+          "scpi": "VOLT min\nSYST:DEL {delay < 10 ? 10 : delay}\n*OPC?\n\n"
         },
         {
           "type": "SetVariableActionComponent",
