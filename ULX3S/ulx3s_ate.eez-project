@@ -8318,7 +8318,7 @@
                       "wireID": "efaf2a6c-4ae6-4ec6-c68a-9a73575eaef4",
                       "customInputs": [],
                       "customOutputs": [],
-                      "data": "devices[$index].currentStep == 6 ? 0 :\ndevices[$index].currentStep == 7 || devices[$index].currentStep == 8 ? 1 :\n2",
+                      "data": "devices[$index].currentStep == 6 ? 0 :\ndevices[$index].currentStep == 7 || devices[$index].currentStep == 8 || devices[$index].currentStep == 10 ? 1 :\n2",
                       "style": {
                         "inheritFrom": "default"
                       },
