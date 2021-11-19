@@ -43,16 +43,16 @@
         "persistent": true
       },
       {
-        "name": "test_step_enabled",
-        "type": "array:boolean",
-        "defaultValue": "[false, true, true, true, true, true, true, true]",
-        "persistent": true
-      },
-      {
         "name": "test_steps",
         "type": "array:struct:TestStep",
-        "defaultValue": "[\n  {name: \"FTDI programming\",      action_name: \"do_test_step_ftdi_programming\", info: null},\n  {name: \"ESP32 passthru\",        action_name: \"do_test_step_esp32_passthru\",   info: null},\n  {name: \"ESP32 erase\",           action_name: \"do_test_step_esp32_erase\",      info: null},\n  {name: \"ESP32 programming\",     action_name: \"do_test_step_esp32_prog\",       info: null},\n  {name: \"MP test\",               action_name: \"do_test_step_mp_test\",          info: null},\n  {name: \"Self-test programming\", action_name: \"do_test_step_selftest_prog\",    info: null},\n  {name: \"Self-test\",             action_name: \"do_test_step_selftest\",         info: \"Insert SD CARD, press all buttons and connect HDMI cable\"},\n  {name: \"ESP32 passthru flash\",  action_name: \"do_test_step_esp32_perm_prog\",  info: null}\n]",
+        "defaultValue": "[\n  {name: \"FTDI programming\",           action_name: \"do_test_step_ftdi_programming\", info: null},\n  {name: \"ESP32 passthru\",             action_name: \"do_test_step_esp32_passthru\",   info: null},\n  {name: \"ESP32 erase\",                action_name: \"do_test_step_esp32_erase\",      info: null},\n  {name: \"ESP32 programming\",          action_name: \"do_test_step_esp32_prog\",       info: null},\n  {name: \"MP test\",                    action_name: \"do_test_step_mp_test\",          info: null},\n  {name: \"Self-test programming\",      action_name: \"do_test_step_selftest_prog\",    info: null},\n  {name: \"Self-test\",                  action_name: \"do_test_step_selftest\",         info: \"Insert SD CARD, press all buttons and connect HDMI cable\"},\n  {name: \"Manual test LED's\",          action_name: \"do_test_step_manual_test\",      info: \"Are all LED's ok?\"},\n  {name: \"Manual test display output\", action_name: \"do_test_step_manual_test\",      info: \"Is display output ok?\"},\n  {name: \"ESP32 passthru flash\",       action_name: \"do_test_step_esp32_perm_prog\",  info: null},\n  {name: \"Manual test US2\",            action_name: \"do_test_step_manual_test\",      info: \"Is US2 power ok?\"},\n]",
         "persistent": false
+      },
+      {
+        "name": "test_step_enabled",
+        "type": "array:boolean",
+        "defaultValue": "[false, true, true, true, true, true, true, true, true, true, true]",
+        "persistent": true
       },
       {
         "name": "devices",
@@ -130,7 +130,7 @@
           },
           {
             "name": "confirmation",
-            "type": "integer"
+            "type": "enum:Confirmation"
           }
         ]
       },
@@ -191,6 +191,23 @@
           {
             "name": "Error",
             "value": 3
+          }
+        ]
+      },
+      {
+        "name": "Confirmation",
+        "members": [
+          {
+            "name": "NoAnswer",
+            "value": 0
+          },
+          {
+            "name": "Yes",
+            "value": 1
+          },
+          {
+            "name": "No",
+            "value": 2
           }
         ]
       }
@@ -277,7 +294,7 @@
           "type": "SetVariableActionComponent",
           "left": 824,
           "top": -206,
-          "width": 477,
+          "width": 511,
           "height": 224,
           "wireID": "dae28c6f-0978-4cef-8c55-2bec450a1ce7",
           "customInputs": [
@@ -288,7 +305,7 @@
           ],
           "customOutputs": [],
           "variable": "new_devices[match[1]]",
-          "value": "{\n  serialNumber: match[2],\n  deviceNumber: match[1],\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: 0\n  },\n  allStepsOK: false\n}"
+          "value": "{\n  serialNumber: match[2],\n  deviceNumber: match[1],\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: Confirmation.NoAnswer\n  },\n  allStepsOK: false\n}"
         },
         {
           "type": "LoopActionComponent",
@@ -5907,7 +5924,7 @@
           "type": "IsTrueActionComponent",
           "left": 1489,
           "top": -369,
-          "width": 188,
+          "width": 189,
           "height": 83,
           "wireID": "61eeee71-c270-42f9-8e40-166b1322d3ad",
           "customInputs": [],
@@ -6201,6 +6218,244 @@
         }
       ],
       "name": "do_test_step_selftest",
+      "implementationType": "flow"
+    },
+    {
+      "components": [
+        {
+          "type": "InputActionComponent",
+          "left": -1163,
+          "top": -111,
+          "width": 87,
+          "height": 29,
+          "wireID": "49b8b172-ffce-4856-954b-18a0aafecba2",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "device",
+          "inputType": "struct:Device"
+        },
+        {
+          "type": "StartActionComponent",
+          "left": -1163,
+          "top": -160,
+          "width": 87,
+          "height": 29,
+          "wireID": "6bab4bcd-6938-40d5-c6dd-4317cc42a230",
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -231,
+          "top": -152,
+          "width": 274,
+          "height": 62,
+          "wireID": "595799a2-b728-4518-fcc7-0a76f9ab4495",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "step.status",
+          "value": "StepStatus.InProgress"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -829,
+          "top": -151,
+          "width": 199,
+          "height": 62,
+          "wireID": "4852e73b-3396-436a-8e3d-78ff8ef9d815",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "step",
+          "value": "device.stepStatus"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -580,
+          "top": -152,
+          "width": 314,
+          "height": 62,
+          "wireID": "ef4d413d-6935-4434-d5e2-8e6e846645e1",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "step.confirmation",
+          "value": "Confirmation.NoAnswer"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -1033,
+          "top": -151,
+          "width": 175,
+          "height": 62,
+          "wireID": "5b170145-6ae1-499f-dbc7-46d8dda37587",
+          "customInputs": [
+            {
+              "name": "value",
+              "type": "any"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "device",
+          "value": "value"
+        },
+        {
+          "type": "EndActionComponent",
+          "left": 1083,
+          "top": -111,
+          "width": 87,
+          "height": 29,
+          "wireID": "06916cd6-0b1c-4410-fd3f-25103365412a",
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 578,
+          "top": -151,
+          "width": 253,
+          "height": 62,
+          "wireID": "afb6a026-8a9b-49c7-896a-32e403dda1cd",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "step.status",
+          "value": "StepStatus.Success"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 578,
+          "top": -80,
+          "width": 240,
+          "height": 62,
+          "wireID": "9e2ca0b1-9f91-41d9-ebb1-75b204d629eb",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "step.status",
+          "value": "StepStatus.Error"
+        },
+        {
+          "type": "SwitchActionComponent",
+          "left": 115,
+          "top": -151,
+          "width": 344,
+          "height": 106,
+          "wireID": "f06da4f9-a239-4715-980c-469a3a4aa0ee",
+          "customInputs": [],
+          "customOutputs": [],
+          "tests": [
+            {
+              "condition": "step.confirmation == Confirmation.Yes",
+              "outputName": "yes"
+            },
+            {
+              "condition": "step.confirmation == Confirmation.No",
+              "outputName": "No"
+            },
+            {
+              "condition": "true",
+              "outputName": "no_answer"
+            }
+          ]
+        },
+        {
+          "type": "DelayActionComponent",
+          "left": 256,
+          "top": 94,
+          "width": 87,
+          "height": 62,
+          "wireID": "2a9a68f8-d9e0-4174-9a09-f860bffd6995",
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "10"
+        }
+      ],
+      "connectionLines": [
+        {
+          "source": "ef4d413d-6935-4434-d5e2-8e6e846645e1",
+          "output": "@seqout",
+          "target": "595799a2-b728-4518-fcc7-0a76f9ab4495",
+          "input": "@seqin"
+        },
+        {
+          "source": "6bab4bcd-6938-40d5-c6dd-4317cc42a230",
+          "output": "@seqout",
+          "target": "5b170145-6ae1-499f-dbc7-46d8dda37587",
+          "input": "@seqin"
+        },
+        {
+          "source": "4852e73b-3396-436a-8e3d-78ff8ef9d815",
+          "output": "@seqout",
+          "target": "ef4d413d-6935-4434-d5e2-8e6e846645e1",
+          "input": "@seqin"
+        },
+        {
+          "source": "5b170145-6ae1-499f-dbc7-46d8dda37587",
+          "output": "@seqout",
+          "target": "4852e73b-3396-436a-8e3d-78ff8ef9d815",
+          "input": "@seqin"
+        },
+        {
+          "source": "49b8b172-ffce-4856-954b-18a0aafecba2",
+          "output": "@seqout",
+          "target": "5b170145-6ae1-499f-dbc7-46d8dda37587",
+          "input": "value"
+        },
+        {
+          "source": "595799a2-b728-4518-fcc7-0a76f9ab4495",
+          "output": "@seqout",
+          "target": "f06da4f9-a239-4715-980c-469a3a4aa0ee",
+          "input": "@seqin"
+        },
+        {
+          "source": "f06da4f9-a239-4715-980c-469a3a4aa0ee",
+          "output": "yes",
+          "target": "afb6a026-8a9b-49c7-896a-32e403dda1cd",
+          "input": "@seqin"
+        },
+        {
+          "source": "f06da4f9-a239-4715-980c-469a3a4aa0ee",
+          "output": "No",
+          "target": "9e2ca0b1-9f91-41d9-ebb1-75b204d629eb",
+          "input": "@seqin"
+        },
+        {
+          "source": "f06da4f9-a239-4715-980c-469a3a4aa0ee",
+          "output": "no_answer",
+          "target": "2a9a68f8-d9e0-4174-9a09-f860bffd6995",
+          "input": "@seqin"
+        },
+        {
+          "source": "2a9a68f8-d9e0-4174-9a09-f860bffd6995",
+          "output": "@seqout",
+          "target": "f06da4f9-a239-4715-980c-469a3a4aa0ee",
+          "input": "@seqin"
+        },
+        {
+          "source": "afb6a026-8a9b-49c7-896a-32e403dda1cd",
+          "output": "@seqout",
+          "target": "06916cd6-0b1c-4410-fd3f-25103365412a",
+          "input": "@seqin"
+        },
+        {
+          "source": "9e2ca0b1-9f91-41d9-ebb1-75b204d629eb",
+          "output": "@seqout",
+          "target": "06916cd6-0b1c-4410-fd3f-25103365412a",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [
+        {
+          "name": "device",
+          "type": "struct:Device",
+          "defaultValue": "null",
+          "persistent": false
+        },
+        {
+          "name": "step",
+          "type": "struct:StepStatus",
+          "defaultValue": "null",
+          "persistent": false
+        }
+      ],
+      "name": "do_test_step_manual_test",
       "implementationType": "flow"
     },
     {
@@ -8055,612 +8310,536 @@
                       }
                     },
                     {
-                      "type": "Container",
+                      "type": "Select",
                       "left": 0,
                       "top": 0,
                       "width": 470,
                       "height": 24,
-                      "wireID": "6d061999-af65-462b-9abc-faa5d8468d09",
+                      "wireID": "efaf2a6c-4ae6-4ec6-c68a-9a73575eaef4",
                       "customInputs": [],
                       "customOutputs": [],
+                      "data": "devices[$index].currentStep == 6 ? 0 :\ndevices[$index].currentStep == 7 || devices[$index].currentStep == 8 ? 1 :\n2",
                       "style": {
                         "inheritFrom": "default"
                       },
                       "widgets": [
                         {
-                          "type": "Select",
+                          "type": "Container",
                           "left": 0,
                           "top": 0,
                           "width": 470,
                           "height": 24,
-                          "wireID": "efaf2a6c-4ae6-4ec6-c68a-9a73575eaef4",
+                          "wireID": "b61771c1-bbeb-43fa-d84f-72d35ee80f24",
                           "customInputs": [],
                           "customOutputs": [],
-                          "data": "devices[$index].currentStep != 6 ? 0 :\ndevices[$index].stepStatus.confirmation == 0 ? 1 :\ndevices[$index].stepStatus.confirmation == 1 ? 2 :\n3",
                           "style": {
                             "inheritFrom": "default"
                           },
                           "widgets": [
                             {
-                              "type": "Container",
+                              "type": "Select",
                               "left": 0,
                               "top": 0,
-                              "width": 470,
+                              "width": 50,
                               "height": 24,
-                              "wireID": "bf2bd58d-fd63-41f4-f216-f995850f4335",
+                              "wireID": "ba834355-28ed-490d-dcbb-4a3b4d25528b",
                               "customInputs": [],
                               "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.DAC ? 1: 0",
+                              "action": "",
                               "style": {
                                 "inheritFrom": "default"
                               },
                               "widgets": [
                                 {
-                                  "type": "ProgressWidget",
-                                  "left": 0,
-                                  "top": 4,
-                                  "width": 470,
-                                  "height": 16,
-                                  "wireID": "7eba42a3-60a3-4ec3-aa40-25e7dd3be75c",
-                                  "customInputs": [],
-                                  "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.progress",
-                                  "style": {
-                                    "inheritFrom": "default"
-                                  }
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Container",
-                              "left": 0,
-                              "top": 0,
-                              "width": 470,
-                              "height": 24,
-                              "wireID": "b61771c1-bbeb-43fa-d84f-72d35ee80f24",
-                              "customInputs": [],
-                              "customOutputs": [],
-                              "style": {
-                                "inheritFrom": "default"
-                              },
-                              "widgets": [
-                                {
-                                  "type": "Select",
+                                  "type": "TextWidget",
                                   "left": 0,
                                   "top": 0,
                                   "width": 50,
                                   "height": 24,
-                                  "wireID": "ba834355-28ed-490d-dcbb-4a3b4d25528b",
+                                  "wireID": "02aa1689-fd50-47f8-b107-c9044f9156b6",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.DAC ? 1: 0",
+                                  "data": "\"DAC\"",
                                   "action": "",
+                                  "className": "blink_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 50,
-                                      "height": 24,
-                                      "wireID": "02aa1689-fd50-47f8-b107-c9044f9156b6",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"DAC\"",
-                                      "action": "",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 50,
-                                      "height": 24,
-                                      "wireID": "b869894f-0ba5-4afe-d9d2-253113e52e3c",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"DAC\"",
-                                      "action": "",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    }
-                                  ]
+                                  "name": ""
                                 },
                                 {
-                                  "type": "Select",
-                                  "left": 50,
+                                  "type": "TextWidget",
+                                  "left": 0,
+                                  "top": 0,
+                                  "width": 50,
+                                  "height": 24,
+                                  "wireID": "b869894f-0ba5-4afe-d9d2-253113e52e3c",
+                                  "customInputs": [],
+                                  "customOutputs": [],
+                                  "data": "\"DAC\"",
+                                  "action": "",
+                                  "className": "success_status",
+                                  "style": {
+                                    "inheritFrom": "default"
+                                  },
+                                  "name": ""
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Select",
+                              "left": 50,
+                              "top": 0,
+                              "width": 60,
+                              "height": 24,
+                              "wireID": "a40aceb8-eb8a-4cb1-af95-270345ef4192",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.FLASH ? 1 : 0",
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "widgets": [
+                                {
+                                  "type": "TextWidget",
+                                  "left": 0,
                                   "top": 0,
                                   "width": 60,
                                   "height": 24,
-                                  "wireID": "a40aceb8-eb8a-4cb1-af95-270345ef4192",
+                                  "wireID": "b069f5e0-cb6f-4297-c9d9-6d45cb33204c",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.FLASH ? 1 : 0",
+                                  "data": "\"FLASH\"",
+                                  "className": "blink_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 60,
-                                      "height": 24,
-                                      "wireID": "b069f5e0-cb6f-4297-c9d9-6d45cb33204c",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"FLASH\"",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 60,
-                                      "height": 24,
-                                      "wireID": "595aad25-c889-44df-e3a1-ba12101070b8",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"FLASH\"",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    }
-                                  ]
+                                  "name": ""
                                 },
                                 {
-                                  "type": "Select",
-                                  "left": 110,
+                                  "type": "TextWidget",
+                                  "left": 0,
+                                  "top": 0,
+                                  "width": 60,
+                                  "height": 24,
+                                  "wireID": "595aad25-c889-44df-e3a1-ba12101070b8",
+                                  "customInputs": [],
+                                  "customOutputs": [],
+                                  "data": "\"FLASH\"",
+                                  "className": "success_status",
+                                  "style": {
+                                    "inheritFrom": "default"
+                                  },
+                                  "name": ""
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Select",
+                              "left": 110,
+                              "top": 0,
+                              "width": 50,
+                              "height": 24,
+                              "wireID": "a9717729-f8f1-4788-b146-5c1cf1791c13",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.RTC ? 1: 0",
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "widgets": [
+                                {
+                                  "type": "TextWidget",
+                                  "left": 0,
                                   "top": 0,
                                   "width": 50,
                                   "height": 24,
-                                  "wireID": "a9717729-f8f1-4788-b146-5c1cf1791c13",
+                                  "wireID": "1450b1cd-89a3-4b9b-fbf9-b10cec14728f",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.RTC ? 1: 0",
+                                  "data": "\"RTC\"",
+                                  "className": "blink_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 50,
-                                      "height": 24,
-                                      "wireID": "1450b1cd-89a3-4b9b-fbf9-b10cec14728f",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"RTC\"",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 50,
-                                      "height": 24,
-                                      "wireID": "c0fb9b46-94a9-4d91-d6e4-622d0c248308",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"RTC\"",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    }
-                                  ]
+                                  "name": ""
                                 },
                                 {
-                                  "type": "Select",
-                                  "left": 160,
+                                  "type": "TextWidget",
+                                  "left": 0,
                                   "top": 0,
                                   "width": 50,
                                   "height": 24,
-                                  "wireID": "2b3fa17f-90f1-4246-f02d-10e853af6b0e",
+                                  "wireID": "c0fb9b46-94a9-4d91-d6e4-622d0c248308",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.ADC ? 1: 0",
+                                  "data": "\"RTC\"",
+                                  "className": "success_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 50,
-                                      "height": 24,
-                                      "wireID": "e99dfc52-2017-477e-c24a-64a5d295ef3b",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"ADC\"",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 50,
-                                      "height": 24,
-                                      "wireID": "49a4bef6-7f6f-437b-9b5f-8054ca7042ad",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"ADC\"",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    }
-                                  ]
+                                  "name": ""
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Select",
+                              "left": 160,
+                              "top": 0,
+                              "width": 50,
+                              "height": 24,
+                              "wireID": "2b3fa17f-90f1-4246-f02d-10e853af6b0e",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.ADC ? 1: 0",
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "widgets": [
+                                {
+                                  "type": "TextWidget",
+                                  "left": 0,
+                                  "top": 0,
+                                  "width": 50,
+                                  "height": 24,
+                                  "wireID": "e99dfc52-2017-477e-c24a-64a5d295ef3b",
+                                  "customInputs": [],
+                                  "customOutputs": [],
+                                  "data": "\"ADC\"",
+                                  "className": "blink_status",
+                                  "style": {
+                                    "inheritFrom": "default"
+                                  },
+                                  "name": ""
                                 },
                                 {
-                                  "type": "Select",
-                                  "left": 210,
+                                  "type": "TextWidget",
+                                  "left": 0,
+                                  "top": 0,
+                                  "width": 50,
+                                  "height": 24,
+                                  "wireID": "49a4bef6-7f6f-437b-9b5f-8054ca7042ad",
+                                  "customInputs": [],
+                                  "customOutputs": [],
+                                  "data": "\"ADC\"",
+                                  "className": "success_status",
+                                  "style": {
+                                    "inheritFrom": "default"
+                                  },
+                                  "name": ""
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Select",
+                              "left": 210,
+                              "top": 0,
+                              "width": 68,
+                              "height": 24,
+                              "wireID": "1837db09-0838-49e8-b95a-3dd9e423b7a9",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.SD_CARD ? 1: 0",
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "widgets": [
+                                {
+                                  "type": "TextWidget",
+                                  "left": 0,
                                   "top": 0,
                                   "width": 68,
                                   "height": 24,
-                                  "wireID": "1837db09-0838-49e8-b95a-3dd9e423b7a9",
+                                  "wireID": "ccbc62f5-e464-41f3-a470-4fbe421fa27e",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.SD_CARD ? 1: 0",
+                                  "data": "\"SD card\"",
+                                  "className": "blink_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 68,
-                                      "height": 24,
-                                      "wireID": "ccbc62f5-e464-41f3-a470-4fbe421fa27e",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"SD card\"",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 68,
-                                      "height": 24,
-                                      "wireID": "5117f3f6-931b-4bac-b1d1-41ac38ef3ac8",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"SD card\"",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    }
-                                  ]
+                                  "name": ""
                                 },
                                 {
-                                  "type": "Select",
-                                  "left": 278,
+                                  "type": "TextWidget",
+                                  "left": 0,
                                   "top": 0,
                                   "width": 68,
                                   "height": 24,
-                                  "wireID": "74d3e55a-28d6-4d68-aecd-f251134b9d65",
+                                  "wireID": "5117f3f6-931b-4bac-b1d1-41ac38ef3ac8",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.BTN ? 1: 0",
+                                  "data": "\"SD card\"",
+                                  "className": "success_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 68,
-                                      "height": 24,
-                                      "wireID": "4a6a379e-c58c-4b51-9449-712d94c7f171",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"Buttons\"",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 68,
-                                      "height": 24,
-                                      "wireID": "bc74dae2-3320-4dfa-a54f-d4a5f7c1c83b",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"Buttons\"",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    }
-                                  ]
+                                  "name": ""
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Select",
+                              "left": 278,
+                              "top": 0,
+                              "width": 68,
+                              "height": 24,
+                              "wireID": "74d3e55a-28d6-4d68-aecd-f251134b9d65",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.BTN ? 1: 0",
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "widgets": [
+                                {
+                                  "type": "TextWidget",
+                                  "left": 0,
+                                  "top": 0,
+                                  "width": 68,
+                                  "height": 24,
+                                  "wireID": "4a6a379e-c58c-4b51-9449-712d94c7f171",
+                                  "customInputs": [],
+                                  "customOutputs": [],
+                                  "data": "\"Buttons\"",
+                                  "className": "blink_status",
+                                  "style": {
+                                    "inheritFrom": "default"
+                                  },
+                                  "name": ""
                                 },
                                 {
-                                  "type": "Select",
-                                  "left": 346,
+                                  "type": "TextWidget",
+                                  "left": 0,
+                                  "top": 0,
+                                  "width": 68,
+                                  "height": 24,
+                                  "wireID": "bc74dae2-3320-4dfa-a54f-d4a5f7c1c83b",
+                                  "customInputs": [],
+                                  "customOutputs": [],
+                                  "data": "\"Buttons\"",
+                                  "className": "success_status",
+                                  "style": {
+                                    "inheritFrom": "default"
+                                  },
+                                  "name": ""
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Select",
+                              "left": 346,
+                              "top": 0,
+                              "width": 58,
+                              "height": 24,
+                              "wireID": "8592563c-052c-456a-8354-b0ebdf32467a",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.HDMI ? 1: 0",
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "widgets": [
+                                {
+                                  "type": "TextWidget",
+                                  "left": 0,
                                   "top": 0,
                                   "width": 58,
                                   "height": 24,
-                                  "wireID": "8592563c-052c-456a-8354-b0ebdf32467a",
+                                  "wireID": "2e2e47cd-63d9-40d8-dd3d-1549fe7d46eb",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.HDMI ? 1: 0",
+                                  "data": "\"HDMI\"",
+                                  "className": "blink_status",
                                   "style": {
                                     "inheritFrom": "default"
-                                  },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 58,
-                                      "height": 24,
-                                      "wireID": "2e2e47cd-63d9-40d8-dd3d-1549fe7d46eb",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"HDMI\"",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      }
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 58,
-                                      "height": 24,
-                                      "wireID": "fadca84d-a952-4e59-a861-3d9ec71f1dda",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"HDMI\"",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      }
-                                    }
-                                  ]
+                                  }
                                 },
                                 {
-                                  "type": "Select",
-                                  "left": 404,
+                                  "type": "TextWidget",
+                                  "left": 0,
+                                  "top": 0,
+                                  "width": 58,
+                                  "height": 24,
+                                  "wireID": "fadca84d-a952-4e59-a861-3d9ec71f1dda",
+                                  "customInputs": [],
+                                  "customOutputs": [],
+                                  "data": "\"HDMI\"",
+                                  "className": "success_status",
+                                  "style": {
+                                    "inheritFrom": "default"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Select",
+                              "left": 404,
+                              "top": 0,
+                              "width": 55,
+                              "height": 24,
+                              "wireID": "380f1f7c-25d5-4eb0-8921-e85bbed6d24f",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.EDID ? 1: 0",
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "widgets": [
+                                {
+                                  "type": "TextWidget",
+                                  "left": 0,
                                   "top": 0,
                                   "width": 55,
                                   "height": 24,
-                                  "wireID": "380f1f7c-25d5-4eb0-8921-e85bbed6d24f",
+                                  "wireID": "e9a0c1e5-79c0-40ba-a7e7-30e4e71d4ab4",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.EDID ? 1: 0",
+                                  "data": "\"EDID\"",
+                                  "className": "blink_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "widgets": [
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 55,
-                                      "height": 24,
-                                      "wireID": "e9a0c1e5-79c0-40ba-a7e7-30e4e71d4ab4",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"EDID\"",
-                                      "className": "blink_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    },
-                                    {
-                                      "type": "TextWidget",
-                                      "left": 0,
-                                      "top": 0,
-                                      "width": 55,
-                                      "height": 24,
-                                      "wireID": "99bd8273-b35d-4350-8a68-c203baf4fd40",
-                                      "customInputs": [],
-                                      "customOutputs": [],
-                                      "data": "\"EDID\"",
-                                      "className": "success_status",
-                                      "style": {
-                                        "inheritFrom": "default"
-                                      },
-                                      "name": ""
-                                    }
-                                  ]
+                                  "name": ""
                                 },
-                                {
-                                  "type": "TextWidget",
-                                  "left": -392,
-                                  "top": 0,
-                                  "width": 362,
-                                  "height": 24,
-                                  "wireID": "3bfb650a-85d3-470e-eead-4ac9076b7aee",
-                                  "customInputs": [],
-                                  "customOutputs": [],
-                                  "data": "test_steps[devices[$index].currentStep].info",
-                                  "className": "test_info",
-                                  "allowOutside": true,
-                                  "style": {
-                                    "inheritFrom": "default"
-                                  }
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Container",
-                              "left": 0,
-                              "top": 0,
-                              "width": 470,
-                              "height": 24,
-                              "wireID": "6e762ee5-94c5-4e62-829d-4f9f6d51e6db",
-                              "customInputs": [],
-                              "customOutputs": [],
-                              "style": {
-                                "inheritFrom": "default"
-                              },
-                              "widgets": [
                                 {
                                   "type": "TextWidget",
                                   "left": 0,
                                   "top": 0,
-                                  "width": 99,
+                                  "width": 55,
                                   "height": 24,
-                                  "wireID": "1b4f3926-d885-4c15-acc0-94ceda9b2451",
+                                  "wireID": "99bd8273-b35d-4350-8a68-c203baf4fd40",
                                   "customInputs": [],
                                   "customOutputs": [],
-                                  "data": "\"All LED's OK?\"",
-                                  "className": "blink_status",
-                                  "style": {
-                                    "inheritFrom": "default"
-                                  }
-                                },
-                                {
-                                  "type": "ButtonWidget",
-                                  "left": 140,
-                                  "top": -6,
-                                  "width": 101,
-                                  "height": 28,
-                                  "wireID": "319a815b-c4ba-4b55-e079-bcb1246bb733",
-                                  "customInputs": [],
-                                  "customOutputs": [],
-                                  "data": "\"Yes\"",
-                                  "className": "button_success",
-                                  "allowOutside": true,
+                                  "data": "\"EDID\"",
+                                  "className": "success_status",
                                   "style": {
                                     "inheritFrom": "default"
                                   },
-                                  "disabledStyle": {
-                                    "inheritFrom": "default"
-                                  }
-                                },
-                                {
-                                  "type": "ButtonWidget",
-                                  "left": 290,
-                                  "top": -6,
-                                  "width": 101,
-                                  "height": 28,
-                                  "wireID": "b6ee5407-0f12-4f4b-c0ed-369458c5a0d9",
-                                  "customInputs": [],
-                                  "customOutputs": [],
-                                  "data": "\"No\"",
-                                  "className": "button_error",
-                                  "allowOutside": true,
-                                  "style": {
-                                    "inheritFrom": "default"
-                                  },
-                                  "disabledStyle": {
-                                    "inheritFrom": "default"
-                                  }
+                                  "name": ""
                                 }
                               ]
                             },
                             {
-                              "type": "Container",
-                              "left": 0,
+                              "type": "TextWidget",
+                              "left": -392,
                               "top": 0,
-                              "width": 470,
+                              "width": 362,
                               "height": 24,
-                              "wireID": "c0ce7e78-6252-405b-c347-1ff5c12b827f",
+                              "wireID": "3bfb650a-85d3-470e-eead-4ac9076b7aee",
                               "customInputs": [],
                               "customOutputs": [],
+                              "data": "test_steps[devices[$index].currentStep].info",
+                              "className": "test_info",
+                              "allowOutside": true,
+                              "style": {
+                                "inheritFrom": "default"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Container",
+                          "left": 0,
+                          "top": 0,
+                          "width": 470,
+                          "height": 24,
+                          "wireID": "6e762ee5-94c5-4e62-829d-4f9f6d51e6db",
+                          "customInputs": [],
+                          "customOutputs": [],
+                          "style": {
+                            "inheritFrom": "default"
+                          },
+                          "widgets": [
+                            {
+                              "type": "TextWidget",
+                              "left": 0,
+                              "top": 0,
+                              "width": 160,
+                              "height": 24,
+                              "wireID": "02fff259-ba9d-4aae-8a5a-d02f356a6032",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "test_steps[devices[$index].currentStep].info",
+                              "className": "blink_status",
+                              "allowOutside": true,
+                              "style": {
+                                "inheritFrom": "default"
+                              }
+                            },
+                            {
+                              "type": "ButtonWidget",
+                              "left": 160,
+                              "top": -6,
+                              "width": 101,
+                              "height": 28,
+                              "wireID": "319a815b-c4ba-4b55-e079-bcb1246bb733",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "asOutputProperties": [
+                                "action"
+                              ],
+                              "data": "\"Yes\"",
+                              "className": "button_success",
+                              "allowOutside": true,
                               "style": {
                                 "inheritFrom": "default"
                               },
-                              "widgets": [
-                                {
-                                  "type": "TextWidget",
-                                  "left": 0,
-                                  "top": 0,
-                                  "width": 120,
-                                  "height": 24,
-                                  "wireID": "0865c5d3-d159-41c7-ac37-d789495957e9",
-                                  "customInputs": [],
-                                  "customOutputs": [],
-                                  "data": "\"HDMI picture OK?\"",
-                                  "className": "blink_status",
-                                  "style": {
-                                    "inheritFrom": "default"
-                                  }
-                                },
-                                {
-                                  "type": "ButtonWidget",
-                                  "left": 140,
-                                  "top": -6,
-                                  "width": 101,
-                                  "height": 28,
-                                  "wireID": "f8962593-9efb-443c-e092-cc83687fa987",
-                                  "customInputs": [],
-                                  "customOutputs": [],
-                                  "data": "\"Yes\"",
-                                  "className": "button_success",
-                                  "allowOutside": true,
-                                  "style": {
-                                    "inheritFrom": "default"
-                                  },
-                                  "disabledStyle": {
-                                    "inheritFrom": "default"
-                                  }
-                                },
-                                {
-                                  "type": "ButtonWidget",
-                                  "left": 290,
-                                  "top": -6,
-                                  "width": 101,
-                                  "height": 28,
-                                  "wireID": "c5d511cf-4894-417a-ff7d-d17fce2203e9",
-                                  "customInputs": [],
-                                  "customOutputs": [],
-                                  "data": "\"No\"",
-                                  "className": "button_error",
-                                  "allowOutside": true,
-                                  "style": {
-                                    "inheritFrom": "default"
-                                  },
-                                  "disabledStyle": {
-                                    "inheritFrom": "default"
-                                  }
-                                }
-                              ]
+                              "disabledStyle": {
+                                "inheritFrom": "default"
+                              }
+                            },
+                            {
+                              "type": "ButtonWidget",
+                              "left": 310,
+                              "top": -6,
+                              "width": 101,
+                              "height": 28,
+                              "wireID": "b6ee5407-0f12-4f4b-c0ed-369458c5a0d9",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "asOutputProperties": [
+                                "action"
+                              ],
+                              "data": "\"No\"",
+                              "className": "button_error",
+                              "allowOutside": true,
+                              "style": {
+                                "inheritFrom": "default"
+                              },
+                              "disabledStyle": {
+                                "inheritFrom": "default"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Container",
+                          "left": 0,
+                          "top": 0,
+                          "width": 470,
+                          "height": 24,
+                          "wireID": "bf2bd58d-fd63-41f4-f216-f995850f4335",
+                          "customInputs": [],
+                          "customOutputs": [],
+                          "style": {
+                            "inheritFrom": "default"
+                          },
+                          "widgets": [
+                            {
+                              "type": "ProgressWidget",
+                              "left": 0,
+                              "top": 4,
+                              "width": 470,
+                              "height": 16,
+                              "wireID": "7eba42a3-60a3-4ec3-aa40-25e7dd3be75c",
+                              "customInputs": [],
+                              "customOutputs": [],
+                              "data": "devices[$index].stepStatus.progress",
+                              "style": {
+                                "inheritFrom": "default"
+                              }
                             }
                           ]
                         }
@@ -8819,6 +8998,40 @@
           "customInputs": [],
           "customOutputs": [],
           "action": "move_to_prev_step"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 92,
+          "top": 287,
+          "width": 526,
+          "height": 62,
+          "wireID": "4dcc3fe0-b1fe-437b-f25c-5472e0bb79b1",
+          "customInputs": [
+            {
+              "name": "idx_device",
+              "type": "integer"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "devices[idx_device].stepStatus.confirmation",
+          "value": "Confirmation.Yes"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 92,
+          "top": 372,
+          "width": 520,
+          "height": 62,
+          "wireID": "ac684dda-38e7-407a-ca46-f08ca373144d",
+          "customInputs": [
+            {
+              "name": "idx_device",
+              "type": "integer"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "devices[idx_device].stepStatus.confirmation",
+          "value": "Confirmation.No"
         }
       ],
       "connectionLines": [
@@ -8857,6 +9070,18 @@
           "output": "action",
           "target": "b6981322-dbee-41c4-efa3-09d55c41067d",
           "input": "33f7ba7d-f940-42c1-ae57-e14ad7625976"
+        },
+        {
+          "source": "319a815b-c4ba-4b55-e079-bcb1246bb733",
+          "output": "action",
+          "target": "4dcc3fe0-b1fe-437b-f25c-5472e0bb79b1",
+          "input": "idx_device"
+        },
+        {
+          "source": "b6ee5407-0f12-4f4b-c0ed-369458c5a0d9",
+          "output": "action",
+          "target": "ac684dda-38e7-407a-ca46-f08ca373144d",
+          "input": "idx_device"
         }
       ],
       "localVariables": [],
@@ -8913,8 +9138,8 @@
           "type": "List",
           "left": 220,
           "top": 45,
-          "width": 168,
-          "height": 192,
+          "width": 208,
+          "height": 264,
           "wireID": "dbc87553-5c25-4c9d-84fa-b811b94f2cb1",
           "customInputs": [],
           "customOutputs": [],
@@ -8926,7 +9151,7 @@
             "type": "Container",
             "left": 0,
             "top": 0,
-            "width": 168,
+            "width": 208,
             "height": 24,
             "wireID": "83ef6374-903d-4717-956f-84820e408eb9",
             "customInputs": [],
@@ -8939,14 +9164,14 @@
                 "type": "CheckboxWidget",
                 "left": 0,
                 "top": 0,
-                "width": 168,
+                "width": 208,
                 "height": 20,
                 "wireID": "8900d1b2-df22-4b1c-e3a9-48ea3ea49b7b",
                 "customInputs": [],
                 "customOutputs": [],
                 "asOutputProperties": [],
                 "data": "test_step_enabled[$index]",
-                "label": "test_steps[$index].name"
+                "label": "($index + 1) + \": \" + test_steps[$index].name"
               }
             ]
           },
@@ -8955,8 +9180,8 @@
         },
         {
           "type": "ButtonWidget",
-          "left": 144,
-          "top": 261,
+          "left": 152,
+          "top": 318,
           "width": 120,
           "height": 32,
           "wireID": "46312faa-b447-44a0-cb9e-6f0b9ec8df5c",
@@ -8975,8 +9200,8 @@
         },
         {
           "type": "ShowPageActionComponent",
-          "left": 434,
-          "top": 261,
+          "left": 456,
+          "top": 295,
           "width": 102,
           "height": 62,
           "wireID": "bd5707d5-a596-45da-ca96-1fb06c0d5499",
@@ -8997,8 +9222,8 @@
       "name": "settings_page",
       "left": 0,
       "top": 0,
-      "width": 408,
-      "height": 313,
+      "width": 448,
+      "height": 370,
       "css": "page"
     },
     {
