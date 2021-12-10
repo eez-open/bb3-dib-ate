@@ -230,9 +230,9 @@
         },
         {
           "type": "Regexp",
-          "left": 420,
-          "top": -162,
-          "width": 318,
+          "left": 407,
+          "top": -206,
+          "width": 298,
           "height": 83,
           "wireID": "01e3bfc3-2da4-439f-866b-b6c206f9e0c1",
           "customInputs": [
@@ -242,7 +242,7 @@
             }
           ],
           "customOutputs": [],
-          "pattern": "\"^Device (.*):.*ULX3S.*, (.*)$\"",
+          "pattern": "\"^Device (.*):.*, .*, (.*)$\"",
           "data": "data"
         },
         {
@@ -305,7 +305,7 @@
           ],
           "customOutputs": [],
           "variable": "new_devices[match[1]]",
-          "value": "{\n  serialNumber: match[2],\n  deviceNumber: match[1],\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: Confirmation.NoAnswer\n  },\n  allStepsOK: false\n}"
+          "value": "{\n  serialNumber: match[2],\n  deviceNumber: match[1],\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: Confirmation.NoAnswer\n  },\n  allTestsOK: false\n}"
         },
         {
           "type": "LoopActionComponent",
@@ -1162,7 +1162,7 @@
           "wireID": "a4072b46-45c3-49c6-dc1b-91e0bde52611",
           "customInputs": [],
           "customOutputs": [],
-          "value": "\"85\""
+          "value": "\"12\""
         },
         {
           "type": "ConstantActionComponent",
@@ -1173,7 +1173,7 @@
           "wireID": "a1804281-ef75-4f94-add5-e125c2fd39a8",
           "customInputs": [],
           "customOutputs": [],
-          "value": "\"12\""
+          "value": "\"85\""
         },
         {
           "type": "CommentActionComponent",
@@ -3023,7 +3023,7 @@
             }
           ],
           "customOutputs": [],
-          "expression": "const parser = new DOMParser();\nconst d = parser.parseFromString({xml_str}.substring(1), \"text/xml\");\nd.querySelector('USB_String_Descriptors Manufacturer').innerHTML = {manufacturer};\nd.querySelector('USB_String_Descriptors Product_Description').innerHTML = {product};\nd.querySelector('USB_String_Descriptors SerialNumber').innerHTML = {serial};\nconst s = new XMLSerializer();\ns.serializeToString(d);"
+          "expression": "const parser = new DOMParser();\nconst d = parser.parseFromString({xml_str}.substring(1), \"text/xml\");\nd.querySelector('USB_String_Descriptors Manufacturer').innerHTML = {manufacturer};\nd.querySelector('USB_String_Descriptors Product_Description').innerHTML = {product};\nd.querySelector('USB_String_Descriptors SerialNumber').innerHTML = {serial};\nconst s = new XMLSerializer();\ns.serializeToString(d).replace(\"utf-16\", \"utf-8\");"
         },
         {
           "type": "ConstantActionComponent",
@@ -3087,7 +3087,7 @@
         },
         {
           "type": "EndActionComponent",
-          "left": 3887,
+          "left": 4105,
           "top": -156,
           "width": 87,
           "height": 29,
@@ -3154,7 +3154,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 3576,
+          "left": 3743,
           "top": -156,
           "width": 253,
           "height": 62,
@@ -3247,6 +3247,17 @@
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->Set to false to skip FTDI programming!</div>"
+        },
+        {
+          "type": "DelayActionComponent",
+          "left": 3598,
+          "top": -174,
+          "width": 87,
+          "height": 62,
+          "wireID": "a9797b4a-f419-4ab4-8bbc-14140fc9269a",
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "3000"
         }
       ],
       "connectionLines": [
@@ -3317,12 +3328,6 @@
           "input": "content"
         },
         {
-          "source": "e46f1069-8583-47d0-8f6e-d141a23f71a2",
-          "output": "@seqout",
-          "target": "59f2fdc0-c554-42ba-e134-a9adb7912bbc",
-          "input": "@seqin"
-        },
-        {
           "source": "a8532d7d-cef8-42f6-af23-8dfe85fb05bd",
           "output": "@seqout",
           "target": "e46f1069-8583-47d0-8f6e-d141a23f71a2",
@@ -3361,7 +3366,7 @@
         {
           "source": "ba8c34f4-a713-4c5a-ca73-a38620082006",
           "output": "True",
-          "target": "0a45ace2-861e-41f0-ada1-a0daa55447ab",
+          "target": "a9797b4a-f419-4ab4-8bbc-14140fc9269a",
           "input": "@seqin"
         },
         {
@@ -3425,12 +3430,6 @@
           "input": "@seqin"
         },
         {
-          "source": "50fcf0b5-2beb-47ad-dd7a-14b0d3ceaa0d",
-          "output": "True",
-          "target": "a30400c9-eb8a-47cb-d4d5-97a08209ff76",
-          "input": "@seqin"
-        },
-        {
           "source": "37a54493-902a-4d0f-8c3f-a34bcc502221",
           "output": "value",
           "target": "50fcf0b5-2beb-47ad-dd7a-14b0d3ceaa0d",
@@ -3446,6 +3445,24 @@
           "source": "ab695faf-0dec-4894-d4e1-7952a61cbf27",
           "output": "value",
           "target": "c9fa93d0-dbeb-4a14-af34-86cdd9a6b516",
+          "input": "@seqin"
+        },
+        {
+          "source": "e46f1069-8583-47d0-8f6e-d141a23f71a2",
+          "output": "@seqout",
+          "target": "59f2fdc0-c554-42ba-e134-a9adb7912bbc",
+          "input": "@seqin"
+        },
+        {
+          "source": "50fcf0b5-2beb-47ad-dd7a-14b0d3ceaa0d",
+          "output": "True",
+          "target": "a30400c9-eb8a-47cb-d4d5-97a08209ff76",
+          "input": "@seqin"
+        },
+        {
+          "source": "a9797b4a-f419-4ab4-8bbc-14140fc9269a",
+          "output": "@seqout",
+          "target": "0a45ace2-861e-41f0-ada1-a0daa55447ab",
           "input": "@seqin"
         }
       ],
