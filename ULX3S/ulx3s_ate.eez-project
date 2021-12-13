@@ -60,6 +60,18 @@
         "type": "array:struct:Device",
         "defaultValue": "[null, null, null, null, null, null, null, null, null, null]",
         "persistent": false
+      },
+      {
+        "name": "refresh_enabled",
+        "type": "boolean",
+        "defaultValue": "false",
+        "persistent": false
+      },
+      {
+        "name": "refresh_in_progress",
+        "type": "boolean",
+        "defaultValue": "false",
+        "persistent": false
       }
     ],
     "structures": [
@@ -85,6 +97,10 @@
         "fields": [
           {
             "name": "serialNumber",
+            "type": "string"
+          },
+          {
+            "name": "oldSerialNumber",
             "type": "string"
           },
           {
@@ -230,7 +246,7 @@
         },
         {
           "type": "Regexp",
-          "left": 407,
+          "left": 421,
           "top": -206,
           "width": 298,
           "height": 83,
@@ -258,8 +274,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 1689,
-          "top": -90,
+          "left": 1527,
+          "top": 250,
           "width": 87,
           "height": 29,
           "wireID": "245a891f-9fce-4e4b-a94b-37b2a018e1b9",
@@ -270,8 +286,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 1718,
-          "top": -47,
+          "left": 1527,
+          "top": 291,
           "width": 87,
           "height": 29,
           "wireID": "a61f4b3b-2c7a-447b-82da-9cec0ad5721a",
@@ -282,7 +298,7 @@
         },
         {
           "type": "StartActionComponent",
-          "left": -198,
+          "left": -464,
           "top": -90,
           "width": 87,
           "height": 29,
@@ -295,7 +311,7 @@
           "left": 824,
           "top": -206,
           "width": 511,
-          "height": 224,
+          "height": 260,
           "wireID": "dae28c6f-0978-4cef-8c55-2bec450a1ce7",
           "customInputs": [
             {
@@ -305,12 +321,12 @@
           ],
           "customOutputs": [],
           "variable": "new_devices[match[1]]",
-          "value": "{\n  serialNumber: match[2],\n  deviceNumber: match[1],\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: Confirmation.NoAnswer\n  },\n  allTestsOK: false\n}"
+          "value": "{\n  serialNumber: match[2],\n  oldSerialNumber: match[2],\n  deviceNumber: match[1],\n  currentStep: 0,\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: Confirmation.NoAnswer\n  },\n  allTestsOK: false\n}"
         },
         {
           "type": "LoopActionComponent",
-          "left": -83,
-          "top": 162,
+          "left": -128,
+          "top": 934,
           "width": 503,
           "height": 83,
           "wireID": "4b654a00-e817-47ce-e990-2be8e47dd6f9",
@@ -324,10 +340,10 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": 1176,
-          "top": 151,
+          "left": 1095,
+          "top": 923,
           "width": 161,
-          "height": 61,
+          "height": 83,
           "wireID": "f4ae28f7-6768-47c5-a8cc-69d613882739",
           "customInputs": [],
           "customOutputs": [],
@@ -335,19 +351,19 @@
         },
         {
           "type": "EvalExprActionComponent",
-          "left": 814,
-          "top": 151,
-          "width": 336,
+          "left": 781,
+          "top": 923,
+          "width": 249,
           "height": 62,
           "wireID": "61e40128-853b-403e-d359-4910b6f17565",
           "customInputs": [],
           "customOutputs": [],
-          "expression": "new_devices[idx_new_device].serialNumber"
+          "expression": "new_devices[idx_new_device]"
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 894,
-          "top": 265,
+          "left": 849,
+          "top": 1049,
           "width": 407,
           "height": 62,
           "wireID": "5cc7d84f-80e2-4304-9f39-e36863fe8d8d",
@@ -363,8 +379,8 @@
         },
         {
           "type": "CommentActionComponent",
-          "left": -83,
-          "top": 94,
+          "left": -128,
+          "top": 866,
           "width": 251,
           "height": 57,
           "wireID": "8a4f68d8-f441-48a9-bff6-304aedc46b63",
@@ -384,124 +400,9 @@
           "text": "<div><!--block-->Scan devices and store into new_devices</div>"
         },
         {
-          "type": "CommentActionComponent",
-          "left": -74,
-          "top": 295,
-          "width": 171,
-          "height": 57,
-          "wireID": "19ee38f5-c061-4a26-e713-22cb663fb566",
-          "customInputs": [],
-          "customOutputs": [],
-          "text": "<div><!--block-->Reuse existing devices</div>"
-        },
-        {
-          "type": "LoopActionComponent",
-          "left": -74,
-          "top": 366,
-          "width": 503,
-          "height": 83,
-          "wireID": "f9757f11-4358-4852-8c53-18fe014953e1",
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "idx_new_device",
-          "from": "0",
-          "to": "Array.length(new_devices) - 1",
-          "step": "1",
-          "version": 1
-        },
-        {
-          "type": "LoopActionComponent",
-          "left": 461,
-          "top": 493,
-          "width": 449,
-          "height": 83,
-          "wireID": "f88fa2bb-b58e-4817-a12f-759bc47e216f",
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "idx_device",
-          "from": "0",
-          "to": "Array.length(devices) - 1",
-          "step": "1",
-          "version": 1
-        },
-        {
-          "type": "IsTrueActionComponent",
-          "left": 1298,
-          "top": 493,
-          "width": 343,
-          "height": 83,
-          "wireID": "71956643-8cec-4407-9f4b-b34f6177a9bb",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "new_devices[idx_new_device].serialNumber ==\ndevices[idx_device].serialNumber"
-        },
-        {
-          "type": "SetVariableActionComponent",
-          "left": 2119,
-          "top": 493,
-          "width": 368,
-          "height": 62,
-          "wireID": "ccc18b0d-b727-43c8-ae82-b9291d163347",
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "new_devices[idx_new_device]",
-          "value": "devices[idx_device]"
-        },
-        {
-          "type": "EvalExprActionComponent",
-          "left": 1692,
-          "top": 493,
-          "width": 350,
-          "height": 62,
-          "wireID": "c8822492-6a70-4773-cc04-7cf2ca8123c5",
-          "customInputs": [],
-          "customOutputs": [],
-          "expression": "new_devices[idx_new_device].serialPortPath"
-        },
-        {
-          "type": "SetVariableActionComponent",
-          "left": 2351,
-          "top": 616,
-          "width": 407,
-          "height": 62,
-          "wireID": "15a4055c-8ab6-43f8-de7a-1d421742ae82",
-          "customInputs": [
-            {
-              "name": "path",
-              "type": "string"
-            }
-          ],
-          "customOutputs": [],
-          "variable": "new_devices[idx_new_device].serialPortPath",
-          "value": "path"
-        },
-        {
-          "type": "SetVariableActionComponent",
-          "left": 2631,
-          "top": 493,
-          "width": 455,
-          "height": 62,
-          "wireID": "23dc0d39-6c16-43cc-aafa-8daa20e56b73",
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "new_devices[idx_new_device].deviceNumber",
-          "value": "idx_new_device + \"\""
-        },
-        {
-          "type": "EvalExprActionComponent",
-          "left": 738,
-          "top": 748,
-          "width": 249,
-          "height": 62,
-          "wireID": "0f7f2cbb-0225-40df-ab13-acb928ca9d1b",
-          "customInputs": [],
-          "customOutputs": [],
-          "expression": "new_devices[idx_new_device]"
-        },
-        {
           "type": "EndActionComponent",
-          "left": 151,
-          "top": 970,
+          "left": 349,
+          "top": 1250,
           "width": 87,
           "height": 29,
           "wireID": "ecfe11f5-574f-4a8c-efd0-d4798000ac6b",
@@ -510,8 +411,8 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 461,
-          "top": 151,
+          "left": 416,
+          "top": 923,
           "width": 290,
           "height": 83,
           "wireID": "ffea4cd6-a82d-4fd2-ff5d-74c503f2c908",
@@ -520,31 +421,9 @@
           "value": "new_devices[idx_new_device] != null"
         },
         {
-          "type": "IsTrueActionComponent",
-          "left": 491,
-          "top": 366,
-          "width": 290,
-          "height": 83,
-          "wireID": "5dee8388-327e-4d38-f75a-1879f1d8f602",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "new_devices[idx_new_device] != null"
-        },
-        {
-          "type": "IsTrueActionComponent",
-          "left": 1013,
-          "top": 493,
-          "width": 236,
-          "height": 83,
-          "wireID": "d63f168e-fca5-4112-f1db-1522b8ee3fce",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "devices[idx_device] != null"
-        },
-        {
           "type": "SetVariableActionComponent",
-          "left": -83,
-          "top": 970,
+          "left": -128,
+          "top": 1250,
           "width": 179,
           "height": 62,
           "wireID": "4b16eb3a-63b8-411a-f158-5cdd595b147a",
@@ -555,30 +434,8 @@
         },
         {
           "type": "CommentActionComponent",
-          "left": 1692,
-          "top": 414,
-          "width": 435,
-          "height": 57,
-          "wireID": "334aa811-40ea-48cd-be91-5875d6d1a0aa",
-          "customInputs": [],
-          "customOutputs": [],
-          "text": "<div><!--block-->Use existing device but update serialPortPath and deviceNumber</div>"
-        },
-        {
-          "type": "CommentActionComponent",
-          "left": 738,
-          "top": 678,
-          "width": 435,
-          "height": 57,
-          "wireID": "6f61b8cb-a5b7-4d93-fa40-93242eec6458",
-          "customInputs": [],
-          "customOutputs": [],
-          "text": "<div><!--block-->New device found, get from database</div>"
-        },
-        {
-          "type": "CommentActionComponent",
-          "left": -83,
-          "top": 901,
+          "left": -128,
+          "top": 1181,
           "width": 239,
           "height": 57,
           "wireID": "62741d64-51e7-4c63-b321-228102c15251",
@@ -587,15 +444,174 @@
           "text": "<div><!--block-->Replace devices with new_devices</div>"
         },
         {
+          "type": "EvalExprActionComponent",
+          "left": 824,
+          "top": 643,
+          "width": 249,
+          "height": 62,
+          "wireID": "f6a94012-91b3-4580-ffce-a86fcfb52e99",
+          "customInputs": [],
+          "customOutputs": [],
+          "expression": "new_devices[idx_new_device]"
+        },
+        {
           "type": "CallActionActionComponent",
-          "left": 1028,
-          "top": 748,
+          "left": 1115,
+          "top": 643,
           "width": 122,
           "height": 83,
-          "wireID": "49f1c1be-ba53-4564-d1f9-0a524c723ddc",
+          "wireID": "477a847b-765d-4749-d105-48e7eb04278e",
           "customInputs": [],
           "customOutputs": [],
           "action": "db_get_device"
+        },
+        {
+          "type": "CommentActionComponent",
+          "left": -108,
+          "top": 573,
+          "width": 251,
+          "height": 57,
+          "wireID": "22f1a173-807e-427e-a6c2-8e559ca2835c",
+          "customInputs": [],
+          "customOutputs": [],
+          "text": "<div><!--block-->Get device from database</div>"
+        },
+        {
+          "type": "LoopActionComponent",
+          "left": -108,
+          "top": 299,
+          "width": 503,
+          "height": 83,
+          "wireID": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "idx_new_device",
+          "from": "0",
+          "to": "Array.length(new_devices) - 1",
+          "step": "1",
+          "version": 1
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 1115,
+          "top": 288,
+          "width": 161,
+          "height": 83,
+          "wireID": "ead7878c-fb73-43eb-b616-ef7c5110968a",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "find_serial_port_path"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": 824,
+          "top": 288,
+          "width": 249,
+          "height": 62,
+          "wireID": "69ddb736-2df0-4ab3-a844-d795fa4b74f6",
+          "customInputs": [],
+          "customOutputs": [],
+          "expression": "new_devices[idx_new_device]"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 869,
+          "top": 448,
+          "width": 407,
+          "height": 62,
+          "wireID": "531684d0-3f43-4a19-e4ba-e82eb9316c08",
+          "customInputs": [
+            {
+              "name": "path",
+              "type": "any"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "new_devices[idx_new_device].serialPortPath",
+          "value": "path"
+        },
+        {
+          "type": "CommentActionComponent",
+          "left": -108,
+          "top": 231,
+          "width": 251,
+          "height": 57,
+          "wireID": "39414e3f-7361-4725-e130-a48bec1c4115",
+          "customInputs": [],
+          "customOutputs": [],
+          "text": "<div><!--block-->Find serial port path for new_devices</div>"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 436,
+          "top": 288,
+          "width": 290,
+          "height": 83,
+          "wireID": "2369e218-3cec-4abd-f9b1-61e987432318",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "new_devices[idx_new_device] != null"
+        },
+        {
+          "type": "LoopActionComponent",
+          "left": -108,
+          "top": 643,
+          "width": 503,
+          "height": 83,
+          "wireID": "709156b9-0e46-4f5b-ffa7-7de9b3ae5245",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "idx_new_device",
+          "from": "0",
+          "to": "Array.length(new_devices) - 1",
+          "step": "1",
+          "version": 1
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 436,
+          "top": 643,
+          "width": 290,
+          "height": 83,
+          "wireID": "da9df660-61d8-4f6a-b7b6-9f0a74503784",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "new_devices[idx_new_device] != null"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -347,
+          "top": -90,
+          "width": 213,
+          "height": 62,
+          "wireID": "ee7a1d96-0938-40eb-9bc0-749b6fbff858",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "refresh_in_progress",
+          "value": "true"
+        },
+        {
+          "type": "DelayActionComponent",
+          "left": 1361,
+          "top": 934,
+          "width": 87,
+          "height": 62,
+          "wireID": "4f558380-860d-40e2-d44c-22ad5a6d1955",
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "1000"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 107,
+          "top": 1250,
+          "width": 220,
+          "height": 62,
+          "wireID": "f4e53b1c-8e63-4f32-c1e6-6ae811a75e79",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "refresh_in_progress",
+          "value": "false"
         }
       ],
       "connectionLines": [
@@ -626,7 +642,7 @@
         {
           "source": "8f761592-bb60-48f8-ab85-628a1a55a229",
           "output": "@seqout",
-          "target": "5c879c4a-0c84-4e8d-f192-9e1f5fd1c1e4",
+          "target": "ee7a1d96-0938-40eb-9bc0-749b6fbff858",
           "input": "@seqin"
         },
         {
@@ -638,7 +654,7 @@
         {
           "source": "01e3bfc3-2da4-439f-866b-b6c206f9e0c1",
           "output": "done",
-          "target": "4b654a00-e817-47ce-e990-2be8e47dd6f9",
+          "target": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
           "input": "start"
         },
         {
@@ -668,72 +684,6 @@
         {
           "source": "4b654a00-e817-47ce-e990-2be8e47dd6f9",
           "output": "done",
-          "target": "f9757f11-4358-4852-8c53-18fe014953e1",
-          "input": "start"
-        },
-        {
-          "source": "f9757f11-4358-4852-8c53-18fe014953e1",
-          "output": "@seqout",
-          "target": "5dee8388-327e-4d38-f75a-1879f1d8f602",
-          "input": "@seqin"
-        },
-        {
-          "source": "f88fa2bb-b58e-4817-a12f-759bc47e216f",
-          "output": "@seqout",
-          "target": "d63f168e-fca5-4112-f1db-1522b8ee3fce",
-          "input": "@seqin"
-        },
-        {
-          "source": "71956643-8cec-4407-9f4b-b34f6177a9bb",
-          "output": "True",
-          "target": "c8822492-6a70-4773-cc04-7cf2ca8123c5",
-          "input": "@seqin"
-        },
-        {
-          "source": "c8822492-6a70-4773-cc04-7cf2ca8123c5",
-          "output": "@seqout",
-          "target": "ccc18b0d-b727-43c8-ae82-b9291d163347",
-          "input": "@seqin"
-        },
-        {
-          "source": "ccc18b0d-b727-43c8-ae82-b9291d163347",
-          "output": "@seqout",
-          "target": "15a4055c-8ab6-43f8-de7a-1d421742ae82",
-          "input": "@seqin"
-        },
-        {
-          "source": "c8822492-6a70-4773-cc04-7cf2ca8123c5",
-          "output": "result",
-          "target": "15a4055c-8ab6-43f8-de7a-1d421742ae82",
-          "input": "path"
-        },
-        {
-          "source": "15a4055c-8ab6-43f8-de7a-1d421742ae82",
-          "output": "@seqout",
-          "target": "23dc0d39-6c16-43cc-aafa-8daa20e56b73",
-          "input": "@seqin"
-        },
-        {
-          "source": "23dc0d39-6c16-43cc-aafa-8daa20e56b73",
-          "output": "@seqout",
-          "target": "f9757f11-4358-4852-8c53-18fe014953e1",
-          "input": "next"
-        },
-        {
-          "source": "71956643-8cec-4407-9f4b-b34f6177a9bb",
-          "output": "False",
-          "target": "f88fa2bb-b58e-4817-a12f-759bc47e216f",
-          "input": "next"
-        },
-        {
-          "source": "f88fa2bb-b58e-4817-a12f-759bc47e216f",
-          "output": "done",
-          "target": "0f7f2cbb-0225-40df-ab13-acb928ca9d1b",
-          "input": "@seqin"
-        },
-        {
-          "source": "f9757f11-4358-4852-8c53-18fe014953e1",
-          "output": "done",
           "target": "4b16eb3a-63b8-411a-f158-5cdd595b147a",
           "input": "@seqin"
         },
@@ -744,33 +694,9 @@
           "input": "next"
         },
         {
-          "source": "5dee8388-327e-4d38-f75a-1879f1d8f602",
-          "output": "True",
-          "target": "f88fa2bb-b58e-4817-a12f-759bc47e216f",
-          "input": "start"
-        },
-        {
-          "source": "5dee8388-327e-4d38-f75a-1879f1d8f602",
-          "output": "False",
-          "target": "4b16eb3a-63b8-411a-f158-5cdd595b147a",
-          "input": "@seqin"
-        },
-        {
           "source": "ffea4cd6-a82d-4fd2-ff5d-74c503f2c908",
           "output": "False",
-          "target": "f9757f11-4358-4852-8c53-18fe014953e1",
-          "input": "start"
-        },
-        {
-          "source": "d63f168e-fca5-4112-f1db-1522b8ee3fce",
-          "output": "True",
-          "target": "71956643-8cec-4407-9f4b-b34f6177a9bb",
-          "input": "@seqin"
-        },
-        {
-          "source": "d63f168e-fca5-4112-f1db-1522b8ee3fce",
-          "output": "False",
-          "target": "0f7f2cbb-0225-40df-ab13-acb928ca9d1b",
+          "target": "4b16eb3a-63b8-411a-f158-5cdd595b147a",
           "input": "@seqin"
         },
         {
@@ -782,32 +708,128 @@
         {
           "source": "4b16eb3a-63b8-411a-f158-5cdd595b147a",
           "output": "@seqout",
-          "target": "ecfe11f5-574f-4a8c-efd0-d4798000ac6b",
+          "target": "f4e53b1c-8e63-4f32-c1e6-6ae811a75e79",
           "input": "@seqin"
         },
         {
-          "source": "49f1c1be-ba53-4564-d1f9-0a524c723ddc",
+          "source": "f4ae28f7-6768-47c5-a8cc-69d613882739",
+          "output": "23f509c0-f0ec-4fb0-ec0e-b70df4c2c911",
+          "target": "4f558380-860d-40e2-d44c-22ad5a6d1955",
+          "input": "@seqin"
+        },
+        {
+          "source": "f6a94012-91b3-4580-ffce-a86fcfb52e99",
+          "output": "result",
+          "target": "477a847b-765d-4749-d105-48e7eb04278e",
+          "input": "171575fc-8624-4642-8ee6-7e84778fe98c"
+        },
+        {
+          "source": "477a847b-765d-4749-d105-48e7eb04278e",
           "output": "7409c12c-f563-4178-b42d-c705259b7004",
           "target": "245a891f-9fce-4e4b-a94b-37b2a018e1b9",
           "input": "@seqin"
         },
         {
-          "source": "49f1c1be-ba53-4564-d1f9-0a524c723ddc",
+          "source": "477a847b-765d-4749-d105-48e7eb04278e",
           "output": "a30aa194-4aa3-4f2a-8fbb-c2fa4f63e767",
           "target": "a61f4b3b-2c7a-447b-82da-9cec0ad5721a",
           "input": "@seqin"
         },
         {
-          "source": "0f7f2cbb-0225-40df-ab13-acb928ca9d1b",
-          "output": "result",
-          "target": "49f1c1be-ba53-4564-d1f9-0a524c723ddc",
-          "input": "171575fc-8624-4642-8ee6-7e84778fe98c"
+          "source": "477a847b-765d-4749-d105-48e7eb04278e",
+          "output": "@seqout",
+          "target": "709156b9-0e46-4f5b-ffa7-7de9b3ae5245",
+          "input": "next"
         },
         {
-          "source": "49f1c1be-ba53-4564-d1f9-0a524c723ddc",
+          "source": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
           "output": "@seqout",
-          "target": "f9757f11-4358-4852-8c53-18fe014953e1",
+          "target": "2369e218-3cec-4abd-f9b1-61e987432318",
+          "input": "@seqin"
+        },
+        {
+          "source": "69ddb736-2df0-4ab3-a844-d795fa4b74f6",
+          "output": "result",
+          "target": "ead7878c-fb73-43eb-b616-ef7c5110968a",
+          "input": "a497339e-24e8-4237-a04a-3ecb0c768d8b"
+        },
+        {
+          "source": "ead7878c-fb73-43eb-b616-ef7c5110968a",
+          "output": "02d2de79-3cff-4933-96f5-78efcdab3b1f",
+          "target": "531684d0-3f43-4a19-e4ba-e82eb9316c08",
+          "input": "path"
+        },
+        {
+          "source": "531684d0-3f43-4a19-e4ba-e82eb9316c08",
+          "output": "@seqout",
+          "target": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
           "input": "next"
+        },
+        {
+          "source": "2369e218-3cec-4abd-f9b1-61e987432318",
+          "output": "True",
+          "target": "69ddb736-2df0-4ab3-a844-d795fa4b74f6",
+          "input": "@seqin"
+        },
+        {
+          "source": "ead7878c-fb73-43eb-b616-ef7c5110968a",
+          "output": "23f509c0-f0ec-4fb0-ec0e-b70df4c2c911",
+          "target": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
+          "input": "next"
+        },
+        {
+          "source": "2369e218-3cec-4abd-f9b1-61e987432318",
+          "output": "False",
+          "target": "709156b9-0e46-4f5b-ffa7-7de9b3ae5245",
+          "input": "start"
+        },
+        {
+          "source": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
+          "output": "done",
+          "target": "709156b9-0e46-4f5b-ffa7-7de9b3ae5245",
+          "input": "start"
+        },
+        {
+          "source": "709156b9-0e46-4f5b-ffa7-7de9b3ae5245",
+          "output": "@seqout",
+          "target": "da9df660-61d8-4f6a-b7b6-9f0a74503784",
+          "input": "@seqin"
+        },
+        {
+          "source": "da9df660-61d8-4f6a-b7b6-9f0a74503784",
+          "output": "False",
+          "target": "4b654a00-e817-47ce-e990-2be8e47dd6f9",
+          "input": "start"
+        },
+        {
+          "source": "709156b9-0e46-4f5b-ffa7-7de9b3ae5245",
+          "output": "done",
+          "target": "4b654a00-e817-47ce-e990-2be8e47dd6f9",
+          "input": "start"
+        },
+        {
+          "source": "da9df660-61d8-4f6a-b7b6-9f0a74503784",
+          "output": "True",
+          "target": "f6a94012-91b3-4580-ffce-a86fcfb52e99",
+          "input": "@seqin"
+        },
+        {
+          "source": "ee7a1d96-0938-40eb-9bc0-749b6fbff858",
+          "output": "@seqout",
+          "target": "5c879c4a-0c84-4e8d-f192-9e1f5fd1c1e4",
+          "input": "@seqin"
+        },
+        {
+          "source": "4f558380-860d-40e2-d44c-22ad5a6d1955",
+          "output": "@seqout",
+          "target": "5c879c4a-0c84-4e8d-f192-9e1f5fd1c1e4",
+          "input": "@seqin"
+        },
+        {
+          "source": "f4e53b1c-8e63-4f32-c1e6-6ae811a75e79",
+          "output": "@seqout",
+          "target": "ecfe11f5-574f-4a8c-efd0-d4798000ac6b",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -881,22 +903,22 @@
           "type": "IsTrueActionComponent",
           "left": 496,
           "top": -57,
-          "width": 448,
-          "height": 83,
+          "width": 487,
+          "height": 98,
           "wireID": "050e14dd-0b1f-422d-c6e3-62232b3b4044",
           "customInputs": [
             {
-              "name": "serial_number",
-              "type": "any"
+              "name": "device",
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
-          "value": "ports[idx_port].manufacturer == \"FTDI\" &&\nports[idx_port].serialNumber == serial_number"
+          "value": "ports[idx_port].manufacturer == \"FTDI\" &&\n(ports[idx_port].serialNumber == device.serialNumber ||\n ports[idx_port].serialNumber == device.oldSerialNumber )"
         },
         {
           "type": "OutputActionComponent",
-          "left": 1245,
-          "top": 12,
+          "left": 1277,
+          "top": -57,
           "width": 87,
           "height": 29,
           "wireID": "02d2de79-3cff-4933-96f5-78efcdab3b1f",
@@ -907,8 +929,8 @@
         },
         {
           "type": "EvalExprActionComponent",
-          "left": 986,
-          "top": -58,
+          "left": 1023,
+          "top": -57,
           "width": 201,
           "height": 62,
           "wireID": "26ef8e9a-0b35-4690-c882-340c68f69ab0",
@@ -917,27 +939,16 @@
           "expression": "ports[idx_port].path"
         },
         {
-          "type": "ConstantActionComponent",
-          "left": 1098,
-          "top": 41,
-          "width": 89,
-          "height": 61,
-          "wireID": "3aaef4ed-0ae4-4dcd-d5fc-7a149ab400f6",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "\"\""
-        },
-        {
           "type": "InputActionComponent",
-          "left": 329,
-          "top": -113,
-          "width": 128,
+          "left": 370,
+          "top": 41,
+          "width": 87,
           "height": 29,
           "wireID": "a497339e-24e8-4237-a04a-3ecb0c768d8b",
           "customInputs": [],
           "customOutputs": [],
-          "name": "serial_number",
-          "inputType": "string"
+          "name": "device",
+          "inputType": "struct:Device"
         },
         {
           "type": "CommentActionComponent",
@@ -949,6 +960,18 @@
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->Loop over serial ports and find serial port path that matches given serial_number.</div>"
+        },
+        {
+          "type": "OutputActionComponent",
+          "left": 1251,
+          "top": 86,
+          "width": 92,
+          "height": 29,
+          "wireID": "23f509c0-f0ec-4fb0-ec0e-b70df4c2c911",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "no_path",
+          "outputType": "boolean"
         }
       ],
       "connectionLines": [
@@ -989,22 +1012,16 @@
           "input": "@seqin"
         },
         {
-          "source": "8e821858-45d3-4faa-ff12-fdee4d30c83e",
-          "output": "done",
-          "target": "3aaef4ed-0ae4-4dcd-d5fc-7a149ab400f6",
-          "input": "@seqin"
-        },
-        {
-          "source": "3aaef4ed-0ae4-4dcd-d5fc-7a149ab400f6",
-          "output": "value",
-          "target": "02d2de79-3cff-4933-96f5-78efcdab3b1f",
-          "input": "@seqin"
-        },
-        {
           "source": "a497339e-24e8-4237-a04a-3ecb0c768d8b",
           "output": "@seqout",
           "target": "050e14dd-0b1f-422d-c6e3-62232b3b4044",
-          "input": "serial_number"
+          "input": "device"
+        },
+        {
+          "source": "8e821858-45d3-4faa-ff12-fdee4d30c83e",
+          "output": "done",
+          "target": "23f509c0-f0ec-4fb0-ec0e-b70df4c2c911",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -1968,8 +1985,8 @@
       "components": [
         {
           "type": "CallActionActionComponent",
-          "left": -282,
-          "top": -96,
+          "left": -380,
+          "top": -97,
           "width": 120,
           "height": 83,
           "wireID": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
@@ -1979,19 +1996,19 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 257,
-          "top": -435,
-          "width": 168,
+          "left": -187,
+          "top": -158,
+          "width": 330,
           "height": 83,
           "wireID": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
           "customInputs": [],
           "customOutputs": [],
-          "value": "automatic_testing"
+          "value": "automatic_testing && !refresh_in_progress"
         },
         {
           "type": "StartActionComponent",
-          "left": -444,
-          "top": -96,
+          "left": -553,
+          "top": -97,
           "width": 87,
           "height": 29,
           "wireID": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
@@ -2000,8 +2017,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 688,
-          "top": -87,
+          "left": 421,
+          "top": -54,
           "width": 87,
           "height": 29,
           "wireID": "4dce99dd-a04a-4b68-847c-45a8215faea4",
@@ -2012,8 +2029,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 688,
-          "top": -42,
+          "left": 421,
+          "top": -9,
           "width": 87,
           "height": 29,
           "wireID": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
@@ -2024,8 +2041,8 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": 492,
-          "top": -435,
+          "left": 189,
+          "top": -158,
           "width": 113,
           "height": 83,
           "wireID": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
@@ -2034,58 +2051,29 @@
           "action": "do_auto_test"
         },
         {
-          "type": "IsTrueActionComponent",
-          "left": 714,
-          "top": -297,
-          "width": 478,
-          "height": 83,
-          "wireID": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "auto_refresh && (System.getTick() - lastAutoRefreshTick > 1000)"
-        },
-        {
-          "type": "SetVariableActionComponent",
-          "left": -122,
-          "top": -266,
-          "width": 294,
-          "height": 62,
-          "wireID": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "lastAutoRefreshTick",
-          "value": "System.getTick()"
-        },
-        {
           "type": "CommentActionComponent",
-          "left": 714,
-          "top": -390,
-          "width": 435,
-          "height": 57,
-          "wireID": "e4640360-6f63-4959-ca9e-5374aa5c923d",
-          "customInputs": [],
-          "customOutputs": [],
-          "text": "<div><!--block-->Do auto refresh every 1 second if enabled</div>"
-        },
-        {
-          "type": "CommentActionComponent",
-          "left": 253,
-          "top": -503,
+          "left": -9,
+          "top": -349,
           "width": 352,
           "height": 57,
           "wireID": "52938743-71ba-4c59-b983-ecb43c7bd215",
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->Do auto test if enabled</div>"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 373,
+          "top": -158,
+          "width": 87,
+          "height": 29,
+          "wireID": "42d77501-85e4-4d31-dfd3-63a88ddde691",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "test_idle"
         }
       ],
       "connectionLines": [
-        {
-          "source": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
-          "output": "@seqout",
-          "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "input": "@seqin"
-        },
         {
           "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
           "output": "245a891f-9fce-4e4b-a94b-37b2a018e1b9",
@@ -2099,30 +2087,6 @@
           "input": "@seqin"
         },
         {
-          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "output": "@seqout",
-          "target": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
-          "input": "@seqin"
-        },
-        {
-          "source": "2c7ec764-f56a-4df7-f479-bb91f7089b5b",
-          "output": "@seqout",
-          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "input": "@seqin"
-        },
-        {
-          "source": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "output": "True",
-          "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "input": "@seqin"
-        },
-        {
-          "source": "74f49669-fb21-4e17-cfab-a60fcc28c331",
-          "output": "False",
-          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "input": "@seqin"
-        },
-        {
           "source": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
           "output": "True",
           "target": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
@@ -2131,13 +2095,13 @@
         {
           "source": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
           "output": "False",
-          "target": "74f49669-fb21-4e17-cfab-a60fcc28c331",
+          "target": "42d77501-85e4-4d31-dfd3-63a88ddde691",
           "input": "@seqin"
         },
         {
           "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
           "output": "@seqout",
-          "target": "74f49669-fb21-4e17-cfab-a60fcc28c331",
+          "target": "42d77501-85e4-4d31-dfd3-63a88ddde691",
           "input": "@seqin"
         },
         {
@@ -2150,6 +2114,24 @@
           "source": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
           "output": "5c0bddf6-a1e8-43cb-e6e4-cef69786e7f3",
           "target": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
+          "input": "@seqin"
+        },
+        {
+          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "output": "@seqout",
+          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
+          "input": "@seqin"
+        },
+        {
+          "source": "42d77501-85e4-4d31-dfd3-63a88ddde691",
+          "output": "@seqout",
+          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
+          "input": "@seqin"
+        },
+        {
+          "source": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
+          "output": "@seqout",
+          "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
           "input": "@seqin"
         }
       ],
@@ -2168,7 +2150,621 @@
       "components": [
         {
           "type": "StartActionComponent",
-          "left": -314,
+          "left": -742,
+          "top": -45,
+          "width": 87,
+          "height": 29,
+          "wireID": "1a8a31e9-f995-4d91-cde0-e80fc1814390",
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "type": "OutputActionComponent",
+          "left": 593,
+          "top": 162,
+          "width": 87,
+          "height": 29,
+          "wireID": "34ba7172-62bb-4013-b98f-f9c36291ca31",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "Done",
+          "outputType": "boolean"
+        },
+        {
+          "type": "OutputActionComponent",
+          "left": 2823,
+          "top": 302,
+          "width": 101,
+          "height": 29,
+          "wireID": "e5a8a7e0-96ab-43e3-ddd3-5be65684bf4d",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "Not done",
+          "outputType": "boolean"
+        },
+        {
+          "type": "LoopActionComponent",
+          "left": -350,
+          "top": -71,
+          "width": 449,
+          "height": 83,
+          "wireID": "66b9fdff-5c30-4778-b7ce-1881917a1e14",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "idx_device",
+          "from": "0",
+          "to": "Array.length(devices) - 1",
+          "step": "1",
+          "version": 1
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": -8,
+          "top": -398,
+          "width": 236,
+          "height": 83,
+          "wireID": "3362a740-8d3e-4fe6-9297-2920561681ef",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "devices[idx_device] != null"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 279,
+          "top": -398,
+          "width": 296,
+          "height": 83,
+          "wireID": "1f6d5e0a-4407-4680-d4a4-2fca1cf69757",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "devices[idx_device].currentStep == 0"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": -616,
+          "top": -45,
+          "width": 189,
+          "height": 83,
+          "wireID": "40128db2-0f9d-477b-ff3d-40b8057335b8",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "test_step_enabled[0]"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 631,
+          "top": -398,
+          "width": 492,
+          "height": 83,
+          "wireID": "228a7321-f793-46bb-bfb4-62a9c00dc729",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "devices[idx_device].stepStatus.status != StepStatus.NotStarted &&\ndevices[idx_device].stepStatus.status != StepStatus.Success"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 664,
+          "top": -295,
+          "width": 471,
+          "height": 83,
+          "wireID": "4e7dbb08-2736-40d4-ad52-735d0c557547",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "selected_idx_device == -1 &&\ndevices[idx_device].stepStatus.status == StepStatus.NotStarted"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 1211,
+          "top": -295,
+          "width": 253,
+          "height": 62,
+          "wireID": "18f0f9fd-a83b-44e6-d036-c1e87161859c",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "selected_idx_device",
+          "value": "idx_device"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 304,
+          "top": -38,
+          "width": 222,
+          "height": 83,
+          "wireID": "4b05e6ff-6c5b-492a-9d9f-a6de2f7a6752",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "selected_idx_device != -1"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 787,
+          "top": -37,
+          "width": 127,
+          "height": 83,
+          "wireID": "d8901be8-b4eb-47bf-f7b4-946348c840fe",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "do_test_step"
+        },
+        {
+          "type": "OutputActionComponent",
+          "left": 1697,
+          "top": 609,
+          "width": 87,
+          "height": 29,
+          "wireID": "c23cc492-8984-4d63-d357-758a1065b07d",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "stdout",
+          "outputType": "any"
+        },
+        {
+          "type": "OutputActionComponent",
+          "left": 1697,
+          "top": 650,
+          "width": 87,
+          "height": 29,
+          "wireID": "a521c02a-d34f-4324-b6b1-0695e3534278",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "stderr",
+          "outputType": "any"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": 568,
+          "top": -37,
+          "width": 195,
+          "height": 62,
+          "wireID": "38669cf0-ac8f-4b09-c9dc-9738e10b72ea",
+          "customInputs": [],
+          "customOutputs": [],
+          "expression": "selected_idx_device"
+        },
+        {
+          "type": "CommentActionComponent",
+          "left": 593,
+          "top": -102,
+          "width": 435,
+          "height": 57,
+          "wireID": "88bf0980-6cfe-4f7b-9dbf-0b36e1062e9a",
+          "customInputs": [],
+          "customOutputs": [],
+          "text": "<div><!--block-->Start FTDI programming for selected device</div>"
+        },
+        {
+          "type": "DelayActionComponent",
+          "left": 2399,
+          "top": -38,
+          "width": 87,
+          "height": 62,
+          "wireID": "313cba3b-ddf5-40fe-c1b9-7e1c5380a817",
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "4000"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 2516,
+          "top": -38,
+          "width": 120,
+          "height": 83,
+          "wireID": "44aed701-7346-4222-a0cf-b64ad58d6186",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "enum_devices"
+        },
+        {
+          "type": "DelayActionComponent",
+          "left": 2664,
+          "top": -37,
+          "width": 87,
+          "height": 62,
+          "wireID": "2f76059d-41c8-4291-aa22-55519a0b539b",
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "2000"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 1747,
+          "top": -38,
+          "width": 151,
+          "height": 61,
+          "wireID": "550cea56-5fe8-4a10-a35c-21807106e84e",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "move_to_next_step"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": 1522,
+          "top": -38,
+          "width": 195,
+          "height": 62,
+          "wireID": "ed6eeb15-780e-494f-9c43-ae0a3d740571",
+          "customInputs": [],
+          "customOutputs": [],
+          "expression": "selected_idx_device"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 2224,
+          "top": -38,
+          "width": 145,
+          "height": 61,
+          "wireID": "8adacb85-5c51-4fa3-8d50-8024f5cf4e7a",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "db_update_device"
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 972,
+          "top": -38,
+          "width": 512,
+          "height": 83,
+          "wireID": "5526170e-65d0-48bf-e52d-7257fc87b6ef",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "devices[selected_idx_device].stepStatus.status == StepStatus.Success"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": 1934,
+          "top": -38,
+          "width": 255,
+          "height": 62,
+          "wireID": "1c0b4221-4a16-4f90-f7c5-b740377403ee",
+          "customInputs": [],
+          "customOutputs": [],
+          "expression": "devices[selected_idx_device]"
+        }
+      ],
+      "connectionLines": [
+        {
+          "source": "1a8a31e9-f995-4d91-cde0-e80fc1814390",
+          "output": "@seqout",
+          "target": "40128db2-0f9d-477b-ff3d-40b8057335b8",
+          "input": "@seqin"
+        },
+        {
+          "source": "66b9fdff-5c30-4778-b7ce-1881917a1e14",
+          "output": "@seqout",
+          "target": "3362a740-8d3e-4fe6-9297-2920561681ef",
+          "input": "@seqin"
+        },
+        {
+          "source": "3362a740-8d3e-4fe6-9297-2920561681ef",
+          "output": "False",
+          "target": "4b05e6ff-6c5b-492a-9d9f-a6de2f7a6752",
+          "input": "@seqin"
+        },
+        {
+          "source": "3362a740-8d3e-4fe6-9297-2920561681ef",
+          "output": "True",
+          "target": "1f6d5e0a-4407-4680-d4a4-2fca1cf69757",
+          "input": "@seqin"
+        },
+        {
+          "source": "1f6d5e0a-4407-4680-d4a4-2fca1cf69757",
+          "output": "True",
+          "target": "228a7321-f793-46bb-bfb4-62a9c00dc729",
+          "input": "@seqin"
+        },
+        {
+          "source": "40128db2-0f9d-477b-ff3d-40b8057335b8",
+          "output": "True",
+          "target": "66b9fdff-5c30-4778-b7ce-1881917a1e14",
+          "input": "start"
+        },
+        {
+          "source": "40128db2-0f9d-477b-ff3d-40b8057335b8",
+          "output": "False",
+          "target": "34ba7172-62bb-4013-b98f-f9c36291ca31",
+          "input": "@seqin"
+        },
+        {
+          "source": "1f6d5e0a-4407-4680-d4a4-2fca1cf69757",
+          "output": "False",
+          "target": "66b9fdff-5c30-4778-b7ce-1881917a1e14",
+          "input": "next"
+        },
+        {
+          "source": "66b9fdff-5c30-4778-b7ce-1881917a1e14",
+          "output": "done",
+          "target": "4b05e6ff-6c5b-492a-9d9f-a6de2f7a6752",
+          "input": "@seqin"
+        },
+        {
+          "source": "228a7321-f793-46bb-bfb4-62a9c00dc729",
+          "output": "True",
+          "target": "e5a8a7e0-96ab-43e3-ddd3-5be65684bf4d",
+          "input": "@seqin"
+        },
+        {
+          "source": "228a7321-f793-46bb-bfb4-62a9c00dc729",
+          "output": "False",
+          "target": "4e7dbb08-2736-40d4-ad52-735d0c557547",
+          "input": "@seqin"
+        },
+        {
+          "source": "4e7dbb08-2736-40d4-ad52-735d0c557547",
+          "output": "True",
+          "target": "18f0f9fd-a83b-44e6-d036-c1e87161859c",
+          "input": "@seqin"
+        },
+        {
+          "source": "18f0f9fd-a83b-44e6-d036-c1e87161859c",
+          "output": "@seqout",
+          "target": "66b9fdff-5c30-4778-b7ce-1881917a1e14",
+          "input": "next"
+        },
+        {
+          "source": "4e7dbb08-2736-40d4-ad52-735d0c557547",
+          "output": "False",
+          "target": "66b9fdff-5c30-4778-b7ce-1881917a1e14",
+          "input": "next"
+        },
+        {
+          "source": "4b05e6ff-6c5b-492a-9d9f-a6de2f7a6752",
+          "output": "False",
+          "target": "34ba7172-62bb-4013-b98f-f9c36291ca31",
+          "input": "@seqin"
+        },
+        {
+          "source": "4b05e6ff-6c5b-492a-9d9f-a6de2f7a6752",
+          "output": "True",
+          "target": "38669cf0-ac8f-4b09-c9dc-9738e10b72ea",
+          "input": "@seqin"
+        },
+        {
+          "source": "d8901be8-b4eb-47bf-f7b4-946348c840fe",
+          "output": "a7528088-85ca-4e84-f248-89f546e1b7f9",
+          "target": "c23cc492-8984-4d63-d357-758a1065b07d",
+          "input": "@seqin"
+        },
+        {
+          "source": "d8901be8-b4eb-47bf-f7b4-946348c840fe",
+          "output": "4161fdc3-14ad-4a71-c67d-e12cc282f7b9",
+          "target": "a521c02a-d34f-4324-b6b1-0695e3534278",
+          "input": "@seqin"
+        },
+        {
+          "source": "38669cf0-ac8f-4b09-c9dc-9738e10b72ea",
+          "output": "result",
+          "target": "d8901be8-b4eb-47bf-f7b4-946348c840fe",
+          "input": "33f7ba7d-f940-42c1-ae57-e14ad7625976"
+        },
+        {
+          "source": "d8901be8-b4eb-47bf-f7b4-946348c840fe",
+          "output": "@seqout",
+          "target": "5526170e-65d0-48bf-e52d-7257fc87b6ef",
+          "input": "@seqin"
+        },
+        {
+          "source": "313cba3b-ddf5-40fe-c1b9-7e1c5380a817",
+          "output": "@seqout",
+          "target": "44aed701-7346-4222-a0cf-b64ad58d6186",
+          "input": "@seqin"
+        },
+        {
+          "source": "44aed701-7346-4222-a0cf-b64ad58d6186",
+          "output": "@seqout",
+          "target": "2f76059d-41c8-4291-aa22-55519a0b539b",
+          "input": "@seqin"
+        },
+        {
+          "source": "ed6eeb15-780e-494f-9c43-ae0a3d740571",
+          "output": "result",
+          "target": "550cea56-5fe8-4a10-a35c-21807106e84e",
+          "input": "5052d1e0-a07a-48e4-f9c1-8dab11cf5733"
+        },
+        {
+          "source": "5526170e-65d0-48bf-e52d-7257fc87b6ef",
+          "output": "True",
+          "target": "ed6eeb15-780e-494f-9c43-ae0a3d740571",
+          "input": "@seqin"
+        },
+        {
+          "source": "5526170e-65d0-48bf-e52d-7257fc87b6ef",
+          "output": "False",
+          "target": "e5a8a7e0-96ab-43e3-ddd3-5be65684bf4d",
+          "input": "@seqin"
+        },
+        {
+          "source": "550cea56-5fe8-4a10-a35c-21807106e84e",
+          "output": "@seqout",
+          "target": "1c0b4221-4a16-4f90-f7c5-b740377403ee",
+          "input": "@seqin"
+        },
+        {
+          "source": "550cea56-5fe8-4a10-a35c-21807106e84e",
+          "output": "210c0d91-efe0-445e-9777-bd1db36a6dab",
+          "target": "1c0b4221-4a16-4f90-f7c5-b740377403ee",
+          "input": "@seqin"
+        },
+        {
+          "source": "8adacb85-5c51-4fa3-8d50-8024f5cf4e7a",
+          "output": "@seqout",
+          "target": "313cba3b-ddf5-40fe-c1b9-7e1c5380a817",
+          "input": "@seqin"
+        },
+        {
+          "source": "2f76059d-41c8-4291-aa22-55519a0b539b",
+          "output": "@seqout",
+          "target": "e5a8a7e0-96ab-43e3-ddd3-5be65684bf4d",
+          "input": "@seqin"
+        },
+        {
+          "source": "1c0b4221-4a16-4f90-f7c5-b740377403ee",
+          "output": "result",
+          "target": "8adacb85-5c51-4fa3-8d50-8024f5cf4e7a",
+          "input": "2cad6570-0fe7-4965-e995-6525559a83b3"
+        },
+        {
+          "source": "44aed701-7346-4222-a0cf-b64ad58d6186",
+          "output": "245a891f-9fce-4e4b-a94b-37b2a018e1b9",
+          "target": "c23cc492-8984-4d63-d357-758a1065b07d",
+          "input": "@seqin"
+        },
+        {
+          "source": "44aed701-7346-4222-a0cf-b64ad58d6186",
+          "output": "a61f4b3b-2c7a-447b-82da-9cec0ad5721a",
+          "target": "a521c02a-d34f-4324-b6b1-0695e3534278",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [
+        {
+          "name": "selected_idx_device",
+          "type": "integer",
+          "defaultValue": "-1",
+          "persistent": false
+        },
+        {
+          "name": "idx_device",
+          "type": "integer",
+          "defaultValue": "0",
+          "persistent": false
+        }
+      ],
+      "name": "ftdi_programming",
+      "implementationType": "flow"
+    },
+    {
+      "components": [
+        {
+          "type": "StartActionComponent",
+          "left": -580,
+          "top": -37,
+          "width": 87,
+          "height": 29,
+          "wireID": "e1f2d7d6-763d-4708-d443-2c02beca73a1",
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "type": "LoopActionComponent",
+          "left": -468,
+          "top": -37,
+          "width": 449,
+          "height": 83,
+          "wireID": "5d204360-1ba9-455e-d27a-d0164ffdc08d",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "idx_device",
+          "from": "0",
+          "to": "Array.length(devices) - 1",
+          "step": "1",
+          "version": 1
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": 12,
+          "top": -37,
+          "width": 471,
+          "height": 83,
+          "wireID": "351bcfb8-2d84-4b15-907f-75712d45be7b",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "devices[idx_device] != null &&\ndevices[idx_device].stepStatus.status == StepStatus.InProgress"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 517,
+          "top": -37,
+          "width": 193,
+          "height": 62,
+          "wireID": "1b0a8066-0689-4ab2-ab39-5392eb8468b1",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "refresh_enabled",
+          "value": "false"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 517,
+          "top": 99,
+          "width": 186,
+          "height": 62,
+          "wireID": "896271d1-ec69-47e4-c27c-4912a3bbcd4e",
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "refresh_enabled",
+          "value": "true"
+        },
+        {
+          "type": "EndActionComponent",
+          "left": 761,
+          "top": 46,
+          "width": 87,
+          "height": 29,
+          "wireID": "5f5c5cf4-c8b5-450c-9583-b71209c8f4db",
+          "customInputs": [],
+          "customOutputs": []
+        }
+      ],
+      "connectionLines": [
+        {
+          "source": "e1f2d7d6-763d-4708-d443-2c02beca73a1",
+          "output": "@seqout",
+          "target": "5d204360-1ba9-455e-d27a-d0164ffdc08d",
+          "input": "start"
+        },
+        {
+          "source": "5d204360-1ba9-455e-d27a-d0164ffdc08d",
+          "output": "@seqout",
+          "target": "351bcfb8-2d84-4b15-907f-75712d45be7b",
+          "input": "@seqin"
+        },
+        {
+          "source": "351bcfb8-2d84-4b15-907f-75712d45be7b",
+          "output": "False",
+          "target": "5d204360-1ba9-455e-d27a-d0164ffdc08d",
+          "input": "next"
+        },
+        {
+          "source": "351bcfb8-2d84-4b15-907f-75712d45be7b",
+          "output": "True",
+          "target": "1b0a8066-0689-4ab2-ab39-5392eb8468b1",
+          "input": "@seqin"
+        },
+        {
+          "source": "5d204360-1ba9-455e-d27a-d0164ffdc08d",
+          "output": "done",
+          "target": "896271d1-ec69-47e4-c27c-4912a3bbcd4e",
+          "input": "@seqin"
+        },
+        {
+          "source": "1b0a8066-0689-4ab2-ab39-5392eb8468b1",
+          "output": "@seqout",
+          "target": "5f5c5cf4-c8b5-450c-9583-b71209c8f4db",
+          "input": "@seqin"
+        },
+        {
+          "source": "896271d1-ec69-47e4-c27c-4912a3bbcd4e",
+          "output": "@seqout",
+          "target": "5f5c5cf4-c8b5-450c-9583-b71209c8f4db",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [
+        {
+          "name": "idx_device",
+          "type": "integer",
+          "defaultValue": "0",
+          "persistent": false
+        }
+      ],
+      "name": "test_idle",
+      "implementationType": "flow"
+    },
+    {
+      "components": [
+        {
+          "type": "StartActionComponent",
+          "left": -562,
           "top": -62,
           "width": 87,
           "height": 29,
@@ -2236,8 +2832,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 2076,
-          "top": -176,
+          "left": 2092,
+          "top": 337,
           "width": 87,
           "height": 29,
           "wireID": "867eb9aa-8a06-440c-9739-438fc92cb2f6",
@@ -2248,8 +2844,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 2076,
-          "top": -122,
+          "left": 2092,
+          "top": 391,
           "width": 87,
           "height": 29,
           "wireID": "5c0bddf6-a1e8-43cb-e6e4-cef69786e7f3",
@@ -2293,7 +2889,7 @@
         },
         {
           "type": "EvalExprActionComponent",
-          "left": 1497,
+          "left": 1488,
           "top": -62,
           "width": 134,
           "height": 62,
@@ -2327,8 +2923,8 @@
         },
         {
           "type": "CommentActionComponent",
-          "left": 1565,
-          "top": 0,
+          "left": 1584,
+          "top": 13,
           "width": 435,
           "height": 57,
           "wireID": "98275f94-93c0-4e7f-87dd-530a78b1cc49",
@@ -2412,15 +3008,20 @@
           "customInputs": [],
           "customOutputs": [],
           "value": "devices[idx_device].allTestsOK"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": -394,
+          "top": 109,
+          "width": 146,
+          "height": 127,
+          "wireID": "7d4795fb-32a8-47be-dcc7-8e7e1977676a",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "ftdi_programming"
         }
       ],
       "connectionLines": [
-        {
-          "source": "0a15ae28-a08f-4381-e671-f991e680cfd2",
-          "output": "@seqout",
-          "target": "b5e506b8-6a43-428b-aeda-4e92639e06f3",
-          "input": "start"
-        },
         {
           "source": "3b7753b0-a3d3-4700-cf64-21801a69298e",
           "output": "False",
@@ -2552,6 +3153,36 @@
           "output": "True",
           "target": "b5e506b8-6a43-428b-aeda-4e92639e06f3",
           "input": "next"
+        },
+        {
+          "source": "0a15ae28-a08f-4381-e671-f991e680cfd2",
+          "output": "@seqout",
+          "target": "7d4795fb-32a8-47be-dcc7-8e7e1977676a",
+          "input": "@seqin"
+        },
+        {
+          "source": "7d4795fb-32a8-47be-dcc7-8e7e1977676a",
+          "output": "e5a8a7e0-96ab-43e3-ddd3-5be65684bf4d",
+          "target": "62a57e1f-c5b4-433b-c84c-46a8f2711879",
+          "input": "@seqin"
+        },
+        {
+          "source": "7d4795fb-32a8-47be-dcc7-8e7e1977676a",
+          "output": "c23cc492-8984-4d63-d357-758a1065b07d",
+          "target": "867eb9aa-8a06-440c-9739-438fc92cb2f6",
+          "input": "@seqin"
+        },
+        {
+          "source": "7d4795fb-32a8-47be-dcc7-8e7e1977676a",
+          "output": "a521c02a-d34f-4324-b6b1-0695e3534278",
+          "target": "5c0bddf6-a1e8-43cb-e6e4-cef69786e7f3",
+          "input": "@seqin"
+        },
+        {
+          "source": "7d4795fb-32a8-47be-dcc7-8e7e1977676a",
+          "output": "34ba7172-62bb-4013-b98f-f9c36291ca31",
+          "target": "b5e506b8-6a43-428b-aeda-4e92639e06f3",
+          "input": "start"
         }
       ],
       "localVariables": [
@@ -2632,7 +3263,7 @@
         },
         {
           "type": "EndActionComponent",
-          "left": 1322,
+          "left": 1338,
           "top": -182,
           "width": 87,
           "height": 29,
@@ -2683,7 +3314,7 @@
         },
         {
           "type": "DelayActionComponent",
-          "left": 1204,
+          "left": 1202,
           "top": -182,
           "width": 87,
           "height": 62,
@@ -2900,7 +3531,7 @@
       "components": [
         {
           "type": "FileRead",
-          "left": 892,
+          "left": 756,
           "top": -140,
           "width": 314,
           "height": 62,
@@ -2912,7 +3543,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 576,
+          "left": 285,
           "top": -140,
           "width": 274,
           "height": 62,
@@ -2924,7 +3555,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 391,
+          "left": 90,
           "top": -140,
           "width": 152,
           "height": 62,
@@ -2936,7 +3567,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 2305,
+          "left": 2232,
           "top": -140,
           "width": 159,
           "height": 62,
@@ -2948,7 +3579,7 @@
         },
         {
           "type": "InputActionComponent",
-          "left": -277,
+          "left": -460,
           "top": -58,
           "width": 87,
           "height": 29,
@@ -2960,7 +3591,7 @@
         },
         {
           "type": "StartActionComponent",
-          "left": -277,
+          "left": -460,
           "top": -140,
           "width": 87,
           "height": 29,
@@ -2970,7 +3601,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 103,
+          "left": -138,
           "top": -140,
           "width": 199,
           "height": 62,
@@ -2982,7 +3613,7 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": -133,
+          "left": -344,
           "top": -140,
           "width": 175,
           "height": 62,
@@ -2999,7 +3630,7 @@
         },
         {
           "type": "EvalJSExprActionComponent",
-          "left": 1340,
+          "left": 1303,
           "top": -140,
           "width": 721,
           "height": 170,
@@ -3038,7 +3669,7 @@
         },
         {
           "type": "FileWrite",
-          "left": 2132,
+          "left": 2071,
           "top": -140,
           "width": 132,
           "height": 83,
@@ -3060,8 +3691,8 @@
         },
         {
           "type": "EvalExprActionComponent",
-          "left": 2154,
-          "top": 97,
+          "left": 2044,
+          "top": 73,
           "width": 595,
           "height": 62,
           "wireID": "1cefdaa8-7a09-4494-a1a9-9e386fc4925b",
@@ -3087,8 +3718,8 @@
         },
         {
           "type": "EndActionComponent",
-          "left": 4105,
-          "top": -156,
+          "left": 4324,
+          "top": -94,
           "width": 87,
           "height": 29,
           "wireID": "09346476-a444-425f-cdb2-f073ffc8996f",
@@ -3097,7 +3728,7 @@
         },
         {
           "type": "ExecuteCommand",
-          "left": 2779,
+          "left": 2692,
           "top": -140,
           "width": 438,
           "height": 170,
@@ -3114,8 +3745,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 3366,
-          "top": -258,
+          "left": 3305,
+          "top": -213,
           "width": 87,
           "height": 29,
           "wireID": "688ae43a-6b9b-4a7d-a2f8-6572a3ea35b1",
@@ -3126,8 +3757,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 3366,
-          "top": -213,
+          "left": 3305,
+          "top": -164,
           "width": 87,
           "height": 29,
           "wireID": "e7149e20-7635-419c-df80-507c1b0c2efe",
@@ -3138,8 +3769,8 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 3346,
-          "top": -156,
+          "left": 3305,
+          "top": -94,
           "width": 173,
           "height": 83,
           "wireID": "ba8c34f4-a713-4c5a-ca73-a38620082006",
@@ -3154,8 +3785,8 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 3743,
-          "top": -156,
+          "left": 3518,
+          "top": -94,
           "width": 253,
           "height": 62,
           "wireID": "0a45ace2-861e-41f0-ada1-a0daa55447ab",
@@ -3166,8 +3797,8 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 3576,
-          "top": -78,
+          "left": 4039,
+          "top": 0,
           "width": 240,
           "height": 62,
           "wireID": "0a2b9ee4-8d43-4b5b-ff68-5b896dcec782",
@@ -3178,7 +3809,7 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 2625,
+          "left": 2544,
           "top": -140,
           "width": 87,
           "height": 83,
@@ -3194,8 +3825,8 @@
         },
         {
           "type": "ConstantActionComponent",
-          "left": 3128,
-          "top": 60,
+          "left": 3130,
+          "top": 73,
           "width": 89,
           "height": 61,
           "wireID": "ab695faf-0dec-4894-d4e1-7952a61cbf27",
@@ -3205,8 +3836,8 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 3353,
-          "top": -16,
+          "left": 3312,
+          "top": 46,
           "width": 166,
           "height": 62,
           "wireID": "c9fa93d0-dbeb-4a14-af34-86cdd9a6b516",
@@ -3228,7 +3859,7 @@
         },
         {
           "type": "ConstantActionComponent",
-          "left": 2507,
+          "left": 2429,
           "top": -140,
           "width": 89,
           "height": 61,
@@ -3239,7 +3870,7 @@
         },
         {
           "type": "CommentActionComponent",
-          "left": 2486,
+          "left": 2429,
           "top": -213,
           "width": 263,
           "height": 57,
@@ -3250,14 +3881,37 @@
         },
         {
           "type": "DelayActionComponent",
-          "left": 3598,
-          "top": -174,
+          "left": 2914,
+          "top": 72,
           "width": 87,
           "height": 62,
-          "wireID": "a9797b4a-f419-4ab4-8bbc-14140fc9269a",
+          "wireID": "75aba051-ac21-4052-d90e-937a1f016ed4",
           "customInputs": [],
           "customOutputs": [],
           "milliseconds": "3000"
+        },
+        {
+          "type": "CallActionActionComponent",
+          "left": 583,
+          "top": -140,
+          "width": 136,
+          "height": 61,
+          "wireID": "0a81b635-8d5b-4b72-ad18-64fb6fc9a05d",
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "db_insert_device"
+        },
+        {
+          "type": "eez-flow-ext-postgres/Postgres",
+          "left": 3510,
+          "top": 0,
+          "width": 511,
+          "height": 62,
+          "wireID": "8b0132b4-6095-4c31-e9af-c1dd9486b62d",
+          "customInputs": [],
+          "customOutputs": [],
+          "connection": "db_connection",
+          "sql": "DELETE from devices WHERE \"serialNumber\" = '{device.serialNumber}'"
         }
       ],
       "connectionLines": [
@@ -3270,7 +3924,7 @@
         {
           "source": "5d063801-f867-47c8-de9b-983057d7e177",
           "output": "@seqout",
-          "target": "d9a8fe7c-849e-4fee-e99f-c304a3d98cdd",
+          "target": "0a81b635-8d5b-4b72-ad18-64fb6fc9a05d",
           "input": "@seqin"
         },
         {
@@ -3364,18 +4018,6 @@
           "input": "@seqin"
         },
         {
-          "source": "ba8c34f4-a713-4c5a-ca73-a38620082006",
-          "output": "True",
-          "target": "a9797b4a-f419-4ab4-8bbc-14140fc9269a",
-          "input": "@seqin"
-        },
-        {
-          "source": "0a45ace2-861e-41f0-ada1-a0daa55447ab",
-          "output": "@seqout",
-          "target": "09346476-a444-425f-cdb2-f073ffc8996f",
-          "input": "@seqin"
-        },
-        {
           "source": "0a2b9ee4-8d43-4b5b-ff68-5b896dcec782",
           "output": "@seqout",
           "target": "09346476-a444-425f-cdb2-f073ffc8996f",
@@ -3384,7 +4026,7 @@
         {
           "source": "ba8c34f4-a713-4c5a-ca73-a38620082006",
           "output": "False",
-          "target": "0a2b9ee4-8d43-4b5b-ff68-5b896dcec782",
+          "target": "8b0132b4-6095-4c31-e9af-c1dd9486b62d",
           "input": "@seqin"
         },
         {
@@ -3438,7 +4080,7 @@
         {
           "source": "50fcf0b5-2beb-47ad-dd7a-14b0d3ceaa0d",
           "output": "False",
-          "target": "ab695faf-0dec-4894-d4e1-7952a61cbf27",
+          "target": "75aba051-ac21-4052-d90e-937a1f016ed4",
           "input": "@seqin"
         },
         {
@@ -3460,9 +4102,39 @@
           "input": "@seqin"
         },
         {
-          "source": "a9797b4a-f419-4ab4-8bbc-14140fc9269a",
-          "output": "@seqout",
+          "source": "ba8c34f4-a713-4c5a-ca73-a38620082006",
+          "output": "True",
           "target": "0a45ace2-861e-41f0-ada1-a0daa55447ab",
+          "input": "@seqin"
+        },
+        {
+          "source": "0a45ace2-861e-41f0-ada1-a0daa55447ab",
+          "output": "@seqout",
+          "target": "09346476-a444-425f-cdb2-f073ffc8996f",
+          "input": "@seqin"
+        },
+        {
+          "source": "75aba051-ac21-4052-d90e-937a1f016ed4",
+          "output": "@seqout",
+          "target": "ab695faf-0dec-4894-d4e1-7952a61cbf27",
+          "input": "@seqin"
+        },
+        {
+          "source": "82e8bf12-f606-4826-fb1a-f7a7a8e412b0",
+          "output": "@seqout",
+          "target": "0a81b635-8d5b-4b72-ad18-64fb6fc9a05d",
+          "input": "f7f37086-0eed-4b8b-fc1e-4484cb6ba846"
+        },
+        {
+          "source": "0a81b635-8d5b-4b72-ad18-64fb6fc9a05d",
+          "output": "@seqout",
+          "target": "d9a8fe7c-849e-4fee-e99f-c304a3d98cdd",
+          "input": "@seqin"
+        },
+        {
+          "source": "8b0132b4-6095-4c31-e9af-c1dd9486b62d",
+          "output": "result",
+          "target": "0a2b9ee4-8d43-4b5b-ff68-5b896dcec782",
           "input": "@seqin"
         }
       ],
@@ -3601,8 +4273,8 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 1514,
-          "top": -154,
+          "left": 1512,
+          "top": -125,
           "width": 254,
           "height": 83,
           "wireID": "9274f8d8-6241-4487-bdde-ea372b36a6f9",
@@ -3701,6 +4373,17 @@
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->Start with progress 0%</div>"
+        },
+        {
+          "type": "DelayActionComponent",
+          "left": 1386,
+          "top": -154,
+          "width": 87,
+          "height": 62,
+          "wireID": "9ff6dc96-b74f-4693-ab7a-ec4ea3001418",
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "3000"
         }
       ],
       "connectionLines": [
@@ -3785,7 +4468,7 @@
         {
           "source": "35c9e544-b540-4c2f-e8a5-d73183fc6d99",
           "output": "done",
-          "target": "9274f8d8-6241-4487-bdde-ea372b36a6f9",
+          "target": "9ff6dc96-b74f-4693-ab7a-ec4ea3001418",
           "input": "@seqin"
         },
         {
@@ -3811,6 +4494,12 @@
           "output": "finished",
           "target": "9274f8d8-6241-4487-bdde-ea372b36a6f9",
           "input": "result"
+        },
+        {
+          "source": "9ff6dc96-b74f-4693-ab7a-ec4ea3001418",
+          "output": "@seqout",
+          "target": "9274f8d8-6241-4487-bdde-ea372b36a6f9",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -6826,8 +7515,8 @@
       "components": [
         {
           "type": "EndActionComponent",
-          "left": 1582,
-          "top": 208,
+          "left": 1244,
+          "top": 392,
           "width": 87,
           "height": 29,
           "wireID": "6a1508a1-ac0e-4cdc-e21b-40cf18085030",
@@ -6873,51 +7562,6 @@
           ],
           "customOutputs": [],
           "value": "value.rows.length != 0"
-        },
-        {
-          "type": "IsTrueActionComponent",
-          "left": 518,
-          "top": 830,
-          "width": 155,
-          "height": 83,
-          "wireID": "64bf4812-51c0-4b77-8cb0-5c3d57ef7860",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "update_database"
-        },
-        {
-          "type": "eez-flow-ext-postgres/Postgres",
-          "left": 518,
-          "top": 976,
-          "width": 1011,
-          "height": 260,
-          "wireID": "a86d6ef9-e4c7-4dd7-86c3-df1b89f92f09",
-          "customInputs": [
-            {
-              "name": "serialNumber",
-              "type": "string"
-            }
-          ],
-          "customOutputs": [],
-          "connection": "db_connection",
-          "sql": "INSERT INTO devices(\"serialNumber\", \"version\", \"currentStep\", \"stepStatus\", \"allTestsOK\", \"addedBy\", \"createdAt\", \"updatedAt\") \nVALUES(\n  {serialNumber},\n  '{device.version}',\n  {device.currentStep},\n  {device.stepStatus.status},\n  false,\n  current_user,\n  NOW(),\n  NOW()\n)\nRETURNING *"
-        },
-        {
-          "type": "SetVariableActionComponent",
-          "left": 1558,
-          "top": 976,
-          "width": 404,
-          "height": 62,
-          "wireID": "5215838f-83f3-4f2c-f148-a3774ae3c1cb",
-          "customInputs": [
-            {
-              "name": "value",
-              "type": "any"
-            }
-          ],
-          "customOutputs": [],
-          "variable": "device.serialNumber",
-          "value": "value.rows[0].serialNumber"
         },
         {
           "type": "SetVariableActionComponent",
@@ -6989,8 +7633,8 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": -213,
-          "top": 420,
+          "left": 641,
+          "top": 364,
           "width": 153,
           "height": 105,
           "wireID": "6acf97b0-a2e4-4dda-e665-f248e047123e",
@@ -7000,8 +7644,8 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 34,
-          "top": 432,
+          "left": 888,
+          "top": 376,
           "width": 229,
           "height": 62,
           "wireID": "72532e2a-4fe0-4c03-f8fc-55fd270f3ee1",
@@ -7017,8 +7661,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": -25,
-          "top": 350,
+          "left": 829,
+          "top": 294,
           "width": 87,
           "height": 29,
           "wireID": "7409c12c-f563-4178-b42d-c705259b7004",
@@ -7029,8 +7673,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 14,
-          "top": 391,
+          "left": 868,
+          "top": 335,
           "width": 87,
           "height": 29,
           "wireID": "a30aa194-4aa3-4f2a-8fbb-c2fa4f63e767",
@@ -7041,8 +7685,8 @@
         },
         {
           "type": "EvalExprActionComponent",
-          "left": -371,
-          "top": 420,
+          "left": 483,
+          "top": 364,
           "width": 126,
           "height": 62,
           "wireID": "233490cd-78fa-44d1-ea07-939e6f4290a1",
@@ -7052,36 +7696,25 @@
         },
         {
           "type": "CommentActionComponent",
-          "left": -362,
-          "top": 280,
+          "left": 492,
+          "top": 231,
           "width": 435,
           "height": 57,
           "wireID": "41b96eee-3a48-4291-e971-1e36a14d3c42",
           "customInputs": [],
           "customOutputs": [],
-          "text": "<div><!--block-->Not in database, get device version first</div>"
+          "text": "<div><!--block-->Not in database, get device version</div>"
         },
         {
           "type": "CommentActionComponent",
           "left": 454,
-          "top": -270,
+          "top": -353,
           "width": 435,
           "height": 57,
           "wireID": "387b120a-9c44-4b5b-8ec6-c2404977957d",
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->Already in database</div>"
-        },
-        {
-          "type": "CommentActionComponent",
-          "left": 506,
-          "top": 750,
-          "width": 435,
-          "height": 57,
-          "wireID": "4bee8e5a-b5b0-4091-a74c-94a2607da007",
-          "customInputs": [],
-          "customOutputs": [],
-          "text": "<div><!--block-->Insert in database if update_database enabled</div>"
         },
         {
           "type": "SetVariableActionComponent",
@@ -7101,42 +7734,9 @@
           "value": "value"
         },
         {
-          "type": "IsTrueActionComponent",
-          "left": -1317,
-          "top": 1038,
-          "width": 189,
-          "height": 83,
-          "wireID": "5bedd02a-c482-43ac-b8c5-54fc5205ec9c",
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "test_step_enabled[0]"
-        },
-        {
-          "type": "EvalExprActionComponent",
-          "left": -1071,
-          "top": 990,
-          "width": 1495,
-          "height": 62,
-          "wireID": "74aeb248-364d-4d14-b94a-a254a8bd0fb9",
-          "customInputs": [],
-          "customOutputs": [],
-          "expression": "\"(SELECT (\\'D\\' || LPAD(CAST((COALESCE(MAX(CAST(SUBSTRING(\\\"serialNumber\\\" from 2) AS DECIMAL)), -1) + 1) AS TEXT), 5, \\'0\\')) AS serialNumber FROM devices WHERE SUBSTRING(\\\"serialNumber\\\" FROM 1 FOR 1) = \\'D\\')\""
-        },
-        {
-          "type": "EvalExprActionComponent",
-          "left": 104,
-          "top": 1081,
-          "width": 276,
-          "height": 62,
-          "wireID": "b1d0590e-5fce-4f9d-8b31-b4d9dee7e210",
-          "customInputs": [],
-          "customOutputs": [],
-          "expression": "\"'\" + device.serialNumber + \"'\""
-        },
-        {
           "type": "ConstantActionComponent",
-          "left": -382,
-          "top": 606,
+          "left": 472,
+          "top": 550,
           "width": 89,
           "height": 61,
           "wireID": "720ecc48-f2ff-4706-b505-97585c74450e",
@@ -7146,8 +7746,8 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": -255,
-          "top": 606,
+          "left": 599,
+          "top": 550,
           "width": 155,
           "height": 61,
           "wireID": "e68edd04-b9c9-4a94-d541-7e0bb0c21c84",
@@ -7157,8 +7757,8 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": -58,
-          "top": 606,
+          "left": 796,
+          "top": 550,
           "width": 343,
           "height": 62,
           "wireID": "a75f5cfa-60ea-4d65-aba2-9cb92005dbbd",
@@ -7174,8 +7774,8 @@
         },
         {
           "type": "CommentActionComponent",
-          "left": -382,
-          "top": 539,
+          "left": 472,
+          "top": 483,
           "width": 435,
           "height": 57,
           "wireID": "bdb1b500-e067-4197-8a87-38f8595c23ea",
@@ -7216,6 +7816,23 @@
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->If currentStep is \"ESP32 erase\", \"ESP32 programming\" or \"MP test\" then we go&nbsp; back to \"ESP32 passthru\"</div>"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 454,
+          "top": -280,
+          "width": 445,
+          "height": 62,
+          "wireID": "11778732-d719-4bd0-dddf-b32462eab8eb",
+          "customInputs": [
+            {
+              "name": "value",
+              "type": "any"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "device.oldSerialNumber",
+          "value": "value.rows[0].oldSerialNumber"
         }
       ],
       "connectionLines": [
@@ -7238,27 +7855,9 @@
           "input": "@seqin"
         },
         {
-          "source": "64bf4812-51c0-4b77-8cb0-5c3d57ef7860",
-          "output": "False",
-          "target": "6a1508a1-ac0e-4cdc-e21b-40cf18085030",
-          "input": "@seqin"
-        },
-        {
-          "source": "64bf4812-51c0-4b77-8cb0-5c3d57ef7860",
-          "output": "True",
-          "target": "5bedd02a-c482-43ac-b8c5-54fc5205ec9c",
-          "input": "@seqin"
-        },
-        {
-          "source": "5215838f-83f3-4f2c-f148-a3774ae3c1cb",
-          "output": "@seqout",
-          "target": "6a1508a1-ac0e-4cdc-e21b-40cf18085030",
-          "input": "@seqin"
-        },
-        {
           "source": "6c12c3e5-b93e-4862-f021-8cd10067ebb9",
           "output": "result",
-          "target": "ca022600-fbe0-463c-c582-28c35b032ddd",
+          "target": "11778732-d719-4bd0-dddf-b32462eab8eb",
           "input": "value"
         },
         {
@@ -7336,7 +7935,7 @@
         {
           "source": "45684e3a-0386-472e-fa9a-0114ec9fafb6",
           "output": "True",
-          "target": "ca022600-fbe0-463c-c582-28c35b032ddd",
+          "target": "11778732-d719-4bd0-dddf-b32462eab8eb",
           "input": "@seqin"
         },
         {
@@ -7344,36 +7943,6 @@
           "output": "@seqout",
           "target": "6c12c3e5-b93e-4862-f021-8cd10067ebb9",
           "input": "@seqin"
-        },
-        {
-          "source": "a86d6ef9-e4c7-4dd7-86c3-df1b89f92f09",
-          "output": "result",
-          "target": "5215838f-83f3-4f2c-f148-a3774ae3c1cb",
-          "input": "value"
-        },
-        {
-          "source": "5bedd02a-c482-43ac-b8c5-54fc5205ec9c",
-          "output": "True",
-          "target": "74aeb248-364d-4d14-b94a-a254a8bd0fb9",
-          "input": "@seqin"
-        },
-        {
-          "source": "74aeb248-364d-4d14-b94a-a254a8bd0fb9",
-          "output": "result",
-          "target": "a86d6ef9-e4c7-4dd7-86c3-df1b89f92f09",
-          "input": "serialNumber"
-        },
-        {
-          "source": "5bedd02a-c482-43ac-b8c5-54fc5205ec9c",
-          "output": "False",
-          "target": "b1d0590e-5fce-4f9d-8b31-b4d9dee7e210",
-          "input": "@seqin"
-        },
-        {
-          "source": "b1d0590e-5fce-4f9d-8b31-b4d9dee7e210",
-          "output": "result",
-          "target": "a86d6ef9-e4c7-4dd7-86c3-df1b89f92f09",
-          "input": "serialNumber"
         },
         {
           "source": "720ecc48-f2ff-4706-b505-97585c74450e",
@@ -7386,12 +7955,6 @@
           "output": "f799f405-c02a-4bcc-a6d0-e14522382ea8",
           "target": "a75f5cfa-60ea-4d65-aba2-9cb92005dbbd",
           "input": "current_step"
-        },
-        {
-          "source": "a75f5cfa-60ea-4d65-aba2-9cb92005dbbd",
-          "output": "@seqout",
-          "target": "64bf4812-51c0-4b77-8cb0-5c3d57ef7860",
-          "input": "@seqin"
         },
         {
           "source": "5f691458-fa30-4908-e736-94c57af275e1",
@@ -7410,6 +7973,24 @@
           "output": "@seqout",
           "target": "86ebdf39-cbbd-44d2-f406-5ec7c3962d54",
           "input": "@seqin"
+        },
+        {
+          "source": "a75f5cfa-60ea-4d65-aba2-9cb92005dbbd",
+          "output": "@seqout",
+          "target": "6a1508a1-ac0e-4cdc-e21b-40cf18085030",
+          "input": "@seqin"
+        },
+        {
+          "source": "11778732-d719-4bd0-dddf-b32462eab8eb",
+          "output": "@seqout",
+          "target": "ca022600-fbe0-463c-c582-28c35b032ddd",
+          "input": "@seqin"
+        },
+        {
+          "source": "6c12c3e5-b93e-4862-f021-8cd10067ebb9",
+          "output": "result",
+          "target": "ca022600-fbe0-463c-c582-28c35b032ddd",
+          "input": "value"
         }
       ],
       "localVariables": [
@@ -7421,6 +8002,169 @@
         }
       ],
       "name": "db_get_device",
+      "implementationType": "flow"
+    },
+    {
+      "components": [
+        {
+          "type": "eez-flow-ext-postgres/Postgres",
+          "left": -1111,
+          "top": 40,
+          "width": 1139,
+          "height": 278,
+          "wireID": "ef0abaf1-6f64-4af4-f0dd-836638bbbd0f",
+          "customInputs": [
+            {
+              "name": "serialNumber",
+              "type": "string"
+            }
+          ],
+          "customOutputs": [],
+          "connection": "db_connection",
+          "sql": "INSERT INTO devices(\"serialNumber\", \"oldSerialNumber\", \"version\", \"currentStep\", \"stepStatus\", \"allTestsOK\", \"addedBy\", \"createdAt\", \"updatedAt\") \nVALUES(\n  {serialNumber},\n  '{device.oldSerialNumber}',\n  '{device.version}',\n  {device.currentStep},\n  {device.stepStatus.status},\n  false,\n  current_user,\n  NOW(),\n  NOW()\n)\nRETURNING *"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -62,
+          "top": 40,
+          "width": 404,
+          "height": 62,
+          "wireID": "4d004473-ab65-4a84-ee40-a37bac54c928",
+          "customInputs": [
+            {
+              "name": "value",
+              "type": "any"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "device.serialNumber",
+          "value": "value.rows[0].serialNumber"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": -1184,
+          "top": -79,
+          "width": 1495,
+          "height": 62,
+          "wireID": "e6772598-0c4e-4b9e-859c-a574347cb9bc",
+          "customInputs": [],
+          "customOutputs": [],
+          "expression": "\"(SELECT (\\'D\\' || LPAD(CAST((COALESCE(MAX(CAST(SUBSTRING(\\\"serialNumber\\\" from 2) AS DECIMAL)), -1) + 1) AS TEXT), 5, \\'0\\')) AS serialNumber FROM devices WHERE SUBSTRING(\\\"serialNumber\\\" FROM 1 FOR 1) = \\'D\\')\""
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -1604,
+          "top": 133,
+          "width": 87,
+          "height": 29,
+          "wireID": "f7f37086-0eed-4b8b-fc1e-4484cb6ba846",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "device",
+          "inputType": "struct:Device"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": -1468,
+          "top": 133,
+          "width": 175,
+          "height": 62,
+          "wireID": "a4bae675-23a3-4ebe-ffc4-1d9ead34a155",
+          "customInputs": [
+            {
+              "name": "value",
+              "type": "struct:Device"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "device",
+          "value": "value"
+        },
+        {
+          "type": "EndActionComponent",
+          "left": 155,
+          "top": 317,
+          "width": 87,
+          "height": 29,
+          "wireID": "09bdf676-28ca-4260-ae1b-a32c8ab964b1",
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "type": "IsTrueActionComponent",
+          "left": -1377,
+          "top": 263,
+          "width": 155,
+          "height": 83,
+          "wireID": "c99aaf8c-42ea-4a42-9d3c-2ba7ec51393e",
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "update_database"
+        },
+        {
+          "type": "StartActionComponent",
+          "left": -1570,
+          "top": 234,
+          "width": 87,
+          "height": 29,
+          "wireID": "bd0b16b8-7147-45d5-850f-d0ec11901806",
+          "customInputs": [],
+          "customOutputs": []
+        }
+      ],
+      "connectionLines": [
+        {
+          "source": "ef0abaf1-6f64-4af4-f0dd-836638bbbd0f",
+          "output": "result",
+          "target": "4d004473-ab65-4a84-ee40-a37bac54c928",
+          "input": "value"
+        },
+        {
+          "source": "e6772598-0c4e-4b9e-859c-a574347cb9bc",
+          "output": "result",
+          "target": "ef0abaf1-6f64-4af4-f0dd-836638bbbd0f",
+          "input": "serialNumber"
+        },
+        {
+          "source": "f7f37086-0eed-4b8b-fc1e-4484cb6ba846",
+          "output": "@seqout",
+          "target": "a4bae675-23a3-4ebe-ffc4-1d9ead34a155",
+          "input": "value"
+        },
+        {
+          "source": "4d004473-ab65-4a84-ee40-a37bac54c928",
+          "output": "@seqout",
+          "target": "09bdf676-28ca-4260-ae1b-a32c8ab964b1",
+          "input": "@seqin"
+        },
+        {
+          "source": "c99aaf8c-42ea-4a42-9d3c-2ba7ec51393e",
+          "output": "True",
+          "target": "e6772598-0c4e-4b9e-859c-a574347cb9bc",
+          "input": "@seqin"
+        },
+        {
+          "source": "c99aaf8c-42ea-4a42-9d3c-2ba7ec51393e",
+          "output": "False",
+          "target": "09bdf676-28ca-4260-ae1b-a32c8ab964b1",
+          "input": "@seqin"
+        },
+        {
+          "source": "bd0b16b8-7147-45d5-850f-d0ec11901806",
+          "output": "@seqout",
+          "target": "c99aaf8c-42ea-4a42-9d3c-2ba7ec51393e",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [
+        {
+          "name": "device",
+          "type": "struct:Device",
+          "defaultValue": "null",
+          "persistent": false
+        }
+      ],
+      "name": "db_insert_device",
       "implementationType": "flow"
     },
     {
@@ -7538,7 +8282,7 @@
       "components": [
         {
           "type": "InputActionComponent",
-          "left": -365,
+          "left": -409,
           "top": -150,
           "width": 87,
           "height": 29,
@@ -7612,8 +8356,8 @@
         },
         {
           "type": "InputActionComponent",
-          "left": -229,
-          "top": -91,
+          "left": -480,
+          "top": -74,
           "width": 87,
           "height": 29,
           "wireID": "695ccaf5-9e26-4177-ec2e-8fd17c90b2a0",
@@ -7624,8 +8368,8 @@
         },
         {
           "type": "InputActionComponent",
-          "left": -229,
-          "top": -48,
+          "left": -480,
+          "top": 15,
           "width": 87,
           "height": 29,
           "wireID": "3ae807e7-d4b6-4d90-d55a-9b141374f351",
@@ -7633,6 +8377,38 @@
           "customOutputs": [],
           "name": "stderr",
           "inputType": "string"
+        },
+        {
+          "type": "EvalJSExprActionComponent",
+          "left": -356,
+          "top": -82,
+          "width": 305,
+          "height": 62,
+          "wireID": "96e5a06e-7b66-4fe1-d4bf-b13b5c24d722",
+          "customInputs": [
+            {
+              "name": "value",
+              "type": "string"
+            }
+          ],
+          "customOutputs": [],
+          "expression": "{value}.replaceAll(\"'\", \"\\\"\")"
+        },
+        {
+          "type": "EvalJSExprActionComponent",
+          "left": -356,
+          "top": -10,
+          "width": 305,
+          "height": 62,
+          "wireID": "241121a6-88ba-41cc-c2a9-826076a7a365",
+          "customInputs": [
+            {
+              "name": "value",
+              "type": "string"
+            }
+          ],
+          "customOutputs": [],
+          "expression": "{value}.replaceAll(\"'\", \"\\\"\")"
         }
       ],
       "connectionLines": [
@@ -7675,12 +8451,24 @@
         {
           "source": "695ccaf5-9e26-4177-ec2e-8fd17c90b2a0",
           "output": "@seqout",
-          "target": "5c4542d8-a5b7-4181-fbd9-688b6adbb1e3",
-          "input": "stdout"
+          "target": "96e5a06e-7b66-4fe1-d4bf-b13b5c24d722",
+          "input": "value"
         },
         {
           "source": "3ae807e7-d4b6-4d90-d55a-9b141374f351",
           "output": "@seqout",
+          "target": "241121a6-88ba-41cc-c2a9-826076a7a365",
+          "input": "value"
+        },
+        {
+          "source": "96e5a06e-7b66-4fe1-d4bf-b13b5c24d722",
+          "output": "result",
+          "target": "5c4542d8-a5b7-4181-fbd9-688b6adbb1e3",
+          "input": "stdout"
+        },
+        {
+          "source": "241121a6-88ba-41cc-c2a9-826076a7a365",
+          "output": "result",
           "target": "5c4542d8-a5b7-4181-fbd9-688b6adbb1e3",
           "input": "stderr"
         }
@@ -7794,40 +8582,25 @@
           },
           "widgets": [
             {
-              "type": "Container",
+              "type": "ButtonWidget",
               "left": 0,
               "top": 0,
               "width": 100,
               "height": 32,
-              "wireID": "15110cc2-4da4-41d4-cc00-a3f46ae65982",
+              "wireID": "8d495d53-3bfe-4ad9-925a-b3537497cf6f",
               "customInputs": [],
               "customOutputs": [],
+              "asOutputProperties": [
+                "action"
+              ],
+              "data": "\"Refresh\"",
               "style": {
                 "inheritFrom": "default"
               },
-              "widgets": [
-                {
-                  "type": "ButtonWidget",
-                  "left": 0,
-                  "top": 0,
-                  "width": 100,
-                  "height": 32,
-                  "wireID": "8d495d53-3bfe-4ad9-925a-b3537497cf6f",
-                  "customInputs": [],
-                  "customOutputs": [],
-                  "asOutputProperties": [
-                    "action"
-                  ],
-                  "data": "\"Refresh\"",
-                  "style": {
-                    "inheritFrom": "default"
-                  },
-                  "disabledStyle": {
-                    "inheritFrom": "default"
-                  }
-                }
-              ],
-              "visible": "!auto_refresh"
+              "enabled": "refresh_enabled && !refresh_in_progress",
+              "disabledStyle": {
+                "inheritFrom": "default"
+              }
             },
             {
               "type": "ButtonWidget",
@@ -9115,19 +9888,6 @@
           "type": "CheckboxWidget",
           "left": 20,
           "top": 20,
-          "width": 160,
-          "height": 20,
-          "wireID": "5a165dcc-9860-4a5e-8906-129a9667def9",
-          "customInputs": [],
-          "customOutputs": [],
-          "asOutputProperties": [],
-          "data": "auto_refresh",
-          "label": "\"Auto refresh\""
-        },
-        {
-          "type": "CheckboxWidget",
-          "left": 20,
-          "top": 45,
           "width": 160,
           "height": 20,
           "wireID": "ee062fe0-37f9-4d9f-a03d-3abc9c37fba2",
