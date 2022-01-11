@@ -3,8 +3,7 @@
     "general": {
       "projectVersion": "v3",
       "projectType": "dashboard",
-      "imports": [],
-      "css": ".page {\n    background-color: #eee;\n    border-radius: 4px;\n    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);\n}\n\n.device {\n    background-color: #ddd;\n    border-radius: 4px;\n    box-shadow: 1px 1px 4px rgb(133 133 133 / 50%);\n}\n\n.device_title {\n    font-weight: bold;\n}\n\n.blink_status {\n    color: blue;\n    font-weight: bold;\n    animation: blinker 1s linear infinite;\n}\n\n.test_info {\n    animation: blinker 1s linear infinite;\n}\n\n.success_status {\n    color: green;\n    font-weight: bold;\n}\n\n@keyframes blinker {\n  50% {\n    opacity: 0;\n  }\n}\n\n.success {\n    color: green;\n    font-weight: bold;\n}\n\n.error {\n    color: red;\n    font-weight: bold;\n}\n\n.help {\n    border: 1px solid #ccc;\n    padding: 10px;\n    background-color: white;\n}\n\n.button_success button {\n    background-color: green;\n}\n\n.button_error button {\n    background-color: darkred;\n}\n"
+      "imports": []
     },
     "build": {
       "configurations": [
@@ -8743,7 +8742,7 @@
           "left": 0,
           "top": -86,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "3ac1fc9c-664c-4ebc-d2f3-3e9834f0dbd2",
           "customInputs": [],
           "customOutputs": []
@@ -8770,7 +8769,6 @@
             "wireID": "4179923f-07b8-49c8-b3bf-7ce4d14fe6e3",
             "customInputs": [],
             "customOutputs": [],
-            "className": "",
             "style": {
               "inheritFrom": "default"
             },
@@ -8784,9 +8782,8 @@
                 "wireID": "c5a66d82-b20c-4849-bfc0-192b0c75e9db",
                 "customInputs": [],
                 "customOutputs": [],
-                "className": "device",
                 "style": {
-                  "inheritFrom": "default"
+                  "inheritFrom": "device"
                 },
                 "widgets": [
                   {
@@ -8798,7 +8795,6 @@
                     "wireID": "47943f98-2256-4660-9e2b-44c5f77c96d1",
                     "customInputs": [],
                     "customOutputs": [],
-                    "className": "",
                     "style": {
                       "inheritFrom": "default"
                     },
@@ -8823,6 +8819,9 @@
           "customOutputs": [],
           "asOutputProperties": [],
           "data": "automatic_testing",
+          "style": {
+            "inheritFrom": "default"
+          },
           "label": "\"Automatic testing\""
         },
         {
@@ -8852,7 +8851,7 @@
               ],
               "data": "\"Refresh\"",
               "style": {
-                "inheritFrom": "default"
+                "inheritFrom": "button"
               },
               "enabled": "refresh_enabled && !refresh_in_progress",
               "disabledStyle": {
@@ -8873,7 +8872,7 @@
               ],
               "data": "\"Help\"",
               "style": {
-                "inheritFrom": "default"
+                "inheritFrom": "button"
               },
               "disabledStyle": {
                 "inheritFrom": "default"
@@ -8893,7 +8892,7 @@
               ],
               "data": "\"Settings\"",
               "style": {
-                "inheritFrom": "default"
+                "inheritFrom": "button"
               },
               "disabledStyle": {
                 "inheritFrom": "default"
@@ -8937,7 +8936,10 @@
               "height": 368,
               "wireID": "06b3b7be-ee9c-4de5-e1fd-1e258ad83a42",
               "customInputs": [],
-              "customOutputs": []
+              "customOutputs": [],
+              "style": {
+                "inheritFrom": "default"
+              }
             },
             {
               "type": "TextWidget",
@@ -8962,7 +8964,10 @@
               "height": 368,
               "wireID": "c3b3866a-3796-4fcb-9ce5-3ec1ab9ef9c5",
               "customInputs": [],
-              "customOutputs": []
+              "customOutputs": [],
+              "style": {
+                "inheritFrom": "default"
+              }
             }
           ]
         },
@@ -8971,7 +8976,7 @@
           "left": 1281,
           "top": 945,
           "width": 87,
-          "height": 61,
+          "height": 54,
           "wireID": "9ccd170c-ed25-42a3-ce7c-c3a140e085b8",
           "customInputs": [
             {
@@ -8986,8 +8991,8 @@
           "type": "ShowPageActionComponent",
           "left": 1258,
           "top": -162,
-          "width": 110,
-          "height": 62,
+          "width": 102,
+          "height": 53,
           "wireID": "f36a40e5-c8dd-41c3-b5a5-728dc0aa0931",
           "customInputs": [],
           "customOutputs": [],
@@ -8997,8 +9002,8 @@
           "type": "CallActionActionComponent",
           "left": 849,
           "top": -98,
-          "width": 120,
-          "height": 83,
+          "width": 113,
+          "height": 73,
           "wireID": "00e16497-04a1-4769-86ab-3009384a8f99",
           "customInputs": [],
           "customOutputs": [],
@@ -9008,8 +9013,8 @@
           "type": "CallActionActionComponent",
           "left": 182,
           "top": -107,
-          "width": 98,
-          "height": 83,
+          "width": 93,
+          "height": 73,
           "wireID": "8d7c4b43-cdc8-408a-d6cf-480e72ff6bf9",
           "customInputs": [],
           "customOutputs": [],
@@ -9019,8 +9024,8 @@
           "type": "ShowPageActionComponent",
           "left": 1258,
           "top": -86,
-          "width": 102,
-          "height": 62,
+          "width": 97,
+          "height": 53,
           "wireID": "ed058437-1585-409d-c108-ad67e85349e6",
           "customInputs": [],
           "customOutputs": [],
@@ -9103,11 +9108,11 @@
       ],
       "localVariables": [],
       "name": "main_page",
+      "style": "page",
       "left": 0,
       "top": 0,
       "width": 1167,
-      "height": 880,
-      "css": "page"
+      "height": 880
     },
     {
       "components": [
@@ -9148,9 +9153,8 @@
                   "customInputs": [],
                   "customOutputs": [],
                   "data": "\"#\" + devices[$index].deviceNumber + \" ULX32S \" + devices[$index].version + \"F at \" + devices[$index].serialPortPath + \", Serial: \" + devices[$index].serialNumber",
-                  "className": "device_title",
                   "style": {
-                    "inheritFrom": "default"
+                    "inheritFrom": "device_title"
                   }
                 },
                 {
@@ -9194,7 +9198,7 @@
                           ],
                           "data": "\"<\"",
                           "style": {
-                            "inheritFrom": "default"
+                            "inheritFrom": "button"
                           },
                           "enabled": "",
                           "disabledStyle": {
@@ -9215,7 +9219,7 @@
                           ],
                           "data": "\">\"",
                           "style": {
-                            "inheritFrom": "default"
+                            "inheritFrom": "button"
                           },
                           "enabled": "",
                           "disabledStyle": {
@@ -9236,7 +9240,7 @@
                           ],
                           "data": "\"Run\"",
                           "style": {
-                            "inheritFrom": "default"
+                            "inheritFrom": "button"
                           },
                           "enabled": "test_step_enabled[devices[$index].currentStep]",
                           "disabledStyle": {
@@ -9273,7 +9277,7 @@
                           ],
                           "data": "\"Try again\"",
                           "style": {
-                            "inheritFrom": "default"
+                            "inheritFrom": "button"
                           },
                           "enabled": "test_step_enabled[devices[$index].currentStep]",
                           "disabledStyle": {
@@ -9409,9 +9413,8 @@
                                   "customOutputs": [],
                                   "data": "\"DAC\"",
                                   "action": "",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   },
                                   "name": ""
                                 },
@@ -9426,9 +9429,8 @@
                                   "customOutputs": [],
                                   "data": "\"DAC\"",
                                   "action": "",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   },
                                   "name": ""
                                 }
@@ -9458,9 +9460,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"FLASH\"",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   },
                                   "name": ""
                                 },
@@ -9474,9 +9475,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"FLASH\"",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   },
                                   "name": ""
                                 }
@@ -9506,9 +9506,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"RTC\"",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   },
                                   "name": ""
                                 },
@@ -9522,9 +9521,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"RTC\"",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   },
                                   "name": ""
                                 }
@@ -9554,9 +9552,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"ADC\"",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   },
                                   "name": ""
                                 },
@@ -9570,9 +9567,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"ADC\"",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   },
                                   "name": ""
                                 }
@@ -9602,9 +9598,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"SD card\"",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   },
                                   "name": ""
                                 },
@@ -9618,9 +9613,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"SD card\"",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   },
                                   "name": ""
                                 }
@@ -9650,9 +9644,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"Buttons\"",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   },
                                   "name": ""
                                 },
@@ -9666,9 +9659,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"Buttons\"",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   },
                                   "name": ""
                                 }
@@ -9698,9 +9690,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"HDMI\"",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   }
                                 },
                                 {
@@ -9713,9 +9704,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"HDMI\"",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   }
                                 }
                               ]
@@ -9744,9 +9734,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"EDID\"",
-                                  "className": "blink_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "blink_status"
                                   },
                                   "name": ""
                                 },
@@ -9760,9 +9749,8 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"EDID\"",
-                                  "className": "success_status",
                                   "style": {
-                                    "inheritFrom": "default"
+                                    "inheritFrom": "success_status"
                                   },
                                   "name": ""
                                 }
@@ -9778,11 +9766,10 @@
                               "customInputs": [],
                               "customOutputs": [],
                               "data": "test_steps[devices[$index].currentStep].info",
-                              "className": "test_info",
-                              "allowOutside": true,
                               "style": {
-                                "inheritFrom": "default"
-                              }
+                                "inheritFrom": "test_info"
+                              },
+                              "allowOutside": true
                             },
                             {
                               "type": "ButtonWidget",
@@ -9797,11 +9784,10 @@
                                 "action"
                               ],
                               "data": "\"Abort\"",
-                              "className": "button_error",
-                              "allowOutside": true,
                               "style": {
-                                "inheritFrom": "default"
+                                "inheritFrom": "button_error"
                               },
+                              "allowOutside": true,
                               "disabledStyle": {
                                 "inheritFrom": "default"
                               }
@@ -9831,11 +9817,10 @@
                               "customInputs": [],
                               "customOutputs": [],
                               "data": "test_steps[devices[$index].currentStep].info",
-                              "className": "blink_status",
-                              "allowOutside": true,
                               "style": {
-                                "inheritFrom": "default"
-                              }
+                                "inheritFrom": "blink_status"
+                              },
+                              "allowOutside": true
                             },
                             {
                               "type": "ButtonWidget",
@@ -9850,11 +9835,10 @@
                                 "action"
                               ],
                               "data": "\"Yes\"",
-                              "className": "button_success",
-                              "allowOutside": true,
                               "style": {
-                                "inheritFrom": "default"
+                                "inheritFrom": "button_success"
                               },
+                              "allowOutside": true,
                               "disabledStyle": {
                                 "inheritFrom": "default"
                               }
@@ -9872,11 +9856,10 @@
                                 "action"
                               ],
                               "data": "\"No\"",
-                              "className": "",
-                              "allowOutside": true,
                               "style": {
-                                "inheritFrom": "default"
+                                "inheritFrom": "button"
                               },
+                              "allowOutside": true,
                               "disabledStyle": {
                                 "inheritFrom": "default"
                               }
@@ -9924,9 +9907,8 @@
                       "customInputs": [],
                       "customOutputs": [],
                       "data": "\"OK\"",
-                      "className": "success",
                       "style": {
-                        "inheritFrom": "default"
+                        "inheritFrom": "success"
                       }
                     },
                     {
@@ -9939,9 +9921,8 @@
                       "customInputs": [],
                       "customOutputs": [],
                       "data": "\"Failed\"",
-                      "className": "error",
                       "style": {
-                        "inheritFrom": "default"
+                        "inheritFrom": "error"
                       }
                     }
                   ]
@@ -9971,9 +9952,8 @@
                   "customInputs": [],
                   "customOutputs": [],
                   "data": "\"#\" + devices[$index].deviceNumber + \" ULX32S \" + devices[$index].version + \"F at \" + devices[$index].serialPortPath + \", Serial: \" + devices[$index].serialNumber",
-                  "className": "device_title",
                   "style": {
-                    "inheritFrom": "default"
+                    "inheritFrom": "device_title"
                   }
                 },
                 {
@@ -9987,9 +9967,8 @@
                   "customOutputs": [],
                   "data": "\"All tests OK\"",
                   "action": "",
-                  "className": "success",
                   "style": {
-                    "inheritFrom": "default"
+                    "inheritFrom": "success"
                   },
                   "name": ""
                 }
@@ -10015,8 +9994,8 @@
           "type": "CallActionActionComponent",
           "left": 700,
           "top": 0,
-          "width": 127,
-          "height": 83,
+          "width": 119,
+          "height": 73,
           "wireID": "b6981322-dbee-41c4-efa3-09d55c41067d",
           "customInputs": [],
           "customOutputs": [],
@@ -10027,7 +10006,7 @@
           "left": 868,
           "top": 0,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "721c9ab8-443d-4693-9191-9a16e96ce776",
           "customInputs": [],
           "customOutputs": [],
@@ -10039,7 +10018,7 @@
           "left": 868,
           "top": 75,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "662f055a-e57e-44e9-e869-88020f1154b7",
           "customInputs": [],
           "customOutputs": [],
@@ -10050,8 +10029,8 @@
           "type": "CallActionActionComponent",
           "left": 700,
           "top": 104,
-          "width": 151,
-          "height": 61,
+          "width": 141,
+          "height": 54,
           "wireID": "bb2aaf59-3c8f-48af-8c18-9a403f856554",
           "customInputs": [],
           "customOutputs": [],
@@ -10061,8 +10040,8 @@
           "type": "CallActionActionComponent",
           "left": 699,
           "top": 184,
-          "width": 152,
-          "height": 61,
+          "width": 142,
+          "height": 54,
           "wireID": "257246ed-83e9-4f31-ac63-86c695d3fbdc",
           "customInputs": [],
           "customOutputs": [],
@@ -10072,8 +10051,8 @@
           "type": "SetVariableActionComponent",
           "left": 92,
           "top": 287,
-          "width": 526,
-          "height": 62,
+          "width": 487,
+          "height": 58,
           "wireID": "4dcc3fe0-b1fe-437b-f25c-5472e0bb79b1",
           "customInputs": [
             {
@@ -10089,8 +10068,8 @@
           "type": "SetVariableActionComponent",
           "left": 92,
           "top": 372,
-          "width": 520,
-          "height": 62,
+          "width": 481,
+          "height": 58,
           "wireID": "ac684dda-38e7-407a-ca46-f08ca373144d",
           "customInputs": [
             {
@@ -10106,8 +10085,8 @@
           "type": "SetVariableActionComponent",
           "left": 700,
           "top": 260,
-          "width": 338,
-          "height": 62,
+          "width": 315,
+          "height": 58,
           "wireID": "d5984559-4070-48c8-f621-6ad6fbf24da3",
           "customInputs": [
             {
@@ -10197,6 +10176,9 @@
           "customOutputs": [],
           "asOutputProperties": [],
           "data": "update_database",
+          "style": {
+            "inheritFrom": "default"
+          },
           "label": "\"Update database\""
         },
         {
@@ -10250,6 +10232,9 @@
                 "customOutputs": [],
                 "asOutputProperties": [],
                 "data": "test_step_enabled[$index]",
+                "style": {
+                  "inheritFrom": "default"
+                },
                 "label": "($index + 1) + \": \" + test_steps[$index].name"
               }
             ]
@@ -10271,7 +10256,7 @@
           ],
           "data": "\"Close\"",
           "style": {
-            "inheritFrom": "default"
+            "inheritFrom": "button"
           },
           "disabledStyle": {
             "inheritFrom": "default"
@@ -10281,8 +10266,8 @@
           "type": "ShowPageActionComponent",
           "left": 456,
           "top": 295,
-          "width": 102,
-          "height": 62,
+          "width": 97,
+          "height": 53,
           "wireID": "bd5707d5-a596-45da-ca96-1fb06c0d5499",
           "customInputs": [],
           "customOutputs": [],
@@ -10299,11 +10284,11 @@
       ],
       "localVariables": [],
       "name": "settings_page",
+      "style": "page",
       "left": 0,
       "top": 0,
       "width": 448,
-      "height": 370,
-      "css": "page"
+      "height": 370
     },
     {
       "components": [
@@ -10321,7 +10306,7 @@
           ],
           "data": "\"Close\"",
           "style": {
-            "inheritFrom": "default"
+            "inheritFrom": "button"
           },
           "disabledStyle": {
             "inheritFrom": "default"
@@ -10331,8 +10316,8 @@
           "type": "ShowPageActionComponent",
           "left": 765,
           "top": 881,
-          "width": 102,
-          "height": 62,
+          "width": 97,
+          "height": 53,
           "wireID": "ffa0a5cc-4692-4d8e-a9b5-3a72cf940923",
           "customInputs": [],
           "customOutputs": [],
@@ -10347,7 +10332,9 @@
           "wireID": "2ca25ba2-fc32-4ae4-95e4-bd6747c4593c",
           "customInputs": [],
           "customOutputs": [],
-          "className": "help",
+          "style": {
+            "inheritFrom": "help"
+          },
           "text": "BOM lista: https://github.com/emard/ulx3s/blob/master/1-click-bom.tsv\n\nAssembly guide: https://kitspace.org/interactive_bom/?github.com/emard/ulx3s\n\nČeste greške u proizvodnji:\n\n- HDMI ne sjedne do kraja pa se ne zalemi dobro\n- ADC čip krivo okrenut (postoji šansa da ih u pakiranju krivo okrenu pa pazite)\n- Krivo okrenut 25MHz kristal - molim pogledajte na sample pločici koju sam poslao\n- D28 se ne montira\n- RV2 se ne montira\n- RV3 se new montira\n- USB zna biti nezalemljen ali rijetko\n- ADC i FTDI često budu odlemljeni\n- ESP32: pogledajte kako stoji na sample pločici koju sam poslao\n\nDo sada problemi sa 3.1.7 koje sam primjetio:\n\n- Wrong ID - fujprog ne radi - FTDI čip nije zalemljen - FPGA nije zalemljen\n- Ne pali se - vjerojatno nije dobro zalemljen ili je US1 loše zalemljen - brika na BGA\n- HDMI - fale boje, EDID fail - nema slike\n- Ne pali kada je spojeno na US2 konektoru - US2 nije dobro zalemljen\n- ADC - ne radi neki od kanala ili ne radi niti jedan kanal - ADC nije dobro spojen - FPGA nije dobro zalemljen\n- Ne prolazi SDRAM memtest - FPGA ili SDRAM nisu dobro zalemljeni\n- Ne može se pristupiti ESP32 - HDMI je spojen pa su velike smetnje - ESP32 nije dobro spojen, FTDI nije dobro spojen - FPGA nije dobro spojen\n\n### Predkoraci prije uključivanja\n\n**Obavezno provjeriti da li je ADC dobro okrenut prije uključivanja, ako se uključi u USB ovisno kako je okrenut može izgoriti ADC čip ili FPGA.**\n     \nJa obično pogledam i HDMI pod mikroskopom, ali to se više manje vidi na testu ako nešto nije spojeno - nema slike ili nema neke boje.\n\n### Koraci koji se automatski testiraju\n\n1. FTDI programming\n\n\tAko ova naredba javi error - onda je vjerojatno FTDI ili US1 loše zalemljen.\n\n\tProbajte prvo na ispravnoj pločici. Ako ne prolazi na testnoj može biti i krivi driver instaliran.\n\thttps://github.com/kost/fujprog#change-ulx3s-driver-to-ftdi\n\thttps://ftdichip.com/drivers/d2xx-drivers/\n\n2. ESP32 passthru\n\n     Ako ovo javi error onda je vjerojatno loše zalemljen FTDI ili FPGA.\n     Obično javi neki krivi ID tipa ID 000000000 ili FFFFFFFFF - to znači da FPGA nije dobro spojen prema FPGA\n\n3. ESP32 erase\n\t\n4. ESP32 programming\n\n5. MP test\n\n6. Self-test programming\n\n7. Self-test\n\n     U ovom koraku potrebno je ubaciti SD card, pritisnuti sve buttone i spojiti HDMI kabel. Ako ledice ne rade \n\n     SDRAM možete provjeriti i sa - on će dati sliku na HDMI izlazu i smije smao brojati na zelenom brojaču - ledice se ne smiju paliti - ako se pale ledice ili broji crveno onda nešto ne radi sa SDRAM\n\n8. ESP32 passthru flash\n\n     Trajno programiranje passtrue - sa time isporučujemo korisniku.\n\n### Dodatni koraci koji se ručno obavljaju\n\n9. Odspojiti US1 - spoijiti US2 da se vidi da li napajanje preko US2 radi\n\n10. Pakiranje, itd.\n"
         }
       ],
@@ -10361,13 +10348,126 @@
       ],
       "localVariables": [],
       "name": "help",
+      "style": "page",
       "left": 0,
       "top": 0,
       "width": 910,
-      "height": 870,
-      "css": "page"
+      "height": 870
     }
   ],
-  "colors": [],
-  "themes": []
+  "styles": [
+    {
+      "name": "default"
+    },
+    {
+      "name": "page",
+      "inheritFrom": "",
+      "backgroundColor": "#eee",
+      "borderRadius": "4px",
+      "boxShadow": "0 3px 7px rgba(0, 0, 0, 0.3)",
+      "css": "\n"
+    },
+    {
+      "name": "device",
+      "inheritFrom": "",
+      "color": "",
+      "backgroundColor": "#ddd",
+      "borderRadius": "4px",
+      "boxShadow": "1px 1px 4px rgb(133 133 133 / 50%)",
+      "css": "\n"
+    },
+    {
+      "name": "device_title",
+      "inheritFrom": "",
+      "fontWeight": "bold",
+      "css": "\n"
+    },
+    {
+      "name": "blink_status",
+      "inheritFrom": "",
+      "fontWeight": "bold",
+      "color": "blue",
+      "blink": true,
+      "css": ""
+    },
+    {
+      "name": "test_info",
+      "inheritFrom": "",
+      "blink": true,
+      "css": "\n"
+    },
+    {
+      "name": "success_status",
+      "inheritFrom": "",
+      "fontWeight": "bold",
+      "color": "success",
+      "css": ""
+    },
+    {
+      "name": "success",
+      "inheritFrom": "",
+      "fontWeight": "bold",
+      "color": "success",
+      "css": ""
+    },
+    {
+      "name": "error",
+      "inheritFrom": "",
+      "fontWeight": "bold",
+      "color": "error",
+      "css": "\n"
+    },
+    {
+      "name": "help",
+      "inheritFrom": "",
+      "backgroundColor": "white",
+      "borderSize": "1px",
+      "borderColor": "#ccc",
+      "borderStyle": "solid",
+      "padding": "10px",
+      "css": ""
+    },
+    {
+      "name": "button",
+      "color": "#fff",
+      "backgroundColor": "#6c757d",
+      "activeColor": "#6c757d",
+      "activeBackgroundColor": "#fff",
+      "borderSize": "1px",
+      "borderRadius": "0.25rem",
+      "borderColor": "#6c757d",
+      "borderStyle": "solid",
+      "padding": "0.375rem 0.75rem",
+      "css": ""
+    },
+    {
+      "name": "button_success",
+      "inheritFrom": "button",
+      "backgroundColor": "success",
+      "css": "\n"
+    },
+    {
+      "name": "button_error",
+      "inheritFrom": "button",
+      "backgroundColor": "error",
+      "css": "\n"
+    }
+  ],
+  "colors": [
+    {
+      "name": "error"
+    },
+    {
+      "name": "success"
+    }
+  ],
+  "themes": [
+    {
+      "name": "default",
+      "colors": [
+        "#c00000",
+        "#00a400"
+      ]
+    }
+  ]
 }
