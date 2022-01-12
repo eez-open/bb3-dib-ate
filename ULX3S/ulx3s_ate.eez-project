@@ -10437,8 +10437,7 @@
       "borderRadius": "0.25rem",
       "borderColor": "#6c757d",
       "borderStyle": "solid",
-      "padding": "0.375rem 0.75rem",
-      "css": ""
+      "css": "line-height: 0; /* for perfect center */"
     },
     {
       "name": "button_success",
