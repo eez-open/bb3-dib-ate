@@ -126,7 +126,7 @@
           },
           {
             "name": "stepStatus",
-            "type": "struct:StepStatus"
+            "type": "struct:StepStatusStruct"
           },
           {
             "name": "allTestsOK",
@@ -135,7 +135,7 @@
         ]
       },
       {
-        "name": "StepStatus",
+        "name": "StepStatusStruct",
         "fields": [
           {
             "name": "status",
@@ -191,6 +191,80 @@
             "type": "boolean"
           }
         ]
+      },
+      {
+        "name": "DevicesTable",
+        "fields": [
+          {
+            "name": "serialNumber",
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "type": "string"
+          },
+          {
+            "name": "currentStep",
+            "type": "integer"
+          },
+          {
+            "name": "stepStatus",
+            "type": "integer"
+          },
+          {
+            "name": "allTestsOK",
+            "type": "boolean"
+          },
+          {
+            "name": "addedBy",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "updatedAt",
+            "type": "string"
+          },
+          {
+            "name": "oldSerialNumber",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "TestsTable",
+        "fields": [
+          {
+            "name": "serialNumber",
+            "type": "string"
+          },
+          {
+            "name": "currentStep",
+            "type": "integer"
+          },
+          {
+            "name": "stepStatus",
+            "type": "integer"
+          },
+          {
+            "name": "stdout",
+            "type": "string"
+          },
+          {
+            "name": "stderr",
+            "type": "string"
+          },
+          {
+            "name": "addedBy",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "string"
+          }
+        ]
       }
     ],
     "enums": [
@@ -241,8 +315,8 @@
           "type": "ExecuteCommand",
           "left": -83,
           "top": -90,
-          "width": 383,
-          "height": 105,
+          "width": 347,
+          "height": 92,
           "wireID": "5c879c4a-0c84-4e8d-f192-9e1f5fd1c1e4",
           "customInputs": [],
           "customOutputs": [],
@@ -253,8 +327,8 @@
           "type": "Regexp",
           "left": 421,
           "top": -206,
-          "width": 298,
-          "height": 83,
+          "width": 270,
+          "height": 73,
           "wireID": "01e3bfc3-2da4-439f-866b-b6c206f9e0c1",
           "customInputs": [
             {
@@ -271,7 +345,7 @@
           "left": 824,
           "top": -299,
           "width": 259,
-          "height": 78,
+          "height": 69,
           "wireID": "ea402933-4565-4a03-b2f1-07f6b455faf9",
           "customInputs": [],
           "customOutputs": [],
@@ -282,7 +356,7 @@
           "left": 1527,
           "top": 250,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "245a891f-9fce-4e4b-a94b-37b2a018e1b9",
           "customInputs": [],
           "customOutputs": [],
@@ -294,7 +368,7 @@
           "left": 1527,
           "top": 291,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "a61f4b3b-2c7a-447b-82da-9cec0ad5721a",
           "customInputs": [],
           "customOutputs": [],
@@ -306,7 +380,7 @@
           "left": -464,
           "top": -90,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "8f761592-bb60-48f8-ab85-628a1a55a229",
           "customInputs": [],
           "customOutputs": []
@@ -315,25 +389,25 @@
           "type": "SetVariableActionComponent",
           "left": 824,
           "top": -206,
-          "width": 511,
-          "height": 260,
+          "width": 578,
+          "height": 196,
           "wireID": "dae28c6f-0978-4cef-8c55-2bec450a1ce7",
           "customInputs": [
             {
               "name": "match",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
           "variable": "new_devices[match[1]]",
-          "value": "{\n  serialNumber: match[2],\n  oldSerialNumber: match[2],\n  deviceNumber: match[1],\n  currentStep: 0,\n  stepStatus: {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: Confirmation.NoAnswer\n  },\n  allTestsOK: false\n}"
+          "value": "Flow.makeValue(\"struct:Device\", {\n  serialNumber: match[2],\n  oldSerialNumber: match[2],\n  deviceNumber: match[1],\n  currentStep: 0,\n  stepStatus: Flow.makeValue(\"struct:StepStatusStruct\", {\n    status: StepStatus.NotStarted,\n    progress: 0,\n    confirmation: Confirmation.NoAnswer\n  }),\n  allTestsOK: false\n})"
         },
         {
           "type": "LoopActionComponent",
           "left": -128,
           "top": 934,
-          "width": 503,
-          "height": 83,
+          "width": 461,
+          "height": 73,
           "wireID": "4b654a00-e817-47ce-e990-2be8e47dd6f9",
           "customInputs": [],
           "customOutputs": [],
@@ -347,8 +421,8 @@
           "type": "CallActionActionComponent",
           "left": 1095,
           "top": 923,
-          "width": 161,
-          "height": 83,
+          "width": 151,
+          "height": 73,
           "wireID": "f4ae28f7-6768-47c5-a8cc-69d613882739",
           "customInputs": [],
           "customOutputs": [],
@@ -358,8 +432,8 @@
           "type": "EvalExprActionComponent",
           "left": 781,
           "top": 923,
-          "width": 249,
-          "height": 62,
+          "width": 224,
+          "height": 54,
           "wireID": "61e40128-853b-403e-d359-4910b6f17565",
           "customInputs": [],
           "customOutputs": [],
@@ -369,13 +443,13 @@
           "type": "SetVariableActionComponent",
           "left": 849,
           "top": 1049,
-          "width": 407,
-          "height": 62,
+          "width": 372,
+          "height": 58,
           "wireID": "5cc7d84f-80e2-4304-9f39-e36863fe8d8d",
           "customInputs": [
             {
               "name": "path",
-              "type": "any"
+              "type": "string"
             }
           ],
           "customOutputs": [],
@@ -387,7 +461,7 @@
           "left": -128,
           "top": 866,
           "width": 251,
-          "height": 57,
+          "height": 56,
           "wireID": "8a4f68d8-f441-48a9-bff6-304aedc46b63",
           "customInputs": [],
           "customOutputs": [],
@@ -398,7 +472,7 @@
           "left": -83,
           "top": -162,
           "width": 293,
-          "height": 57,
+          "height": 56,
           "wireID": "c67e8211-41a9-43b1-ed9a-40eb30f9ca69",
           "customInputs": [],
           "customOutputs": [],
@@ -409,7 +483,7 @@
           "left": 349,
           "top": 1250,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "ecfe11f5-574f-4a8c-efd0-d4798000ac6b",
           "customInputs": [],
           "customOutputs": []
@@ -418,8 +492,8 @@
           "type": "IsTrueActionComponent",
           "left": 416,
           "top": 923,
-          "width": 290,
-          "height": 83,
+          "width": 262,
+          "height": 73,
           "wireID": "ffea4cd6-a82d-4fd2-ff5d-74c503f2c908",
           "customInputs": [],
           "customOutputs": [],
@@ -429,8 +503,8 @@
           "type": "SetVariableActionComponent",
           "left": -128,
           "top": 1250,
-          "width": 179,
-          "height": 62,
+          "width": 163,
+          "height": 58,
           "wireID": "4b16eb3a-63b8-411a-f158-5cdd595b147a",
           "customInputs": [],
           "customOutputs": [],
@@ -442,7 +516,7 @@
           "left": -128,
           "top": 1181,
           "width": 239,
-          "height": 57,
+          "height": 56,
           "wireID": "62741d64-51e7-4c63-b321-228102c15251",
           "customInputs": [],
           "customOutputs": [],
@@ -452,8 +526,8 @@
           "type": "EvalExprActionComponent",
           "left": 824,
           "top": 643,
-          "width": 249,
-          "height": 62,
+          "width": 224,
+          "height": 54,
           "wireID": "f6a94012-91b3-4580-ffce-a86fcfb52e99",
           "customInputs": [],
           "customOutputs": [],
@@ -463,8 +537,8 @@
           "type": "CallActionActionComponent",
           "left": 1115,
           "top": 643,
-          "width": 122,
-          "height": 83,
+          "width": 114,
+          "height": 73,
           "wireID": "477a847b-765d-4749-d105-48e7eb04278e",
           "customInputs": [],
           "customOutputs": [],
@@ -475,7 +549,7 @@
           "left": -108,
           "top": 573,
           "width": 251,
-          "height": 57,
+          "height": 56,
           "wireID": "22f1a173-807e-427e-a6c2-8e559ca2835c",
           "customInputs": [],
           "customOutputs": [],
@@ -485,8 +559,8 @@
           "type": "LoopActionComponent",
           "left": -108,
           "top": 299,
-          "width": 503,
-          "height": 83,
+          "width": 461,
+          "height": 73,
           "wireID": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
           "customInputs": [],
           "customOutputs": [],
@@ -500,8 +574,8 @@
           "type": "CallActionActionComponent",
           "left": 1115,
           "top": 288,
-          "width": 161,
-          "height": 83,
+          "width": 151,
+          "height": 73,
           "wireID": "ead7878c-fb73-43eb-b616-ef7c5110968a",
           "customInputs": [],
           "customOutputs": [],
@@ -511,8 +585,8 @@
           "type": "EvalExprActionComponent",
           "left": 824,
           "top": 288,
-          "width": 249,
-          "height": 62,
+          "width": 224,
+          "height": 54,
           "wireID": "69ddb736-2df0-4ab3-a844-d795fa4b74f6",
           "customInputs": [],
           "customOutputs": [],
@@ -522,13 +596,13 @@
           "type": "SetVariableActionComponent",
           "left": 869,
           "top": 448,
-          "width": 407,
-          "height": 62,
+          "width": 372,
+          "height": 58,
           "wireID": "531684d0-3f43-4a19-e4ba-e82eb9316c08",
           "customInputs": [
             {
               "name": "path",
-              "type": "any"
+              "type": "string"
             }
           ],
           "customOutputs": [],
@@ -540,7 +614,7 @@
           "left": -108,
           "top": 231,
           "width": 251,
-          "height": 57,
+          "height": 56,
           "wireID": "39414e3f-7361-4725-e130-a48bec1c4115",
           "customInputs": [],
           "customOutputs": [],
@@ -550,8 +624,8 @@
           "type": "IsTrueActionComponent",
           "left": 436,
           "top": 288,
-          "width": 290,
-          "height": 83,
+          "width": 262,
+          "height": 73,
           "wireID": "2369e218-3cec-4abd-f9b1-61e987432318",
           "customInputs": [],
           "customOutputs": [],
@@ -561,8 +635,8 @@
           "type": "LoopActionComponent",
           "left": -108,
           "top": 643,
-          "width": 503,
-          "height": 83,
+          "width": 461,
+          "height": 73,
           "wireID": "709156b9-0e46-4f5b-ffa7-7de9b3ae5245",
           "customInputs": [],
           "customOutputs": [],
@@ -576,8 +650,8 @@
           "type": "IsTrueActionComponent",
           "left": 436,
           "top": 643,
-          "width": 290,
-          "height": 83,
+          "width": 262,
+          "height": 73,
           "wireID": "da9df660-61d8-4f6a-b7b6-9f0a74503784",
           "customInputs": [],
           "customOutputs": [],
@@ -587,8 +661,8 @@
           "type": "SetVariableActionComponent",
           "left": -347,
           "top": -90,
-          "width": 213,
-          "height": 62,
+          "width": 194,
+          "height": 58,
           "wireID": "ee7a1d96-0938-40eb-9bc0-749b6fbff858",
           "customInputs": [],
           "customOutputs": [],
@@ -600,7 +674,7 @@
           "left": 1361,
           "top": 934,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "4f558380-860d-40e2-d44c-22ad5a6d1955",
           "customInputs": [],
           "customOutputs": [],
@@ -610,8 +684,8 @@
           "type": "SetVariableActionComponent",
           "left": 107,
           "top": 1250,
-          "width": 220,
-          "height": 62,
+          "width": 200,
+          "height": 58,
           "wireID": "f4e53b1c-8e63-4f32-c1e6-6ae811a75e79",
           "customInputs": [],
           "customOutputs": [],
@@ -655,12 +729,6 @@
           "output": "match",
           "target": "dae28c6f-0978-4cef-8c55-2bec450a1ce7",
           "input": "match"
-        },
-        {
-          "source": "01e3bfc3-2da4-439f-866b-b6c206f9e0c1",
-          "output": "done",
-          "target": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
-          "input": "start"
         },
         {
           "source": "4b654a00-e817-47ce-e990-2be8e47dd6f9",
@@ -835,6 +903,12 @@
           "output": "@seqout",
           "target": "ecfe11f5-574f-4a8c-efd0-d4798000ac6b",
           "input": "@seqin"
+        },
+        {
+          "source": "5c879c4a-0c84-4e8d-f192-9e1f5fd1c1e4",
+          "output": "finished",
+          "target": "2fa6ca33-4a76-4608-f2e0-8cad6c0d2b0e",
+          "input": "start"
         }
       ],
       "localVariables": [
@@ -866,8 +940,8 @@
           "type": "SerialListPorts",
           "left": -287,
           "top": -57,
-          "width": 135,
-          "height": 61,
+          "width": 128,
+          "height": 54,
           "wireID": "770bdaf7-0d50-4dd7-bff4-1856e30027c6",
           "customInputs": [],
           "customOutputs": []
@@ -876,14 +950,14 @@
           "type": "LoopActionComponent",
           "left": 82,
           "top": -57,
-          "width": 375,
-          "height": 83,
+          "width": 387,
+          "height": 73,
           "wireID": "8e821858-45d3-4faa-ff12-fdee4d30c83e",
           "customInputs": [],
           "customOutputs": [],
           "variable": "idx_port",
           "from": "0",
-          "to": "ports.length - 1",
+          "to": "Array.length(ports) - 1",
           "step": "1",
           "version": 1
         },
@@ -891,13 +965,13 @@
           "type": "SetVariableActionComponent",
           "left": -120,
           "top": -57,
-          "width": 169,
-          "height": 62,
+          "width": 154,
+          "height": 58,
           "wireID": "160af38e-9a15-4459-b4b2-b0205760802f",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:$SerialPort"
             }
           ],
           "customOutputs": [],
@@ -908,8 +982,8 @@
           "type": "IsTrueActionComponent",
           "left": 496,
           "top": -57,
-          "width": 487,
-          "height": 98,
+          "width": 444,
+          "height": 79,
           "wireID": "050e14dd-0b1f-422d-c6e3-62232b3b4044",
           "customInputs": [
             {
@@ -925,7 +999,7 @@
           "left": 1277,
           "top": -57,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "02d2de79-3cff-4933-96f5-78efcdab3b1f",
           "customInputs": [],
           "customOutputs": [],
@@ -936,8 +1010,8 @@
           "type": "EvalExprActionComponent",
           "left": 1023,
           "top": -57,
-          "width": 201,
-          "height": 62,
+          "width": 181,
+          "height": 54,
           "wireID": "26ef8e9a-0b35-4690-c882-340c68f69ab0",
           "customInputs": [],
           "customOutputs": [],
@@ -948,7 +1022,7 @@
           "left": 370,
           "top": 41,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "a497339e-24e8-4237-a04a-3ecb0c768d8b",
           "customInputs": [],
           "customOutputs": [],
@@ -960,7 +1034,7 @@
           "left": -287,
           "top": -162,
           "width": 463,
-          "height": 78,
+          "height": 69,
           "wireID": "caf24fb2-c77a-4d0e-cf05-5df952deab82",
           "customInputs": [],
           "customOutputs": [],
@@ -970,8 +1044,8 @@
           "type": "OutputActionComponent",
           "left": 1251,
           "top": 86,
-          "width": 92,
-          "height": 29,
+          "width": 88,
+          "height": 25,
           "wireID": "23f509c0-f0ec-4fb0-ec0e-b70df4c2c911",
           "customInputs": [],
           "customOutputs": [],
@@ -1032,7 +1106,7 @@
       "localVariables": [
         {
           "name": "ports",
-          "type": "any",
+          "type": "array:struct:$SerialPort",
           "defaultValue": "null",
           "persistent": false
         },
@@ -1053,7 +1127,7 @@
           "left": -289,
           "top": -67,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "3fc58eb5-8399-4235-a489-bef5db4f2b4f",
           "customInputs": [],
           "customOutputs": [],
@@ -1064,8 +1138,8 @@
           "type": "ExecuteCommand",
           "left": 43,
           "top": -67,
-          "width": 302,
-          "height": 152,
+          "width": 273,
+          "height": 118,
           "wireID": "483cdb93-5935-406c-a28d-053b271f58a9",
           "customInputs": [],
           "customOutputs": [],
@@ -1077,7 +1151,7 @@
           "left": 459,
           "top": -170,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "6eb08fef-9d0b-490c-f889-9deb5fdd550f",
           "customInputs": [],
           "customOutputs": [],
@@ -1089,7 +1163,7 @@
           "left": 459,
           "top": -125,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "d89c4ad0-fb95-4473-f033-22de07339232",
           "customInputs": [],
           "customOutputs": [],
@@ -1100,8 +1174,8 @@
           "type": "Regexp",
           "left": 450,
           "top": 57,
-          "width": 244,
-          "height": 83,
+          "width": 221,
+          "height": 73,
           "wireID": "71630faf-3c6c-4438-ce5c-d99fa899b820",
           "customInputs": [
             {
@@ -1117,13 +1191,13 @@
           "type": "SetVariableActionComponent",
           "left": 735,
           "top": 166,
-          "width": 209,
-          "height": 62,
+          "width": 191,
+          "height": 58,
           "wireID": "745e2904-68ff-4adc-e160-a1cf33e2fc2b",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
@@ -1134,8 +1208,8 @@
           "type": "IsTrueActionComponent",
           "left": 735,
           "top": -18,
-          "width": 301,
-          "height": 83,
+          "width": 273,
+          "height": 73,
           "wireID": "ec7df1b3-e747-454a-b0ae-2bd6d1f8d036",
           "customInputs": [
             {
@@ -1150,13 +1224,13 @@
           "type": "SetVariableActionComponent",
           "left": -167,
           "top": -67,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "3ce506a4-414a-4a3f-e5bb-02853882acf0",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -1168,7 +1242,7 @@
           "left": 1233,
           "top": 38,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "e087430e-0c46-4e7e-c104-08e0d377cdf8",
           "customInputs": [],
           "customOutputs": [],
@@ -1179,8 +1253,8 @@
           "type": "ConstantActionComponent",
           "left": 1076,
           "top": -18,
-          "width": 89,
-          "height": 61,
+          "width": 87,
+          "height": 54,
           "wireID": "a4072b46-45c3-49c6-dc1b-91e0bde52611",
           "customInputs": [],
           "customOutputs": [],
@@ -1190,8 +1264,8 @@
           "type": "ConstantActionComponent",
           "left": 1076,
           "top": 67,
-          "width": 89,
-          "height": 61,
+          "width": 87,
+          "height": 54,
           "wireID": "a1804281-ef75-4f94-add5-e125c2fd39a8",
           "customInputs": [],
           "customOutputs": [],
@@ -1202,7 +1276,7 @@
           "left": -177,
           "top": -170,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "2db80752-f507-4068-e9bc-36f43440345c",
           "customInputs": [],
           "customOutputs": [],
@@ -1316,10 +1390,10 @@
       "components": [
         {
           "type": "InputActionComponent",
-          "left": -323,
-          "top": -48,
-          "width": 118,
-          "height": 29,
+          "left": -307,
+          "top": -13,
+          "width": 119,
+          "height": 25,
           "wireID": "5052d1e0-a07a-48e4-f9c1-8dab11cf5733",
           "customInputs": [],
           "customOutputs": [],
@@ -1330,8 +1404,8 @@
           "type": "LoopActionComponent",
           "left": -113,
           "top": -48,
-          "width": 601,
-          "height": 105,
+          "width": 551,
+          "height": 92,
           "wireID": "a27896b4-7ac4-4eed-a7ea-a3e7cafeeec4",
           "customInputs": [
             {
@@ -1348,10 +1422,10 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 522,
-          "top": -48,
-          "width": 236,
-          "height": 83,
+          "left": 508,
+          "top": -29,
+          "width": 213,
+          "height": 73,
           "wireID": "1130d7ad-0fc9-4e8a-b326-b1af7b17c54b",
           "customInputs": [],
           "customOutputs": [],
@@ -1359,10 +1433,10 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 1003,
-          "top": 44,
-          "width": 100,
-          "height": 29,
+          "left": 963,
+          "top": 118,
+          "width": 95,
+          "height": 25,
           "wireID": "f799f405-c02a-4bcc-a6d0-e14522382ea8",
           "customInputs": [],
           "customOutputs": [],
@@ -1371,10 +1445,10 @@
         },
         {
           "type": "EvalExprActionComponent",
-          "left": 817,
-          "top": -48,
-          "width": 126,
-          "height": 62,
+          "left": 796,
+          "top": -23,
+          "width": 118,
+          "height": 54,
           "wireID": "f47db3c3-4312-4095-9e5c-5f49752dc6c7",
           "customInputs": [],
           "customOutputs": [],
@@ -1382,10 +1456,10 @@
         },
         {
           "type": "ConstantActionComponent",
-          "left": 817,
-          "top": 57,
-          "width": 89,
-          "height": 61,
+          "left": 508,
+          "top": 89,
+          "width": 87,
+          "height": 54,
           "wireID": "7c2f6de8-d7d7-41b1-a136-551db03e2124",
           "customInputs": [],
           "customOutputs": [],
@@ -1396,7 +1470,7 @@
           "left": -323,
           "top": -139,
           "width": 323,
-          "height": 78,
+          "height": 69,
           "wireID": "3b569681-4ad6-4c6b-cb37-a4249d89e712",
           "customInputs": [],
           "customOutputs": [],
@@ -1476,8 +1550,8 @@
           "type": "InputActionComponent",
           "left": -323,
           "top": -48,
-          "width": 118,
-          "height": 29,
+          "width": 112,
+          "height": 25,
           "wireID": "5052d1e0-a07a-48e4-f9c1-8dab11cf5733",
           "customInputs": [],
           "customOutputs": [],
@@ -1488,8 +1562,8 @@
           "type": "LoopActionComponent",
           "left": -113,
           "top": -48,
-          "width": 473,
-          "height": 105,
+          "width": 434,
+          "height": 92,
           "wireID": "a27896b4-7ac4-4eed-a7ea-a3e7cafeeec4",
           "customInputs": [
             {
@@ -1508,8 +1582,8 @@
           "type": "IsTrueActionComponent",
           "left": 414,
           "top": -48,
-          "width": 236,
-          "height": 83,
+          "width": 213,
+          "height": 73,
           "wireID": "1130d7ad-0fc9-4e8a-b326-b1af7b17c54b",
           "customInputs": [],
           "customOutputs": [],
@@ -1519,8 +1593,8 @@
           "type": "OutputActionComponent",
           "left": 1003,
           "top": 44,
-          "width": 100,
-          "height": 29,
+          "width": 95,
+          "height": 25,
           "wireID": "f799f405-c02a-4bcc-a6d0-e14522382ea8",
           "customInputs": [],
           "customOutputs": [],
@@ -1531,8 +1605,8 @@
           "type": "EvalExprActionComponent",
           "left": 725,
           "top": -48,
-          "width": 126,
-          "height": 62,
+          "width": 118,
+          "height": 54,
           "wireID": "f47db3c3-4312-4095-9e5c-5f49752dc6c7",
           "customInputs": [],
           "customOutputs": [],
@@ -1542,8 +1616,8 @@
           "type": "ConstantActionComponent",
           "left": 762,
           "top": 57,
-          "width": 89,
-          "height": 61,
+          "width": 87,
+          "height": 54,
           "wireID": "7c2f6de8-d7d7-41b1-a136-551db03e2124",
           "customInputs": [],
           "customOutputs": [],
@@ -1554,7 +1628,7 @@
           "left": -313,
           "top": -140,
           "width": 333,
-          "height": 78,
+          "height": 69,
           "wireID": "31ded320-a291-404c-e905-64f924257633",
           "customInputs": [],
           "customOutputs": [],
@@ -1634,8 +1708,8 @@
           "type": "InputActionComponent",
           "left": -404,
           "top": -48,
-          "width": 105,
-          "height": 29,
+          "width": 100,
+          "height": 25,
           "wireID": "5052d1e0-a07a-48e4-f9c1-8dab11cf5733",
           "customInputs": [],
           "customOutputs": [],
@@ -1646,8 +1720,8 @@
           "type": "SetVariableActionComponent",
           "left": 742,
           "top": -49,
-          "width": 306,
-          "height": 62,
+          "width": 280,
+          "height": 58,
           "wireID": "e402c90e-ce36-48d5-8b24-11d804cf4335",
           "customInputs": [
             {
@@ -1663,8 +1737,8 @@
           "type": "SetVariableActionComponent",
           "left": 1085,
           "top": -48,
-          "width": 361,
-          "height": 62,
+          "width": 329,
+          "height": 58,
           "wireID": "ae331442-05e1-4709-a9b1-0e744e680896",
           "customInputs": [],
           "customOutputs": [],
@@ -1675,8 +1749,8 @@
           "type": "IsTrueActionComponent",
           "left": 472,
           "top": -102,
-          "width": 221,
-          "height": 83,
+          "width": 201,
+          "height": 73,
           "wireID": "1130d7ad-0fc9-4e8a-b326-b1af7b17c54b",
           "customInputs": [
             {
@@ -1691,8 +1765,8 @@
           "type": "CallActionActionComponent",
           "left": 278,
           "top": -49,
-          "width": 155,
-          "height": 61,
+          "width": 139,
+          "height": 54,
           "wireID": "817dd57a-566d-4007-f6c9-db8713e36f23",
           "customInputs": [],
           "customOutputs": [],
@@ -1702,8 +1776,8 @@
           "type": "EvalExprActionComponent",
           "left": 61,
           "top": -49,
-          "width": 188,
-          "height": 62,
+          "width": 169,
+          "height": 54,
           "wireID": "cc37f417-b7e4-4c2f-9df3-6301ddf696ee",
           "customInputs": [],
           "customOutputs": [],
@@ -1713,8 +1787,8 @@
           "type": "SetVariableActionComponent",
           "left": -257,
           "top": -49,
-          "width": 297,
-          "height": 62,
+          "width": 272,
+          "height": 58,
           "wireID": "31419c11-221b-436f-aa0c-08ceb8c54101",
           "customInputs": [
             {
@@ -1731,7 +1805,7 @@
           "left": 1511,
           "top": 65,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "8b681be2-73c4-443a-ad4c-f52282d27ab5",
           "customInputs": [],
           "customOutputs": []
@@ -1740,8 +1814,8 @@
           "type": "OutputActionComponent",
           "left": 1511,
           "top": 120,
-          "width": 91,
-          "height": 29,
+          "width": 87,
+          "height": 25,
           "wireID": "210c0d91-efe0-445e-9777-bd1db36a6dab",
           "customInputs": [],
           "customOutputs": [],
@@ -1753,7 +1827,7 @@
           "left": -404,
           "top": -138,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "475b3738-4e75-471e-8e16-8604f91a1a51",
           "customInputs": [],
           "customOutputs": [],
@@ -1839,8 +1913,8 @@
           "type": "SetVariableActionComponent",
           "left": 854,
           "top": -7,
-          "width": 306,
-          "height": 62,
+          "width": 280,
+          "height": 58,
           "wireID": "9c298cb7-0420-4fb3-f87c-ea2748436b6b",
           "customInputs": [
             {
@@ -1856,8 +1930,8 @@
           "type": "IsTrueActionComponent",
           "left": 585,
           "top": -61,
-          "width": 221,
-          "height": 83,
+          "width": 201,
+          "height": 73,
           "wireID": "641b77f6-01ee-47f1-ca79-ff56ded0ab82",
           "customInputs": [
             {
@@ -1872,8 +1946,8 @@
           "type": "CallActionActionComponent",
           "left": 391,
           "top": -7,
-          "width": 155,
-          "height": 61,
+          "width": 139,
+          "height": 54,
           "wireID": "2eca9241-266f-494b-9c5d-474a691da2ce",
           "customInputs": [],
           "customOutputs": [],
@@ -1883,8 +1957,8 @@
           "type": "InputActionComponent",
           "left": -289,
           "top": -6,
-          "width": 105,
-          "height": 29,
+          "width": 100,
+          "height": 25,
           "wireID": "c925fa05-7e25-452d-c3ef-5f11cae2c077",
           "customInputs": [],
           "customOutputs": [],
@@ -1895,8 +1969,8 @@
           "type": "EvalExprActionComponent",
           "left": 176,
           "top": -7,
-          "width": 188,
-          "height": 62,
+          "width": 169,
+          "height": 54,
           "wireID": "468935f3-f184-482c-c91c-a23dd3f31bbc",
           "customInputs": [],
           "customOutputs": [],
@@ -1906,8 +1980,8 @@
           "type": "SetVariableActionComponent",
           "left": -142,
           "top": -7,
-          "width": 297,
-          "height": 62,
+          "width": 272,
+          "height": 58,
           "wireID": "bd3a36d3-fb1b-421b-ecc1-e4dec7514a3a",
           "customInputs": [
             {
@@ -1924,7 +1998,7 @@
           "left": -289,
           "top": -118,
           "width": 435,
-          "height": 78,
+          "height": 56,
           "wireID": "d951e24f-d5c1-460e-e25a-b0488aae94d8",
           "customInputs": [],
           "customOutputs": [],
@@ -1992,8 +2066,8 @@
           "type": "CallActionActionComponent",
           "left": -380,
           "top": -97,
-          "width": 120,
-          "height": 83,
+          "width": 113,
+          "height": 73,
           "wireID": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
           "customInputs": [],
           "customOutputs": [],
@@ -2003,8 +2077,8 @@
           "type": "IsTrueActionComponent",
           "left": -187,
           "top": -158,
-          "width": 330,
-          "height": 83,
+          "width": 299,
+          "height": 73,
           "wireID": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
           "customInputs": [],
           "customOutputs": [],
@@ -2015,7 +2089,7 @@
           "left": -553,
           "top": -97,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
           "customInputs": [],
           "customOutputs": []
@@ -2025,7 +2099,7 @@
           "left": 421,
           "top": -54,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "4dce99dd-a04a-4b68-847c-45a8215faea4",
           "customInputs": [],
           "customOutputs": [],
@@ -2037,7 +2111,7 @@
           "left": 421,
           "top": -9,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "a18c72ae-c708-47fd-cfd9-d13bb899e1a6",
           "customInputs": [],
           "customOutputs": [],
@@ -2046,10 +2120,10 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": 189,
+          "left": 182,
           "top": -158,
-          "width": 113,
-          "height": 83,
+          "width": 106,
+          "height": 73,
           "wireID": "373f9d38-dc07-42fc-f67d-d1ee184373bd",
           "customInputs": [],
           "customOutputs": [],
@@ -2060,7 +2134,7 @@
           "left": -9,
           "top": -349,
           "width": 352,
-          "height": 57,
+          "height": 56,
           "wireID": "52938743-71ba-4c59-b983-ecb43c7bd215",
           "customInputs": [],
           "customOutputs": [],
@@ -2068,10 +2142,10 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": 373,
+          "left": 355,
           "top": -158,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "42d77501-85e4-4d31-dfd3-63a88ddde691",
           "customInputs": [],
           "customOutputs": [],
@@ -2122,12 +2196,6 @@
           "input": "@seqin"
         },
         {
-          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
-          "output": "@seqout",
-          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
-          "input": "@seqin"
-        },
-        {
           "source": "42d77501-85e4-4d31-dfd3-63a88ddde691",
           "output": "@seqout",
           "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
@@ -2137,6 +2205,12 @@
           "source": "8c811cbe-9b57-4c6b-b96a-bd770dae76e2",
           "output": "@seqout",
           "target": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "input": "@seqin"
+        },
+        {
+          "source": "a20da2e3-6cc6-4847-f447-57eb175b64a8",
+          "output": "@seqout",
+          "target": "c41e1530-7b06-4923-e66f-0f7f92f15a49",
           "input": "@seqin"
         }
       ],
@@ -2644,7 +2718,7 @@
           "left": -580,
           "top": -37,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "e1f2d7d6-763d-4708-d443-2c02beca73a1",
           "customInputs": [],
           "customOutputs": []
@@ -2653,8 +2727,8 @@
           "type": "LoopActionComponent",
           "left": -468,
           "top": -37,
-          "width": 449,
-          "height": 83,
+          "width": 412,
+          "height": 73,
           "wireID": "5d204360-1ba9-455e-d27a-d0164ffdc08d",
           "customInputs": [],
           "customOutputs": [],
@@ -2668,8 +2742,8 @@
           "type": "IsTrueActionComponent",
           "left": 12,
           "top": -37,
-          "width": 471,
-          "height": 83,
+          "width": 428,
+          "height": 73,
           "wireID": "351bcfb8-2d84-4b15-907f-75712d45be7b",
           "customInputs": [],
           "customOutputs": [],
@@ -2679,8 +2753,8 @@
           "type": "SetVariableActionComponent",
           "left": 517,
           "top": -37,
-          "width": 193,
-          "height": 62,
+          "width": 175,
+          "height": 58,
           "wireID": "1b0a8066-0689-4ab2-ab39-5392eb8468b1",
           "customInputs": [],
           "customOutputs": [],
@@ -2691,8 +2765,8 @@
           "type": "SetVariableActionComponent",
           "left": 517,
           "top": 99,
-          "width": 186,
-          "height": 62,
+          "width": 169,
+          "height": 58,
           "wireID": "896271d1-ec69-47e4-c27c-4912a3bbcd4e",
           "customInputs": [],
           "customOutputs": [],
@@ -2704,7 +2778,7 @@
           "left": 761,
           "top": 46,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "5f5c5cf4-c8b5-450c-9583-b71209c8f4db",
           "customInputs": [],
           "customOutputs": []
@@ -2772,7 +2846,7 @@
           "left": -562,
           "top": -62,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "0a15ae28-a08f-4381-e671-f991e680cfd2",
           "customInputs": [],
           "customOutputs": []
@@ -2782,7 +2856,7 @@
           "left": 757,
           "top": 177,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "62a57e1f-c5b4-433b-c84c-46a8f2711879",
           "customInputs": [],
           "customOutputs": []
@@ -2791,8 +2865,8 @@
           "type": "LoopActionComponent",
           "left": -156,
           "top": -62,
-          "width": 449,
-          "height": 83,
+          "width": 412,
+          "height": 73,
           "wireID": "b5e506b8-6a43-428b-aeda-4e92639e06f3",
           "customInputs": [],
           "customOutputs": [],
@@ -2806,8 +2880,8 @@
           "type": "IsTrueActionComponent",
           "left": 319,
           "top": -197,
-          "width": 236,
-          "height": 83,
+          "width": 213,
+          "height": 73,
           "wireID": "3b7753b0-a3d3-4700-cf64-21801a69298e",
           "customInputs": [],
           "customOutputs": [],
@@ -2817,8 +2891,8 @@
           "type": "IsTrueActionComponent",
           "left": 910,
           "top": -337,
-          "width": 471,
-          "height": 83,
+          "width": 428,
+          "height": 73,
           "wireID": "5f6447d9-919d-4712-8352-b31c8df4efa2",
           "customInputs": [],
           "customOutputs": [],
@@ -2828,8 +2902,8 @@
           "type": "CallActionActionComponent",
           "left": 1899,
           "top": -176,
-          "width": 127,
-          "height": 83,
+          "width": 113,
+          "height": 73,
           "wireID": "17c9ccbd-4615-48a2-95ca-0d9daf734d10",
           "customInputs": [],
           "customOutputs": [],
@@ -2840,7 +2914,7 @@
           "left": 2092,
           "top": 337,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "867eb9aa-8a06-440c-9739-438fc92cb2f6",
           "customInputs": [],
           "customOutputs": [],
@@ -2852,7 +2926,7 @@
           "left": 2092,
           "top": 391,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "5c0bddf6-a1e8-43cb-e6e4-cef69786e7f3",
           "customInputs": [],
           "customOutputs": [],
@@ -2863,8 +2937,8 @@
           "type": "EvalExprActionComponent",
           "left": 1714,
           "top": -176,
-          "width": 134,
-          "height": 62,
+          "width": 120,
+          "height": 54,
           "wireID": "9b8e9fe8-e516-4a2d-8008-aca75462f87a",
           "customInputs": [],
           "customOutputs": [],
@@ -2874,8 +2948,8 @@
           "type": "IsTrueActionComponent",
           "left": 996,
           "top": -62,
-          "width": 451,
-          "height": 83,
+          "width": 410,
+          "height": 73,
           "wireID": "c6b4f071-2449-4cf2-a322-854ee5facdae",
           "customInputs": [],
           "customOutputs": [],
@@ -2885,8 +2959,8 @@
           "type": "CallActionActionComponent",
           "left": 1584,
           "top": 87,
-          "width": 151,
-          "height": 61,
+          "width": 141,
+          "height": 54,
           "wireID": "79607b93-e015-49b4-db2c-94d4c1cac14a",
           "customInputs": [],
           "customOutputs": [],
@@ -2896,8 +2970,8 @@
           "type": "EvalExprActionComponent",
           "left": 1488,
           "top": -62,
-          "width": 134,
-          "height": 62,
+          "width": 120,
+          "height": 54,
           "wireID": "d0ed901b-e3c9-417e-aed0-daa1a1dfdd99",
           "customInputs": [],
           "customOutputs": [],
@@ -2907,8 +2981,8 @@
           "type": "SetVariableActionComponent",
           "left": 1805,
           "top": 157,
-          "width": 287,
-          "height": 62,
+          "width": 261,
+          "height": 58,
           "wireID": "831f3473-02ae-4686-fca0-a03dcf98e7e3",
           "customInputs": [],
           "customOutputs": [],
@@ -2920,7 +2994,7 @@
           "left": -157,
           "top": -161,
           "width": 435,
-          "height": 78,
+          "height": 69,
           "wireID": "25279d00-8f32-4e25-b3bc-1ce2aa2039d0",
           "customInputs": [],
           "customOutputs": [],
@@ -2931,7 +3005,7 @@
           "left": 1584,
           "top": 13,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "98275f94-93c0-4e7f-87dd-530a78b1cc49",
           "customInputs": [],
           "customOutputs": [],
@@ -2942,7 +3016,7 @@
           "left": 1714,
           "top": -254,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "22d69f2c-11fd-4cae-d041-9869015af29e",
           "customInputs": [],
           "customOutputs": [],
@@ -2953,7 +3027,7 @@
           "left": 1805,
           "top": 87,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "6b6343dd-af73-48ba-9126-355415dd8fd1",
           "customInputs": [],
           "customOutputs": [],
@@ -2963,8 +3037,8 @@
           "type": "CallActionActionComponent",
           "left": 2342,
           "top": 157,
-          "width": 145,
-          "height": 61,
+          "width": 136,
+          "height": 54,
           "wireID": "15b1c5aa-33e5-4c0c-df35-e1ca693a491e",
           "customInputs": [],
           "customOutputs": [],
@@ -2974,8 +3048,8 @@
           "type": "EvalExprActionComponent",
           "left": 2118,
           "top": 157,
-          "width": 195,
-          "height": 62,
+          "width": 175,
+          "height": 54,
           "wireID": "18475950-bb00-47b5-a3cd-1d5b7c289bed",
           "customInputs": [],
           "customOutputs": [],
@@ -2985,8 +3059,8 @@
           "type": "CallActionActionComponent",
           "left": 1506,
           "top": -161,
-          "width": 145,
-          "height": 61,
+          "width": 136,
+          "height": 54,
           "wireID": "3c3defb0-9a80-476b-a205-600424004c03",
           "customInputs": [],
           "customOutputs": [],
@@ -2996,8 +3070,8 @@
           "type": "EvalExprActionComponent",
           "left": 1282,
           "top": -161,
-          "width": 195,
-          "height": 62,
+          "width": 175,
+          "height": 54,
           "wireID": "cebf13b2-4363-4925-fca4-6f8d6119f83a",
           "customInputs": [],
           "customOutputs": [],
@@ -3007,8 +3081,8 @@
           "type": "IsTrueActionComponent",
           "left": 597,
           "top": -337,
-          "width": 256,
-          "height": 83,
+          "width": 231,
+          "height": 73,
           "wireID": "4967139b-cd14-4b6d-bae7-3a16181f189e",
           "customInputs": [],
           "customOutputs": [],
@@ -3018,8 +3092,8 @@
           "type": "CallActionActionComponent",
           "left": -394,
           "top": 109,
-          "width": 146,
-          "height": 127,
+          "width": 136,
+          "height": 111,
           "wireID": "7d4795fb-32a8-47be-dcc7-8e7e1977676a",
           "customInputs": [],
           "customOutputs": [],
@@ -3207,8 +3281,8 @@
           "type": "InputActionComponent",
           "left": -342,
           "top": -79,
-          "width": 105,
-          "height": 29,
+          "width": 100,
+          "height": 25,
           "wireID": "33f7ba7d-f940-42c1-ae57-e14ad7625976",
           "customInputs": [],
           "customOutputs": [],
@@ -3219,8 +3293,8 @@
           "type": "EvalExprActionComponent",
           "left": 144,
           "top": -120,
-          "width": 350,
-          "height": 62,
+          "width": 317,
+          "height": 54,
           "wireID": "06e4062b-e4b1-45a8-e635-3bbe00f4b6b3",
           "customInputs": [],
           "customOutputs": [],
@@ -3228,10 +3302,10 @@
         },
         {
           "type": "EvalExprActionComponent",
-          "left": 283,
-          "top": 19,
-          "width": 126,
-          "height": 62,
+          "left": 247,
+          "top": -35,
+          "width": 118,
+          "height": 54,
           "wireID": "75445d83-e490-4d4f-e4c6-308a8c712e62",
           "customInputs": [],
           "customOutputs": [],
@@ -3241,8 +3315,8 @@
           "type": "DynamicCallActionActionComponent",
           "left": 520,
           "top": -120,
-          "width": 153,
-          "height": 83,
+          "width": 143,
+          "height": 92,
           "wireID": "e62707ce-c9c4-4f52-eb27-5bc62d624f07",
           "customInputs": [
             {
@@ -3257,13 +3331,14 @@
           "customOutputs": [
             {
               "name": "stdout",
-              "type": "any"
+              "type": "string"
             },
             {
               "name": "stderr",
-              "type": "any"
+              "type": "string"
             }
           ],
+          "catchError": true,
           "action": "action"
         },
         {
@@ -3271,7 +3346,7 @@
           "left": 1338,
           "top": -182,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "54876174-8a7c-4c47-8efc-58d148409e62",
           "customInputs": [],
           "customOutputs": []
@@ -3280,13 +3355,13 @@
           "type": "SetVariableActionComponent",
           "left": -190,
           "top": -77,
-          "width": 297,
-          "height": 62,
+          "width": 272,
+          "height": 58,
           "wireID": "f819fba6-437f-4a18-c986-d072016e4920",
           "customInputs": [
             {
               "name": "idx_device",
-              "type": "any"
+              "type": "integer"
             }
           ],
           "customOutputs": [],
@@ -3298,7 +3373,7 @@
           "left": 722,
           "top": -79,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "a7528088-85ca-4e84-f248-89f546e1b7f9",
           "customInputs": [],
           "customOutputs": [],
@@ -3310,7 +3385,7 @@
           "left": 722,
           "top": -33,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "4161fdc3-14ad-4a71-c67d-e12cc282f7b9",
           "customInputs": [],
           "customOutputs": [],
@@ -3322,7 +3397,7 @@
           "left": 1202,
           "top": -182,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "d66186b4-9099-429b-9154-e18ae85725af",
           "customInputs": [],
           "customOutputs": [],
@@ -3332,8 +3407,8 @@
           "type": "CallActionActionComponent",
           "left": 1031,
           "top": -182,
-          "width": 145,
-          "height": 61,
+          "width": 136,
+          "height": 54,
           "wireID": "87c573b1-e502-4d3d-cbde-4d264cdf4ac8",
           "customInputs": [],
           "customOutputs": [],
@@ -3343,8 +3418,8 @@
           "type": "EvalExprActionComponent",
           "left": 829,
           "top": -120,
-          "width": 126,
-          "height": 62,
+          "width": 118,
+          "height": 54,
           "wireID": "2d35b19c-7114-4fa8-e870-2d2ef9ce64a8",
           "customInputs": [],
           "customOutputs": [],
@@ -3354,13 +3429,13 @@
           "type": "CollectStream",
           "left": 787,
           "top": 197,
-          "width": 119,
-          "height": 61,
+          "width": 112,
+          "height": 54,
           "wireID": "4ba16a5f-098a-448e-d704-fa69b785ace4",
           "customInputs": [
             {
               "name": "stream",
-              "type": "any"
+              "type": "string"
             }
           ],
           "customOutputs": [],
@@ -3370,13 +3445,13 @@
           "type": "CollectStream",
           "left": 787,
           "top": 276,
-          "width": 119,
-          "height": 61,
+          "width": 112,
+          "height": 54,
           "wireID": "4de427fb-b513-46c6-d004-4d5d5bed356c",
           "customInputs": [
             {
               "name": "stream",
-              "type": "any"
+              "type": "string"
             }
           ],
           "customOutputs": [],
@@ -3386,8 +3461,8 @@
           "type": "CallActionActionComponent",
           "left": 1031,
           "top": -4,
-          "width": 119,
-          "height": 105,
+          "width": 112,
+          "height": 92,
           "wireID": "6d8475c1-21df-4696-deb1-4fdb30ec50fd",
           "customInputs": [],
           "customOutputs": [],
@@ -3397,12 +3472,29 @@
           "type": "ConstantActionComponent",
           "left": 829,
           "top": 19,
-          "width": 89,
-          "height": 61,
+          "width": 87,
+          "height": 54,
           "wireID": "74820ad9-b8c1-46dc-dbeb-8a8d0a08c88d",
           "customInputs": [],
           "customOutputs": [],
           "value": "\"\""
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 520,
+          "top": -231,
+          "width": 444,
+          "height": 58,
+          "wireID": "45112e06-4364-483f-c682-965e93273236",
+          "customInputs": [
+            {
+              "name": "idx_device",
+              "type": "integer"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "devices[idx_device].stepStatus.status",
+          "value": "StepStatus.Error"
         }
       ],
       "connectionLines": [
@@ -3519,6 +3611,24 @@
           "output": "result",
           "target": "87c573b1-e502-4d3d-cbde-4d264cdf4ac8",
           "input": "2cad6570-0fe7-4965-e995-6525559a83b3"
+        },
+        {
+          "source": "e62707ce-c9c4-4f52-eb27-5bc62d624f07",
+          "output": "@error",
+          "target": "45112e06-4364-483f-c682-965e93273236",
+          "input": "@seqin"
+        },
+        {
+          "source": "45112e06-4364-483f-c682-965e93273236",
+          "output": "@seqout",
+          "target": "2d35b19c-7114-4fa8-e870-2d2ef9ce64a8",
+          "input": "@seqin"
+        },
+        {
+          "source": "33f7ba7d-f940-42c1-ae57-e14ad7625976",
+          "output": "@seqout",
+          "target": "45112e06-4364-483f-c682-965e93273236",
+          "input": "idx_device"
         }
       ],
       "localVariables": [
@@ -3538,8 +3648,8 @@
           "type": "FileRead",
           "left": 756,
           "top": -140,
-          "width": 314,
-          "height": 62,
+          "width": 284,
+          "height": 54,
           "wireID": "d9a8fe7c-849e-4fee-e99f-c304a3d98cdd",
           "customInputs": [],
           "customOutputs": [],
@@ -3550,8 +3660,8 @@
           "type": "SetVariableActionComponent",
           "left": 285,
           "top": -140,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "5d063801-f867-47c8-de9b-983057d7e177",
           "customInputs": [],
           "customOutputs": [],
@@ -3562,8 +3672,8 @@
           "type": "SetVariableActionComponent",
           "left": 90,
           "top": -140,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "8e245695-a2b7-463e-98da-256362257258",
           "customInputs": [],
           "customOutputs": [],
@@ -3574,8 +3684,8 @@
           "type": "SetVariableActionComponent",
           "left": 2232,
           "top": -140,
-          "width": 159,
-          "height": 62,
+          "width": 144,
+          "height": 58,
           "wireID": "59f2fdc0-c554-42ba-e134-a9adb7912bbc",
           "customInputs": [],
           "customOutputs": [],
@@ -3587,7 +3697,7 @@
           "left": -460,
           "top": -58,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "82e8bf12-f606-4826-fb1a-f7a7a8e412b0",
           "customInputs": [],
           "customOutputs": [],
@@ -3599,7 +3709,7 @@
           "left": -460,
           "top": -140,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "1f0aac52-c235-4e58-c27d-e8ff406cb081",
           "customInputs": [],
           "customOutputs": []
@@ -3608,8 +3718,8 @@
           "type": "SetVariableActionComponent",
           "left": -138,
           "top": -140,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "6f09a87b-8150-41f9-aba0-22603b1d261f",
           "customInputs": [],
           "customOutputs": [],
@@ -3620,13 +3730,13 @@
           "type": "SetVariableActionComponent",
           "left": -344,
           "top": -140,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "263a1935-6588-40ed-cdf9-00a0a7adb3a1",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -3637,8 +3747,8 @@
           "type": "EvalJSExprActionComponent",
           "left": 1303,
           "top": -140,
-          "width": 721,
-          "height": 170,
+          "width": 657,
+          "height": 131,
           "wireID": "a8532d7d-cef8-42f6-af23-8dfe85fb05bd",
           "customInputs": [
             {
@@ -3665,8 +3775,8 @@
           "type": "ConstantActionComponent",
           "left": 1049,
           "top": -51,
-          "width": 157,
-          "height": 61,
+          "width": 139,
+          "height": 54,
           "wireID": "1014bfc5-d545-4e13-f0ae-b8674e664d6f",
           "customInputs": [],
           "customOutputs": [],
@@ -3676,8 +3786,8 @@
           "type": "FileWrite",
           "left": 2071,
           "top": -140,
-          "width": 132,
-          "height": 83,
+          "width": 118,
+          "height": 73,
           "wireID": "e46f1069-8583-47d0-8f6e-d141a23f71a2",
           "customInputs": [
             {
@@ -3698,8 +3808,8 @@
           "type": "EvalExprActionComponent",
           "left": 2044,
           "top": 73,
-          "width": 595,
-          "height": 62,
+          "width": 542,
+          "height": 54,
           "wireID": "1cefdaa8-7a09-4494-a1a9-9e386fc4925b",
           "customInputs": [
             {
@@ -3714,8 +3824,8 @@
           "type": "EvalExprActionComponent",
           "left": 850,
           "top": 35,
-          "width": 356,
-          "height": 62,
+          "width": 323,
+          "height": 54,
           "wireID": "8af0e53d-50e4-4d66-bde3-36b4cfc2908a",
           "customInputs": [],
           "customOutputs": [],
@@ -3726,7 +3836,7 @@
           "left": 4324,
           "top": -94,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "09346476-a444-425f-cdb2-f073ffc8996f",
           "customInputs": [],
           "customOutputs": []
@@ -3735,8 +3845,8 @@
           "type": "ExecuteCommand",
           "left": 2692,
           "top": -140,
-          "width": 438,
-          "height": 170,
+          "width": 399,
+          "height": 131,
           "wireID": "a30400c9-eb8a-47cb-d4d5-97a08209ff76",
           "customInputs": [
             {
@@ -3753,7 +3863,7 @@
           "left": 3305,
           "top": -213,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "688ae43a-6b9b-4a7d-a2f8-6572a3ea35b1",
           "customInputs": [],
           "customOutputs": [],
@@ -3765,7 +3875,7 @@
           "left": 3305,
           "top": -164,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "e7149e20-7635-419c-df80-507c1b0c2efe",
           "customInputs": [],
           "customOutputs": [],
@@ -3776,8 +3886,8 @@
           "type": "IsTrueActionComponent",
           "left": 3305,
           "top": -94,
-          "width": 173,
-          "height": 83,
+          "width": 156,
+          "height": 73,
           "wireID": "ba8c34f4-a713-4c5a-ca73-a38620082006",
           "customInputs": [
             {
@@ -3792,8 +3902,8 @@
           "type": "SetVariableActionComponent",
           "left": 3518,
           "top": -94,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "0a45ace2-861e-41f0-ada1-a0daa55447ab",
           "customInputs": [],
           "customOutputs": [],
@@ -3804,8 +3914,8 @@
           "type": "SetVariableActionComponent",
           "left": 4039,
           "top": 0,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "0a2b9ee4-8d43-4b5b-ff68-5b896dcec782",
           "customInputs": [],
           "customOutputs": [],
@@ -3817,7 +3927,7 @@
           "left": 2544,
           "top": -140,
           "width": 87,
-          "height": 83,
+          "height": 73,
           "wireID": "50fcf0b5-2beb-47ad-dd7a-14b0d3ceaa0d",
           "customInputs": [
             {
@@ -3832,8 +3942,8 @@
           "type": "ConstantActionComponent",
           "left": 3130,
           "top": 73,
-          "width": 89,
-          "height": 61,
+          "width": 87,
+          "height": 54,
           "wireID": "ab695faf-0dec-4894-d4e1-7952a61cbf27",
           "customInputs": [],
           "customOutputs": [],
@@ -3843,8 +3953,8 @@
           "type": "SetVariableActionComponent",
           "left": 3312,
           "top": 46,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "c9fa93d0-dbeb-4a14-af34-86cdd9a6b516",
           "customInputs": [],
           "customOutputs": [],
@@ -3855,8 +3965,8 @@
           "type": "EvalExprActionComponent",
           "left": 1011,
           "top": 121,
-          "width": 195,
-          "height": 62,
+          "width": 175,
+          "height": 54,
           "wireID": "a366d95c-5348-41de-fa57-cd420bab54de",
           "customInputs": [],
           "customOutputs": [],
@@ -3866,8 +3976,8 @@
           "type": "ConstantActionComponent",
           "left": 2429,
           "top": -140,
-          "width": 89,
-          "height": 61,
+          "width": 87,
+          "height": 54,
           "wireID": "37a54493-902a-4d0f-8c3f-a34bcc502221",
           "customInputs": [],
           "customOutputs": [],
@@ -3878,7 +3988,7 @@
           "left": 2429,
           "top": -213,
           "width": 263,
-          "height": 57,
+          "height": 56,
           "wireID": "7c5b1a49-a4f6-4eef-c137-18fb2a59d3e8",
           "customInputs": [],
           "customOutputs": [],
@@ -3889,7 +3999,7 @@
           "left": 2914,
           "top": 72,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "75aba051-ac21-4052-d90e-937a1f016ed4",
           "customInputs": [],
           "customOutputs": [],
@@ -3899,8 +4009,8 @@
           "type": "CallActionActionComponent",
           "left": 583,
           "top": -140,
-          "width": 136,
-          "height": 61,
+          "width": 127,
+          "height": 54,
           "wireID": "0a81b635-8d5b-4b72-ad18-64fb6fc9a05d",
           "customInputs": [],
           "customOutputs": [],
@@ -3910,13 +4020,42 @@
           "type": "eez-flow-ext-postgres/Postgres",
           "left": 3510,
           "top": 0,
-          "width": 511,
-          "height": 62,
+          "width": 465,
+          "height": 54,
           "wireID": "8b0132b4-6095-4c31-e9af-c1dd9486b62d",
           "customInputs": [],
-          "customOutputs": [],
+          "customOutputs": [
+            {
+              "name": "result",
+              "type": "array:struct:DevicesTable"
+            }
+          ],
           "connection": "db_connection",
-          "sql": "DELETE from devices WHERE \"serialNumber\" = '{device.serialNumber}'"
+          "sql": "DELETE from devices WHERE \"serialNumber\" = '{device.serialNumber}'",
+          "storeResultInto": "result"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -460,
+          "top": -223,
+          "width": 87,
+          "height": 25,
+          "wireID": "e57dfefc-9dff-4965-d8c8-08c8cd9b2c99",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -310,
+          "top": -223,
+          "width": 87,
+          "height": 25,
+          "wireID": "4af01be9-88d3-4e95-8c19-9cad200f1247",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -4141,6 +4280,12 @@
           "output": "result",
           "target": "0a2b9ee4-8d43-4b5b-ff68-5b896dcec782",
           "input": "@seqin"
+        },
+        {
+          "source": "e57dfefc-9dff-4965-d8c8-08c8cd9b2c99",
+          "output": "@seqout",
+          "target": "4af01be9-88d3-4e95-8c19-9cad200f1247",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -4152,7 +4297,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         }
@@ -4167,7 +4312,7 @@
           "left": -415,
           "top": -105,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "33f7ba7d-f940-42c1-ae57-e14ad7625976",
           "customInputs": [],
           "customOutputs": [],
@@ -4179,7 +4324,7 @@
           "left": 2115,
           "top": -154,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "e68b8db7-ae42-409a-8f76-dff73dcdb261",
           "customInputs": [],
           "customOutputs": []
@@ -4188,8 +4333,8 @@
           "type": "ExecuteCommand",
           "left": 697,
           "top": -145,
-          "width": 410,
-          "height": 152,
+          "width": 372,
+          "height": 118,
           "wireID": "cead0866-14e5-46a3-c4a5-3887c2bebe47",
           "customInputs": [],
           "customOutputs": [],
@@ -4201,7 +4346,7 @@
           "left": 1291,
           "top": -257,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "b0eb09ce-e58d-49e3-ddcb-13becbd6a7fe",
           "customInputs": [],
           "customOutputs": [],
@@ -4213,7 +4358,7 @@
           "left": 1291,
           "top": -212,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "430be645-55f2-433f-9fe7-c00fef74ae6a",
           "customInputs": [],
           "customOutputs": [],
@@ -4225,7 +4370,7 @@
           "left": -415,
           "top": -154,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "5af8a9d7-2981-4a08-84c8-60e012850f17",
           "customInputs": [],
           "customOutputs": []
@@ -4234,8 +4379,8 @@
           "type": "Regexp",
           "left": 1247,
           "top": -27,
-          "width": 244,
-          "height": 83,
+          "width": 221,
+          "height": 73,
           "wireID": "35c9e544-b540-4c2f-e8a5-d73183fc6d99",
           "customInputs": [
             {
@@ -4251,13 +4396,13 @@
           "type": "SetVariableActionComponent",
           "left": 1372,
           "top": 150,
-          "width": 243,
-          "height": 62,
+          "width": 222,
+          "height": 58,
           "wireID": "bc004ba2-c8a8-4ff5-fe26-41a15ce8506d",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
@@ -4268,8 +4413,8 @@
           "type": "SetVariableActionComponent",
           "left": 371,
           "top": -145,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "2d816cc9-8b9c-495d-f7d2-c7c2b1de9a8d",
           "customInputs": [],
           "customOutputs": [],
@@ -4280,8 +4425,8 @@
           "type": "IsTrueActionComponent",
           "left": 1512,
           "top": -125,
-          "width": 254,
-          "height": 83,
+          "width": 230,
+          "height": 73,
           "wireID": "9274f8d8-6241-4487-bdde-ea372b36a6f9",
           "customInputs": [
             {
@@ -4296,8 +4441,8 @@
           "type": "SetVariableActionComponent",
           "left": 1804,
           "top": -154,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "383a40f0-1225-4f11-d174-16577984fb45",
           "customInputs": [],
           "customOutputs": [],
@@ -4308,8 +4453,8 @@
           "type": "SetVariableActionComponent",
           "left": 1804,
           "top": -76,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "331e4e37-faa1-42ef-c8f0-60ecd0eb3793",
           "customInputs": [],
           "customOutputs": [],
@@ -4320,8 +4465,8 @@
           "type": "SetVariableActionComponent",
           "left": -67,
           "top": -145,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "fcb81f18-39a7-4a55-b9c1-c4c0529e1d42",
           "customInputs": [],
           "customOutputs": [],
@@ -4332,8 +4477,8 @@
           "type": "SetVariableActionComponent",
           "left": 177,
           "top": -145,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "edc9e5c9-8422-4e53-a246-0dde3b1f7749",
           "customInputs": [],
           "customOutputs": [],
@@ -4344,13 +4489,13 @@
           "type": "SetVariableActionComponent",
           "left": -271,
           "top": -145,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "e40dcc12-c40c-47df-f308-c361e0aff502",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -4362,7 +4507,7 @@
           "left": 1572,
           "top": -228,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "514d1783-7fcc-4a46-eccc-ad31cd8ee6a0",
           "customInputs": [],
           "customOutputs": [],
@@ -4373,7 +4518,7 @@
           "left": 251,
           "top": -228,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "9a636ac0-c41c-42f4-fd68-1f273ff45060",
           "customInputs": [],
           "customOutputs": [],
@@ -4384,11 +4529,34 @@
           "left": 1386,
           "top": -154,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "9ff6dc96-b74f-4693-ab7a-ec4ea3001418",
           "customInputs": [],
           "customOutputs": [],
           "milliseconds": "3000"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -403,
+          "top": -253,
+          "width": 87,
+          "height": 25,
+          "wireID": "564241a5-a8e9-4fdc-d001-78f1358d7013",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -253,
+          "top": -253,
+          "width": 87,
+          "height": 25,
+          "wireID": "d8367f19-8b2f-46d4-9584-33d9d7d5717d",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -4505,6 +4673,12 @@
           "output": "@seqout",
           "target": "9274f8d8-6241-4487-bdde-ea372b36a6f9",
           "input": "@seqin"
+        },
+        {
+          "source": "564241a5-a8e9-4fdc-d001-78f1358d7013",
+          "output": "@seqout",
+          "target": "d8367f19-8b2f-46d4-9584-33d9d7d5717d",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -4516,7 +4690,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         }
@@ -4530,8 +4704,8 @@
           "type": "ExecuteCommand",
           "left": 877,
           "top": -102,
-          "width": 309,
-          "height": 152,
+          "width": 279,
+          "height": 118,
           "wireID": "bc122b83-ce45-413f-a902-637dc85b3975",
           "customInputs": [],
           "customOutputs": [],
@@ -4543,7 +4717,7 @@
           "left": -306,
           "top": -62,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "b4417c5d-1c9e-4781-c453-78a1ccf4a1d5",
           "customInputs": [],
           "customOutputs": [],
@@ -4555,7 +4729,7 @@
           "left": -306,
           "top": -111,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "b6d8f8a8-a647-4399-c973-606bb59d9f79",
           "customInputs": [],
           "customOutputs": []
@@ -4564,8 +4738,8 @@
           "type": "SetVariableActionComponent",
           "left": 545,
           "top": -102,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "ae8321e3-1c4e-4a2b-cdeb-1a20a6892e7b",
           "customInputs": [],
           "customOutputs": [],
@@ -4576,8 +4750,8 @@
           "type": "SetVariableActionComponent",
           "left": 39,
           "top": -102,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "89b512bd-dac2-4f84-a512-08afe1ed6583",
           "customInputs": [],
           "customOutputs": [],
@@ -4588,8 +4762,8 @@
           "type": "SetVariableActionComponent",
           "left": 360,
           "top": -102,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "1932f219-135c-4a6f-e7ec-4faf4e4fb07f",
           "customInputs": [],
           "customOutputs": [],
@@ -4600,13 +4774,13 @@
           "type": "SetVariableActionComponent",
           "left": -176,
           "top": -102,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "5da4a7fc-1d41-43f3-dc7a-143d70ef6a76",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -4618,7 +4792,7 @@
           "left": 360,
           "top": -185,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "edd3a52c-f004-4dfc-83b6-7e26aecb4cfa",
           "customInputs": [],
           "customOutputs": [],
@@ -4629,7 +4803,7 @@
           "left": 1266,
           "top": -249,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "18097ac9-2216-4f0c-94e4-00555f3c8cdb",
           "customInputs": [],
           "customOutputs": [],
@@ -4641,7 +4815,7 @@
           "left": 1289,
           "top": -200,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "8e2f3f38-ea36-456f-ae75-08cdd8baaae3",
           "customInputs": [],
           "customOutputs": [],
@@ -4653,7 +4827,7 @@
           "left": 1832,
           "top": -102,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "098f1698-b7f7-4c2b-8ffe-cb916e1847c0",
           "customInputs": [],
           "customOutputs": []
@@ -4662,8 +4836,8 @@
           "type": "IsTrueActionComponent",
           "left": 1289,
           "top": -102,
-          "width": 173,
-          "height": 83,
+          "width": 156,
+          "height": 73,
           "wireID": "216d9eb3-dd30-43ef-da97-2ed7c13f41ad",
           "customInputs": [
             {
@@ -4678,8 +4852,8 @@
           "type": "SetVariableActionComponent",
           "left": 1521,
           "top": -102,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "981e2da0-ada6-45cb-fee3-dfdb27852128",
           "customInputs": [],
           "customOutputs": [],
@@ -4690,8 +4864,8 @@
           "type": "SetVariableActionComponent",
           "left": 1521,
           "top": -24,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "92239ea2-3e72-496c-aea3-5df7cec1560b",
           "customInputs": [],
           "customOutputs": [],
@@ -4703,7 +4877,7 @@
           "left": 1027,
           "top": 253,
           "width": 435,
-          "height": 78,
+          "height": 69,
           "wireID": "002e3439-64c4-4098-c65a-9d1c3c7562e3",
           "customInputs": [],
           "customOutputs": [],
@@ -4713,8 +4887,8 @@
           "type": "SetVariableActionComponent",
           "left": 1068,
           "top": 153,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "3cae406e-62de-441a-9175-51bb4b12958e",
           "customInputs": [],
           "customOutputs": [],
@@ -4725,8 +4899,8 @@
           "type": "SetVariableActionComponent",
           "left": 1321,
           "top": 153,
-          "width": 415,
-          "height": 62,
+          "width": 378,
+          "height": 58,
           "wireID": "d5937e41-5021-4949-c5ed-a222bb9b5276",
           "customInputs": [],
           "customOutputs": [],
@@ -4737,8 +4911,8 @@
           "type": "IsTrueActionComponent",
           "left": 1774,
           "top": 153,
-          "width": 108,
-          "height": 83,
+          "width": 96,
+          "height": 73,
           "wireID": "a71a1dee-265d-48f2-8c7e-d51029824421",
           "customInputs": [],
           "customOutputs": [],
@@ -4749,7 +4923,7 @@
           "left": 1575,
           "top": 269,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "04fe2a56-b9e4-4ddb-a570-ec792d7edef0",
           "customInputs": [],
           "customOutputs": [],
@@ -4759,8 +4933,8 @@
           "type": "SetVariableActionComponent",
           "left": 1267,
           "top": 26,
-          "width": 139,
-          "height": 62,
+          "width": 126,
+          "height": 58,
           "wireID": "004692a6-ccfa-4194-ce03-f01f2760436d",
           "customInputs": [],
           "customOutputs": [],
@@ -4771,13 +4945,36 @@
           "type": "SetVariableActionComponent",
           "left": 1919,
           "top": 153,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "d487762f-32bd-4e8a-f679-7cc8cbdbf181",
           "customInputs": [],
           "customOutputs": [],
           "variable": "step.progress",
           "value": "100"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -295,
+          "top": -200,
+          "width": 87,
+          "height": 25,
+          "wireID": "01750536-20d2-4b9e-b1f4-88cb195be77c",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -145,
+          "top": -200,
+          "width": 87,
+          "height": 25,
+          "wireID": "5230d558-68a9-4bf8-cc80-bd8ca94d0628",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -4900,6 +5097,12 @@
           "output": "True",
           "target": "d487762f-32bd-4e8a-f679-7cc8cbdbf181",
           "input": "@seqin"
+        },
+        {
+          "source": "01750536-20d2-4b9e-b1f4-88cb195be77c",
+          "output": "@seqout",
+          "target": "5230d558-68a9-4bf8-cc80-bd8ca94d0628",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -4911,7 +5114,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         },
@@ -4937,8 +5140,8 @@
           "type": "ExecuteCommand",
           "left": 843,
           "top": -132,
-          "width": 504,
-          "height": 206,
+          "width": 458,
+          "height": 157,
           "wireID": "dbe9bf5d-dccf-4f9c-8316-1dda2e59fe8c",
           "customInputs": [],
           "customOutputs": [],
@@ -4950,7 +5153,7 @@
           "left": -340,
           "top": -92,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "ecfc6fa9-5e1c-4851-d455-18a9b47b7223",
           "customInputs": [],
           "customOutputs": [],
@@ -4962,7 +5165,7 @@
           "left": -340,
           "top": -141,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "5dbc3cc9-2a35-45c2-ec82-3937d08591a9",
           "customInputs": [],
           "customOutputs": []
@@ -4971,8 +5174,8 @@
           "type": "SetVariableActionComponent",
           "left": 511,
           "top": -132,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "8a6d608a-db54-4ef3-8607-2bf14ddae415",
           "customInputs": [],
           "customOutputs": [],
@@ -4983,8 +5186,8 @@
           "type": "SetVariableActionComponent",
           "left": 5,
           "top": -132,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "773e1644-bff6-4901-eeae-a9301b40b8dc",
           "customInputs": [],
           "customOutputs": [],
@@ -4995,8 +5198,8 @@
           "type": "SetVariableActionComponent",
           "left": 326,
           "top": -132,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "5ae2cf92-ae99-454f-bd0c-8ef8c4c2b04b",
           "customInputs": [],
           "customOutputs": [],
@@ -5007,13 +5210,13 @@
           "type": "SetVariableActionComponent",
           "left": -210,
           "top": -132,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "50077b55-66f6-4032-b7a7-e3ab3b6fcfcc",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -5025,7 +5228,7 @@
           "left": 326,
           "top": -215,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "78c85584-cbdd-49b6-c2fc-748633fc806d",
           "customInputs": [],
           "customOutputs": [],
@@ -5036,7 +5239,7 @@
           "left": 1414,
           "top": -279,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "98fa0ea0-0310-4a7e-a575-6449ba0ec04d",
           "customInputs": [],
           "customOutputs": [],
@@ -5048,7 +5251,7 @@
           "left": 1437,
           "top": -230,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "a773fa7e-433f-4da8-8733-e16bf74119ac",
           "customInputs": [],
           "customOutputs": [],
@@ -5060,7 +5263,7 @@
           "left": 2647,
           "top": -132,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "a266005e-f2ad-4dec-bac3-f2083cee95e3",
           "customInputs": [],
           "customOutputs": []
@@ -5069,8 +5272,8 @@
           "type": "Regexp",
           "left": 1456,
           "top": -23,
-          "width": 311,
-          "height": 83,
+          "width": 283,
+          "height": 73,
           "wireID": "0079d9b8-7f8d-4f3b-b4e9-8397216900b3",
           "customInputs": [
             {
@@ -5086,13 +5289,13 @@
           "type": "SetVariableActionComponent",
           "left": 1628,
           "top": 147,
-          "width": 243,
-          "height": 62,
+          "width": 222,
+          "height": 58,
           "wireID": "4e3c217d-5d2a-4e44-e476-ebf611c0bd45",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
@@ -5103,8 +5306,8 @@
           "type": "IsTrueActionComponent",
           "left": 1767,
           "top": -141,
-          "width": 254,
-          "height": 83,
+          "width": 230,
+          "height": 73,
           "wireID": "a53fbd77-ac88-4350-e074-9fb740ff5b93",
           "customInputs": [
             {
@@ -5119,8 +5322,8 @@
           "type": "SetVariableActionComponent",
           "left": 2253,
           "top": -174,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "6c3b85f2-cbf0-4e6d-cc81-596eed23ad17",
           "customInputs": [],
           "customOutputs": [],
@@ -5131,8 +5334,8 @@
           "type": "SetVariableActionComponent",
           "left": 2061,
           "top": -49,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "c2631024-77ae-46c9-a36c-80b74590dff1",
           "customInputs": [],
           "customOutputs": [],
@@ -5144,7 +5347,7 @@
           "left": 1588,
           "top": -215,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "2f626e88-16eb-454d-a702-4b931ed06ff5",
           "customInputs": [],
           "customOutputs": [],
@@ -5155,7 +5358,7 @@
           "left": 2126,
           "top": -174,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "a472aa6d-e60e-4ddc-a052-fb7cdc4b4521",
           "customInputs": [],
           "customOutputs": [],
@@ -5166,11 +5369,34 @@
           "left": 2126,
           "top": -250,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "5b330c1e-6b8b-49c8-bd85-756a2e18531e",
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->Wait for ESP32 to boot</div>"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -340,
+          "top": -199,
+          "width": 87,
+          "height": 25,
+          "wireID": "7bfbda49-164a-426f-9a32-7fad1ed21982",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -190,
+          "top": -199,
+          "width": 87,
+          "height": 25,
+          "wireID": "ad375495-46ea-4ee7-ff3a-3497b8cc3f04",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -5287,6 +5513,12 @@
           "output": "@seqout",
           "target": "6c3b85f2-cbf0-4e6d-cc81-596eed23ad17",
           "input": "@seqin"
+        },
+        {
+          "source": "7bfbda49-164a-426f-9a32-7fad1ed21982",
+          "output": "@seqout",
+          "target": "ad375495-46ea-4ee7-ff3a-3497b8cc3f04",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -5298,7 +5530,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         }
@@ -5313,7 +5545,7 @@
           "left": -317,
           "top": -14,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "b16496cc-4860-4078-f363-60a021f31019",
           "customInputs": [],
           "customOutputs": [],
@@ -5325,7 +5557,7 @@
           "left": -317,
           "top": -63,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "013153de-9c90-46ea-dae0-6ac0da80c5c9",
           "customInputs": [],
           "customOutputs": []
@@ -5334,8 +5566,8 @@
           "type": "SetVariableActionComponent",
           "left": 28,
           "top": -54,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "be7d2a96-92ca-4e2b-cf5b-16b95b52ab97",
           "customInputs": [],
           "customOutputs": [],
@@ -5346,13 +5578,13 @@
           "type": "SetVariableActionComponent",
           "left": -187,
           "top": -54,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "43f54dd1-7d62-47ea-8123-66ea80488a99",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -5361,10 +5593,10 @@
         },
         {
           "type": "SerialConnect",
-          "left": 1236,
+          "left": 1261,
           "top": -54,
-          "width": 135,
-          "height": 62,
+          "width": 128,
+          "height": 53,
           "wireID": "caec4343-9d29-4472-d657-870504f17e71",
           "customInputs": [],
           "customOutputs": [],
@@ -5372,22 +5604,22 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 870,
+          "left": 834,
           "top": -54,
-          "width": 327,
-          "height": 170,
+          "width": 378,
+          "height": 131,
           "wireID": "d736bdb2-3be7-49f3-b2b9-5ac51e1fcae5",
           "customInputs": [],
           "customOutputs": [],
           "variable": "connection",
-          "value": "{\n  port: device.serialPortPath,\n  baudRate: 115200,\n  dataBits: 8,\n  stopBits: 1,\n  parity: \"none\"\n}"
+          "value": "Flow.makeValue(\"object:SerialConnection\", {\n  port: device.serialPortPath,\n  baudRate: 115200,\n  dataBits: 8,\n  stopBits: 1,\n  parity: \"none\"\n})"
         },
         {
           "type": "SerialRead",
-          "left": 1645,
-          "top": -54,
-          "width": 114,
-          "height": 61,
+          "left": 1815,
+          "top": -55,
+          "width": 109,
+          "height": 54,
           "wireID": "9a713ba5-4510-42fb-e4f5-e1b8e943c806",
           "customInputs": [],
           "customOutputs": [],
@@ -5395,10 +5627,10 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 1836,
-          "top": -154,
+          "left": 2023,
+          "top": -163,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "97836c10-db65-4da7-82c3-9c4421f1aeeb",
           "customInputs": [],
           "customOutputs": [],
@@ -5409,8 +5641,8 @@
           "type": "SetVariableActionComponent",
           "left": 546,
           "top": -54,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "6a128852-162e-4c82-db51-a5adcdcc6582",
           "customInputs": [],
           "customOutputs": [],
@@ -5421,8 +5653,8 @@
           "type": "SetVariableActionComponent",
           "left": 355,
           "top": -54,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "24454c5e-e13e-4966-9669-56f13b7ef801",
           "customInputs": [],
           "customOutputs": [],
@@ -5431,10 +5663,10 @@
         },
         {
           "type": "SerialWrite",
-          "left": 1411,
+          "left": 1434,
           "top": -54,
-          "width": 204,
-          "height": 116,
+          "width": 182,
+          "height": 92,
           "wireID": "18fb6d37-7242-4e94-9804-3d166afadd4e",
           "customInputs": [],
           "customOutputs": [],
@@ -5443,10 +5675,10 @@
         },
         {
           "type": "Regexp",
-          "left": 1836,
-          "top": -56,
-          "width": 170,
-          "height": 83,
+          "left": 2004,
+          "top": -55,
+          "width": 153,
+          "height": 73,
           "wireID": "309b5ce0-a9b1-4582-c8ab-c6a451daa241",
           "customInputs": [
             {
@@ -5460,20 +5692,20 @@
         },
         {
           "type": "EndActionComponent",
-          "left": 2895,
-          "top": -56,
+          "left": 3057,
+          "top": -68,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "08f66751-461b-4538-d616-9be71325eafe",
           "customInputs": [],
           "customOutputs": []
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 2603,
-          "top": -56,
-          "width": 253,
-          "height": 62,
+          "left": 2765,
+          "top": -68,
+          "width": 231,
+          "height": 58,
           "wireID": "15863dfb-2950-4081-abe6-c98f459534f4",
           "customInputs": [],
           "customOutputs": [],
@@ -5482,15 +5714,15 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 2041,
-          "top": -141,
-          "width": 169,
-          "height": 62,
+          "left": 2203,
+          "top": -153,
+          "width": 154,
+          "height": 58,
           "wireID": "94a7fff6-515d-4c91-a428-38977583c0cc",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
@@ -5499,10 +5731,10 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 2603,
-          "top": 15,
-          "width": 240,
-          "height": 62,
+          "left": 2765,
+          "top": 3,
+          "width": 218,
+          "height": 58,
           "wireID": "3c8098a6-ccba-49bd-9be0-428ffcc1b8df",
           "customInputs": [],
           "customOutputs": [],
@@ -5511,10 +5743,10 @@
         },
         {
           "type": "IsTrueActionComponent",
-          "left": 2472,
-          "top": -54,
+          "left": 2634,
+          "top": -66,
           "width": 87,
-          "height": 83,
+          "height": 73,
           "wireID": "e0ae3114-b9a4-4541-c6ce-5aba82aec966",
           "customInputs": [],
           "customOutputs": [],
@@ -5522,10 +5754,10 @@
         },
         {
           "type": "SerialDisconnect",
-          "left": 2244,
-          "top": -54,
-          "width": 152,
-          "height": 62,
+          "left": 2406,
+          "top": -66,
+          "width": 143,
+          "height": 53,
           "wireID": "7c55468c-2db7-43b6-ed0a-41ee04d51875",
           "customInputs": [],
           "customOutputs": [],
@@ -5536,7 +5768,7 @@
           "left": 1340,
           "top": 216,
           "width": 435,
-          "height": 78,
+          "height": 69,
           "wireID": "37b1c214-72ee-43ab-e538-d72984e04465",
           "customInputs": [],
           "customOutputs": [],
@@ -5546,8 +5778,8 @@
           "type": "SetVariableActionComponent",
           "left": 1379,
           "top": 116,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "a1060b31-0316-4007-c2e3-dad8878ef671",
           "customInputs": [],
           "customOutputs": [],
@@ -5558,8 +5790,8 @@
           "type": "SetVariableActionComponent",
           "left": 1632,
           "top": 116,
-          "width": 408,
-          "height": 62,
+          "width": 372,
+          "height": 58,
           "wireID": "45c531a8-48c5-47bd-9f2d-3c7e7f3ac50f",
           "customInputs": [],
           "customOutputs": [],
@@ -5570,8 +5802,8 @@
           "type": "IsTrueActionComponent",
           "left": 2085,
           "top": 116,
-          "width": 269,
-          "height": 83,
+          "width": 243,
+          "height": 73,
           "wireID": "601ff873-a0df-4081-9c17-a16358be4060",
           "customInputs": [],
           "customOutputs": [],
@@ -5582,7 +5814,7 @@
           "left": 1886,
           "top": 232,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "ef4effd2-1634-4076-fa4f-8d62a9b2bc7c",
           "customInputs": [],
           "customOutputs": [],
@@ -5592,8 +5824,8 @@
           "type": "SetVariableActionComponent",
           "left": 2396,
           "top": 116,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "dce3de20-e0a6-46c6-9b2a-08c60c5457bf",
           "customInputs": [],
           "customOutputs": [],
@@ -5602,15 +5834,38 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 2244,
-          "top": -141,
-          "width": 139,
-          "height": 62,
+          "left": 2406,
+          "top": -153,
+          "width": 126,
+          "height": 58,
           "wireID": "60c7f9a7-90ef-47be-d733-7c4795fb1dfa",
           "customInputs": [],
           "customOutputs": [],
           "variable": "finished",
           "value": "true"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -320,
+          "top": -129,
+          "width": 87,
+          "height": 25,
+          "wireID": "3c0eec13-7b25-4a89-eaf5-cdc6e7631788",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -170,
+          "top": -129,
+          "width": 87,
+          "height": 25,
+          "wireID": "8cc27e2a-ce26-40e5-aa6b-73fa7463c8c9",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -5669,22 +5924,10 @@
           "input": "@seqin"
         },
         {
-          "source": "18fb6d37-7242-4e94-9804-3d166afadd4e",
-          "output": "@seqout",
-          "target": "9a713ba5-4510-42fb-e4f5-e1b8e943c806",
-          "input": "@seqin"
-        },
-        {
           "source": "9a713ba5-4510-42fb-e4f5-e1b8e943c806",
           "output": "data",
           "target": "309b5ce0-a9b1-4582-c8ab-c6a451daa241",
           "input": "data"
-        },
-        {
-          "source": "9a713ba5-4510-42fb-e4f5-e1b8e943c806",
-          "output": "@seqout",
-          "target": "309b5ce0-a9b1-4582-c8ab-c6a451daa241",
-          "input": "@seqin"
         },
         {
           "source": "309b5ce0-a9b1-4582-c8ab-c6a451daa241",
@@ -5769,6 +6012,30 @@
           "output": "@seqout",
           "target": "e0ae3114-b9a4-4541-c6ce-5aba82aec966",
           "input": "@seqin"
+        },
+        {
+          "source": "3c0eec13-7b25-4a89-eaf5-cdc6e7631788",
+          "output": "@seqout",
+          "target": "8cc27e2a-ce26-40e5-aa6b-73fa7463c8c9",
+          "input": "@seqin"
+        },
+        {
+          "source": "18fb6d37-7242-4e94-9804-3d166afadd4e",
+          "output": "@seqout",
+          "target": "9a713ba5-4510-42fb-e4f5-e1b8e943c806",
+          "input": "@seqin"
+        },
+        {
+          "source": "9a713ba5-4510-42fb-e4f5-e1b8e943c806",
+          "output": "data",
+          "target": "309b5ce0-a9b1-4582-c8ab-c6a451daa241",
+          "input": "@seqin"
+        },
+        {
+          "source": "309b5ce0-a9b1-4582-c8ab-c6a451daa241",
+          "output": "match",
+          "target": "309b5ce0-a9b1-4582-c8ab-c6a451daa241",
+          "input": "next"
         }
       ],
       "localVariables": [
@@ -5780,7 +6047,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         },
@@ -5792,7 +6059,7 @@
         },
         {
           "name": "match",
-          "type": "any",
+          "type": "array:string",
           "defaultValue": "null",
           "persistent": false
         },
@@ -5818,8 +6085,8 @@
           "type": "ExecuteCommand",
           "left": 956,
           "top": -77,
-          "width": 396,
-          "height": 170,
+          "width": 359,
+          "height": 131,
           "wireID": "38929f79-5e0c-49e0-a9d1-85b799e12a30",
           "customInputs": [],
           "customOutputs": [],
@@ -5831,7 +6098,7 @@
           "left": -227,
           "top": -37,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "bd00625a-ea3b-43ea-ebfa-45934e25d5ab",
           "customInputs": [],
           "customOutputs": [],
@@ -5843,7 +6110,7 @@
           "left": -227,
           "top": -86,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "2a06f1db-318e-443f-ea24-03da7d022343",
           "customInputs": [],
           "customOutputs": []
@@ -5852,8 +6119,8 @@
           "type": "SetVariableActionComponent",
           "left": 624,
           "top": -77,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "40002d2f-901c-487e-c9d8-bffb6fe13e67",
           "customInputs": [],
           "customOutputs": [],
@@ -5864,8 +6131,8 @@
           "type": "SetVariableActionComponent",
           "left": 118,
           "top": -77,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "437dbfe0-b3ea-4093-a1ba-4c9293260711",
           "customInputs": [],
           "customOutputs": [],
@@ -5876,8 +6143,8 @@
           "type": "SetVariableActionComponent",
           "left": 439,
           "top": -77,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "cbe7ac28-3c74-4e02-c0cd-4d577dc2a6d2",
           "customInputs": [],
           "customOutputs": [],
@@ -5888,13 +6155,13 @@
           "type": "SetVariableActionComponent",
           "left": -97,
           "top": -77,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "0bd70d71-6511-47bf-8cbe-7b7cb6c8def7",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -5906,7 +6173,7 @@
           "left": 439,
           "top": -160,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "d7c2aaef-cf49-4ab6-8ce6-f81d870ad528",
           "customInputs": [],
           "customOutputs": [],
@@ -5917,7 +6184,7 @@
           "left": 1527,
           "top": -224,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "3c113348-a024-46e0-c800-e264957750c2",
           "customInputs": [],
           "customOutputs": [],
@@ -5929,7 +6196,7 @@
           "left": 1550,
           "top": -175,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "ab6f9729-fa44-45b6-ddc9-0375a89ac031",
           "customInputs": [],
           "customOutputs": [],
@@ -5940,8 +6207,8 @@
           "type": "Regexp",
           "left": 1564,
           "top": 31,
-          "width": 244,
-          "height": 83,
+          "width": 221,
+          "height": 73,
           "wireID": "05237948-a3a1-4184-fa28-4f93e6b6b131",
           "customInputs": [
             {
@@ -5957,13 +6224,13 @@
           "type": "SetVariableActionComponent",
           "left": 1736,
           "top": 201,
-          "width": 243,
-          "height": 62,
+          "width": 222,
+          "height": 58,
           "wireID": "3989c51e-5317-4699-a109-279efe476ef5",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
@@ -5974,8 +6241,8 @@
           "type": "IsTrueActionComponent",
           "left": 1912,
           "top": -77,
-          "width": 254,
-          "height": 83,
+          "width": 230,
+          "height": 73,
           "wireID": "4dc188bb-88ef-432e-e436-846802b7a127",
           "customInputs": [
             {
@@ -5991,7 +6258,7 @@
           "left": 1822,
           "top": -160,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "e329fcee-d303-4bf4-c10d-b8062b31d1f7",
           "customInputs": [],
           "customOutputs": [],
@@ -6002,7 +6269,7 @@
           "left": 2568,
           "top": -83,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "ed4c600c-58be-4c3c-ea8d-8ea9e81c3bba",
           "customInputs": [],
           "customOutputs": []
@@ -6011,8 +6278,8 @@
           "type": "SetVariableActionComponent",
           "left": 2257,
           "top": -83,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "d6d7fa44-1ea2-4083-95b1-4f421408bce9",
           "customInputs": [],
           "customOutputs": [],
@@ -6023,13 +6290,36 @@
           "type": "SetVariableActionComponent",
           "left": 2257,
           "top": -5,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "2de0e6a3-036c-41b1-d04e-7641e8592cbd",
           "customInputs": [],
           "customOutputs": [],
           "variable": "step.status",
           "value": "StepStatus.Error"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -217,
+          "top": -150,
+          "width": 87,
+          "height": 25,
+          "wireID": "eca090ca-bc62-4426-f06a-8097105bf294",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -67,
+          "top": -150,
+          "width": 87,
+          "height": 25,
+          "wireID": "a66f6451-b0a3-47be-fc64-f0c2875e826d",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -6140,6 +6430,12 @@
           "output": "finished",
           "target": "4dc188bb-88ef-432e-e436-846802b7a127",
           "input": "result"
+        },
+        {
+          "source": "eca090ca-bc62-4426-f06a-8097105bf294",
+          "output": "@seqout",
+          "target": "a66f6451-b0a3-47be-fc64-f0c2875e826d",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -6151,7 +6447,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         },
@@ -6163,7 +6459,7 @@
         },
         {
           "name": "match",
-          "type": "any",
+          "type": "array:string",
           "defaultValue": "null",
           "persistent": false
         },
@@ -6190,7 +6486,7 @@
           "left": -386,
           "top": -67,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "bd00625a-ea3b-43ea-ebfa-45934e25d5ab",
           "customInputs": [],
           "customOutputs": [],
@@ -6202,7 +6498,7 @@
           "left": -386,
           "top": -116,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "2a06f1db-318e-443f-ea24-03da7d022343",
           "customInputs": [],
           "customOutputs": []
@@ -6211,8 +6507,8 @@
           "type": "SetVariableActionComponent",
           "left": 357,
           "top": -108,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "40002d2f-901c-487e-c9d8-bffb6fe13e67",
           "customInputs": [],
           "customOutputs": [],
@@ -6223,8 +6519,8 @@
           "type": "SetVariableActionComponent",
           "left": -52,
           "top": -107,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "437dbfe0-b3ea-4093-a1ba-4c9293260711",
           "customInputs": [],
           "customOutputs": [],
@@ -6235,8 +6531,8 @@
           "type": "SetVariableActionComponent",
           "left": 178,
           "top": -108,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "cbe7ac28-3c74-4e02-c0cd-4d577dc2a6d2",
           "customInputs": [],
           "customOutputs": [],
@@ -6247,13 +6543,13 @@
           "type": "SetVariableActionComponent",
           "left": -256,
           "top": -107,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "0bd70d71-6511-47bf-8cbe-7b7cb6c8def7",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -6265,7 +6561,7 @@
           "left": 280,
           "top": -190,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "d7c2aaef-cf49-4ab6-8ce6-f81d870ad528",
           "customInputs": [],
           "customOutputs": [],
@@ -6273,10 +6569,10 @@
         },
         {
           "type": "SerialConnect",
-          "left": 1258,
-          "top": -108,
-          "width": 135,
-          "height": 62,
+          "left": 1298,
+          "top": -107,
+          "width": 128,
+          "height": 53,
           "wireID": "aaecf13d-1fe3-4732-ec06-e36a1dbb880d",
           "customInputs": [],
           "customOutputs": [],
@@ -6286,20 +6582,20 @@
           "type": "SetVariableActionComponent",
           "left": 894,
           "top": -108,
-          "width": 327,
-          "height": 170,
+          "width": 378,
+          "height": 131,
           "wireID": "c4722d75-ca6d-4d24-e4b1-ca5a3f59739e",
           "customInputs": [],
           "customOutputs": [],
           "variable": "connection",
-          "value": "{\n  port: device.serialPortPath,\n  baudRate: 115200,\n  dataBits: 8,\n  stopBits: 1,\n  parity: \"none\"\n}"
+          "value": "Flow.makeValue(\"object:SerialConnection\", {\n  port: device.serialPortPath,\n  baudRate: 115200,\n  dataBits: 8,\n  stopBits: 1,\n  parity: \"none\"\n})"
         },
         {
           "type": "SerialRead",
           "left": 1819,
           "top": -108,
-          "width": 114,
-          "height": 61,
+          "width": 109,
+          "height": 54,
           "wireID": "ac31d540-7a96-46fe-cd95-7c1ba8e20172",
           "customInputs": [],
           "customOutputs": [],
@@ -6310,7 +6606,7 @@
           "left": 2024,
           "top": 12,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "437ae172-5596-4eaf-86ff-5544e24e7ed2",
           "customInputs": [],
           "customOutputs": [],
@@ -6321,8 +6617,8 @@
           "type": "Regexp",
           "left": 2024,
           "top": -108,
-          "width": 823,
-          "height": 83,
+          "width": 812,
+          "height": 73,
           "wireID": "60a96352-0e58-45aa-9e37-ce05694e20c0",
           "customInputs": [
             {
@@ -6331,7 +6627,7 @@
             }
           ],
           "customOutputs": [],
-          "pattern": "\"DAC OK|ADC OK|FLASH OK|RTC OK|EDID OK|EDID EEPROM:\\d+ CRC=\\d+ OK|SD OK|BTN OK|all_ok=4|all_ok=5|all_ok=7\"",
+          "pattern": "\"DAC OK|ADC OK|FLASH OK|RTC OK|EDID OK|EDID EEPROM:\\d+ CRC=\\d+ OK|SD OK|SD: HC OK|BTN OK|all_ok=4|all_ok=5|all_ok=7\"",
           "data": "data"
         },
         {
@@ -6339,7 +6635,7 @@
           "left": 4333,
           "top": -65,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "35578f06-9ccc-4bbb-8539-a7ef32a39510",
           "customInputs": [],
           "customOutputs": []
@@ -6348,8 +6644,8 @@
           "type": "SetVariableActionComponent",
           "left": 3996,
           "top": -107,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "91797699-609e-4945-ca13-041a666016c8",
           "customInputs": [],
           "customOutputs": [],
@@ -6360,8 +6656,8 @@
           "type": "SetVariableActionComponent",
           "left": 3996,
           "top": -36,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "e1f0401e-0ec0-4919-d481-5f8f04e1ece6",
           "customInputs": [],
           "customOutputs": [],
@@ -6372,8 +6668,8 @@
           "type": "IsTrueActionComponent",
           "left": 3795,
           "top": -108,
-          "width": 141,
-          "height": 83,
+          "width": 126,
+          "height": 73,
           "wireID": "704845d4-c1eb-44a7-c267-6f8d2b0ebc90",
           "customInputs": [],
           "customOutputs": [],
@@ -6383,8 +6679,8 @@
           "type": "SerialDisconnect",
           "left": 3592,
           "top": -108,
-          "width": 152,
-          "height": 62,
+          "width": 143,
+          "height": 53,
           "wireID": "da8aa49c-661d-467c-88f3-cd269ab8be28",
           "customInputs": [],
           "customOutputs": [],
@@ -6394,8 +6690,8 @@
           "type": "SetVariableActionComponent",
           "left": 668,
           "top": -108,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "b0a9f268-305d-4856-cde3-de450c400500",
           "customInputs": [],
           "customOutputs": [],
@@ -6406,13 +6702,13 @@
           "type": "SwitchActionComponent",
           "left": 2206,
           "top": -658,
-          "width": 378,
-          "height": 260,
+          "width": 412,
+          "height": 225,
           "wireID": "c3a3475d-73ea-4f7c-e35c-11686f60c1ec",
           "customInputs": [
             {
               "name": "match",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
@@ -6442,7 +6738,7 @@
               "outputName": "BTN_OK"
             },
             {
-              "condition": "match[0] == \"SD OK\"",
+              "condition": "match[0] == \"SD OK\" || match[0] == \"SD: HC OK\"",
               "outputName": "SD_OK"
             },
             {
@@ -6463,8 +6759,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -1025,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "5b2d2bda-c96a-4cac-abb9-7caafa58cdd9",
           "customInputs": [],
           "customOutputs": [],
@@ -6475,8 +6771,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -946,
-          "width": 179,
-          "height": 62,
+          "width": 163,
+          "height": 58,
           "wireID": "90387b99-c3bd-416e-d69d-e7f1dac1bb93",
           "customInputs": [],
           "customOutputs": [],
@@ -6487,8 +6783,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -869,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "bf4b51ff-f6cf-4e57-c27d-7f9f62b5113e",
           "customInputs": [],
           "customOutputs": [],
@@ -6499,8 +6795,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -791,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "dce11924-8fe1-4bc2-de73-1ea7f8b49b62",
           "customInputs": [],
           "customOutputs": [],
@@ -6511,8 +6807,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -564,
-          "width": 173,
-          "height": 62,
+          "width": 157,
+          "height": 58,
           "wireID": "dcc59159-7823-432a-9c34-aa9637f44a87",
           "customInputs": [],
           "customOutputs": [],
@@ -6523,8 +6819,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -486,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "e67e3522-f634-42cb-d179-12940e5fa627",
           "customInputs": [],
           "customOutputs": [],
@@ -6535,8 +6831,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -404,
-          "width": 193,
-          "height": 62,
+          "width": 175,
+          "height": 58,
           "wireID": "956a0423-4a55-4e9a-a859-ed990cdf298e",
           "customInputs": [],
           "customOutputs": [],
@@ -6547,8 +6843,8 @@
           "type": "SetVariableActionComponent",
           "left": 4097,
           "top": -312,
-          "width": 173,
-          "height": 62,
+          "width": 157,
+          "height": 58,
           "wireID": "0a5d35a4-c484-4ee5-f1b6-6719e5ff36ea",
           "customInputs": [],
           "customOutputs": [],
@@ -6559,8 +6855,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -312,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "93876423-631c-42fc-8bc5-49d936cc3dd8",
           "customInputs": [],
           "customOutputs": [],
@@ -6571,8 +6867,8 @@
           "type": "SetVariableActionComponent",
           "left": 2907,
           "top": -312,
-          "width": 179,
-          "height": 62,
+          "width": 163,
+          "height": 58,
           "wireID": "deb21027-b228-4c30-e856-13a68785bc06",
           "customInputs": [],
           "customOutputs": [],
@@ -6583,8 +6879,8 @@
           "type": "SetVariableActionComponent",
           "left": 3107,
           "top": -312,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "f9dd56c1-a809-4889-e55f-dfb3b5bbcc99",
           "customInputs": [],
           "customOutputs": [],
@@ -6595,8 +6891,8 @@
           "type": "SetVariableActionComponent",
           "left": 3295,
           "top": -312,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "46b5b7e8-67eb-4318-d9eb-1ab2725e754c",
           "customInputs": [],
           "customOutputs": [],
@@ -6607,8 +6903,8 @@
           "type": "SetVariableActionComponent",
           "left": 3483,
           "top": -312,
-          "width": 173,
-          "height": 62,
+          "width": 157,
+          "height": 58,
           "wireID": "c23c04cd-5df8-4282-e499-2861fe0675b9",
           "customInputs": [],
           "customOutputs": [],
@@ -6619,8 +6915,8 @@
           "type": "SetVariableActionComponent",
           "left": 3682,
           "top": -312,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "ed70e750-c616-4395-e34d-fed6bc46b1b8",
           "customInputs": [],
           "customOutputs": [],
@@ -6631,8 +6927,8 @@
           "type": "SetVariableActionComponent",
           "left": 3876,
           "top": -312,
-          "width": 193,
-          "height": 62,
+          "width": 175,
+          "height": 58,
           "wireID": "03fe01b3-aa0c-4bcf-fc53-598256d2761d",
           "customInputs": [],
           "customOutputs": [],
@@ -6643,8 +6939,8 @@
           "type": "IsTrueActionComponent",
           "left": 1726,
           "top": -264,
-          "width": 188,
-          "height": 83,
+          "width": 169,
+          "height": 73,
           "wireID": "61eeee71-c270-42f9-8e40-166b1322d3ad",
           "customInputs": [],
           "customOutputs": [],
@@ -6654,8 +6950,8 @@
           "type": "IsTrueActionComponent",
           "left": 3146,
           "top": -107,
-          "width": 189,
-          "height": 83,
+          "width": 169,
+          "height": 73,
           "wireID": "1522fca9-2573-42f3-ab85-a18b8561a6b3",
           "customInputs": [],
           "customOutputs": [],
@@ -6665,8 +6961,8 @@
           "type": "SetVariableActionComponent",
           "left": 3373,
           "top": -108,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "07b958ad-3301-40a8-b162-1ac53dcfa412",
           "customInputs": [],
           "customOutputs": [],
@@ -6675,10 +6971,10 @@
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 1441,
+          "left": 1465,
           "top": -107,
-          "width": 334,
-          "height": 62,
+          "width": 304,
+          "height": 58,
           "wireID": "c7aa84e8-90cb-4f9c-e430-d87951bd751c",
           "customInputs": [],
           "customOutputs": [],
@@ -6689,8 +6985,8 @@
           "type": "IsTrueActionComponent",
           "left": 1997,
           "top": -264,
-          "width": 303,
-          "height": 83,
+          "width": 274,
+          "height": 73,
           "wireID": "eda8de15-c702-415d-b473-4a29d5216452",
           "customInputs": [],
           "customOutputs": [],
@@ -6700,8 +6996,8 @@
           "type": "WatchVariableActionComponent",
           "left": 1988,
           "top": 105,
-          "width": 326,
-          "height": 62,
+          "width": 296,
+          "height": 54,
           "wireID": "851d11da-e398-4089-f989-618e6bd72829",
           "customInputs": [],
           "customOutputs": [],
@@ -6711,8 +7007,8 @@
           "type": "IsTrueActionComponent",
           "left": 2371,
           "top": 105,
-          "width": 296,
-          "height": 83,
+          "width": 268,
+          "height": 73,
           "wireID": "63f024df-2bcc-451a-862a-fc8baaa4d53c",
           "customInputs": [],
           "customOutputs": [],
@@ -6722,8 +7018,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -720,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "df48f5a7-17ca-4e4b-986f-b55b6d14db3a",
           "customInputs": [],
           "customOutputs": [],
@@ -6734,8 +7030,8 @@
           "type": "SetVariableActionComponent",
           "left": 2907,
           "top": -720,
-          "width": 179,
-          "height": 62,
+          "width": 163,
+          "height": 58,
           "wireID": "89723be2-6463-4239-9915-0997fd89ca17",
           "customInputs": [],
           "customOutputs": [],
@@ -6746,8 +7042,8 @@
           "type": "SetVariableActionComponent",
           "left": 3107,
           "top": -720,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "64c75f03-0ee1-42b8-a3d5-2236f62df70a",
           "customInputs": [],
           "customOutputs": [],
@@ -6758,8 +7054,8 @@
           "type": "SetVariableActionComponent",
           "left": 3295,
           "top": -720,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "94fbea60-3f40-4ae4-b0e6-a8864bcc24c9",
           "customInputs": [],
           "customOutputs": [],
@@ -6770,8 +7066,8 @@
           "type": "SetVariableActionComponent",
           "left": 2714,
           "top": -640,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "300de835-dd12-45d1-8cea-c830f513d2b8",
           "customInputs": [],
           "customOutputs": [],
@@ -6782,8 +7078,8 @@
           "type": "SetVariableActionComponent",
           "left": 2907,
           "top": -640,
-          "width": 179,
-          "height": 62,
+          "width": 163,
+          "height": 58,
           "wireID": "49e7c2a9-c56c-43be-94a0-cd7cc3605672",
           "customInputs": [],
           "customOutputs": [],
@@ -6794,8 +7090,8 @@
           "type": "SetVariableActionComponent",
           "left": 3107,
           "top": -640,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "91e93dd5-2436-41c5-feba-2b7bacf725d5",
           "customInputs": [],
           "customOutputs": [],
@@ -6806,8 +7102,8 @@
           "type": "SetVariableActionComponent",
           "left": 3295,
           "top": -640,
-          "width": 166,
-          "height": 62,
+          "width": 151,
+          "height": 58,
           "wireID": "1ae00ccc-f491-405b-ccee-c030b312dd17",
           "customInputs": [],
           "customOutputs": [],
@@ -6818,13 +7114,36 @@
           "type": "SetVariableActionComponent",
           "left": 3489,
           "top": -640,
-          "width": 193,
-          "height": 62,
+          "width": 175,
+          "height": 58,
           "wireID": "ed178db4-a936-49c2-c528-12af0b4a706f",
           "customInputs": [],
           "customOutputs": [],
           "variable": "selfTest.SD_CARD",
           "value": "true"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -396,
+          "top": -203,
+          "width": 87,
+          "height": 25,
+          "wireID": "383776c6-6f4e-407b-ee4f-c5be904e3130",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -246,
+          "top": -203,
+          "width": 87,
+          "height": 25,
+          "wireID": "0958a8ca-6366-41d2-c765-16c0e44a5665",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -6875,12 +7194,6 @@
           "output": "data",
           "target": "60a96352-0e58-45aa-9e37-ce05694e20c0",
           "input": "data"
-        },
-        {
-          "source": "ac31d540-7a96-46fe-cd95-7c1ba8e20172",
-          "output": "@seqout",
-          "target": "60a96352-0e58-45aa-9e37-ce05694e20c0",
-          "input": "@seqin"
         },
         {
           "source": "60a96352-0e58-45aa-9e37-ce05694e20c0",
@@ -6987,12 +7300,6 @@
         {
           "source": "0a5d35a4-c484-4ee5-f1b6-6719e5ff36ea",
           "output": "@seqout",
-          "target": "1522fca9-2573-42f3-ab85-a18b8561a6b3",
-          "input": "@seqin"
-        },
-        {
-          "source": "60a96352-0e58-45aa-9e37-ce05694e20c0",
-          "output": "done",
           "target": "1522fca9-2573-42f3-ab85-a18b8561a6b3",
           "input": "@seqin"
         },
@@ -7151,6 +7458,18 @@
           "output": "@seqout",
           "target": "ed178db4-a936-49c2-c528-12af0b4a706f",
           "input": "@seqin"
+        },
+        {
+          "source": "383776c6-6f4e-407b-ee4f-c5be904e3130",
+          "output": "@seqout",
+          "target": "0958a8ca-6366-41d2-c765-16c0e44a5665",
+          "input": "@seqin"
+        },
+        {
+          "source": "ac31d540-7a96-46fe-cd95-7c1ba8e20172",
+          "output": "data",
+          "target": "60a96352-0e58-45aa-9e37-ce05694e20c0",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -7162,7 +7481,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         },
@@ -7189,7 +7508,7 @@
           "left": -1163,
           "top": -111,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "49b8b172-ffce-4856-954b-18a0aafecba2",
           "customInputs": [],
           "customOutputs": [],
@@ -7201,7 +7520,7 @@
           "left": -1163,
           "top": -160,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "6bab4bcd-6938-40d5-c6dd-4317cc42a230",
           "customInputs": [],
           "customOutputs": []
@@ -7210,8 +7529,8 @@
           "type": "SetVariableActionComponent",
           "left": -231,
           "top": -152,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "595799a2-b728-4518-fcc7-0a76f9ab4495",
           "customInputs": [],
           "customOutputs": [],
@@ -7222,8 +7541,8 @@
           "type": "SetVariableActionComponent",
           "left": -829,
           "top": -151,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "4852e73b-3396-436a-8e3d-78ff8ef9d815",
           "customInputs": [],
           "customOutputs": [],
@@ -7234,8 +7553,8 @@
           "type": "SetVariableActionComponent",
           "left": -580,
           "top": -152,
-          "width": 314,
-          "height": 62,
+          "width": 286,
+          "height": 58,
           "wireID": "ef4d413d-6935-4434-d5e2-8e6e846645e1",
           "customInputs": [],
           "customOutputs": [],
@@ -7246,13 +7565,13 @@
           "type": "SetVariableActionComponent",
           "left": -1033,
           "top": -151,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "5b170145-6ae1-499f-dbc7-46d8dda37587",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -7264,7 +7583,7 @@
           "left": 1083,
           "top": -111,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "06916cd6-0b1c-4410-fd3f-25103365412a",
           "customInputs": [],
           "customOutputs": []
@@ -7273,8 +7592,8 @@
           "type": "SetVariableActionComponent",
           "left": 578,
           "top": -151,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "afb6a026-8a9b-49c7-896a-32e403dda1cd",
           "customInputs": [],
           "customOutputs": [],
@@ -7285,8 +7604,8 @@
           "type": "SetVariableActionComponent",
           "left": 578,
           "top": -80,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "9e2ca0b1-9f91-41d9-ebb1-75b204d629eb",
           "customInputs": [],
           "customOutputs": [],
@@ -7297,8 +7616,8 @@
           "type": "SwitchActionComponent",
           "left": 115,
           "top": -151,
-          "width": 344,
-          "height": 106,
+          "width": 312,
+          "height": 92,
           "wireID": "f06da4f9-a239-4715-980c-469a3a4aa0ee",
           "customInputs": [],
           "customOutputs": [],
@@ -7322,11 +7641,34 @@
           "left": 256,
           "top": 94,
           "width": 87,
-          "height": 62,
+          "height": 53,
           "wireID": "2a9a68f8-d9e0-4174-9a09-f860bffd6995",
           "customInputs": [],
           "customOutputs": [],
           "milliseconds": "10"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -1163,
+          "top": -207,
+          "width": 87,
+          "height": 25,
+          "wireID": "010d5c6b-6ee6-487a-edbb-6e00b1e7a9e6",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -1013,
+          "top": -207,
+          "width": 87,
+          "height": 25,
+          "wireID": "bff0b6b3-d969-4f71-ddcd-47eb5fd214fd",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -7401,6 +7743,12 @@
           "output": "@seqout",
           "target": "06916cd6-0b1c-4410-fd3f-25103365412a",
           "input": "@seqin"
+        },
+        {
+          "source": "010d5c6b-6ee6-487a-edbb-6e00b1e7a9e6",
+          "output": "@seqout",
+          "target": "bff0b6b3-d969-4f71-ddcd-47eb5fd214fd",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -7412,7 +7760,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         }
@@ -7427,7 +7775,7 @@
           "left": -375,
           "top": -63,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "6c5a68d1-16f2-4142-8cdd-33d3d622292a",
           "customInputs": [],
           "customOutputs": [],
@@ -7439,7 +7787,7 @@
           "left": 2155,
           "top": -112,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "132e4c71-38e1-4d04-abbf-ec7c6f69b372",
           "customInputs": [],
           "customOutputs": []
@@ -7448,8 +7796,8 @@
           "type": "ExecuteCommand",
           "left": 788,
           "top": -103,
-          "width": 410,
-          "height": 170,
+          "width": 372,
+          "height": 131,
           "wireID": "385239a4-fc81-4288-c825-41e96776fcb3",
           "customInputs": [],
           "customOutputs": [],
@@ -7461,7 +7809,7 @@
           "left": 1331,
           "top": -215,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "f08298b1-dffe-4864-92d7-c7e14af69242",
           "customInputs": [],
           "customOutputs": [],
@@ -7473,7 +7821,7 @@
           "left": 1331,
           "top": -170,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "3b8a2cb3-7d45-4f51-9742-705f117c1761",
           "customInputs": [],
           "customOutputs": [],
@@ -7485,7 +7833,7 @@
           "left": -375,
           "top": -112,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "e8ef5b2b-e54e-47a2-bd37-7312e878f044",
           "customInputs": [],
           "customOutputs": []
@@ -7494,8 +7842,8 @@
           "type": "Regexp",
           "left": 1299,
           "top": 5,
-          "width": 244,
-          "height": 83,
+          "width": 221,
+          "height": 73,
           "wireID": "5516dec2-b3b8-4b94-8b29-3c1fe65752e8",
           "customInputs": [
             {
@@ -7511,13 +7859,13 @@
           "type": "SetVariableActionComponent",
           "left": 1424,
           "top": 182,
-          "width": 243,
-          "height": 62,
+          "width": 222,
+          "height": 58,
           "wireID": "d929f95d-c00f-4ac3-c1a0-5441f7101cfd",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:string"
             }
           ],
           "customOutputs": [],
@@ -7528,8 +7876,8 @@
           "type": "SetVariableActionComponent",
           "left": 476,
           "top": -103,
-          "width": 274,
-          "height": 62,
+          "width": 249,
+          "height": 58,
           "wireID": "fb35810c-ee82-4fdc-ceb5-f75f67133898",
           "customInputs": [],
           "customOutputs": [],
@@ -7540,8 +7888,8 @@
           "type": "IsTrueActionComponent",
           "left": 1559,
           "top": -103,
-          "width": 254,
-          "height": 83,
+          "width": 230,
+          "height": 73,
           "wireID": "e9b7c4f6-796a-46ea-a332-20299b4fa0b1",
           "customInputs": [
             {
@@ -7556,8 +7904,8 @@
           "type": "SetVariableActionComponent",
           "left": 1844,
           "top": -112,
-          "width": 253,
-          "height": 62,
+          "width": 231,
+          "height": 58,
           "wireID": "a121cbd7-3940-4ee3-c8aa-d5cc3352f8cf",
           "customInputs": [],
           "customOutputs": [],
@@ -7568,8 +7916,8 @@
           "type": "SetVariableActionComponent",
           "left": 1844,
           "top": -34,
-          "width": 240,
-          "height": 62,
+          "width": 218,
+          "height": 58,
           "wireID": "e9cb6f83-515f-44dd-c0db-aefca5883fb3",
           "customInputs": [],
           "customOutputs": [],
@@ -7580,8 +7928,8 @@
           "type": "SetVariableActionComponent",
           "left": -7,
           "top": -103,
-          "width": 199,
-          "height": 62,
+          "width": 181,
+          "height": 58,
           "wireID": "08276fca-1e0a-445c-d00c-c1414db805a2",
           "customInputs": [],
           "customOutputs": [],
@@ -7592,8 +7940,8 @@
           "type": "SetVariableActionComponent",
           "left": 291,
           "top": -103,
-          "width": 152,
-          "height": 62,
+          "width": 138,
+          "height": 58,
           "wireID": "ef296883-beb6-4197-efe3-597ea15984c9",
           "customInputs": [],
           "customOutputs": [],
@@ -7604,13 +7952,13 @@
           "type": "SetVariableActionComponent",
           "left": -245,
           "top": -103,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "e757ed65-01b1-408d-e8a1-3535e549880d",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -7622,7 +7970,7 @@
           "left": 1543,
           "top": -186,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "4dabf28b-71b7-4c7c-a13a-2d76688df411",
           "customInputs": [],
           "customOutputs": [],
@@ -7633,11 +7981,34 @@
           "left": 291,
           "top": -186,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "5777c40d-47c7-4f88-8178-75397918de92",
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->Start with progress 0%</div>"
+        },
+        {
+          "type": "InputActionComponent",
+          "left": -375,
+          "top": -170,
+          "width": 87,
+          "height": 25,
+          "wireID": "c139b27e-c9a1-4e9b-ad6a-22a5bfe597e0",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "action",
+          "inputType": "string"
+        },
+        {
+          "type": "NoopActionComponent",
+          "left": -225,
+          "top": -170,
+          "width": 87,
+          "height": 25,
+          "wireID": "35cb52e1-1d1a-47fb-ae32-744c016d37ed",
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "ignore"
         }
       ],
       "connectionLines": [
@@ -7748,6 +8119,12 @@
           "output": "finished",
           "target": "e9b7c4f6-796a-46ea-a332-20299b4fa0b1",
           "input": "result"
+        },
+        {
+          "source": "c139b27e-c9a1-4e9b-ad6a-22a5bfe597e0",
+          "output": "@seqout",
+          "target": "35cb52e1-1d1a-47fb-ae32-744c016d37ed",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -7759,7 +8136,7 @@
         },
         {
           "name": "step",
-          "type": "struct:StepStatus",
+          "type": "struct:StepStatusStruct",
           "defaultValue": "null",
           "persistent": false
         }
@@ -7774,7 +8151,7 @@
           "left": 1318,
           "top": 391,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "6a1508a1-ac0e-4cdc-e21b-40cf18085030",
           "customInputs": [],
           "customOutputs": []
@@ -7784,7 +8161,7 @@
           "left": -573,
           "top": -12,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "171575fc-8624-4642-8ee6-7e84778fe98c",
           "customInputs": [],
           "customOutputs": [],
@@ -7795,104 +8172,110 @@
           "type": "eez-flow-ext-postgres/Postgres",
           "left": -258,
           "top": -12,
-          "width": 525,
-          "height": 62,
+          "width": 477,
+          "height": 54,
           "wireID": "6c12c3e5-b93e-4862-f021-8cd10067ebb9",
           "customInputs": [],
-          "customOutputs": [],
+          "customOutputs": [
+            {
+              "name": "result",
+              "type": "array:struct:DevicesTable"
+            }
+          ],
           "connection": "db_connection",
-          "sql": "SELECT * FROM devices WHERE \"serialNumber\" = '{device.serialNumber}'"
+          "sql": "SELECT * FROM devices WHERE \"serialNumber\" = '{device.serialNumber}'",
+          "storeResultInto": "result"
         },
         {
           "type": "IsTrueActionComponent",
           "left": 168,
           "top": 102,
-          "width": 245,
-          "height": 83,
+          "width": 235,
+          "height": 73,
           "wireID": "45684e3a-0386-472e-fa9a-0114ec9fafb6",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
-          "value": "value.rows.length != 0"
+          "value": "Array.length(value) != 0"
         },
         {
           "type": "SetVariableActionComponent",
           "left": 546,
           "top": -225,
-          "width": 337,
-          "height": 62,
+          "width": 277,
+          "height": 58,
           "wireID": "ca022600-fbe0-463c-c582-28c35b032ddd",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
           "variable": "device.version",
-          "value": "value.rows[0].version"
+          "value": "value[0].version"
         },
         {
           "type": "SetVariableActionComponent",
           "left": 546,
           "top": -116,
-          "width": 391,
-          "height": 62,
+          "width": 327,
+          "height": 58,
           "wireID": "c0503519-dccd-41d2-f09b-6bfc7550a3c0",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
           "variable": "device.currentStep",
-          "value": "value.rows[0].currentStep"
+          "value": "value[0].currentStep"
         },
         {
           "type": "SetVariableActionComponent",
           "left": 546,
           "top": -10,
-          "width": 425,
-          "height": 62,
+          "width": 358,
+          "height": 58,
           "wireID": "86ebdf39-cbbd-44d2-f406-5ec7c3962d54",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
           "variable": "device.stepStatus.status",
-          "value": "value.rows[0].stepStatus"
+          "value": "value[0].stepStatus"
         },
         {
           "type": "SetVariableActionComponent",
           "left": 546,
           "top": 83,
-          "width": 377,
-          "height": 62,
+          "width": 314,
+          "height": 58,
           "wireID": "570e6df0-b520-47d9-e2c2-c38c4a9cfee0",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
           "variable": "device.allTestsOK",
-          "value": "value.rows[0].allTestsOK"
+          "value": "value[0].allTestsOK"
         },
         {
           "type": "CallActionActionComponent",
           "left": 715,
           "top": 363,
-          "width": 153,
-          "height": 105,
+          "width": 143,
+          "height": 92,
           "wireID": "6acf97b0-a2e4-4dda-e665-f248e047123e",
           "customInputs": [],
           "customOutputs": [],
@@ -7902,13 +8285,13 @@
           "type": "SetVariableActionComponent",
           "left": 962,
           "top": 375,
-          "width": 229,
-          "height": 62,
+          "width": 210,
+          "height": 58,
           "wireID": "72532e2a-4fe0-4c03-f8fc-55fd270f3ee1",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "string"
             }
           ],
           "customOutputs": [],
@@ -7920,7 +8303,7 @@
           "left": 903,
           "top": 293,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "7409c12c-f563-4178-b42d-c705259b7004",
           "customInputs": [],
           "customOutputs": [],
@@ -7932,7 +8315,7 @@
           "left": 942,
           "top": 334,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "a30aa194-4aa3-4f2a-8fbb-c2fa4f63e767",
           "customInputs": [],
           "customOutputs": [],
@@ -7943,8 +8326,8 @@
           "type": "EvalExprActionComponent",
           "left": 557,
           "top": 363,
-          "width": 126,
-          "height": 62,
+          "width": 118,
+          "height": 54,
           "wireID": "233490cd-78fa-44d1-ea07-939e6f4290a1",
           "customInputs": [],
           "customOutputs": [],
@@ -7955,7 +8338,7 @@
           "left": 566,
           "top": 230,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "41b96eee-3a48-4291-e971-1e36a14d3c42",
           "customInputs": [],
           "customOutputs": [],
@@ -7966,7 +8349,7 @@
           "left": 546,
           "top": -380,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "387b120a-9c44-4b5b-8ec6-c2404977957d",
           "customInputs": [],
           "customOutputs": [],
@@ -7976,13 +8359,13 @@
           "type": "SetVariableActionComponent",
           "left": -458,
           "top": -12,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "ef75c953-cdce-49f9-c3d5-b5cba8da8787",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "struct:Device"
             }
           ],
           "customOutputs": [],
@@ -7993,8 +8376,8 @@
           "type": "ConstantActionComponent",
           "left": 546,
           "top": 549,
-          "width": 89,
-          "height": 61,
+          "width": 87,
+          "height": 54,
           "wireID": "720ecc48-f2ff-4706-b505-97585c74450e",
           "customInputs": [],
           "customOutputs": [],
@@ -8004,8 +8387,8 @@
           "type": "CallActionActionComponent",
           "left": 673,
           "top": 549,
-          "width": 155,
-          "height": 61,
+          "width": 139,
+          "height": 54,
           "wireID": "e68edd04-b9c9-4a94-d541-7e0bb0c21c84",
           "customInputs": [],
           "customOutputs": [],
@@ -8015,8 +8398,8 @@
           "type": "SetVariableActionComponent",
           "left": 870,
           "top": 549,
-          "width": 343,
-          "height": 62,
+          "width": 313,
+          "height": 58,
           "wireID": "a75f5cfa-60ea-4d65-aba2-9cb92005dbbd",
           "customInputs": [
             {
@@ -8033,7 +8416,7 @@
           "left": 546,
           "top": 482,
           "width": 435,
-          "height": 57,
+          "height": 56,
           "wireID": "bdb1b500-e067-4197-8a87-38f8595c23ea",
           "customInputs": [],
           "customOutputs": [],
@@ -8043,8 +8426,8 @@
           "type": "IsTrueActionComponent",
           "left": 971,
           "top": -116,
-          "width": 391,
-          "height": 83,
+          "width": 354,
+          "height": 73,
           "wireID": "5f691458-fa30-4908-e736-94c57af275e1",
           "customInputs": [],
           "customOutputs": [],
@@ -8054,8 +8437,8 @@
           "type": "SetVariableActionComponent",
           "left": 1412,
           "top": -116,
-          "width": 186,
-          "height": 62,
+          "width": 169,
+          "height": 58,
           "wireID": "0f3158ba-dfd8-4793-e639-4b0958b0f63c",
           "customInputs": [],
           "customOutputs": [],
@@ -8067,7 +8450,7 @@
           "left": 971,
           "top": -207,
           "width": 435,
-          "height": 78,
+          "height": 69,
           "wireID": "670a03cc-7bd4-47f4-db4a-76a8d69740bc",
           "customInputs": [],
           "customOutputs": [],
@@ -8077,18 +8460,18 @@
           "type": "SetVariableActionComponent",
           "left": 546,
           "top": -307,
-          "width": 445,
-          "height": 62,
+          "width": 376,
+          "height": 58,
           "wireID": "11778732-d719-4bd0-dddf-b32462eab8eb",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
           "variable": "device.oldSerialNumber",
-          "value": "value.rows[0].oldSerialNumber"
+          "value": "value[0].oldSerialNumber"
         }
       ],
       "connectionLines": [
@@ -8266,8 +8649,8 @@
           "type": "eez-flow-ext-postgres/Postgres",
           "left": -1111,
           "top": 40,
-          "width": 1139,
-          "height": 278,
+          "width": 1039,
+          "height": 209,
           "wireID": "ef0abaf1-6f64-4af4-f0dd-836638bbbd0f",
           "customInputs": [
             {
@@ -8275,33 +8658,39 @@
               "type": "string"
             }
           ],
-          "customOutputs": [],
+          "customOutputs": [
+            {
+              "name": "result",
+              "type": "array:struct:DevicesTable"
+            }
+          ],
           "connection": "db_connection",
-          "sql": "INSERT INTO devices(\"serialNumber\", \"oldSerialNumber\", \"version\", \"currentStep\", \"stepStatus\", \"allTestsOK\", \"addedBy\", \"createdAt\", \"updatedAt\") \nVALUES(\n  {serialNumber},\n  '{device.oldSerialNumber}',\n  '{device.version}',\n  {device.currentStep},\n  {device.stepStatus.status},\n  false,\n  current_user,\n  NOW(),\n  NOW()\n)\nRETURNING *"
+          "sql": "INSERT INTO devices(\"serialNumber\", \"oldSerialNumber\", \"version\", \"currentStep\", \"stepStatus\", \"allTestsOK\", \"addedBy\", \"createdAt\", \"updatedAt\") \nVALUES(\n  {serialNumber},\n  '{device.oldSerialNumber}',\n  '{device.version}',\n  {device.currentStep},\n  {device.stepStatus.status},\n  false,\n  current_user,\n  NOW(),\n  NOW()\n)\nRETURNING *",
+          "storeResultInto": "result"
         },
         {
           "type": "SetVariableActionComponent",
           "left": 71,
           "top": 40,
-          "width": 404,
-          "height": 62,
+          "width": 339,
+          "height": 58,
           "wireID": "4d004473-ab65-4a84-ee40-a37bac54c928",
           "customInputs": [
             {
               "name": "value",
-              "type": "any"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
           "variable": "device.serialNumber",
-          "value": "value.rows[0].serialNumber"
+          "value": "value[0].serialNumber"
         },
         {
           "type": "EvalExprActionComponent",
           "left": -1184,
           "top": -79,
-          "width": 1495,
-          "height": 62,
+          "width": 1364,
+          "height": 54,
           "wireID": "e6772598-0c4e-4b9e-859c-a574347cb9bc",
           "customInputs": [],
           "customOutputs": [],
@@ -8312,7 +8701,7 @@
           "left": -1604,
           "top": 133,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "f7f37086-0eed-4b8b-fc1e-4484cb6ba846",
           "customInputs": [],
           "customOutputs": [],
@@ -8323,8 +8712,8 @@
           "type": "SetVariableActionComponent",
           "left": -1468,
           "top": 133,
-          "width": 175,
-          "height": 62,
+          "width": 160,
+          "height": 58,
           "wireID": "a4bae675-23a3-4ebe-ffc4-1d9ead34a155",
           "customInputs": [
             {
@@ -8341,7 +8730,7 @@
           "left": 155,
           "top": 317,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "09bdf676-28ca-4260-ae1b-a32c8ab964b1",
           "customInputs": [],
           "customOutputs": []
@@ -8350,8 +8739,8 @@
           "type": "IsTrueActionComponent",
           "left": -1377,
           "top": 263,
-          "width": 155,
-          "height": 83,
+          "width": 139,
+          "height": 73,
           "wireID": "c99aaf8c-42ea-4a42-9d3c-2ba7ec51393e",
           "customInputs": [],
           "customOutputs": [],
@@ -8362,7 +8751,7 @@
           "left": -1570,
           "top": 234,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "bd0b16b8-7147-45d5-850f-d0ec11901806",
           "customInputs": [],
           "customOutputs": []
@@ -8430,7 +8819,7 @@
           "left": -396,
           "top": -134,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "2cad6570-0fe7-4965-e995-6525559a83b3",
           "customInputs": [],
           "customOutputs": [],
@@ -8442,7 +8831,7 @@
           "left": 499,
           "top": 45,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "56fe56b1-b885-4b78-a095-f626352c9b20",
           "customInputs": [],
           "customOutputs": []
@@ -8451,8 +8840,8 @@
           "type": "eez-flow-ext-postgres/Postgres",
           "left": 0,
           "top": -134,
-          "width": 426,
-          "height": 134,
+          "width": 388,
+          "height": 105,
           "wireID": "5c4542d8-a5b7-4181-fbd9-688b6adbb1e3",
           "customInputs": [
             {
@@ -8460,16 +8849,22 @@
               "type": "struct:Device"
             }
           ],
-          "customOutputs": [],
+          "customOutputs": [
+            {
+              "name": "result",
+              "type": "array:struct:DevicesTable"
+            }
+          ],
           "connection": "db_connection",
-          "sql": "UPDATE devices SET\n  \"currentStep\" = {device.currentStep},\n  \"stepStatus\" = {device.stepStatus.status},\n  \"allTestsOK\" = {device.allTestsOK}\nWHERE \"serialNumber\" = '{device.serialNumber}'"
+          "sql": "UPDATE devices SET\n  \"currentStep\" = {device.currentStep},\n  \"stepStatus\" = {device.stepStatus.status},\n  \"allTestsOK\" = {device.allTestsOK}\nWHERE \"serialNumber\" = '{device.serialNumber}'",
+          "storeResultInto": "result"
         },
         {
           "type": "IsTrueActionComponent",
           "left": -253,
           "top": -9,
-          "width": 155,
-          "height": 83,
+          "width": 139,
+          "height": 73,
           "wireID": "578f066c-91bb-4dbb-e36b-6809bb9fdd58",
           "customInputs": [],
           "customOutputs": [],
@@ -8480,12 +8875,12 @@
           "left": 499,
           "top": -134,
           "width": 87,
-          "height": 61,
+          "height": 54,
           "wireID": "35986504-4b2a-4c48-d045-ef8756e19818",
           "customInputs": [
             {
               "name": "value",
-              "type": "string"
+              "type": "array:struct:DevicesTable"
             }
           ],
           "customOutputs": [],
@@ -8541,7 +8936,7 @@
           "left": -409,
           "top": -150,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "2cad6570-0fe7-4965-e995-6525559a83b3",
           "customInputs": [],
           "customOutputs": [],
@@ -8553,7 +8948,7 @@
           "left": 385,
           "top": 255,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "56fe56b1-b885-4b78-a095-f626352c9b20",
           "customInputs": [],
           "customOutputs": []
@@ -8562,8 +8957,8 @@
           "type": "eez-flow-ext-postgres/Postgres",
           "left": 0,
           "top": -134,
-          "width": 312,
-          "height": 350,
+          "width": 283,
+          "height": 261,
           "wireID": "5c4542d8-a5b7-4181-fbd9-688b6adbb1e3",
           "customInputs": [
             {
@@ -8579,16 +8974,22 @@
               "type": "string"
             }
           ],
-          "customOutputs": [],
+          "customOutputs": [
+            {
+              "name": "result",
+              "type": "array:struct:TestsTable"
+            }
+          ],
           "connection": "db_connection",
-          "sql": "INSERT INTO tests(\n  \"serialNumber\",\n  \"currentStep\",\n  \"stepStatus\",\n  \"stdout\",\n  \"stderr\",\n  \"addedBy\",\n  \"createdAt\"\n) VALUES(\n  '{device.serialNumber}',\n  {device.currentStep},\n  {device.stepStatus.status},\n  '{stdout}',\n  '{stderr}',\n  current_user,\n  NOW()\n)"
+          "sql": "INSERT INTO tests(\n  \"serialNumber\",\n  \"currentStep\",\n  \"stepStatus\",\n  \"stdout\",\n  \"stderr\",\n  \"addedBy\",\n  \"createdAt\"\n) VALUES(\n  '{device.serialNumber}',\n  {device.currentStep},\n  {device.stepStatus.status},\n  '{stdout}',\n  '{stderr}',\n  current_user,\n  NOW()\n)",
+          "storeResultInto": "result"
         },
         {
           "type": "IsTrueActionComponent",
           "left": -262,
           "top": 201,
-          "width": 155,
-          "height": 83,
+          "width": 139,
+          "height": 73,
           "wireID": "578f066c-91bb-4dbb-e36b-6809bb9fdd58",
           "customInputs": [],
           "customOutputs": [],
@@ -8599,12 +9000,12 @@
           "left": 394,
           "top": -121,
           "width": 87,
-          "height": 61,
+          "height": 54,
           "wireID": "35986504-4b2a-4c48-d045-ef8756e19818",
           "customInputs": [
             {
               "name": "value",
-              "type": "string"
+              "type": "array:struct:TestsTable"
             }
           ],
           "customOutputs": [],
@@ -8615,7 +9016,7 @@
           "left": -480,
           "top": -74,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "695ccaf5-9e26-4177-ec2e-8fd17c90b2a0",
           "customInputs": [],
           "customOutputs": [],
@@ -8627,7 +9028,7 @@
           "left": -480,
           "top": 15,
           "width": 87,
-          "height": 29,
+          "height": 25,
           "wireID": "3ae807e7-d4b6-4d90-d55a-9b141374f351",
           "customInputs": [],
           "customOutputs": [],
@@ -8638,8 +9039,8 @@
           "type": "EvalJSExprActionComponent",
           "left": -356,
           "top": -82,
-          "width": 305,
-          "height": 62,
+          "width": 277,
+          "height": 54,
           "wireID": "96e5a06e-7b66-4fe1-d4bf-b13b5c24d722",
           "customInputs": [
             {
@@ -8654,8 +9055,8 @@
           "type": "EvalJSExprActionComponent",
           "left": -356,
           "top": -10,
-          "width": 305,
-          "height": 62,
+          "width": 277,
+          "height": 54,
           "wireID": "241121a6-88ba-41cc-c2a9-826076a7a365",
           "customInputs": [
             {
@@ -8935,8 +9336,14 @@
               "width": 657,
               "height": 368,
               "wireID": "06b3b7be-ee9c-4de5-e1fd-1e258ad83a42",
-              "customInputs": [],
+              "customInputs": [
+                {
+                  "name": "data",
+                  "type": "string"
+                }
+              ],
               "customOutputs": [],
+              "data": "data",
               "style": {
                 "inheritFrom": "default"
               }
@@ -8963,8 +9370,14 @@
               "width": 657,
               "height": 368,
               "wireID": "c3b3866a-3796-4fcb-9ce5-3ec1ab9ef9c5",
-              "customInputs": [],
+              "customInputs": [
+                {
+                  "name": "data",
+                  "type": "string"
+                }
+              ],
               "customOutputs": [],
+              "data": "data",
               "style": {
                 "inheritFrom": "default"
               }
@@ -8973,15 +9386,15 @@
         },
         {
           "type": "LogActionComponent",
-          "left": 1281,
-          "top": 945,
+          "left": 1385,
+          "top": 518,
           "width": 87,
           "height": 54,
           "wireID": "9ccd170c-ed25-42a3-ce7c-c3a140e085b8",
           "customInputs": [
             {
               "name": "value",
-              "type": "string"
+              "type": "struct:$TerminalWidgetOnDataParams"
             }
           ],
           "customOutputs": [],
@@ -8991,7 +9404,7 @@
           "type": "ShowPageActionComponent",
           "left": 1258,
           "top": -162,
-          "width": 102,
+          "width": 97,
           "height": 53,
           "wireID": "f36a40e5-c8dd-41c3-b5a5-728dc0aa0931",
           "customInputs": [],
@@ -9992,19 +10405,20 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": 700,
-          "top": 0,
-          "width": 119,
-          "height": 73,
+          "left": 796,
+          "top": -225,
+          "width": 125,
+          "height": 92,
           "wireID": "b6981322-dbee-41c4-efa3-09d55c41067d",
           "customInputs": [],
           "customOutputs": [],
+          "catchError": true,
           "action": "do_test_step"
         },
         {
           "type": "OutputActionComponent",
-          "left": 868,
-          "top": 0,
+          "left": 977,
+          "top": -242,
           "width": 87,
           "height": 25,
           "wireID": "721c9ab8-443d-4693-9191-9a16e96ce776",
@@ -10015,8 +10429,8 @@
         },
         {
           "type": "OutputActionComponent",
-          "left": 868,
-          "top": 75,
+          "left": 986,
+          "top": -198,
           "width": 87,
           "height": 25,
           "wireID": "662f055a-e57e-44e9-e869-88020f1154b7",
@@ -10027,8 +10441,8 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": 700,
-          "top": 104,
+          "left": 805,
+          "top": 60,
           "width": 141,
           "height": 54,
           "wireID": "bb2aaf59-3c8f-48af-8c18-9a403f856554",
@@ -10038,8 +10452,8 @@
         },
         {
           "type": "CallActionActionComponent",
-          "left": 699,
-          "top": 184,
+          "left": 805,
+          "top": 143,
           "width": 142,
           "height": 54,
           "wireID": "257246ed-83e9-4f31-ac63-86c695d3fbdc",
@@ -10051,43 +10465,108 @@
           "type": "SetVariableActionComponent",
           "left": 92,
           "top": 287,
-          "width": 487,
+          "width": 473,
           "height": 58,
           "wireID": "4dcc3fe0-b1fe-437b-f25c-5472e0bb79b1",
           "customInputs": [
             {
-              "name": "idx_device",
-              "type": "integer"
+              "name": "action",
+              "type": "struct:$ActionParams"
             }
           ],
           "customOutputs": [],
-          "variable": "devices[idx_device].stepStatus.confirmation",
+          "variable": "devices[action.index].stepStatus.confirmation",
           "value": "Confirmation.Yes"
         },
         {
           "type": "SetVariableActionComponent",
           "left": 92,
           "top": 372,
-          "width": 481,
+          "width": 467,
           "height": 58,
           "wireID": "ac684dda-38e7-407a-ca46-f08ca373144d",
           "customInputs": [
             {
-              "name": "idx_device",
-              "type": "integer"
+              "name": "action",
+              "type": "struct:$ActionParams"
             }
           ],
           "customOutputs": [],
-          "variable": "devices[idx_device].stepStatus.confirmation",
+          "variable": "devices[action.index].stepStatus.confirmation",
           "value": "Confirmation.No"
         },
         {
           "type": "SetVariableActionComponent",
-          "left": 700,
-          "top": 260,
-          "width": 315,
+          "left": 589,
+          "top": -32,
+          "width": 300,
           "height": 58,
           "wireID": "d5984559-4070-48c8-f621-6ad6fbf24da3",
+          "customInputs": [
+            {
+              "name": "action",
+              "type": "struct:$ActionParams"
+            }
+          ],
+          "customOutputs": [],
+          "variable": "abort_self_test[action.index]",
+          "value": "true"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": 589,
+          "top": -149,
+          "width": 177,
+          "height": 54,
+          "wireID": "2626af75-be0d-402f-9da1-bd2603a0616f",
+          "customInputs": [
+            {
+              "name": "action",
+              "type": "struct:$ActionParams"
+            }
+          ],
+          "customOutputs": [],
+          "expression": "action.index"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": 586,
+          "top": 60,
+          "width": 177,
+          "height": 54,
+          "wireID": "0233d9bd-b96d-463b-e218-a538d61bd1e9",
+          "customInputs": [
+            {
+              "name": "action",
+              "type": "struct:$ActionParams"
+            }
+          ],
+          "customOutputs": [],
+          "expression": "action.index"
+        },
+        {
+          "type": "EvalExprActionComponent",
+          "left": 586,
+          "top": 143,
+          "width": 177,
+          "height": 54,
+          "wireID": "06eb18a0-6188-44f6-ca53-c697acac5d1c",
+          "customInputs": [
+            {
+              "name": "action",
+              "type": "struct:$ActionParams"
+            }
+          ],
+          "customOutputs": [],
+          "expression": "action.index"
+        },
+        {
+          "type": "SetVariableActionComponent",
+          "left": 966,
+          "top": -113,
+          "width": 444,
+          "height": 58,
+          "wireID": "61981c97-62d5-4359-fa16-d356d98212fd",
           "customInputs": [
             {
               "name": "idx_device",
@@ -10095,17 +10574,11 @@
             }
           ],
           "customOutputs": [],
-          "variable": "abort_self_test[idx_device]",
-          "value": "true"
+          "variable": "devices[idx_device].stepStatus.status",
+          "value": "StepStatus.Error"
         }
       ],
       "connectionLines": [
-        {
-          "source": "60dd7df9-a01d-4c54-84be-44017e03bd63",
-          "output": "action",
-          "target": "b6981322-dbee-41c4-efa3-09d55c41067d",
-          "input": "33f7ba7d-f940-42c1-ae57-e14ad7625976"
-        },
         {
           "source": "b6981322-dbee-41c4-efa3-09d55c41067d",
           "output": "a7528088-85ca-4e84-f248-89f546e1b7f9",
@@ -10121,37 +10594,73 @@
         {
           "source": "a80d00c0-a644-4a5a-a90d-d30a10cde85d",
           "output": "action",
-          "target": "bb2aaf59-3c8f-48af-8c18-9a403f856554",
-          "input": "5052d1e0-a07a-48e4-f9c1-8dab11cf5733"
+          "target": "0233d9bd-b96d-463b-e218-a538d61bd1e9",
+          "input": "action"
         },
         {
           "source": "2b3e6912-7d13-496e-9764-d7f00ca7ad7a",
           "output": "action",
-          "target": "257246ed-83e9-4f31-ac63-86c695d3fbdc",
-          "input": "c925fa05-7e25-452d-c3ef-5f11cae2c077"
+          "target": "06eb18a0-6188-44f6-ca53-c697acac5d1c",
+          "input": "action"
         },
         {
           "source": "3425d712-5ed7-4286-82cc-aaa100c4aa58",
           "output": "action",
-          "target": "b6981322-dbee-41c4-efa3-09d55c41067d",
-          "input": "33f7ba7d-f940-42c1-ae57-e14ad7625976"
+          "target": "2626af75-be0d-402f-9da1-bd2603a0616f",
+          "input": "action"
         },
         {
           "source": "319a815b-c4ba-4b55-e079-bcb1246bb733",
           "output": "action",
           "target": "4dcc3fe0-b1fe-437b-f25c-5472e0bb79b1",
-          "input": "idx_device"
+          "input": "action"
         },
         {
           "source": "b6ee5407-0f12-4f4b-c0ed-369458c5a0d9",
           "output": "action",
           "target": "ac684dda-38e7-407a-ca46-f08ca373144d",
-          "input": "idx_device"
+          "input": "action"
         },
         {
           "source": "f297eae8-d80b-447b-c977-6559d3c04684",
           "output": "action",
           "target": "d5984559-4070-48c8-f621-6ad6fbf24da3",
+          "input": "action"
+        },
+        {
+          "source": "2626af75-be0d-402f-9da1-bd2603a0616f",
+          "output": "result",
+          "target": "b6981322-dbee-41c4-efa3-09d55c41067d",
+          "input": "33f7ba7d-f940-42c1-ae57-e14ad7625976"
+        },
+        {
+          "source": "0233d9bd-b96d-463b-e218-a538d61bd1e9",
+          "output": "result",
+          "target": "bb2aaf59-3c8f-48af-8c18-9a403f856554",
+          "input": "5052d1e0-a07a-48e4-f9c1-8dab11cf5733"
+        },
+        {
+          "source": "06eb18a0-6188-44f6-ca53-c697acac5d1c",
+          "output": "result",
+          "target": "257246ed-83e9-4f31-ac63-86c695d3fbdc",
+          "input": "c925fa05-7e25-452d-c3ef-5f11cae2c077"
+        },
+        {
+          "source": "60dd7df9-a01d-4c54-84be-44017e03bd63",
+          "output": "action",
+          "target": "2626af75-be0d-402f-9da1-bd2603a0616f",
+          "input": "action"
+        },
+        {
+          "source": "b6981322-dbee-41c4-efa3-09d55c41067d",
+          "output": "@error",
+          "target": "61981c97-62d5-4359-fa16-d356d98212fd",
+          "input": "@seqin"
+        },
+        {
+          "source": "2626af75-be0d-402f-9da1-bd2603a0616f",
+          "output": "result",
+          "target": "61981c97-62d5-4359-fa16-d356d98212fd",
           "input": "idx_device"
         }
       ],

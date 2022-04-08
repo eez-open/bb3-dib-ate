@@ -6142,8 +6142,8 @@
         },
         {
           "type": "WatchVariableActionComponent",
-          "left": 104,
-          "top": 72,
+          "left": 92,
+          "top": 71,
           "width": 179,
           "height": 54,
           "wireID": "c354d6fc-d080-47e3-9a04-f1e866cbd022",
@@ -6171,12 +6171,12 @@
           "wireID": "2c5600f4-ca1a-47f2-a8db-c4cc6d792f8e",
           "customInputs": [],
           "customOutputs": [],
-          "countValue": "5"
+          "countValue": "10"
         },
         {
           "type": "ErrorActionComponent",
-          "left": 125,
-          "top": 180,
+          "left": 92,
+          "top": 190,
           "width": 188,
           "height": 53,
           "wireID": "be89056c-804c-49cb-8056-1e8ed06e78ef",
@@ -11812,7 +11812,7 @@
           "customInputs": [
             {
               "name": "value",
-              "type": 0
+              "type": "float"
             }
           ],
           "customOutputs": [],
@@ -14926,8 +14926,8 @@
         },
         {
           "type": "WatchVariableActionComponent",
-          "left": -193,
-          "top": 40,
+          "left": -209,
+          "top": 10,
           "width": 135,
           "height": 54,
           "wireID": "cbf9650c-e82b-4e16-b7c2-35827c0e9f8f",
@@ -14938,7 +14938,7 @@
         {
           "type": "WatchVariableActionComponent",
           "left": -272,
-          "top": 133,
+          "top": 97,
           "width": 209,
           "height": 54,
           "wireID": "d363844c-7850-4e61-93f0-fa678e7f0b9b",
@@ -15455,7 +15455,7 @@
           "customInputs": [
             {
               "name": "slot",
-              "type": 0
+              "type": "integer"
             },
             {
               "name": "instrument",
