@@ -6,14 +6,7 @@
       "objID": "fd434352-2277-c4a8-e87e-e96cfcbf2305",
       "projectVersion": "v3",
       "projectType": "dashboard",
-      "extensions": [
-        {
-          "objID": "c0b74ff3-9479-4803-bcf1-b34344979221",
-          "extensionName": "eez-flow-ext-postgres"
-        }
-      ],
-      "imports": [],
-      "resourceFiles": []
+      "imports": []
     },
     "build": {
       "objID": "72794a43-a0fc-13c2-7eb5-67dd952141a4",
@@ -303,7 +296,7 @@
           "left": -418,
           "top": -184,
           "width": 87,
-          "height": 29,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -313,7 +306,7 @@
           "left": -21,
           "top": -184,
           "width": 87,
-          "height": 29,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -322,8 +315,8 @@
           "type": "SCPIActionComponent",
           "left": -245,
           "top": -184,
-          "width": 140,
-          "height": 134,
+          "width": 123,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "keithley",
@@ -366,17 +359,17 @@
           "left": -797,
           "top": -336,
           "width": 87,
-          "height": 29,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
         {
           "objID": "6086c648-862c-bcee-b194-f93766ff5021",
           "type": "SCPIActionComponent",
-          "left": -462,
+          "left": -489,
           "top": -336,
-          "width": 272,
-          "height": 152,
+          "width": 244,
+          "height": 113,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -387,8 +380,8 @@
           "type": "SCPIActionComponent",
           "left": -644,
           "top": -336,
-          "width": 105,
-          "height": 62,
+          "width": 99,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [],
           "catchError": false,
@@ -398,20 +391,20 @@
         {
           "objID": "48108ad1-7c21-4ff5-2892-7c08c7c8da42",
           "type": "EndActionComponent",
-          "left": 603,
-          "top": 33,
+          "left": 582,
+          "top": -94,
           "width": 87,
-          "height": 29,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
         {
           "objID": "c0fee131-e55e-7e50-ba91-469c24abc358",
           "type": "SCPIActionComponent",
-          "left": -129,
+          "left": -193,
           "top": -336,
-          "width": 213,
-          "height": 224,
+          "width": 191,
+          "height": 161,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -420,10 +413,10 @@
         {
           "objID": "e29c57fe-5308-e521-3cc7-023e9dc7e106",
           "type": "SCPIActionComponent",
-          "left": -320,
-          "top": 0,
-          "width": 250,
-          "height": 62,
+          "left": -341,
+          "top": -127,
+          "width": 224,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [],
           "catchError": false,
@@ -433,10 +426,10 @@
         {
           "objID": "f0be2013-7af8-e601-c0d4-e492835f3c67",
           "type": "LoopActionComponent",
-          "left": -623,
-          "top": 0,
-          "width": 253,
-          "height": 83,
+          "left": -644,
+          "top": -127,
+          "width": 255,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "variable": "idx",
@@ -448,10 +441,10 @@
         {
           "objID": "755cccfc-95a7-ab8b-06be-60bc77db6d56",
           "type": "CompareActionComponent",
-          "left": -11,
-          "top": 0,
-          "width": 190,
-          "height": 83,
+          "left": -32,
+          "top": -127,
+          "width": 170,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "A": "module",
@@ -461,10 +454,10 @@
         {
           "objID": "fc9957fd-f1f9-07e1-c24b-e9780301705f",
           "type": "OutputActionComponent",
-          "left": 724,
-          "top": 155,
-          "width": 106,
-          "height": 29,
+          "left": 703,
+          "top": 28,
+          "width": 92,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "NotFound",
@@ -473,10 +466,10 @@
         {
           "objID": "8a1828d9-7f50-f513-0c3e-af682cbe31da",
           "type": "SetVariableActionComponent",
-          "left": 239,
-          "top": 33,
-          "width": 154,
-          "height": 62,
+          "left": 218,
+          "top": -94,
+          "width": 155,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -490,10 +483,10 @@
         {
           "objID": "d1d64d47-2722-a92e-5b22-2f7f0de0a257",
           "type": "SetVariableActionComponent",
-          "left": 239,
-          "top": 155,
-          "width": 154,
-          "height": 62,
+          "left": 218,
+          "top": 28,
+          "width": 155,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -507,10 +500,10 @@
         {
           "objID": "dfd6ac3c-d4a3-6008-498e-fe261590354d",
           "type": "SetVariableActionComponent",
-          "left": 430,
-          "top": 33,
-          "width": 109,
-          "height": 62,
+          "left": 409,
+          "top": -94,
+          "width": 115,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -524,10 +517,10 @@
         {
           "objID": "a26e09b8-a299-58ca-f43b-9619462fa770",
           "type": "SetVariableActionComponent",
-          "left": 426,
-          "top": 155,
-          "width": 264,
-          "height": 62,
+          "left": 405,
+          "top": 28,
+          "width": 256,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -660,7 +653,7 @@
           "left": -783,
           "top": -306,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -670,7 +663,7 @@
           "left": 1900,
           "top": 46,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -679,8 +672,8 @@
           "type": "SCPIActionComponent",
           "left": -639,
           "top": -306,
-          "width": 139,
-          "height": 68,
+          "width": 150,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -691,8 +684,8 @@
           "type": "SCPIActionComponent",
           "left": -344,
           "top": -306,
-          "width": 287,
-          "height": 107,
+          "width": 311,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -704,7 +697,7 @@
           "left": -783,
           "top": -48,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -715,8 +708,8 @@
           "type": "SetVariableActionComponent",
           "left": -628,
           "top": -48,
-          "width": 181,
-          "height": 56,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "9ed53620-5128-baf0-27e9-6a41e916c8c5",
@@ -738,8 +731,8 @@
           "type": "SCPIActionComponent",
           "left": 397,
           "top": -306,
-          "width": 174,
-          "height": 55,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -756,8 +749,8 @@
           "type": "SCPIActionComponent",
           "left": 60,
           "top": -306,
-          "width": 213,
-          "height": 172,
+          "width": 229,
+          "height": 161,
           "customInputs": [],
           "customOutputs": [],
           "catchError": true,
@@ -769,8 +762,8 @@
           "type": "SCPIActionComponent",
           "left": 1264,
           "top": -306,
-          "width": 192,
-          "height": 94,
+          "width": 205,
+          "height": 89,
           "customInputs": [
             {
               "objID": "e4ff7dfc-b5d9-7d30-0044-bfe0dff415c8",
@@ -787,8 +780,8 @@
           "type": "SCPIActionComponent",
           "left": 59,
           "top": 64,
-          "width": 139,
-          "height": 81,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -799,8 +792,8 @@
           "type": "SCPIActionComponent",
           "left": 397,
           "top": 64,
-          "width": 174,
-          "height": 55,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -817,8 +810,8 @@
           "type": "SCPIActionComponent",
           "left": 1264,
           "top": 46,
-          "width": 192,
-          "height": 94,
+          "width": 205,
+          "height": 89,
           "customInputs": [
             {
               "objID": "8c401fd6-478a-34fd-ac63-f2f922ab1a53",
@@ -835,8 +828,8 @@
           "type": "SCPIActionComponent",
           "left": 1541,
           "top": 46,
-          "width": 121,
-          "height": 81,
+          "width": 130,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -845,21 +838,21 @@
         {
           "objID": "42edcbca-ee5a-b6a4-46a3-59a67a3b7d7d",
           "type": "CommentActionComponent",
-          "left": -344,
-          "top": -467,
-          "width": 435,
-          "height": 139,
+          "left": -782,
+          "top": -408,
+          "width": 172,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Voltage calibration AIN</h1>"
+          "text": "<div><!--block--><strong>Voltage calibration AIN</strong></div>"
         },
         {
           "objID": "9f5c31a9-8657-53f9-1d90-7979593d0078",
           "type": "SCPIActionComponent",
           "left": 1742,
           "top": 46,
-          "width": 97,
-          "height": 94,
+          "width": 99,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -870,8 +863,8 @@
           "type": "IsTrueActionComponent",
           "left": 695,
           "top": -380,
-          "width": 403,
-          "height": 73,
+          "width": 433,
+          "height": 68,
           "customInputs": [
             {
               "objID": "0784c122-614a-c5d9-e67c-a6ed09b83b2e",
@@ -892,8 +885,8 @@
           "type": "ErrorActionComponent",
           "left": 1876,
           "top": -479,
-          "width": 293,
-          "height": 55,
+          "width": 318,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [],
           "message": "\"ERROR: AIN voltage calibration out of range\""
@@ -903,8 +896,8 @@
           "type": "SCPIActionComponent",
           "left": 1264,
           "top": -425,
-          "width": 108,
-          "height": 55,
+          "width": 117,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -915,8 +908,8 @@
           "type": "IsTrueActionComponent",
           "left": 695,
           "top": -17,
-          "width": 403,
-          "height": 73,
+          "width": 433,
+          "height": 68,
           "customInputs": [
             {
               "objID": "cff78f31-25a5-dd02-0dde-eb8512f6a602",
@@ -937,8 +930,8 @@
           "type": "SCPIActionComponent",
           "left": 1452,
           "top": -479,
-          "width": 97,
-          "height": 94,
+          "width": 99,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -949,8 +942,8 @@
           "type": "SCPIActionComponent",
           "left": 363,
           "top": -201,
-          "width": 188,
-          "height": 81,
+          "width": 200,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -967,8 +960,8 @@
           "type": "SCPIActionComponent",
           "left": 397,
           "top": 163,
-          "width": 188,
-          "height": 81,
+          "width": 200,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -985,8 +978,8 @@
           "type": "SetVariableActionComponent",
           "left": 1615,
           "top": -480,
-          "width": 196,
-          "height": 56,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -1191,6 +1184,7 @@
         }
       ],
       "name": "ain_calibration_volt",
+      "description": "Voltage calibration AIN",
       "implementationType": "flow"
     },
     {
@@ -1202,7 +1196,7 @@
           "left": -950,
           "top": -378,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -1211,8 +1205,8 @@
           "type": "SCPIActionComponent",
           "left": -806,
           "top": -378,
-          "width": 250,
-          "height": 105,
+          "width": 271,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -1221,10 +1215,10 @@
         {
           "objID": "a415f239-a049-6d14-cf52-96d5d431aa79",
           "type": "InputActionComponent",
-          "left": -655,
-          "top": -50,
+          "left": -806,
+          "top": -225,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -1233,10 +1227,10 @@
         {
           "objID": "035fc2b6-666a-bbcc-30c0-db22dcaa939e",
           "type": "SetVariableActionComponent",
-          "left": -422,
-          "top": 4,
-          "width": 167,
-          "height": 58,
+          "left": -659,
+          "top": -225,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "6474d82d-0c0e-61e1-20d2-e9d6b57f8ad9",
@@ -1258,7 +1252,7 @@
           "type": "SCPIActionComponent",
           "left": -455,
           "top": -375,
-          "width": 392,
+          "width": 426,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -1271,7 +1265,7 @@
           "left": 2736,
           "top": 52,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -1280,19 +1274,19 @@
           "type": "CommentActionComponent",
           "left": -806,
           "top": -513,
-          "width": 435,
-          "height": 139,
+          "width": 177,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Voltage calibration AOUT</h1>"
+          "text": "<div><!--block--><strong>Voltage calibration AOUT</strong></div>"
         },
         {
           "objID": "95534a98-eb97-ba6c-1534-51dc81a229a2",
           "type": "SCPIActionComponent",
           "left": 1457,
           "top": -383,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -1309,8 +1303,8 @@
           "type": "SCPIActionComponent",
           "left": 1185,
           "top": -383,
-          "width": 182,
-          "height": 66,
+          "width": 197,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -1321,8 +1315,8 @@
           "type": "SwitchActionComponent",
           "left": 630,
           "top": -372,
-          "width": 197,
-          "height": 111,
+          "width": 229,
+          "height": 107,
           "customInputs": [],
           "customOutputs": [],
           "tests": [
@@ -1353,8 +1347,8 @@
           "type": "SCPIActionComponent",
           "left": 1447,
           "top": 57,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -1371,8 +1365,8 @@
           "type": "SCPIActionComponent",
           "left": 1185,
           "top": 57,
-          "width": 182,
-          "height": 66,
+          "width": 197,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -1383,8 +1377,8 @@
           "type": "SwitchActionComponent",
           "left": 630,
           "top": 60,
-          "width": 197,
-          "height": 111,
+          "width": 229,
+          "height": 107,
           "customInputs": [],
           "customOutputs": [],
           "tests": [
@@ -1415,8 +1409,8 @@
           "type": "SCPIActionComponent",
           "left": 2531,
           "top": 52,
-          "width": 121,
-          "height": 79,
+          "width": 130,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -1427,8 +1421,8 @@
           "type": "IsTrueActionComponent",
           "left": 89,
           "top": -372,
-          "width": 163,
-          "height": 73,
+          "width": 175,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.channel < 3"
@@ -1436,10 +1430,10 @@
         {
           "objID": "51f6cc59-0826-5d0d-71d0-3e7ef36a1b8f",
           "type": "SCPIActionComponent",
-          "left": 347,
-          "top": -227,
-          "width": 108,
-          "height": 66,
+          "left": 438,
+          "top": -249,
+          "width": 117,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -1450,8 +1444,8 @@
           "type": "SCPIActionComponent",
           "left": 338,
           "top": -378,
-          "width": 201,
-          "height": 92,
+          "width": 217,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -1462,7 +1456,7 @@
           "type": "ErrorActionComponent",
           "left": 2942,
           "top": -197,
-          "width": 299,
+          "width": 325,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -1473,7 +1467,7 @@
           "type": "SCPIActionComponent",
           "left": 2531,
           "top": -193,
-          "width": 108,
+          "width": 117,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -1485,8 +1479,8 @@
           "type": "IsTrueActionComponent",
           "left": 1716,
           "top": -443,
-          "width": 420,
-          "height": 73,
+          "width": 452,
+          "height": 68,
           "customInputs": [
             {
               "objID": "49a95f40-36cd-ccfa-5c07-ae3b4b22240b",
@@ -1502,8 +1496,8 @@
           "type": "SetVariableActionComponent",
           "left": 952,
           "top": -383,
-          "width": 126,
-          "height": 58,
+          "width": 149,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -1519,8 +1513,8 @@
           "type": "SetVariableActionComponent",
           "left": 952,
           "top": -289,
-          "width": 132,
-          "height": 58,
+          "width": 155,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -1536,8 +1530,8 @@
           "type": "SetVariableActionComponent",
           "left": 952,
           "top": -198,
-          "width": 132,
-          "height": 58,
+          "width": 155,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -1553,8 +1547,8 @@
           "type": "SCPIActionComponent",
           "left": 2283,
           "top": -302,
-          "width": 149,
-          "height": 54,
+          "width": 158,
+          "height": 53,
           "customInputs": [
             {
               "objID": "ee7d4326-c405-9db1-8022-66a45440817c",
@@ -1571,8 +1565,8 @@
           "type": "SetVariableActionComponent",
           "left": 952,
           "top": 60,
-          "width": 126,
-          "height": 58,
+          "width": 149,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -1588,8 +1582,8 @@
           "type": "SetVariableActionComponent",
           "left": 952,
           "top": 151,
-          "width": 126,
-          "height": 58,
+          "width": 149,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -1605,8 +1599,8 @@
           "type": "IsTrueActionComponent",
           "left": 1705,
           "top": -12,
-          "width": 420,
-          "height": 73,
+          "width": 452,
+          "height": 68,
           "customInputs": [
             {
               "objID": "55353a47-88f7-9297-681f-699f8e05ef52",
@@ -1622,8 +1616,8 @@
           "type": "SCPIActionComponent",
           "left": 2283,
           "top": 52,
-          "width": 149,
-          "height": 54,
+          "width": 158,
+          "height": 53,
           "customInputs": [
             {
               "objID": "a643156e-078c-06bb-33a1-bb026279e60d",
@@ -1640,8 +1634,8 @@
           "type": "SetVariableActionComponent",
           "left": 2696,
           "top": -193,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -1928,6 +1922,7 @@
         }
       ],
       "name": "aout_calibration_volt",
+      "description": "Voltage calibration AOUT",
       "implementationType": "flow"
     },
     {
@@ -1939,7 +1934,7 @@
           "left": -1386,
           "top": -306,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -1949,7 +1944,7 @@
           "left": 1729,
           "top": 537,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -1958,8 +1953,8 @@
           "type": "SCPIActionComponent",
           "left": -1242,
           "top": -306,
-          "width": 139,
-          "height": 92,
+          "width": 150,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -1969,9 +1964,9 @@
           "objID": "abc0fd83-b8fa-b9a1-20f2-537479271608",
           "type": "InputActionComponent",
           "left": -1386,
-          "top": -48,
+          "top": 21,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -1980,10 +1975,10 @@
         {
           "objID": "68d972b3-9f3a-6ec7-b5e1-9a2d833fd7ab",
           "type": "SetVariableActionComponent",
-          "left": -1153,
-          "top": 6,
-          "width": 167,
-          "height": 58,
+          "left": -1235,
+          "top": 18,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "937923fa-9a14-9957-977a-18cd176d1b8d",
@@ -2005,8 +2000,8 @@
           "type": "SCPIActionComponent",
           "left": 294,
           "top": 67,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -2023,8 +2018,8 @@
           "type": "SCPIActionComponent",
           "left": 1100,
           "top": 69,
-          "width": 192,
-          "height": 92,
+          "width": 205,
+          "height": 89,
           "customInputs": [
             {
               "objID": "a59011ba-ca8d-d6a9-0f3d-93a90b500217",
@@ -2041,8 +2036,8 @@
           "type": "SCPIActionComponent",
           "left": -38,
           "top": 537,
-          "width": 164,
-          "height": 118,
+          "width": 177,
+          "height": 113,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -2053,8 +2048,8 @@
           "type": "SCPIActionComponent",
           "left": 198,
           "top": 537,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -2071,8 +2066,8 @@
           "type": "SCPIActionComponent",
           "left": 1009,
           "top": 537,
-          "width": 192,
-          "height": 92,
+          "width": 205,
+          "height": 89,
           "customInputs": [
             {
               "objID": "b51fd827-22b2-a8fc-cdf9-2d804cb03db5",
@@ -2089,8 +2084,8 @@
           "type": "SCPIActionComponent",
           "left": 1289,
           "top": 537,
-          "width": 121,
-          "height": 79,
+          "width": 130,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2099,21 +2094,21 @@
         {
           "objID": "5a046a1e-f6c0-0a39-e7c6-391e554f53a7",
           "type": "CommentActionComponent",
-          "left": -1408,
-          "top": -445,
-          "width": 435,
-          "height": 139,
+          "left": -1386,
+          "top": -405,
+          "width": 181,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Current calibration AIN</h1>"
+          "text": "<div><!--block--><strong>Current calibration AIN</strong></div>"
         },
         {
           "objID": "4968e6b4-cc8b-0363-dac1-83b4d7da07cd",
           "type": "SCPIActionComponent",
           "left": 1525,
           "top": 537,
-          "width": 115,
-          "height": 105,
+          "width": 123,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -2124,7 +2119,7 @@
           "type": "SCPIActionComponent",
           "left": -145,
           "top": -20,
-          "width": 107,
+          "width": 109,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -2136,7 +2131,7 @@
           "type": "SCPIActionComponent",
           "left": -145,
           "top": 97,
-          "width": 107,
+          "width": 109,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -2146,10 +2141,10 @@
         {
           "objID": "89308a4b-aed0-1344-c2fc-2868f6d22af2",
           "type": "IsTrueActionComponent",
-          "left": -929,
-          "top": -11,
-          "width": 607,
-          "height": 73,
+          "left": -852,
+          "top": -20,
+          "width": 659,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "(channel.range == 2 && channel.channel == 2) || (channel.range == 3 && channel.channel ==4)"
@@ -2159,8 +2154,8 @@
           "type": "SCPIActionComponent",
           "left": 37,
           "top": -104,
-          "width": 164,
-          "height": 144,
+          "width": 177,
+          "height": 137,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -2171,8 +2166,8 @@
           "type": "SCPIActionComponent",
           "left": 37,
           "top": 98,
-          "width": 164,
-          "height": 144,
+          "width": 177,
+          "height": 137,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -2183,8 +2178,8 @@
           "type": "SCPIActionComponent",
           "left": -492,
           "top": -306,
-          "width": 287,
-          "height": 105,
+          "width": 311,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2196,7 +2191,7 @@
           "left": -873,
           "top": -529,
           "width": 435,
-          "height": 69,
+          "height": 63,
           "customInputs": [],
           "customOutputs": [],
           "text": "<div><!--block-->WARNING: since AIN2 and AIN4 are connected in series, the range of the channel that is not selected for calibration has to be set to 10 A</div>"
@@ -2206,8 +2201,8 @@
           "type": "IsTrueActionComponent",
           "left": -1019,
           "top": -306,
-          "width": 169,
-          "height": 73,
+          "width": 182,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.channel == 2"
@@ -2217,8 +2212,8 @@
           "type": "SCPIActionComponent",
           "left": -739,
           "top": -388,
-          "width": 151,
-          "height": 79,
+          "width": 164,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2229,8 +2224,8 @@
           "type": "SCPIActionComponent",
           "left": -739,
           "top": -255,
-          "width": 151,
-          "height": 79,
+          "width": 164,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2241,7 +2236,7 @@
           "type": "ErrorActionComponent",
           "left": 1716,
           "top": -124,
-          "width": 293,
+          "width": 318,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -2252,7 +2247,7 @@
           "type": "SCPIActionComponent",
           "left": 1100,
           "top": -74,
-          "width": 108,
+          "width": 117,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -2264,8 +2259,8 @@
           "type": "IsTrueActionComponent",
           "left": 586,
           "top": -75,
-          "width": 403,
-          "height": 73,
+          "width": 433,
+          "height": 68,
           "customInputs": [
             {
               "objID": "8a753eba-c330-9e1a-260e-9fcdaaa19fef",
@@ -2286,8 +2281,8 @@
           "type": "IsTrueActionComponent",
           "left": 476,
           "top": 472,
-          "width": 403,
-          "height": 73,
+          "width": 433,
+          "height": 68,
           "customInputs": [
             {
               "objID": "60c60cde-9369-9a64-2262-babe667d6385",
@@ -2308,8 +2303,8 @@
           "type": "SCPIActionComponent",
           "left": 1275,
           "top": -124,
-          "width": 115,
-          "height": 92,
+          "width": 123,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -2320,8 +2315,8 @@
           "type": "SCPIActionComponent",
           "left": 294,
           "top": 160,
-          "width": 218,
-          "height": 79,
+          "width": 233,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -2338,8 +2333,8 @@
           "type": "SCPIActionComponent",
           "left": 198,
           "top": 636,
-          "width": 218,
-          "height": 79,
+          "width": 233,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -2356,8 +2351,8 @@
           "type": "SetVariableActionComponent",
           "left": 1455,
           "top": -125,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -2631,6 +2626,7 @@
         }
       ],
       "name": "ain_calibration_curr",
+      "description": "Current calibration AIN",
       "implementationType": "flow"
     },
     {
@@ -2642,7 +2638,7 @@
           "left": -655,
           "top": -375,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -2651,8 +2647,8 @@
           "type": "SCPIActionComponent",
           "left": -511,
           "top": -375,
-          "width": 139,
-          "height": 66,
+          "width": 150,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -2664,7 +2660,7 @@
           "left": -655,
           "top": -117,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -2673,10 +2669,10 @@
         {
           "objID": "2e1d29ef-7aad-714b-6e99-7ad8d18fbad6",
           "type": "SetVariableActionComponent",
-          "left": -422,
-          "top": -63,
-          "width": 167,
-          "height": 58,
+          "left": -511,
+          "top": -120,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "c276768e-2955-5e2a-6371-99a118c67afb",
@@ -2698,8 +2694,8 @@
           "type": "SCPIActionComponent",
           "left": -311,
           "top": -375,
-          "width": 287,
-          "height": 105,
+          "width": 311,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2711,7 +2707,7 @@
           "left": 2397,
           "top": -8,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -2720,8 +2716,8 @@
           "type": "SCPIActionComponent",
           "left": 63,
           "top": -375,
-          "width": 250,
-          "height": 105,
+          "width": 271,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -2730,21 +2726,21 @@
         {
           "objID": "ce550486-3cae-8a57-182c-9472f4b8abbd",
           "type": "CommentActionComponent",
-          "left": -511,
-          "top": -545,
-          "width": 442,
-          "height": 139,
+          "left": -655,
+          "top": -498,
+          "width": 185,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Current calibration AOUT</h1>"
+          "text": "<div><!--block--><strong>Current calibration AOUT</strong></div>"
         },
         {
           "objID": "f32b9152-587a-68e4-fb14-bf2491a2b77b",
           "type": "SCPIActionComponent",
           "left": 1267,
           "top": -375,
-          "width": 174,
-          "height": 66,
+          "width": 185,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [
             {
@@ -2761,8 +2757,8 @@
           "type": "SCPIActionComponent",
           "left": 989,
           "top": -375,
-          "width": 182,
-          "height": 66,
+          "width": 197,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2773,8 +2769,8 @@
           "type": "SwitchActionComponent",
           "left": 407,
           "top": -375,
-          "width": 186,
-          "height": 92,
+          "width": 219,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "tests": [
@@ -2800,8 +2796,8 @@
           "type": "SCPIActionComponent",
           "left": 1229,
           "top": 4,
-          "width": 174,
-          "height": 66,
+          "width": 185,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [
             {
@@ -2818,8 +2814,8 @@
           "type": "SCPIActionComponent",
           "left": 974,
           "top": 4,
-          "width": 182,
-          "height": 66,
+          "width": 197,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2830,8 +2826,8 @@
           "type": "SCPIActionComponent",
           "left": 2189,
           "top": -8,
-          "width": 121,
-          "height": 79,
+          "width": 130,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -2842,8 +2838,8 @@
           "type": "SCPIActionComponent",
           "left": 1977,
           "top": -375,
-          "width": 149,
-          "height": 54,
+          "width": 158,
+          "height": 53,
           "customInputs": [
             {
               "objID": "0d35e2f5-03c0-973d-8bef-1b78809d3250",
@@ -2860,8 +2856,8 @@
           "type": "SCPIActionComponent",
           "left": 1977,
           "top": -8,
-          "width": 149,
-          "height": 54,
+          "width": 158,
+          "height": 53,
           "customInputs": [
             {
               "objID": "2b8f64b5-5dd9-46b6-0f93-1545fcaf351a",
@@ -2878,8 +2874,8 @@
           "type": "SwitchActionComponent",
           "left": 407,
           "top": 4,
-          "width": 186,
-          "height": 92,
+          "width": 219,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "tests": [
@@ -2905,8 +2901,8 @@
           "type": "IsTrueActionComponent",
           "left": 1520,
           "top": -458,
-          "width": 358,
-          "height": 73,
+          "width": 385,
+          "height": 68,
           "customInputs": [
             {
               "objID": "cc5d2d9b-923e-09c4-9ff1-295957a518e8",
@@ -2922,7 +2918,7 @@
           "type": "ErrorActionComponent",
           "left": 2617,
           "top": -239,
-          "width": 299,
+          "width": 325,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -2933,7 +2929,7 @@
           "type": "SCPIActionComponent",
           "left": 2181,
           "top": -236,
-          "width": 108,
+          "width": 117,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -2945,8 +2941,8 @@
           "type": "IsTrueActionComponent",
           "left": 1481,
           "top": -79,
-          "width": 358,
-          "height": 73,
+          "width": 385,
+          "height": 68,
           "customInputs": [
             {
               "objID": "7fa94189-8cd2-765e-bac3-50378d54777e",
@@ -2962,8 +2958,8 @@
           "type": "SetVariableActionComponent",
           "left": 776,
           "top": -288,
-          "width": 138,
-          "height": 58,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -2979,8 +2975,8 @@
           "type": "SetVariableActionComponent",
           "left": 776,
           "top": -375,
-          "width": 138,
-          "height": 58,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -2996,8 +2992,8 @@
           "type": "SetVariableActionComponent",
           "left": 759,
           "top": 91,
-          "width": 138,
-          "height": 58,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -3013,8 +3009,8 @@
           "type": "SetVariableActionComponent",
           "left": 759,
           "top": 4,
-          "width": 138,
-          "height": 58,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -3030,8 +3026,8 @@
           "type": "SetVariableActionComponent",
           "left": 2361,
           "top": -239,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -3276,6 +3272,7 @@
         }
       ],
       "name": "aout_calibration_curr",
+      "description": "Current calibration AOUT",
       "implementationType": "flow"
     },
     {
@@ -3287,7 +3284,7 @@
           "left": -720,
           "top": -285,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -3297,7 +3294,7 @@
           "left": 132,
           "top": 87,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -3308,8 +3305,8 @@
           "type": "SetVariableActionComponent",
           "left": 357,
           "top": 169,
-          "width": 181,
-          "height": 56,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "dcc2e7b1-8f24-d994-b048-a7a1eb8d9488",
@@ -3331,8 +3328,8 @@
           "type": "IsTrueActionComponent",
           "left": -285,
           "top": -285,
-          "width": 176,
-          "height": 73,
+          "width": 189,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.type == \"AIN\""
@@ -3342,8 +3339,8 @@
           "type": "IsTrueActionComponent",
           "left": -12,
           "top": -353,
-          "width": 182,
-          "height": 73,
+          "width": 196,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.mode == \"volt\""
@@ -3353,8 +3350,8 @@
           "type": "CallActionActionComponent",
           "left": 368,
           "top": -404,
-          "width": 142,
-          "height": 54,
+          "width": 148,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "ain_calibration_volt"
@@ -3364,8 +3361,8 @@
           "type": "CallActionActionComponent",
           "left": 366,
           "top": -289,
-          "width": 143,
-          "height": 54,
+          "width": 149,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "ain_calibration_curr"
@@ -3375,8 +3372,8 @@
           "type": "CallActionActionComponent",
           "left": 357,
           "top": -130,
-          "width": 151,
-          "height": 54,
+          "width": 158,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "aout_calibration_volt"
@@ -3386,8 +3383,8 @@
           "type": "CallActionActionComponent",
           "left": 357,
           "top": 31,
-          "width": 152,
-          "height": 54,
+          "width": 158,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "aout_calibration_curr"
@@ -3397,8 +3394,8 @@
           "type": "IsTrueActionComponent",
           "left": -10,
           "top": -151,
-          "width": 182,
-          "height": 73,
+          "width": 196,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.mode == \"volt\""
@@ -3408,8 +3405,8 @@
           "type": "SetVariableActionComponent",
           "left": 675,
           "top": -404,
-          "width": 227,
-          "height": 56,
+          "width": 243,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -3426,7 +3423,7 @@
           "left": 983,
           "top": -404,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -3435,8 +3432,8 @@
           "type": "SetVariableActionComponent",
           "left": -587,
           "top": -285,
-          "width": 251,
-          "height": 56,
+          "width": 270,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -3596,17 +3593,17 @@
           "left": 1096,
           "top": -366,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
         {
           "objID": "c746f559-5b6c-6fe9-d2ef-c7b87176353c",
           "type": "InputActionComponent",
-          "left": 226,
-          "top": 166,
+          "left": 322,
+          "top": 87,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -3617,8 +3614,8 @@
           "type": "SetVariableActionComponent",
           "left": -507,
           "top": -294,
-          "width": 257,
-          "height": 56,
+          "width": 276,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -3632,10 +3629,10 @@
         {
           "objID": "69266a5c-b24d-63d2-21a1-a279ee5605e0",
           "type": "SetVariableActionComponent",
-          "left": 401,
-          "top": 197,
-          "width": 181,
-          "height": 56,
+          "left": 497,
+          "top": 118,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "bb496206-7878-e1c9-4b76-5224f8f00aad",
@@ -3657,8 +3654,8 @@
           "type": "CallActionActionComponent",
           "left": 535,
           "top": -366,
-          "width": 145,
-          "height": 54,
+          "width": 152,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "ain_verification_volt"
@@ -3668,8 +3665,8 @@
           "type": "SetVariableActionComponent",
           "left": 813,
           "top": -366,
-          "width": 220,
-          "height": 56,
+          "width": 236,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -3686,7 +3683,7 @@
           "left": -666,
           "top": -293,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -3695,8 +3692,8 @@
           "type": "IsTrueActionComponent",
           "left": -168,
           "top": -297,
-          "width": 176,
-          "height": 73,
+          "width": 189,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.type == \"AIN\""
@@ -3706,8 +3703,8 @@
           "type": "IsTrueActionComponent",
           "left": 73,
           "top": -366,
-          "width": 182,
-          "height": 73,
+          "width": 196,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.mode == \"volt\""
@@ -3716,9 +3713,9 @@
           "objID": "8b97b7ad-d0b5-ca32-84ce-4676020f9402",
           "type": "IsTrueActionComponent",
           "left": 73,
-          "top": -195,
-          "width": 182,
-          "height": 73,
+          "top": -239,
+          "width": 196,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.mode == \"volt\""
@@ -3728,8 +3725,8 @@
           "type": "CallActionActionComponent",
           "left": 535,
           "top": -219,
-          "width": 146,
-          "height": 54,
+          "width": 153,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "ain_verification_curr"
@@ -3737,10 +3734,10 @@
         {
           "objID": "b891aa10-015a-b431-02d9-c7a5d3b02971",
           "type": "CallActionActionComponent",
-          "left": 535,
-          "top": -63,
-          "width": 153,
-          "height": 54,
+          "left": 526,
+          "top": -119,
+          "width": 161,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "aout_verification_volt"
@@ -3748,10 +3745,10 @@
         {
           "objID": "c9928faa-0fa4-369f-1faa-c9a2e0cb2bb3",
           "type": "CallActionActionComponent",
-          "left": 535,
-          "top": 51,
-          "width": 154,
-          "height": 54,
+          "left": 526,
+          "top": -5,
+          "width": 162,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "aout_verification_curr"
@@ -3905,7 +3902,7 @@
           "left": -783,
           "top": -306,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -3915,7 +3912,7 @@
           "left": 2054,
           "top": 331,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -3924,8 +3921,8 @@
           "type": "SCPIActionComponent",
           "left": -639,
           "top": -306,
-          "width": 139,
-          "height": 66,
+          "width": 150,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -3936,8 +3933,8 @@
           "type": "SCPIActionComponent",
           "left": -359,
           "top": -307,
-          "width": 287,
-          "height": 105,
+          "width": 311,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -3949,7 +3946,7 @@
           "left": 1162,
           "top": 625,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -3960,8 +3957,8 @@
           "type": "SetVariableActionComponent",
           "left": 1380,
           "top": 613,
-          "width": 167,
-          "height": 58,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "33ffecb7-ca68-8cfa-0dd5-03dcd2f02a0e",
@@ -3983,8 +3980,8 @@
           "type": "SCPIActionComponent",
           "left": 531,
           "top": -387,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -4001,8 +3998,8 @@
           "type": "SCPIActionComponent",
           "left": 270,
           "top": -306,
-          "width": 139,
-          "height": 157,
+          "width": 150,
+          "height": 149,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4012,20 +4009,20 @@
           "objID": "2dce914f-e6ed-1d0f-1c92-758d16652a09",
           "type": "CommentActionComponent",
           "left": -639,
-          "top": -457,
-          "width": 435,
-          "height": 139,
+          "top": -427,
+          "width": 168,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Voltage verification AIN</h1>"
+          "text": "<div><!--block--><strong>Voltage verification AIN</strong></div>"
         },
         {
           "objID": "81a5f58c-fcd5-b033-0119-7f4bdc156119",
           "type": "SCPIActionComponent",
           "left": 1872,
           "top": 331,
-          "width": 97,
-          "height": 92,
+          "width": 99,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4036,8 +4033,8 @@
           "type": "SCPIActionComponent",
           "left": 531,
           "top": -282,
-          "width": 143,
-          "height": 79,
+          "width": 152,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -4054,8 +4051,8 @@
           "type": "SetVariableActionComponent",
           "left": 1443,
           "top": -387,
-          "width": 309,
-          "height": 92,
+          "width": 346,
+          "height": 85,
           "customInputs": [
             {
               "objID": "97658941-a916-3c4c-3c80-315035aac4a8",
@@ -4087,8 +4084,8 @@
           "type": "SCPIActionComponent",
           "left": 455,
           "top": 20,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -4105,8 +4102,8 @@
           "type": "SCPIActionComponent",
           "left": 455,
           "top": 125,
-          "width": 143,
-          "height": 79,
+          "width": 152,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -4123,8 +4120,8 @@
           "type": "SetVariableActionComponent",
           "left": 1443,
           "top": 20,
-          "width": 309,
-          "height": 92,
+          "width": 346,
+          "height": 85,
           "customInputs": [
             {
               "objID": "2b4af412-5f8a-8f65-48e1-6ef608ca94d8",
@@ -4156,8 +4153,8 @@
           "type": "IsTrueActionComponent",
           "left": 51,
           "top": -306,
-          "width": 151,
-          "height": 73,
+          "width": 162,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.test1 < 0"
@@ -4167,8 +4164,8 @@
           "type": "SCPIActionComponent",
           "left": 241,
           "top": -560,
-          "width": 164,
-          "height": 170,
+          "width": 177,
+          "height": 161,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4179,8 +4176,8 @@
           "type": "SCPIActionComponent",
           "left": 165,
           "top": 171,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4191,8 +4188,8 @@
           "type": "SCPIActionComponent",
           "left": 165,
           "top": 24,
-          "width": 164,
-          "height": 79,
+          "width": 177,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4203,8 +4200,8 @@
           "type": "SCPIActionComponent",
           "left": 455,
           "top": 340,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -4221,8 +4218,8 @@
           "type": "SCPIActionComponent",
           "left": 455,
           "top": 444,
-          "width": 143,
-          "height": 66,
+          "width": 152,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [
             {
@@ -4239,8 +4236,8 @@
           "type": "SetVariableActionComponent",
           "left": 1452,
           "top": 331,
-          "width": 309,
-          "height": 92,
+          "width": 346,
+          "height": 85,
           "customInputs": [
             {
               "objID": "0dea069a-493c-3bc6-a872-f3e65723f096",
@@ -4272,8 +4269,8 @@
           "type": "SCPIActionComponent",
           "left": 165,
           "top": 491,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4284,8 +4281,8 @@
           "type": "IsTrueActionComponent",
           "left": -25,
           "top": 344,
-          "width": 151,
-          "height": 73,
+          "width": 162,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.test3 < 0"
@@ -4295,8 +4292,8 @@
           "type": "SCPIActionComponent",
           "left": 165,
           "top": 344,
-          "width": 164,
-          "height": 79,
+          "width": 177,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4307,8 +4304,8 @@
           "type": "ErrorActionComponent",
           "left": 2383,
           "top": -110,
-          "width": 371,
-          "height": 54,
+          "width": 400,
+          "height": 53,
           "customInputs": [
             {
               "objID": "a0ff6b46-daa2-e5ec-9a3a-5c06c389f1e4",
@@ -4324,8 +4321,8 @@
           "type": "IsTrueActionComponent",
           "left": 744,
           "top": 97,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "6e686202-60c3-0ea4-324b-15798dc7daa0",
@@ -4341,8 +4338,8 @@
           "type": "SCPIActionComponent",
           "left": 1933,
           "top": -110,
-          "width": 97,
-          "height": 92,
+          "width": 99,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4353,8 +4350,8 @@
           "type": "IsTrueActionComponent",
           "left": 744,
           "top": 418,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "cf811505-e1ed-f2d7-6c40-3438432732a8",
@@ -4370,8 +4367,8 @@
           "type": "IsTrueActionComponent",
           "left": 735,
           "top": -282,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "eeb38ec3-2c78-57eb-5dbd-8e5a9cd3c1d5",
@@ -4387,8 +4384,8 @@
           "type": "SetVariableActionComponent",
           "left": 2094,
           "top": -111,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -4404,8 +4401,8 @@
           "type": "SwitchActionComponent",
           "left": -386,
           "top": 24,
-          "width": 190,
-          "height": 92,
+          "width": 224,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "tests": [
@@ -4774,6 +4771,7 @@
         }
       ],
       "name": "ain_verification_volt",
+      "description": "Voltage verification AIN",
       "implementationType": "flow"
     },
     {
@@ -4785,7 +4783,7 @@
           "left": -770,
           "top": -307,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -4795,7 +4793,7 @@
           "left": 2159,
           "top": 751,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -4804,8 +4802,8 @@
           "type": "SCPIActionComponent",
           "left": -575,
           "top": -307,
-          "width": 287,
-          "height": 105,
+          "width": 311,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -4817,7 +4815,7 @@
           "left": -766,
           "top": -4,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -4828,8 +4826,8 @@
           "type": "SetVariableActionComponent",
           "left": -568,
           "top": -35,
-          "width": 167,
-          "height": 58,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "5ba78740-8282-9841-c069-08bc8a8fcdad",
@@ -4849,21 +4847,21 @@
         {
           "objID": "3a6b00b3-9b5a-3db9-83f2-849250cba9e8",
           "type": "CommentActionComponent",
-          "left": -999,
-          "top": -446,
-          "width": 435,
-          "height": 139,
+          "left": -778,
+          "top": -406,
+          "width": 169,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Current verification AIN</h1>"
+          "text": "<div><!--block--><strong>Current verification AIN</strong></div>"
         },
         {
           "objID": "feb754d6-996b-bd1c-7b97-f1ef7ab92e86",
           "type": "SCPIActionComponent",
           "left": 1911,
           "top": 751,
-          "width": 115,
-          "height": 105,
+          "width": 123,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4874,8 +4872,8 @@
           "type": "SCPIActionComponent",
           "left": 496,
           "top": 245,
-          "width": 174,
-          "height": 79,
+          "width": 185,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -4892,8 +4890,8 @@
           "type": "SetVariableActionComponent",
           "left": 1500,
           "top": 150,
-          "width": 309,
-          "height": 73,
+          "width": 345,
+          "height": 68,
           "customInputs": [
             {
               "objID": "6ccc4c98-a435-7720-4f58-738b1a9ae18e",
@@ -4920,8 +4918,8 @@
           "type": "SetVariableActionComponent",
           "left": 1500,
           "top": 429,
-          "width": 309,
-          "height": 73,
+          "width": 345,
+          "height": 68,
           "customInputs": [
             {
               "objID": "b849b72e-1b30-4594-5c25-953d8e20ee73",
@@ -4946,10 +4944,10 @@
         {
           "objID": "b3d70f9d-a1fa-267c-5911-c3ec90d08b05",
           "type": "IsTrueActionComponent",
-          "left": -55,
-          "top": 65,
-          "width": 151,
-          "height": 73,
+          "left": -10,
+          "top": -43,
+          "width": 162,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.test1 < 0"
@@ -4959,8 +4957,8 @@
           "type": "SCPIActionComponent",
           "left": 241,
           "top": 583,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4971,8 +4969,8 @@
           "type": "IsTrueActionComponent",
           "left": 17,
           "top": 436,
-          "width": 151,
-          "height": 73,
+          "width": 162,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.test2 < 0"
@@ -4982,8 +4980,8 @@
           "type": "SCPIActionComponent",
           "left": 241,
           "top": 436,
-          "width": 164,
-          "height": 79,
+          "width": 177,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -4994,8 +4992,8 @@
           "type": "SCPIActionComponent",
           "left": 241,
           "top": 903,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -5006,8 +5004,8 @@
           "type": "IsTrueActionComponent",
           "left": 17,
           "top": 756,
-          "width": 151,
-          "height": 73,
+          "width": 162,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.test3 < 0"
@@ -5017,8 +5015,8 @@
           "type": "SCPIActionComponent",
           "left": 241,
           "top": 756,
-          "width": 164,
-          "height": 79,
+          "width": 177,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -5029,8 +5027,8 @@
           "type": "SCPIActionComponent",
           "left": 496,
           "top": 29,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5047,8 +5045,8 @@
           "type": "SCPIActionComponent",
           "left": 509,
           "top": 612,
-          "width": 174,
-          "height": 79,
+          "width": 185,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5065,8 +5063,8 @@
           "type": "SCPIActionComponent",
           "left": 509,
           "top": 442,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5083,8 +5081,8 @@
           "type": "SetVariableActionComponent",
           "left": 1500,
           "top": 753,
-          "width": 309,
-          "height": 73,
+          "width": 345,
+          "height": 68,
           "customInputs": [
             {
               "objID": "e8b646ed-cf52-ecc8-64a1-7e0b2c10ddc1",
@@ -5111,8 +5109,8 @@
           "type": "SCPIActionComponent",
           "left": 509,
           "top": 936,
-          "width": 174,
-          "height": 79,
+          "width": 185,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5129,8 +5127,8 @@
           "type": "SCPIActionComponent",
           "left": 509,
           "top": 766,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5147,7 +5145,7 @@
           "type": "SCPIActionComponent",
           "left": 614,
           "top": -309,
-          "width": 107,
+          "width": 109,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -5159,7 +5157,7 @@
           "type": "SCPIActionComponent",
           "left": 614,
           "top": -222,
-          "width": 107,
+          "width": 109,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -5171,8 +5169,8 @@
           "type": "IsTrueActionComponent",
           "left": -146,
           "top": -311,
-          "width": 607,
-          "height": 73,
+          "width": 659,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "(channel.range == 2 && channel.channel == 2) || (channel.range == 3 && channel.channel ==4)"
@@ -5182,8 +5180,8 @@
           "type": "SCPIActionComponent",
           "left": 220,
           "top": 171,
-          "width": 139,
-          "height": 157,
+          "width": 150,
+          "height": 149,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -5194,8 +5192,8 @@
           "type": "SCPIActionComponent",
           "left": 220,
           "top": -50,
-          "width": 164,
-          "height": 157,
+          "width": 177,
+          "height": 149,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -5206,7 +5204,7 @@
           "type": "SCPIActionComponent",
           "left": 796,
           "top": -224,
-          "width": 139,
+          "width": 150,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -5218,7 +5216,7 @@
           "type": "SCPIActionComponent",
           "left": 796,
           "top": -307,
-          "width": 139,
+          "width": 150,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -5230,7 +5228,7 @@
           "type": "ErrorActionComponent",
           "left": 2322,
           "top": 349,
-          "width": 330,
+          "width": 358,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -5241,8 +5239,8 @@
           "type": "SCPIActionComponent",
           "left": 1911,
           "top": 349,
-          "width": 97,
-          "height": 92,
+          "width": 99,
+          "height": 89,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -5253,8 +5251,8 @@
           "type": "IsTrueActionComponent",
           "left": 795,
           "top": 192,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "1b0c9674-e0ea-6757-59ea-dd577336f333",
@@ -5270,8 +5268,8 @@
           "type": "IsTrueActionComponent",
           "left": 795,
           "top": 551,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "1f52873c-bab9-cfe4-5740-0336dfb675df",
@@ -5287,8 +5285,8 @@
           "type": "IsTrueActionComponent",
           "left": 805,
           "top": 903,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "2ab71b57-f4c1-4b93-ea6c-572e64170bbc",
@@ -5304,8 +5302,8 @@
           "type": "SetVariableActionComponent",
           "left": 2061,
           "top": 349,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -5664,6 +5662,7 @@
         }
       ],
       "name": "ain_verification_curr",
+      "description": "Current verification AIN",
       "implementationType": "flow"
     },
     {
@@ -5675,7 +5674,7 @@
           "left": -997,
           "top": -306,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -5685,7 +5684,7 @@
           "left": 2273,
           "top": 304,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -5694,8 +5693,8 @@
           "type": "SCPIActionComponent",
           "left": -878,
           "top": -306,
-          "width": 250,
-          "height": 105,
+          "width": 271,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -5707,7 +5706,7 @@
           "left": -997,
           "top": 6,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -5718,8 +5717,8 @@
           "type": "SetVariableActionComponent",
           "left": -764,
           "top": 6,
-          "width": 167,
-          "height": 58,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "ae63e385-7e2d-7bb3-4128-358f808affba",
@@ -5741,8 +5740,8 @@
           "type": "SCPIActionComponent",
           "left": 478,
           "top": -306,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5757,21 +5756,21 @@
         {
           "objID": "4ebc0edb-0625-7213-fc72-b4efc2fb7295",
           "type": "CommentActionComponent",
-          "left": -878,
-          "top": -453,
-          "width": 448,
-          "height": 139,
+          "left": -997,
+          "top": -418,
+          "width": 182,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Voltage verification AOUT</h1>"
+          "text": "<div><!--block--><strong>Voltage verification AOUT</strong></div>"
         },
         {
           "objID": "67e9304f-1877-41a5-e153-78bf81c04d22",
           "type": "SetVariableActionComponent",
           "left": 1451,
           "top": -306,
-          "width": 339,
-          "height": 58,
+          "width": 379,
+          "height": 55,
           "customInputs": [
             {
               "objID": "d061bcce-de91-67f2-2434-b134195f2599",
@@ -5793,7 +5792,7 @@
           "type": "SCPIActionComponent",
           "left": -553,
           "top": -306,
-          "width": 392,
+          "width": 426,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -5805,8 +5804,8 @@
           "type": "SCPIActionComponent",
           "left": 189,
           "top": -336,
-          "width": 201,
-          "height": 118,
+          "width": 217,
+          "height": 113,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -5817,8 +5816,8 @@
           "type": "IsTrueActionComponent",
           "left": -57,
           "top": -306,
-          "width": 163,
-          "height": 73,
+          "width": 175,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "channel.channel < 3"
@@ -5828,8 +5827,8 @@
           "type": "SCPIActionComponent",
           "left": 189,
           "top": -144,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -5840,8 +5839,8 @@
           "type": "SCPIActionComponent",
           "left": 279,
           "top": 5,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -5852,8 +5851,8 @@
           "type": "SCPIActionComponent",
           "left": 478,
           "top": 6,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5870,8 +5869,8 @@
           "type": "SetVariableActionComponent",
           "left": 1459,
           "top": -1,
-          "width": 339,
-          "height": 58,
+          "width": 379,
+          "height": 55,
           "customInputs": [
             {
               "objID": "caa25156-168a-6ef1-0d45-23ac86964269",
@@ -5893,8 +5892,8 @@
           "type": "SCPIActionComponent",
           "left": 279,
           "top": 307,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -5905,8 +5904,8 @@
           "type": "SCPIActionComponent",
           "left": 478,
           "top": 307,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -5923,8 +5922,8 @@
           "type": "SetVariableActionComponent",
           "left": 1459,
           "top": 307,
-          "width": 339,
-          "height": 58,
+          "width": 379,
+          "height": 55,
           "customInputs": [
             {
               "objID": "b2d0dd70-5c12-fef2-3c16-975b4a31d424",
@@ -5946,8 +5945,8 @@
           "type": "SCPIActionComponent",
           "left": 1910,
           "top": 304,
-          "width": 250,
-          "height": 66,
+          "width": 271,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -5958,8 +5957,8 @@
           "type": "IsTrueActionComponent",
           "left": 743,
           "top": -243,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "59d8fd64-2c95-6a82-c54e-b6f892a4d688",
@@ -5975,8 +5974,8 @@
           "type": "IsTrueActionComponent",
           "left": 743,
           "top": 73,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "d56b17e7-36ce-eb62-8ac0-7091de689e35",
@@ -5992,8 +5991,8 @@
           "type": "IsTrueActionComponent",
           "left": 743,
           "top": 375,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "43cb6ff9-3944-2f02-090c-631d4b9a95c8",
@@ -6009,7 +6008,7 @@
           "type": "ErrorActionComponent",
           "left": 2521,
           "top": -113,
-          "width": 336,
+          "width": 365,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -6020,8 +6019,8 @@
           "type": "SetVariableActionComponent",
           "left": 2260,
           "top": -115,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -6037,8 +6036,8 @@
           "type": "SCPIActionComponent",
           "left": 1910,
           "top": -114,
-          "width": 250,
-          "height": 66,
+          "width": 271,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -6258,6 +6257,7 @@
         }
       ],
       "name": "aout_verification_volt",
+      "description": "Voltage verification AOUT",
       "implementationType": "flow"
     },
     {
@@ -6269,7 +6269,7 @@
           "left": -681,
           "top": -375,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -6279,7 +6279,7 @@
           "left": 2141,
           "top": 155,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -6287,12 +6287,12 @@
           "objID": "c39b6cdf-84a6-97c1-84cb-6bce8fce1ff0",
           "type": "CommentActionComponent",
           "left": -561,
-          "top": -560,
-          "width": 457,
-          "height": 139,
+          "top": -465,
+          "width": 186,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
-          "text": "<h1><!--block-->Current verification AOUT</h1>"
+          "text": "<div><!--block--><strong>Current verification AOUT</strong></div>"
         },
         {
           "objID": "399d2174-3755-5ff4-d248-4e523d11d5f4",
@@ -6300,7 +6300,7 @@
           "left": -655,
           "top": -70,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -6311,8 +6311,8 @@
           "type": "SetVariableActionComponent",
           "left": -422,
           "top": -87,
-          "width": 167,
-          "height": 58,
+          "width": 191,
+          "height": 55,
           "customInputs": [
             {
               "objID": "da2599c6-f702-2c1d-e9e0-e1017eb78c67",
@@ -6334,8 +6334,8 @@
           "type": "SCPIActionComponent",
           "left": 415,
           "top": -375,
-          "width": 174,
-          "height": 66,
+          "width": 185,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [
             {
@@ -6352,8 +6352,8 @@
           "type": "SetVariableActionComponent",
           "left": 1368,
           "top": -380,
-          "width": 339,
-          "height": 58,
+          "width": 379,
+          "height": 55,
           "customInputs": [
             {
               "objID": "e1370da5-cf74-67a8-439b-f866a37bb450",
@@ -6375,7 +6375,7 @@
           "type": "SCPIActionComponent",
           "left": -230,
           "top": -375,
-          "width": 287,
+          "width": 311,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -6387,8 +6387,8 @@
           "type": "SCPIActionComponent",
           "left": 138,
           "top": -375,
-          "width": 201,
-          "height": 118,
+          "width": 217,
+          "height": 113,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -6399,8 +6399,8 @@
           "type": "SCPIActionComponent",
           "left": 156,
           "top": -65,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -6411,8 +6411,8 @@
           "type": "SCPIActionComponent",
           "left": 379,
           "top": -65,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -6429,8 +6429,8 @@
           "type": "SetVariableActionComponent",
           "left": 1368,
           "top": -70,
-          "width": 339,
-          "height": 58,
+          "width": 379,
+          "height": 55,
           "customInputs": [
             {
               "objID": "749e5c90-1e3e-6892-05cc-533fb844814c",
@@ -6452,8 +6452,8 @@
           "type": "SCPIActionComponent",
           "left": 156,
           "top": 155,
-          "width": 139,
-          "height": 79,
+          "width": 150,
+          "height": 77,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_2",
@@ -6464,8 +6464,8 @@
           "type": "SCPIActionComponent",
           "left": 379,
           "top": 155,
-          "width": 174,
-          "height": 54,
+          "width": 185,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [
             {
@@ -6482,8 +6482,8 @@
           "type": "SetVariableActionComponent",
           "left": 1368,
           "top": 155,
-          "width": 339,
-          "height": 58,
+          "width": 379,
+          "height": 55,
           "customInputs": [
             {
               "objID": "3185abf7-2e1c-cabe-4563-dc05a2a5d154",
@@ -6505,8 +6505,8 @@
           "type": "SCPIActionComponent",
           "left": -561,
           "top": -375,
-          "width": 250,
-          "height": 105,
+          "width": 271,
+          "height": 101,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -6517,8 +6517,8 @@
           "type": "SCPIActionComponent",
           "left": 1802,
           "top": 155,
-          "width": 250,
-          "height": 66,
+          "width": 271,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -6529,8 +6529,8 @@
           "type": "IsTrueActionComponent",
           "left": 672,
           "top": -289,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "a6d977f6-1ada-f9e7-bb85-7e58fdbbf3cc",
@@ -6546,8 +6546,8 @@
           "type": "IsTrueActionComponent",
           "left": 650,
           "top": -2,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "df4077f0-1f14-b270-7d06-c3163763e3d6",
@@ -6563,8 +6563,8 @@
           "type": "IsTrueActionComponent",
           "left": 650,
           "top": 223,
-          "width": 543,
-          "height": 73,
+          "width": 586,
+          "height": 68,
           "customInputs": [
             {
               "objID": "a0a9d5e4-8837-5446-1acc-0809097a41fe",
@@ -6580,8 +6580,8 @@
           "type": "SCPIActionComponent",
           "left": 1802,
           "top": -191,
-          "width": 250,
-          "height": 66,
+          "width": 271,
+          "height": 65,
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3_1",
@@ -6592,7 +6592,7 @@
           "type": "ErrorActionComponent",
           "left": 2413,
           "top": -191,
-          "width": 336,
+          "width": 365,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -6603,8 +6603,8 @@
           "type": "SetVariableActionComponent",
           "left": 2161,
           "top": -191,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -6808,6 +6808,7 @@
         }
       ],
       "name": "aout_verification_curr",
+      "description": "Current verification AOUT",
       "implementationType": "flow"
     },
     {
@@ -6818,8 +6819,8 @@
           "type": "CallActionActionComponent",
           "left": -1,
           "top": 5,
-          "width": 114,
-          "height": 54,
+          "width": 117,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "do_calibration"
@@ -6827,10 +6828,10 @@
         {
           "objID": "7c916b4a-2532-0978-1e3a-295383a97f86",
           "type": "CallActionActionComponent",
-          "left": 217,
-          "top": 77,
-          "width": 87,
-          "height": 54,
+          "left": 177,
+          "top": 17,
+          "width": 89,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "do_verify"
@@ -6838,10 +6839,10 @@
         {
           "objID": "b87b1dbf-20fa-9451-eb2f-bfb75ace2ce5",
           "type": "InputActionComponent",
-          "left": -226,
-          "top": 217,
+          "left": -221,
+          "top": 151,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "name": "channel",
@@ -6853,17 +6854,17 @@
           "left": -371,
           "top": 5,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
         {
           "objID": "d4fd14ee-6e6a-cc6c-ad78-07729b6708db",
           "type": "EndActionComponent",
-          "left": 1321,
-          "top": 471,
+          "left": 1218,
+          "top": 465,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -6872,8 +6873,8 @@
           "type": "eez-flow-ext-postgres/PostgresActionComponent",
           "left": -226,
           "top": 411,
-          "width": 609,
-          "height": 196,
+          "width": 657,
+          "height": 185,
           "customInputs": [
             {
               "objID": "5da8b282-fce3-1610-3c16-505b7f22dbc6",
@@ -6899,10 +6900,10 @@
         {
           "objID": "d04797d3-79e8-a6ed-b16d-35fb59b8a873",
           "type": "SCPIActionComponent",
-          "left": 367,
-          "top": 77,
-          "width": 534,
-          "height": 54,
+          "left": 311,
+          "top": 98,
+          "width": 573,
+          "height": 53,
           "customInputs": [
             {
               "objID": "f0194b3d-4639-7673-156e-cecbc2dc0fc1",
@@ -6925,7 +6926,7 @@
           "type": "SCPIActionComponent",
           "left": -221,
           "top": 5,
-          "width": 97,
+          "width": 99,
           "height": 53,
           "customInputs": [],
           "customOutputs": [],
@@ -6936,10 +6937,10 @@
         {
           "objID": "283e2dd6-cd0f-6b1c-9801-ad9c61a7ff5e",
           "type": "IsTrueActionComponent",
-          "left": 566,
-          "top": 417,
-          "width": 179,
-          "height": 73,
+          "left": 463,
+          "top": 411,
+          "width": 191,
+          "height": 68,
           "customInputs": [
             {
               "objID": "6c44cab5-f0ac-5385-fc53-0a7d9387ba47",
@@ -6953,10 +6954,10 @@
         {
           "objID": "f5a10dc0-67f9-8bde-fb17-91333a6c6861",
           "type": "SetVariableActionComponent",
-          "left": 826,
-          "top": 339,
-          "width": 138,
-          "height": 58,
+          "left": 707,
+          "top": 384,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -6970,10 +6971,10 @@
         {
           "objID": "0da2f24c-a7d7-ab11-fdc4-29fe6d028438",
           "type": "SetVariableActionComponent",
-          "left": 1033,
-          "top": 339,
-          "width": 175,
-          "height": 58,
+          "left": 914,
+          "top": 384,
+          "width": 202,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7098,7 +7099,7 @@
           "left": -734,
           "top": -194,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -7108,7 +7109,7 @@
           "left": 1065,
           "top": -17,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -7117,8 +7118,8 @@
           "type": "eez-flow-ext-postgres/PostgresActionComponent",
           "left": -182,
           "top": -194,
-          "width": 392,
-          "height": 73,
+          "width": 425,
+          "height": 53,
           "customInputs": [
             {
               "objID": "f4ad4035-3ea4-912e-0dce-ba95f6a8e1c2",
@@ -7141,8 +7142,8 @@
           "type": "SCPIActionComponent",
           "left": -604,
           "top": -194,
-          "width": 294,
-          "height": 92,
+          "width": 316,
+          "height": 85,
           "customInputs": [],
           "customOutputs": [
             {
@@ -7169,8 +7170,8 @@
           "type": "EvalExprActionComponent",
           "left": 338,
           "top": -194,
-          "width": 174,
-          "height": 73,
+          "width": 184,
+          "height": 68,
           "customInputs": [
             {
               "objID": "ac049922-44f2-0561-ecef-68b84457286f",
@@ -7187,8 +7188,8 @@
           "type": "eez-flow-ext-postgres/PostgresActionComponent",
           "left": -182,
           "top": -17,
-          "width": 392,
-          "height": 111,
+          "width": 589,
+          "height": 85,
           "customInputs": [
             {
               "objID": "3f185492-c887-f345-16a7-4aa6a3313e73",
@@ -7221,8 +7222,8 @@
           "type": "EvalExprActionComponent",
           "left": 531,
           "top": -17,
-          "width": 167,
-          "height": 55,
+          "width": 176,
+          "height": 53,
           "customInputs": [
             {
               "objID": "22757d45-c53d-8b5c-bcc4-437988ef9586",
@@ -7239,8 +7240,8 @@
           "type": "SetVariableActionComponent",
           "left": 817,
           "top": -17,
-          "width": 193,
-          "height": 56,
+          "width": 204,
+          "height": 55,
           "customInputs": [
             {
               "objID": "23bcf80b-2c00-7eee-bb18-bc9cb6419e5f",
@@ -7262,8 +7263,8 @@
           "type": "SetVariableActionComponent",
           "left": -182,
           "top": -295,
-          "width": 200,
-          "height": 56,
+          "width": 211,
+          "height": 55,
           "customInputs": [
             {
               "objID": "7b72e7e1-09fe-f379-3b17-d02b99f32b6c",
@@ -7285,8 +7286,8 @@
           "type": "SetVariableActionComponent",
           "left": 708,
           "top": -194,
-          "width": 337,
-          "height": 56,
+          "width": 364,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7302,8 +7303,8 @@
           "type": "SetVariableActionComponent",
           "left": 708,
           "top": -111,
-          "width": 159,
-          "height": 56,
+          "width": 169,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7437,7 +7438,7 @@
           "left": 0,
           "top": -304,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": []
         },
@@ -7447,7 +7448,7 @@
           "left": 301,
           "top": -304,
           "width": 87,
-          "height": 54,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "bb3_init"
@@ -7457,8 +7458,8 @@
           "type": "CallActionActionComponent",
           "left": 126,
           "top": -304,
-          "width": 101,
-          "height": 25,
+          "width": 105,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "action": "keithley_init"
@@ -7467,9 +7468,9 @@
           "objID": "ad6d7962-be1f-dc32-3dac-0c8c6052db45",
           "type": "SetVariableActionComponent",
           "left": 1188,
-          "top": -267,
-          "width": 132,
-          "height": 58,
+          "top": -294,
+          "width": 155,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7495,7 +7496,6 @@
             "inheritFrom": "default"
           },
           "timeline": [],
-          "eventHandlers": [],
           "itemWidget": {
             "objID": "b2c6db0b-40bc-a455-c385-dca06e055b82",
             "type": "Container",
@@ -7510,7 +7510,6 @@
               "inheritFrom": "default"
             },
             "timeline": [],
-            "eventHandlers": [],
             "widgets": [
               {
                 "objID": "f9b72456-1da0-7a7a-d4d9-aad0d966676b",
@@ -7526,8 +7525,7 @@
                   "objID": "5e4376ce-ac76-9232-cd9f-d3c3f8e6a406",
                   "inheritFrom": "default"
                 },
-                "timeline": [],
-                "eventHandlers": []
+                "timeline": []
               },
               {
                 "objID": "c582ac2c-8b68-2980-eb6c-37edfbaf3419",
@@ -7543,8 +7541,7 @@
                   "objID": "82987a42-d555-9d89-540b-96436f5890e0",
                   "inheritFrom": "default"
                 },
-                "timeline": [],
-                "eventHandlers": []
+                "timeline": []
               },
               {
                 "objID": "c380ef63-654b-41ba-b162-776b1b2e662c",
@@ -7555,19 +7552,15 @@
                 "height": 32,
                 "customInputs": [],
                 "customOutputs": [],
+                "asOutputProperties": [
+                  "action"
+                ],
                 "data": "\"Start\"",
                 "style": {
                   "objID": "29faf2fa-9d73-a861-96ad-30a7bb61c98e",
                   "inheritFrom": "default"
                 },
                 "timeline": [],
-                "eventHandlers": [
-                  {
-                    "objID": "8f9bad4e-8681-7495-2e1b-477e1408a93e",
-                    "eventName": "CLICKED",
-                    "handlerType": "flow"
-                  }
-                ],
                 "enabled": "!isRunning",
                 "disabledStyle": {
                   "objID": "08303f16-ad3b-5ea0-2b00-0dcf8471994c",
@@ -7594,21 +7587,20 @@
             "objID": "9770ac8c-3842-2571-d0a9-dfe61d2abbc7",
             "inheritFrom": "default"
           },
-          "timeline": [],
-          "eventHandlers": []
+          "timeline": []
         },
         {
           "objID": "da721dd5-7a45-4d91-0d3f-bb4336957e03",
           "type": "WatchVariableActionComponent",
-          "left": 687,
-          "top": -204,
-          "width": 208,
-          "height": 54,
+          "left": 654,
+          "top": -199,
+          "width": 218,
+          "height": 53,
           "customInputs": [
             {
               "objID": "9f91dab1-b95e-2577-c0f9-4a238f06a35f",
               "name": "index",
-              "type": "struct:$ClickEvent"
+              "type": "struct:$ActionParams"
             }
           ],
           "customOutputs": [],
@@ -7629,7 +7621,6 @@
             "inheritFrom": "default"
           },
           "timeline": [],
-          "eventHandlers": [],
           "itemWidget": {
             "objID": "b2c6db0b-40bc-a455-c385-dca06e055b82",
             "type": "Container",
@@ -7644,7 +7635,6 @@
               "inheritFrom": "default"
             },
             "timeline": [],
-            "eventHandlers": [],
             "widgets": [
               {
                 "objID": "706c5832-a30b-c197-6958-3e5eb8079d42",
@@ -7660,8 +7650,7 @@
                   "objID": "117dac93-7276-e924-573d-b3a82378cbd1",
                   "inheritFrom": "default"
                 },
-                "timeline": [],
-                "eventHandlers": []
+                "timeline": []
               },
               {
                 "objID": "c582ac2c-8b68-2980-eb6c-37edfbaf3419",
@@ -7677,8 +7666,7 @@
                   "objID": "b39ced60-3a94-4279-13aa-fb761b6db4fa",
                   "inheritFrom": "default"
                 },
-                "timeline": [],
-                "eventHandlers": []
+                "timeline": []
               },
               {
                 "objID": "ec1877d2-e765-1d95-f24b-56a0e1d9ed0c",
@@ -7689,19 +7677,15 @@
                 "height": 32,
                 "customInputs": [],
                 "customOutputs": [],
+                "asOutputProperties": [
+                  "action"
+                ],
                 "data": "\"Start\"",
                 "style": {
                   "objID": "7276673f-51b1-6460-79e9-fe1db99fe078",
                   "inheritFrom": "default"
                 },
                 "timeline": [],
-                "eventHandlers": [
-                  {
-                    "objID": "4b682d3a-5409-6334-5501-c13df936e8e7",
-                    "eventName": "CLICKED",
-                    "handlerType": "flow"
-                  }
-                ],
                 "enabled": "!isRunning",
                 "disabledStyle": {
                   "objID": "4556ab83-56fc-bd03-61cd-9053eda2cd42",
@@ -7728,21 +7712,20 @@
             "objID": "64f56a8a-f576-a4a1-f1f4-0f06bb21dbc6",
             "inheritFrom": "default"
           },
-          "timeline": [],
-          "eventHandlers": []
+          "timeline": []
         },
         {
           "objID": "9928539e-ace8-3aa6-dcc9-ffdf62bf6708",
           "type": "WatchVariableActionComponent",
-          "left": 687,
+          "left": 656,
           "top": -114,
-          "width": 226,
-          "height": 54,
+          "width": 238,
+          "height": 53,
           "customInputs": [
             {
               "objID": "aa14ce8f-3ffb-d4a7-c28d-22e47b710539",
               "name": "index",
-              "type": "struct:$ClickEvent"
+              "type": "struct:$ActionParams"
             }
           ],
           "customOutputs": [],
@@ -7753,8 +7736,8 @@
           "type": "SetVariableActionComponent",
           "left": 1554,
           "top": -267,
-          "width": 138,
-          "height": 58,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7774,19 +7757,15 @@
           "height": 32,
           "customInputs": [],
           "customOutputs": [],
+          "asOutputProperties": [
+            "action"
+          ],
           "data": "\"Calibrate all\"",
           "style": {
             "objID": "4a456837-bfa7-f8a2-d279-300b174014ff",
             "inheritFrom": "default"
           },
           "timeline": [],
-          "eventHandlers": [
-            {
-              "objID": "3c79b587-ad80-0bc7-8336-efcd4b8d1387",
-              "eventName": "CLICKED",
-              "handlerType": "flow"
-            }
-          ],
           "enabled": "!isRunning",
           "disabledStyle": {
             "objID": "beb96544-95da-dbc8-fd8a-5326db0a5089",
@@ -7798,8 +7777,8 @@
           "type": "LoopActionComponent",
           "left": 1191,
           "top": 108,
-          "width": 252,
-          "height": 73,
+          "width": 262,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "variable": "idx",
@@ -7813,8 +7792,8 @@
           "type": "SetVariableActionComponent",
           "left": 984,
           "top": 108,
-          "width": 132,
-          "height": 58,
+          "width": 155,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7828,10 +7807,10 @@
         {
           "objID": "daf4ac76-bcf6-9b56-1291-fc1007cfe998",
           "type": "SetVariableActionComponent",
-          "left": 1486,
-          "top": 206,
-          "width": 138,
-          "height": 58,
+          "left": 1513,
+          "top": 232,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7847,8 +7826,8 @@
           "type": "CallActionActionComponent",
           "left": 1398,
           "top": -267,
-          "width": 89,
-          "height": 54,
+          "width": 92,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "cal_action"
@@ -7856,10 +7835,10 @@
         {
           "objID": "2d5b054e-7a98-2e69-f3f6-6585448970e5",
           "type": "CallActionActionComponent",
-          "left": 1896,
-          "top": -85,
-          "width": 89,
-          "height": 54,
+          "left": 1873,
+          "top": 117,
+          "width": 92,
+          "height": 51,
           "customInputs": [],
           "customOutputs": [],
           "action": "cal_action"
@@ -7870,7 +7849,7 @@
           "left": 984,
           "top": 250,
           "width": 97,
-          "height": 54,
+          "height": 51,
           "customInputs": [],
           "customOutputs": []
         },
@@ -7894,16 +7873,15 @@
             "objID": "c36c4d94-cbb8-f5fd-ed75-0cd80b8562dd",
             "inheritFrom": "error"
           },
-          "timeline": [],
-          "eventHandlers": []
+          "timeline": []
         },
         {
           "objID": "b0bb8639-9df8-9c1e-91bf-78c650de7eed",
           "type": "SetVariableActionComponent",
           "left": 1163,
           "top": 250,
-          "width": 138,
-          "height": 58,
+          "width": 162,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7919,8 +7897,8 @@
           "type": "IsTrueActionComponent",
           "left": 1486,
           "top": 101,
-          "width": 102,
-          "height": 73,
+          "width": 108,
+          "height": 68,
           "customInputs": [],
           "customOutputs": [],
           "value": "isRunning"
@@ -7930,8 +7908,8 @@
           "type": "EvalExprActionComponent",
           "left": 1660,
           "top": 102,
-          "width": 138,
-          "height": 54,
+          "width": 148,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [],
           "expression": "channels[idx]"
@@ -7939,8 +7917,8 @@
         {
           "objID": "3160b828-503c-11b5-c11e-8189721a3a28",
           "type": "CommentActionComponent",
-          "left": 1142,
-          "top": -173,
+          "left": 1154,
+          "top": -170,
           "width": 189,
           "height": 56,
           "customInputs": [],
@@ -7951,9 +7929,9 @@
           "objID": "9919be3e-b754-12b2-ee54-e2938c9042a2",
           "type": "EvalExprActionComponent",
           "left": 455,
-          "top": -116,
-          "width": 118,
-          "height": 54,
+          "top": -114,
+          "width": 87,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [],
           "expression": "\"\""
@@ -7964,7 +7942,7 @@
           "left": 431,
           "top": -303,
           "width": 87,
-          "height": 25,
+          "height": 24,
           "customInputs": [],
           "customOutputs": [],
           "action": "db_init"
@@ -7983,8 +7961,7 @@
             "objID": "32bbb3be-5b00-b1cd-cf73-d709ddeb1331",
             "inheritFrom": "default"
           },
-          "timeline": [],
-          "eventHandlers": []
+          "timeline": []
         },
         {
           "objID": "e5be2c42-b1fe-e2a4-853e-e234c3665c20",
@@ -8000,8 +7977,7 @@
             "objID": "47d2f559-0448-26d9-a516-273185321de1",
             "inheritFrom": "default"
           },
-          "timeline": [],
-          "eventHandlers": []
+          "timeline": []
         },
         {
           "objID": "5473dd44-f76d-e5bc-fa34-1818d301b88b",
@@ -8017,8 +7993,7 @@
             "objID": "657703bd-5a0f-a807-ef8a-6f7408a793e8",
             "inheritFrom": "warning"
           },
-          "timeline": [],
-          "eventHandlers": []
+          "timeline": []
         },
         {
           "objID": "005337fe-7319-a1b5-14c9-a6f4c69c13b5",
@@ -8035,7 +8010,6 @@
             "inheritFrom": "default"
           },
           "timeline": [],
-          "eventHandlers": [],
           "widgets": [
             {
               "objID": "870efc6a-48ed-7cde-08f3-8712a4011bff",
@@ -8058,7 +8032,6 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
-              "eventHandlers": [],
               "title": "Progress %",
               "minRange": "0",
               "maxRange": "100",
@@ -8079,8 +8052,8 @@
           "type": "WatchVariableActionComponent",
           "left": -194,
           "top": 501,
-          "width": 160,
-          "height": 54,
+          "width": 168,
+          "height": 53,
           "customInputs": [],
           "customOutputs": [],
           "variable": "idx / 26 * 100"
@@ -8090,8 +8063,8 @@
           "type": "SetVariableActionComponent",
           "left": 984,
           "top": -7,
-          "width": 181,
-          "height": 58,
+          "width": 209,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -8107,8 +8080,8 @@
           "type": "SetVariableActionComponent",
           "left": 934,
           "top": -272,
-          "width": 187,
-          "height": 58,
+          "width": 216,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -8128,19 +8101,15 @@
           "height": 32,
           "customInputs": [],
           "customOutputs": [],
+          "asOutputProperties": [
+            "action"
+          ],
           "data": "cancelRequested ? \"Stopping...\" : \"Stop\"",
           "style": {
             "objID": "b800e5bf-b944-4d76-71ef-80f56f6557b0",
             "inheritFrom": "default"
           },
           "timeline": [],
-          "eventHandlers": [
-            {
-              "objID": "2f3aad0a-fcf7-79a9-9f29-e9961b963064",
-              "eventName": "CLICKED",
-              "handlerType": "flow"
-            }
-          ],
           "text": "",
           "enabled": "isRunning && !cancelRequested && !notFound",
           "disabledStyle": {
@@ -8151,10 +8120,10 @@
         {
           "objID": "737048ec-6b95-7ffb-4720-5475597e004c",
           "type": "SetVariableActionComponent",
-          "left": 190,
-          "top": -116,
-          "width": 169,
-          "height": 58,
+          "left": 158,
+          "top": -105,
+          "width": 196,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -8170,8 +8139,8 @@
           "type": "SetVariableActionComponent",
           "left": 1272,
           "top": -7,
-          "width": 175,
-          "height": 58,
+          "width": 202,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -8187,8 +8156,8 @@
           "type": "SetVariableActionComponent",
           "left": 1163,
           "top": 351,
-          "width": 175,
-          "height": 58,
+          "width": 202,
+          "height": 55,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -8218,14 +8187,14 @@
         {
           "objID": "b8f91348-5463-3225-833b-8aad757d9d9f",
           "source": "c380ef63-654b-41ba-b162-776b1b2e662c",
-          "output": "CLICKED",
+          "output": "action",
           "target": "da721dd5-7a45-4d91-0d3f-bb4336957e03",
           "input": "index"
         },
         {
           "objID": "cbf2af9b-a321-ac06-1db5-4503f162563f",
           "source": "ec1877d2-e765-1d95-f24b-56a0e1d9ed0c",
-          "output": "CLICKED",
+          "output": "action",
           "target": "9928539e-ace8-3aa6-dcc9-ffdf62bf6708",
           "input": "index"
         },
@@ -8253,7 +8222,7 @@
         {
           "objID": "7e21fbf7-268f-8b13-fe15-4e0bb0505101",
           "source": "d0b96dee-f004-1f63-44e4-c4c2a4fcfe06",
-          "output": "CLICKED",
+          "output": "action",
           "target": "9721f3ba-108e-5091-cff6-00ccb02b2658",
           "input": "@seqin"
         },
@@ -8323,14 +8292,14 @@
         {
           "objID": "a7dcd93d-c01a-a689-0e60-86fe477803bc",
           "source": "c380ef63-654b-41ba-b162-776b1b2e662c",
-          "output": "CLICKED",
+          "output": "action",
           "target": "9919be3e-b754-12b2-ee54-e2938c9042a2",
           "input": "@seqin"
         },
         {
           "objID": "25802bb3-3c2a-ac9f-f6db-9d68078dc65c",
           "source": "ec1877d2-e765-1d95-f24b-56a0e1d9ed0c",
-          "output": "CLICKED",
+          "output": "action",
           "target": "9919be3e-b754-12b2-ee54-e2938c9042a2",
           "input": "@seqin"
         },
@@ -8393,7 +8362,7 @@
         {
           "objID": "aee9f4e2-aed8-c4e6-a3f1-e6677fe38e0a",
           "source": "d6426540-b016-21bc-7358-b7448d3fc291",
-          "output": "CLICKED",
+          "output": "action",
           "target": "737048ec-6b95-7ffb-4720-5475597e004c",
           "input": "@seqin"
         },
@@ -8414,7 +8383,7 @@
         {
           "objID": "2b7f7082-1bec-af74-56da-63d4c53e1b00",
           "source": "d0b96dee-f004-1f63-44e4-c4c2a4fcfe06",
-          "output": "CLICKED",
+          "output": "action",
           "target": "9919be3e-b754-12b2-ee54-e2938c9042a2",
           "input": "@seqin"
         },
