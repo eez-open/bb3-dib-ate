@@ -6,7 +6,14 @@
       "objID": "fd434352-2277-c4a8-e87e-e96cfcbf2305",
       "projectVersion": "v3",
       "projectType": "dashboard",
-      "imports": []
+      "extensions": [
+        {
+          "objID": "c0b74ff3-9479-4803-bcf1-b34344979221",
+          "extensionName": "eez-flow-ext-postgres"
+        }
+      ],
+      "imports": [],
+      "resourceFiles": []
     },
     "build": {
       "objID": "72794a43-a0fc-13c2-7eb5-67dd952141a4",
@@ -7110,8 +7117,8 @@
           "type": "eez-flow-ext-postgres/PostgresActionComponent",
           "left": -182,
           "top": -194,
-          "width": 394,
-          "height": 54,
+          "width": 392,
+          "height": 73,
           "customInputs": [
             {
               "objID": "f4ad4035-3ea4-912e-0dce-ba95f6a8e1c2",
@@ -7180,8 +7187,8 @@
           "type": "eez-flow-ext-postgres/PostgresActionComponent",
           "left": -182,
           "top": -17,
-          "width": 546,
-          "height": 92,
+          "width": 392,
+          "height": 111,
           "customInputs": [
             {
               "objID": "3f185492-c887-f345-16a7-4aa6a3313e73",
@@ -7215,7 +7222,7 @@
           "left": 531,
           "top": -17,
           "width": 167,
-          "height": 54,
+          "height": 55,
           "customInputs": [
             {
               "objID": "22757d45-c53d-8b5c-bcc4-437988ef9586",
@@ -7232,8 +7239,8 @@
           "type": "SetVariableActionComponent",
           "left": 817,
           "top": -17,
-          "width": 179,
-          "height": 58,
+          "width": 193,
+          "height": 56,
           "customInputs": [
             {
               "objID": "23bcf80b-2c00-7eee-bb18-bc9cb6419e5f",
@@ -7255,8 +7262,8 @@
           "type": "SetVariableActionComponent",
           "left": -182,
           "top": -295,
-          "width": 185,
-          "height": 58,
+          "width": 200,
+          "height": 56,
           "customInputs": [
             {
               "objID": "7b72e7e1-09fe-f379-3b17-d02b99f32b6c",
@@ -7278,8 +7285,8 @@
           "type": "SetVariableActionComponent",
           "left": 708,
           "top": -194,
-          "width": 323,
-          "height": 58,
+          "width": 337,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7295,8 +7302,8 @@
           "type": "SetVariableActionComponent",
           "left": 708,
           "top": -111,
-          "width": 144,
-          "height": 58,
+          "width": 159,
+          "height": 56,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -7420,7 +7427,7 @@
       "implementationType": "flow"
     }
   ],
-  "pages": [
+  "userPages": [
     {
       "objID": "5b67587d-b158-8124-9404-2154df4fb397",
       "components": [
@@ -7488,6 +7495,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "itemWidget": {
             "objID": "b2c6db0b-40bc-a455-c385-dca06e055b82",
             "type": "Container",
@@ -7502,6 +7510,7 @@
               "inheritFrom": "default"
             },
             "timeline": [],
+            "eventHandlers": [],
             "widgets": [
               {
                 "objID": "f9b72456-1da0-7a7a-d4d9-aad0d966676b",
@@ -7517,7 +7526,8 @@
                   "objID": "5e4376ce-ac76-9232-cd9f-d3c3f8e6a406",
                   "inheritFrom": "default"
                 },
-                "timeline": []
+                "timeline": [],
+                "eventHandlers": []
               },
               {
                 "objID": "c582ac2c-8b68-2980-eb6c-37edfbaf3419",
@@ -7533,7 +7543,8 @@
                   "objID": "82987a42-d555-9d89-540b-96436f5890e0",
                   "inheritFrom": "default"
                 },
-                "timeline": []
+                "timeline": [],
+                "eventHandlers": []
               },
               {
                 "objID": "c380ef63-654b-41ba-b162-776b1b2e662c",
@@ -7544,15 +7555,19 @@
                 "height": 32,
                 "customInputs": [],
                 "customOutputs": [],
-                "asOutputProperties": [
-                  "action"
-                ],
                 "data": "\"Start\"",
                 "style": {
                   "objID": "29faf2fa-9d73-a861-96ad-30a7bb61c98e",
                   "inheritFrom": "default"
                 },
                 "timeline": [],
+                "eventHandlers": [
+                  {
+                    "objID": "8f9bad4e-8681-7495-2e1b-477e1408a93e",
+                    "eventName": "CLICKED",
+                    "handlerType": "flow"
+                  }
+                ],
                 "enabled": "!isRunning",
                 "disabledStyle": {
                   "objID": "08303f16-ad3b-5ea0-2b00-0dcf8471994c",
@@ -7579,7 +7594,8 @@
             "objID": "9770ac8c-3842-2571-d0a9-dfe61d2abbc7",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "da721dd5-7a45-4d91-0d3f-bb4336957e03",
@@ -7592,7 +7608,7 @@
             {
               "objID": "9f91dab1-b95e-2577-c0f9-4a238f06a35f",
               "name": "index",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -7613,6 +7629,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "itemWidget": {
             "objID": "b2c6db0b-40bc-a455-c385-dca06e055b82",
             "type": "Container",
@@ -7627,6 +7644,7 @@
               "inheritFrom": "default"
             },
             "timeline": [],
+            "eventHandlers": [],
             "widgets": [
               {
                 "objID": "706c5832-a30b-c197-6958-3e5eb8079d42",
@@ -7642,7 +7660,8 @@
                   "objID": "117dac93-7276-e924-573d-b3a82378cbd1",
                   "inheritFrom": "default"
                 },
-                "timeline": []
+                "timeline": [],
+                "eventHandlers": []
               },
               {
                 "objID": "c582ac2c-8b68-2980-eb6c-37edfbaf3419",
@@ -7658,7 +7677,8 @@
                   "objID": "b39ced60-3a94-4279-13aa-fb761b6db4fa",
                   "inheritFrom": "default"
                 },
-                "timeline": []
+                "timeline": [],
+                "eventHandlers": []
               },
               {
                 "objID": "ec1877d2-e765-1d95-f24b-56a0e1d9ed0c",
@@ -7669,15 +7689,19 @@
                 "height": 32,
                 "customInputs": [],
                 "customOutputs": [],
-                "asOutputProperties": [
-                  "action"
-                ],
                 "data": "\"Start\"",
                 "style": {
                   "objID": "7276673f-51b1-6460-79e9-fe1db99fe078",
                   "inheritFrom": "default"
                 },
                 "timeline": [],
+                "eventHandlers": [
+                  {
+                    "objID": "4b682d3a-5409-6334-5501-c13df936e8e7",
+                    "eventName": "CLICKED",
+                    "handlerType": "flow"
+                  }
+                ],
                 "enabled": "!isRunning",
                 "disabledStyle": {
                   "objID": "4556ab83-56fc-bd03-61cd-9053eda2cd42",
@@ -7704,7 +7728,8 @@
             "objID": "64f56a8a-f576-a4a1-f1f4-0f06bb21dbc6",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "9928539e-ace8-3aa6-dcc9-ffdf62bf6708",
@@ -7717,7 +7742,7 @@
             {
               "objID": "aa14ce8f-3ffb-d4a7-c28d-22e47b710539",
               "name": "index",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -7749,15 +7774,19 @@
           "height": 32,
           "customInputs": [],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"Calibrate all\"",
           "style": {
             "objID": "4a456837-bfa7-f8a2-d279-300b174014ff",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "3c79b587-ad80-0bc7-8336-efcd4b8d1387",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "!isRunning",
           "disabledStyle": {
             "objID": "beb96544-95da-dbc8-fd8a-5326db0a5089",
@@ -7865,7 +7894,8 @@
             "objID": "c36c4d94-cbb8-f5fd-ed75-0cd80b8562dd",
             "inheritFrom": "error"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "b0bb8639-9df8-9c1e-91bf-78c650de7eed",
@@ -7953,7 +7983,8 @@
             "objID": "32bbb3be-5b00-b1cd-cf73-d709ddeb1331",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "e5be2c42-b1fe-e2a4-853e-e234c3665c20",
@@ -7969,7 +8000,8 @@
             "objID": "47d2f559-0448-26d9-a516-273185321de1",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "5473dd44-f76d-e5bc-fa34-1818d301b88b",
@@ -7985,7 +8017,8 @@
             "objID": "657703bd-5a0f-a807-ef8a-6f7408a793e8",
             "inheritFrom": "warning"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "005337fe-7319-a1b5-14c9-a6f4c69c13b5",
@@ -8002,6 +8035,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "widgets": [
             {
               "objID": "870efc6a-48ed-7cde-08f3-8712a4011bff",
@@ -8024,9 +8058,10 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
+              "eventHandlers": [],
               "title": "Progress %",
-              "minRange": 0,
-              "maxRange": 100,
+              "minRange": "0",
+              "maxRange": "100",
               "color": "#1b93bb",
               "margin": {
                 "objID": "c8e5cd17-63b5-d174-710a-991753f4e3b3",
@@ -8093,15 +8128,19 @@
           "height": 32,
           "customInputs": [],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "cancelRequested ? \"Stopping...\" : \"Stop\"",
           "style": {
             "objID": "b800e5bf-b944-4d76-71ef-80f56f6557b0",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "2f3aad0a-fcf7-79a9-9f29-e9961b963064",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "text": "",
           "enabled": "isRunning && !cancelRequested && !notFound",
           "disabledStyle": {
@@ -8179,14 +8218,14 @@
         {
           "objID": "b8f91348-5463-3225-833b-8aad757d9d9f",
           "source": "c380ef63-654b-41ba-b162-776b1b2e662c",
-          "output": "action",
+          "output": "CLICKED",
           "target": "da721dd5-7a45-4d91-0d3f-bb4336957e03",
           "input": "index"
         },
         {
           "objID": "cbf2af9b-a321-ac06-1db5-4503f162563f",
           "source": "ec1877d2-e765-1d95-f24b-56a0e1d9ed0c",
-          "output": "action",
+          "output": "CLICKED",
           "target": "9928539e-ace8-3aa6-dcc9-ffdf62bf6708",
           "input": "index"
         },
@@ -8214,7 +8253,7 @@
         {
           "objID": "7e21fbf7-268f-8b13-fe15-4e0bb0505101",
           "source": "d0b96dee-f004-1f63-44e4-c4c2a4fcfe06",
-          "output": "action",
+          "output": "CLICKED",
           "target": "9721f3ba-108e-5091-cff6-00ccb02b2658",
           "input": "@seqin"
         },
@@ -8284,14 +8323,14 @@
         {
           "objID": "a7dcd93d-c01a-a689-0e60-86fe477803bc",
           "source": "c380ef63-654b-41ba-b162-776b1b2e662c",
-          "output": "action",
+          "output": "CLICKED",
           "target": "9919be3e-b754-12b2-ee54-e2938c9042a2",
           "input": "@seqin"
         },
         {
           "objID": "25802bb3-3c2a-ac9f-f6db-9d68078dc65c",
           "source": "ec1877d2-e765-1d95-f24b-56a0e1d9ed0c",
-          "output": "action",
+          "output": "CLICKED",
           "target": "9919be3e-b754-12b2-ee54-e2938c9042a2",
           "input": "@seqin"
         },
@@ -8354,7 +8393,7 @@
         {
           "objID": "aee9f4e2-aed8-c4e6-a3f1-e6677fe38e0a",
           "source": "d6426540-b016-21bc-7358-b7448d3fc291",
-          "output": "action",
+          "output": "CLICKED",
           "target": "737048ec-6b95-7ffb-4720-5475597e004c",
           "input": "@seqin"
         },
@@ -8375,7 +8414,7 @@
         {
           "objID": "2b7f7082-1bec-af74-56da-63d4c53e1b00",
           "source": "d0b96dee-f004-1f63-44e4-c4c2a4fcfe06",
-          "output": "action",
+          "output": "CLICKED",
           "target": "9919be3e-b754-12b2-ee54-e2938c9042a2",
           "input": "@seqin"
         },
@@ -8406,6 +8445,7 @@
       }
     }
   ],
+  "userWidgets": [],
   "styles": [
     {
       "objID": "04157789-da53-2f4a-e658-4ca10aa5fbef",

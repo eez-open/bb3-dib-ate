@@ -6,7 +6,14 @@
       "objID": "fd434352-2277-c4a8-e87e-e96cfcbf2305",
       "projectVersion": "v3",
       "projectType": "dashboard",
-      "imports": []
+      "extensions": [
+        {
+          "objID": "59a55e87-78a2-4eb1-8b60-df49792a6ced",
+          "extensionName": "eez-flow-ext-postgres"
+        }
+      ],
+      "imports": [],
+      "resourceFiles": []
     },
     "build": {
       "objID": "72794a43-a0fc-13c2-7eb5-67dd952141a4",
@@ -4870,7 +4877,7 @@
           "type": "InputActionComponent",
           "left": -427,
           "top": -93,
-          "width": 103,
+          "width": 95,
           "height": 25,
           "customInputs": [],
           "customOutputs": [],
@@ -4900,7 +4907,7 @@
           "left": -204,
           "top": 84,
           "width": 190,
-          "height": 54,
+          "height": 55,
           "customInputs": [
             {
               "objID": "0df2ce49-8b3a-e251-65dc-336b6e63cd11",
@@ -15735,7 +15742,6 @@
           "height": 73,
           "customInputs": [],
           "customOutputs": [],
-          "asOutputProperties": [],
           "action": "save_calibration"
         },
         {
@@ -16173,7 +16179,7 @@
       "implementationType": "flow"
     }
   ],
-  "pages": [
+  "userPages": [
     {
       "objID": "dc8c5e32-a2aa-9d2d-a70b-4d971f3c2b8d",
       "components": [
@@ -16192,15 +16198,19 @@
             }
           ],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"DCP405\"",
           "style": {
             "objID": "759e70f7-0da0-ee89-4fb3-c9fe64b200c5",
             "inheritFrom": "btn-nav"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "f6d14372-4e46-effb-8417-72b4295fa025",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "enabled",
           "disabledStyle": {
             "objID": "fe1b3d77-8f68-b150-fde2-4735d5606d77",
@@ -16209,7 +16219,7 @@
         },
         {
           "objID": "b1d5a0ef-dd40-0055-2de1-a16cf1b7597e",
-          "type": "LayoutViewWidget",
+          "type": "UserWidgetWidget",
           "left": 10,
           "top": 10,
           "width": 1110,
@@ -16221,11 +16231,12 @@
             "inheritFrom": "default"
           },
           "timeline": [],
-          "layout": "bb3"
+          "eventHandlers": [],
+          "userWidgetPageName": "bb3"
         },
         {
           "objID": "58d84e03-0aa1-9a55-2f99-b308ea38dba0",
-          "type": "LayoutViewWidget",
+          "type": "UserWidgetWidget",
           "left": 10,
           "top": 282,
           "width": 1110,
@@ -16237,7 +16248,8 @@
             "inheritFrom": "default"
           },
           "timeline": [],
-          "layout": "bb3"
+          "eventHandlers": [],
+          "userWidgetPageName": "bb3"
         },
         {
           "objID": "ad6d7962-be1f-dc32-3dac-0c8c6052db45",
@@ -16288,7 +16300,7 @@
         {
           "objID": "e01fb943-1840-a801-55ed-ff0cc445981d",
           "source": "1a331409-37d5-13ac-651e-26eb227b18b1",
-          "output": "action",
+          "output": "CLICKED",
           "target": "ad6d7962-be1f-dc32-3dac-0c8c6052db45",
           "input": "@seqin"
         },
@@ -16326,6 +16338,658 @@
       }
     },
     {
+      "objID": "276cbc0c-cb4e-c177-2cb0-54379aacdbf7",
+      "components": [
+        {
+          "objID": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
+          "type": "ButtonWidget",
+          "left": 10,
+          "top": 14,
+          "width": 100,
+          "height": 45,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"< Home\"",
+          "style": {
+            "objID": "a2b15f79-a3dc-53a1-8f19-0ce6c7876c93",
+            "inheritFrom": "btn-nav"
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "32a62525-917a-08b4-3a66-d908cb1f9750",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
+          "disabledStyle": {
+            "objID": "95c77394-b603-8215-0458-6e1511810894",
+            "inheritFrom": "default"
+          }
+        },
+        {
+          "objID": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
+          "type": "ButtonWidget",
+          "left": 168,
+          "top": 14,
+          "width": 150,
+          "height": 45,
+          "customInputs": [
+            {
+              "objID": "dcf51ae8-70c0-ac7c-a3b7-dd43d4fbe4bf",
+              "name": "enabled",
+              "type": "boolean"
+            }
+          ],
+          "customOutputs": [],
+          "data": "\"Start All Tests\"",
+          "style": {
+            "objID": "a258e106-99f1-7538-91bc-15e634c23925",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "fc189ecd-1c69-6d20-5623-e6a5deaed8ad",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
+          "enabled": "enabled",
+          "disabledStyle": {
+            "objID": "e4d413a9-fa5f-908f-72b7-bbc2b8f2abaf",
+            "inheritFrom": "default"
+          }
+        },
+        {
+          "objID": "164d74cc-1cc4-df91-41e4-6ef76f8c1282",
+          "type": "SelectWidget",
+          "left": 338,
+          "top": 10,
+          "width": 367,
+          "height": 52,
+          "customInputs": [
+            {
+              "objID": "ec55c1dd-02af-2876-68c7-ba1670c22411",
+              "name": "data",
+              "type": "enum:Test_status"
+            }
+          ],
+          "customOutputs": [],
+          "data": "data",
+          "style": {
+            "objID": "77eded15-9545-00f6-5397-98e243e932ba",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "widgets": [
+            {
+              "objID": "9b48dbee-57e6-e243-e892-d73a5ac5bed8",
+              "type": "TextWidget",
+              "left": 0,
+              "top": 0,
+              "width": 367,
+              "height": 52,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"FAILED\"",
+              "style": {
+                "objID": "ca379fdb-ee2e-25ad-f199-c8d05a80be6d",
+                "inheritFrom": "test-result-failed"
+              },
+              "timeline": [],
+              "eventHandlers": []
+            },
+            {
+              "objID": "830c4679-0182-266f-d17a-eb3f5d97a3fd",
+              "type": "TextWidget",
+              "left": 0,
+              "top": 0,
+              "width": 367,
+              "height": 52,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"SUCCESS\"",
+              "style": {
+                "objID": "d6067349-b9a5-17ab-2fb7-e3e12007e5ec",
+                "inheritFrom": "test-result-success"
+              },
+              "timeline": [],
+              "eventHandlers": []
+            },
+            {
+              "objID": "933025a2-dbb7-d8d7-5dc8-cc056c9ee36f",
+              "type": "TextWidget",
+              "left": 0,
+              "top": 0,
+              "width": 367,
+              "height": 52,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"RUNNING...\"",
+              "style": {
+                "objID": "05864682-a4e0-1e4d-f8ef-28228d6935ec",
+                "inheritFrom": "test-result-running"
+              },
+              "timeline": [],
+              "eventHandlers": []
+            },
+            {
+              "objID": "19a3f89a-15dd-f5f1-2f47-90e8efb91000",
+              "type": "TextWidget",
+              "left": 0,
+              "top": 0,
+              "width": 367,
+              "height": 52,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"\"",
+              "style": {
+                "objID": "a4e765a7-b8de-84c8-b368-4d928700cbbd",
+                "inheritFrom": "test-result"
+              },
+              "timeline": [],
+              "eventHandlers": []
+            }
+          ]
+        },
+        {
+          "objID": "467b607a-f041-acca-18d6-253b9fa04722",
+          "type": "UserWidgetWidget",
+          "left": 10,
+          "top": 68,
+          "width": 449,
+          "height": 520,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "f9b0133d-8e73-a7a4-015e-9a472b85d8b1",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "userWidgetPageName": "DCP405_basic_test"
+        },
+        {
+          "objID": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
+          "type": "CallActionActionComponent",
+          "left": -362,
+          "top": 138,
+          "width": 109,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "start_all_tests"
+        },
+        {
+          "objID": "1e0a6684-bbb0-529a-72eb-86df12dccb51",
+          "type": "ConstantActionComponent",
+          "left": -515,
+          "top": 138,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "\"All tests\""
+        },
+        {
+          "objID": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
+          "type": "CallActionActionComponent",
+          "left": 1544,
+          "top": 273,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "end_test"
+        },
+        {
+          "objID": "e5253755-7f85-1586-74f2-1efabc2b8efd",
+          "type": "WatchVariableActionComponent",
+          "left": -718,
+          "top": 353,
+          "width": 179,
+          "height": 55,
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "bb3_1.isConnected"
+        },
+        {
+          "objID": "20c76151-5e93-fc6f-f25a-cf13f174df71",
+          "type": "WatchVariableActionComponent",
+          "left": -718,
+          "top": 423,
+          "width": 179,
+          "height": 55,
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "bb3_2.isConnected"
+        },
+        {
+          "objID": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "type": "EvalJSExprActionComponent",
+          "left": -418,
+          "top": 392,
+          "width": 383,
+          "height": 92,
+          "customInputs": [
+            {
+              "objID": "0f0f7b7d-ffc0-1ca6-db93-adf6fe51b5a7",
+              "name": "bb3_1_connected",
+              "type": "object:Instrument"
+            },
+            {
+              "objID": "c8013dc7-2dde-5bc1-e28d-2a77bf737ea0",
+              "name": "bb3_2_connected",
+              "type": "object:Instrument"
+            },
+            {
+              "objID": "3c3fd67a-1b35-9cbe-e54b-186b7d45e40c",
+              "name": "test_status",
+              "type": "enum:Test_status"
+            }
+          ],
+          "customOutputs": [
+            {
+              "objID": "3337dd1f-aa0a-b52a-ed07-5d2fa306761c",
+              "name": "result",
+              "type": "any"
+            }
+          ],
+          "expression": "{bb3_1_connected} && \n{bb3_2_connected} && \n{test_status != Test_status.Running}"
+        },
+        {
+          "objID": "15fd0d2a-a918-99cf-fc62-a239b535921a",
+          "type": "CatchErrorActionComponent",
+          "left": 1356,
+          "top": 314,
+          "width": 93,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "d9ea2e57-2a33-363d-cab3-773788512d74",
+          "type": "ConstantActionComponent",
+          "left": 1370,
+          "top": 220,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "null"
+        },
+        {
+          "objID": "9e3feb48-4555-76c7-bd5e-98c09c1774d6",
+          "type": "WatchVariableActionComponent",
+          "left": -718,
+          "top": 492,
+          "width": 142,
+          "height": 55,
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "test_status"
+        },
+        {
+          "objID": "015dd77e-824c-79f2-4f36-bf036fb43340",
+          "type": "WatchVariableActionComponent",
+          "left": 310,
+          "top": -77,
+          "width": 142,
+          "height": 55,
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "test_status"
+        },
+        {
+          "objID": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "type": "ConstantActionComponent",
+          "left": -185,
+          "top": 281,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "\"-\""
+        },
+        {
+          "objID": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
+          "type": "UserWidgetWidget",
+          "left": 10,
+          "top": 588,
+          "width": 449,
+          "height": 136,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "6030c36c-6708-b40b-622a-b230dc412e72",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "userWidgetPageName": "DCP405_hw_ovp"
+        },
+        {
+          "objID": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
+          "type": "UserWidgetWidget",
+          "left": 459,
+          "top": 68,
+          "width": 400,
+          "height": 168,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "eb27ea87-4568-2cc2-eda5-626989b1d758",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "userWidgetPageName": "DCP405_rsense"
+        },
+        {
+          "objID": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
+          "type": "UserWidgetWidget",
+          "left": 459,
+          "top": 236,
+          "width": 400,
+          "height": 232,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "f72f850f-6f81-5c9c-155b-e5bd3fa3aec5",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "userWidgetPageName": "DCP405_rprog"
+        },
+        {
+          "objID": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
+          "type": "UserWidgetWidget",
+          "left": 459,
+          "top": 468,
+          "width": 400,
+          "height": 200,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "620a7790-8ae6-c53f-5c3e-e35e153f2d3e",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "userWidgetPageName": "DCP405_dp"
+        },
+        {
+          "objID": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
+          "type": "UserWidgetWidget",
+          "left": 859,
+          "top": 68,
+          "width": 428,
+          "height": 392,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "4c2b81ac-e089-4038-a5d9-737f80c6024f",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "userWidgetPageName": "DCP405_calibration"
+        },
+        {
+          "objID": "264099ea-2c83-dab0-f8ed-5d37b30765d5",
+          "type": "ShowPageActionComponent",
+          "left": -64,
+          "top": -172,
+          "width": 92,
+          "height": 55,
+          "customInputs": [],
+          "customOutputs": [],
+          "page": "main"
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "600906e9-b5c7-0564-a88e-dd60294b4fdd",
+          "source": "e5253755-7f85-1586-74f2-1efabc2b8efd",
+          "output": "variable",
+          "target": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "input": "bb3_1_connected"
+        },
+        {
+          "objID": "ef9e82a7-731f-3a18-8bc2-10687a1ff434",
+          "source": "20c76151-5e93-fc6f-f25a-cf13f174df71",
+          "output": "variable",
+          "target": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "input": "bb3_2_connected"
+        },
+        {
+          "objID": "503aab81-dd7c-608c-b0b9-773c582c2c88",
+          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "output": "result",
+          "target": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
+          "input": "enabled"
+        },
+        {
+          "objID": "253a97a1-495d-f7cf-67d7-93e855b279a3",
+          "source": "15fd0d2a-a918-99cf-fc62-a239b535921a",
+          "output": "@seqout",
+          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
+          "input": "@seqin"
+        },
+        {
+          "objID": "9d5e50b5-9444-c850-644f-3abfdc6f9f78",
+          "source": "15fd0d2a-a918-99cf-fc62-a239b535921a",
+          "output": "Message",
+          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
+          "input": "a1abc25f-f437-b940-012e-5534bda471ed"
+        },
+        {
+          "objID": "f0047323-36ad-ebad-18c4-135f1908a556",
+          "source": "d9ea2e57-2a33-363d-cab3-773788512d74",
+          "output": "value",
+          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
+          "input": "a1abc25f-f437-b940-012e-5534bda471ed"
+        },
+        {
+          "objID": "c43ff34e-1767-bb90-b576-6e714c7dbba8",
+          "source": "d9ea2e57-2a33-363d-cab3-773788512d74",
+          "output": "@seqout",
+          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
+          "input": "@seqin"
+        },
+        {
+          "objID": "065c818f-aaa0-512b-0293-b87163ba07e4",
+          "source": "9e3feb48-4555-76c7-bd5e-98c09c1774d6",
+          "output": "variable",
+          "target": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "input": "test_status"
+        },
+        {
+          "objID": "ff1d6824-add0-1e26-cc0d-939ee7936d53",
+          "source": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
+          "output": "CLICKED",
+          "target": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
+          "input": "@seqin"
+        },
+        {
+          "objID": "21be7b3b-953d-f102-2b05-733f13523c30",
+          "source": "015dd77e-824c-79f2-4f36-bf036fb43340",
+          "output": "variable",
+          "target": "164d74cc-1cc4-df91-41e4-6ef76f8c1282",
+          "input": "data"
+        },
+        {
+          "objID": "7c107781-7824-b686-84c8-3ab35fe69fb3",
+          "source": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
+          "output": "@seqout",
+          "target": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "input": "@seqin"
+        },
+        {
+          "objID": "def9e0f0-c981-80ee-b24f-751b22531a24",
+          "source": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
+          "output": "@seqout",
+          "target": "467b607a-f041-acca-18d6-253b9fa04722",
+          "input": "@seqin"
+        },
+        {
+          "objID": "78564849-6cb8-49dd-8f51-ab7f401aecb1",
+          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "output": "result",
+          "target": "467b607a-f041-acca-18d6-253b9fa04722",
+          "input": "2cdaaf68-f417-c509-632f-f44932bcade2"
+        },
+        {
+          "objID": "b5b6f53b-a432-a552-5988-36da4b5cb4b0",
+          "source": "467b607a-f041-acca-18d6-253b9fa04722",
+          "output": "@seqout",
+          "target": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
+          "input": "@seqin"
+        },
+        {
+          "objID": "2fd3eb82-7e5e-7ae2-8908-fa16bdca8d7c",
+          "source": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
+          "output": "@seqout",
+          "target": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
+          "input": "@seqin"
+        },
+        {
+          "objID": "a1b70f9a-f769-4587-0075-dffa89cc8c57",
+          "source": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
+          "output": "@seqout",
+          "target": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
+          "input": "@seqin"
+        },
+        {
+          "objID": "fc68fe02-1b6e-f006-d3b4-963129ce1a57",
+          "source": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
+          "output": "@seqout",
+          "target": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
+          "input": "@seqin"
+        },
+        {
+          "objID": "9ff9c644-ab88-9f27-6e77-f114eecd3b99",
+          "source": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
+          "output": "@seqout",
+          "target": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
+          "input": "@seqin"
+        },
+        {
+          "objID": "39d175b6-f51f-8efd-cec1-f4cd26efe5b7",
+          "source": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
+          "output": "@seqout",
+          "target": "d9ea2e57-2a33-363d-cab3-773788512d74",
+          "input": "@seqin"
+        },
+        {
+          "objID": "296f0efe-7e56-6f69-db8a-cdcf8064ec3b",
+          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "output": "value",
+          "target": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
+          "input": "92ebc443-4a6d-e37a-5bcf-1669322b37c9"
+        },
+        {
+          "objID": "6ef79346-9cec-734d-97d9-5da6f9019ee6",
+          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "output": "result",
+          "target": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
+          "input": "348f3b4a-2395-5bab-07cf-4a42a9ed9091"
+        },
+        {
+          "objID": "c620fccf-9f3c-5c58-10ff-699eb24e4431",
+          "source": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
+          "output": "CLICKED",
+          "target": "264099ea-2c83-dab0-f8ed-5d37b30765d5",
+          "input": "@seqin"
+        },
+        {
+          "objID": "d18a826e-5540-4bed-a234-e3af0c5790b7",
+          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "output": "value",
+          "target": "467b607a-f041-acca-18d6-253b9fa04722",
+          "input": "d9ebbd80-7133-f861-70d3-aeda6ecaa066"
+        },
+        {
+          "objID": "ca406e0d-cc2b-4326-a2a1-b344e5a4f461",
+          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "output": "value",
+          "target": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
+          "input": "7d69b346-fed5-367b-6f4f-ff608274a494"
+        },
+        {
+          "objID": "6197fa75-e7a5-47d8-e72b-8ae25f702a6f",
+          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "output": "value",
+          "target": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
+          "input": "fb8c6738-c485-ae66-25e3-d3080418f790"
+        },
+        {
+          "objID": "905a6020-f2ce-4117-fbd9-429e9028cbb2",
+          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "output": "value",
+          "target": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
+          "input": "90f49331-6b24-90ad-2228-e533be20d94e"
+        },
+        {
+          "objID": "c3b50c7b-44a7-41e5-c681-266464ec6e08",
+          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
+          "output": "value",
+          "target": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
+          "input": "cf09cc75-da2d-f34a-8016-b47c5ccad854"
+        },
+        {
+          "objID": "34cd27ce-967d-4a06-9f75-4e71f50a7f8c",
+          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "output": "result",
+          "target": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
+          "input": "87c0696e-fcae-0fc7-2fa9-a802d153e188"
+        },
+        {
+          "objID": "401c788d-71ef-4623-ec3a-ae8a2c1d5e0b",
+          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "output": "result",
+          "target": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
+          "input": "9b7ad703-5e47-155b-6370-b5daa305583c"
+        },
+        {
+          "objID": "c674dfe7-2092-429f-ceba-15efaf8e27a9",
+          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "output": "result",
+          "target": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
+          "input": "c77f1a28-2dd8-7472-2238-8aa8e10d8ba2"
+        },
+        {
+          "objID": "0b92cd95-c580-4c1b-b418-7248299b8656",
+          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
+          "output": "result",
+          "target": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
+          "input": "82fc935d-c5f3-7669-e4d4-0bdeb3437127"
+        },
+        {
+          "objID": "21d5abb5-9fa9-45db-9461-3ea36aa05009",
+          "source": "1e0a6684-bbb0-529a-72eb-86df12dccb51",
+          "output": "value",
+          "target": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
+          "input": "b5dcb8eb-7c79-3797-62d3-6903a5e41e30"
+        }
+      ],
+      "localVariables": [],
+      "name": "DCP405",
+      "style": "main_page",
+      "left": 0,
+      "top": 0,
+      "width": 1287,
+      "height": 724,
+      "lvglLocalStyles": {
+        "objID": "814894e8-c061-e01f-fd7e-f089516d45c3"
+      }
+    }
+  ],
+  "userWidgets": [
+    {
       "objID": "e00fe04f-dfc6-940b-8deb-122bacf8b3b4",
       "components": [
         {
@@ -16349,10 +17013,11 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "widgets": [
             {
               "objID": "71cdec0f-d615-d81d-b93a-6858dd55c516",
-              "type": "LayoutViewWidget",
+              "type": "UserWidgetWidget",
               "left": 0,
               "top": 0,
               "width": 350,
@@ -16364,11 +17029,12 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
-              "layout": "slot"
+              "eventHandlers": [],
+              "userWidgetPageName": "slot"
             },
             {
               "objID": "faa0564f-f13f-4acf-78e7-0b9b1afc4e22",
-              "type": "LayoutViewWidget",
+              "type": "UserWidgetWidget",
               "left": 370,
               "top": 0,
               "width": 350,
@@ -16380,11 +17046,12 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
-              "layout": "slot"
+              "eventHandlers": [],
+              "userWidgetPageName": "slot"
             },
             {
               "objID": "27e19b2d-6d8f-fbf6-9543-edfcaa0b9b50",
-              "type": "LayoutViewWidget",
+              "type": "UserWidgetWidget",
               "left": 740,
               "top": 0,
               "width": 350,
@@ -16396,7 +17063,8 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
-              "layout": "slot"
+              "eventHandlers": [],
+              "userWidgetPageName": "slot"
             }
           ],
           "layout": "static"
@@ -16564,7 +17232,7 @@
       "top": 0,
       "width": 1110,
       "height": 272,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "3a1e2c57-7518-e27d-a8bb-35fa570f0c1e"
       }
@@ -16593,6 +17261,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "widgets": [
             {
               "objID": "ad62651e-bb5a-f98d-28ce-13534b5d9139",
@@ -16608,6 +17277,7 @@
                 "inheritFrom": "slot_title_wrapper"
               },
               "timeline": [],
+              "eventHandlers": [],
               "widgets": [
                 {
                   "objID": "d314c299-c9ba-ad11-1d64-25a224a64147",
@@ -16623,7 +17293,8 @@
                     "objID": "1485d472-7ee9-52d1-c350-01909371a779",
                     "inheritFrom": "slot_title"
                   },
-                  "timeline": []
+                  "timeline": [],
+                  "eventHandlers": []
                 },
                 {
                   "objID": "04328306-d4e2-5743-dc12-468a706f9de1",
@@ -16646,6 +17317,7 @@
                     "inheritFrom": "slot_title_number"
                   },
                   "timeline": [],
+                  "eventHandlers": [],
                   "name": "slot",
                   "text": ""
                 }
@@ -16666,7 +17338,8 @@
                 "objID": "1c34cfaa-c8dc-8f3e-e5cd-8de467d9a2ec",
                 "inheritFrom": "text_left"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             },
             {
               "objID": "ed052dc0-42a1-13a8-5a4c-cf3a8dd42b57",
@@ -16689,6 +17362,7 @@
                 "inheritFrom": "text_left"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": "model",
               "text": ""
             },
@@ -16706,7 +17380,8 @@
                 "objID": "d22995eb-3ce8-fd9a-e16b-81d3dc80f377",
                 "inheritFrom": "text_left"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             },
             {
               "objID": "a859a77e-916b-620f-a169-877cf2bb011d",
@@ -16729,6 +17404,7 @@
                 "inheritFrom": "text_left"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": "version",
               "text": ""
             },
@@ -16746,7 +17422,8 @@
                 "objID": "39571fd6-8e69-80d9-d937-0b945d19a5d4",
                 "inheritFrom": "text_left"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             },
             {
               "objID": "4fd85916-5749-5cc4-88a3-d4880fdf32bb",
@@ -16769,6 +17446,7 @@
                 "inheritFrom": "text_left"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": "firmware",
               "text": ""
             },
@@ -16786,7 +17464,8 @@
                 "objID": "6146a064-fd58-7f02-91aa-a32795d5f35d",
                 "inheritFrom": "text_left"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             },
             {
               "objID": "5814c3c5-3268-9a0f-a5d8-26dd068969f1",
@@ -16809,6 +17488,7 @@
                 "inheritFrom": "text_left"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": "serial",
               "text": ""
             },
@@ -16826,7 +17506,8 @@
                 "objID": "a87ebf53-1669-d9bc-eb11-195ec6c4c2c0",
                 "inheritFrom": "text_left"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             },
             {
               "objID": "93d37024-3b54-2464-eb45-6e14281375bf",
@@ -16849,6 +17530,7 @@
                 "inheritFrom": "text_left"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": "registered",
               "text": ""
             },
@@ -16867,15 +17549,19 @@
                 }
               ],
               "customOutputs": [],
-              "asOutputProperties": [
-                "action"
-              ],
               "data": "\"Register\"",
               "style": {
                 "objID": "e4b07bc2-e325-5c2c-4175-56ab0e307d77",
                 "inheritFrom": "button"
               },
               "timeline": [],
+              "eventHandlers": [
+                {
+                  "objID": "ceb30dc7-9c03-5a3b-8d79-9ebc05b4756f",
+                  "eventName": "CLICKED",
+                  "handlerType": "flow"
+                }
+              ],
               "enabled": "enabled",
               "disabledStyle": {
                 "objID": "793c0578-7acc-098a-1445-9c27a8ef8f94",
@@ -16896,7 +17582,8 @@
                 "objID": "a75f5fe9-6da6-e57c-c2d1-fb1b999a96fd",
                 "inheritFrom": "text_left"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             },
             {
               "objID": "191552b3-a96b-957a-4765-4f58fea29bea",
@@ -16919,6 +17606,7 @@
                 "inheritFrom": "text_left"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": "calibration_saved",
               "text": ""
             },
@@ -16937,15 +17625,19 @@
                 }
               ],
               "customOutputs": [],
-              "asOutputProperties": [
-                "action"
-              ],
               "data": "\"Save Calibration\"",
               "style": {
                 "objID": "559766a6-fdaf-3684-c153-e120e7907faf",
                 "inheritFrom": "button"
               },
               "timeline": [],
+              "eventHandlers": [
+                {
+                  "objID": "20cb972e-c454-8bc2-a27c-18600a2d4ed9",
+                  "eventName": "CLICKED",
+                  "handlerType": "flow"
+                }
+              ],
               "enabled": "enabled",
               "disabledStyle": {
                 "objID": "5c127c62-e711-6916-6b29-92abf5e4c9a2",
@@ -17167,7 +17859,6 @@
           "height": 73,
           "customInputs": [],
           "customOutputs": [],
-          "asOutputProperties": [],
           "action": "save_calibration"
         },
         {
@@ -17510,7 +18201,7 @@
         {
           "objID": "71189772-0ef6-d3d0-0e9a-7418cb0d0f13",
           "source": "14d68832-060d-ae0b-befb-665ac78fc009",
-          "output": "action",
+          "output": "CLICKED",
           "target": "f19f5613-90d9-b7b1-afce-fc18607c9625",
           "input": "@seqin"
         },
@@ -17601,7 +18292,7 @@
         {
           "objID": "2efc2aae-500d-389d-80ce-6fabc896a53b",
           "source": "4f70ced6-c34a-afe2-f63a-1c9668fdeade",
-          "output": "action",
+          "output": "CLICKED",
           "target": "c6e71d0c-1559-c792-fe33-b1410629ac89",
           "input": "@seqin"
         },
@@ -17808,640 +18499,9 @@
       "top": 0,
       "width": 350,
       "height": 252,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "dac4b9e1-9746-f43e-14a7-c7f986245391"
-      }
-    },
-    {
-      "objID": "276cbc0c-cb4e-c177-2cb0-54379aacdbf7",
-      "components": [
-        {
-          "objID": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
-          "type": "ButtonWidget",
-          "left": 10,
-          "top": 14,
-          "width": 100,
-          "height": 45,
-          "customInputs": [],
-          "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
-          "data": "\"< Home\"",
-          "style": {
-            "objID": "a2b15f79-a3dc-53a1-8f19-0ce6c7876c93",
-            "inheritFrom": "btn-nav"
-          },
-          "timeline": [],
-          "disabledStyle": {
-            "objID": "95c77394-b603-8215-0458-6e1511810894",
-            "inheritFrom": "default"
-          }
-        },
-        {
-          "objID": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
-          "type": "ButtonWidget",
-          "left": 168,
-          "top": 14,
-          "width": 150,
-          "height": 45,
-          "customInputs": [
-            {
-              "objID": "dcf51ae8-70c0-ac7c-a3b7-dd43d4fbe4bf",
-              "name": "enabled",
-              "type": "boolean"
-            }
-          ],
-          "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
-          "data": "\"Start All Tests\"",
-          "style": {
-            "objID": "a258e106-99f1-7538-91bc-15e634c23925",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "enabled": "enabled",
-          "disabledStyle": {
-            "objID": "e4d413a9-fa5f-908f-72b7-bbc2b8f2abaf",
-            "inheritFrom": "default"
-          }
-        },
-        {
-          "objID": "164d74cc-1cc4-df91-41e4-6ef76f8c1282",
-          "type": "SelectWidget",
-          "left": 338,
-          "top": 10,
-          "width": 367,
-          "height": 52,
-          "customInputs": [
-            {
-              "objID": "ec55c1dd-02af-2876-68c7-ba1670c22411",
-              "name": "data",
-              "type": "enum:Test_status"
-            }
-          ],
-          "customOutputs": [],
-          "data": "data",
-          "style": {
-            "objID": "77eded15-9545-00f6-5397-98e243e932ba",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "widgets": [
-            {
-              "objID": "9b48dbee-57e6-e243-e892-d73a5ac5bed8",
-              "type": "TextWidget",
-              "left": 0,
-              "top": 0,
-              "width": 367,
-              "height": 52,
-              "customInputs": [],
-              "customOutputs": [],
-              "data": "\"FAILED\"",
-              "style": {
-                "objID": "ca379fdb-ee2e-25ad-f199-c8d05a80be6d",
-                "inheritFrom": "test-result-failed"
-              },
-              "timeline": []
-            },
-            {
-              "objID": "830c4679-0182-266f-d17a-eb3f5d97a3fd",
-              "type": "TextWidget",
-              "left": 0,
-              "top": 0,
-              "width": 367,
-              "height": 52,
-              "customInputs": [],
-              "customOutputs": [],
-              "data": "\"SUCCESS\"",
-              "style": {
-                "objID": "d6067349-b9a5-17ab-2fb7-e3e12007e5ec",
-                "inheritFrom": "test-result-success"
-              },
-              "timeline": []
-            },
-            {
-              "objID": "933025a2-dbb7-d8d7-5dc8-cc056c9ee36f",
-              "type": "TextWidget",
-              "left": 0,
-              "top": 0,
-              "width": 367,
-              "height": 52,
-              "customInputs": [],
-              "customOutputs": [],
-              "data": "\"RUNNING...\"",
-              "style": {
-                "objID": "05864682-a4e0-1e4d-f8ef-28228d6935ec",
-                "inheritFrom": "test-result-running"
-              },
-              "timeline": []
-            },
-            {
-              "objID": "19a3f89a-15dd-f5f1-2f47-90e8efb91000",
-              "type": "TextWidget",
-              "left": 0,
-              "top": 0,
-              "width": 367,
-              "height": 52,
-              "customInputs": [],
-              "customOutputs": [],
-              "data": "\"\"",
-              "style": {
-                "objID": "a4e765a7-b8de-84c8-b368-4d928700cbbd",
-                "inheritFrom": "test-result"
-              },
-              "timeline": []
-            }
-          ]
-        },
-        {
-          "objID": "467b607a-f041-acca-18d6-253b9fa04722",
-          "type": "LayoutViewWidget",
-          "left": 10,
-          "top": 68,
-          "width": 449,
-          "height": 520,
-          "customInputs": [],
-          "customOutputs": [],
-          "style": {
-            "objID": "f9b0133d-8e73-a7a4-015e-9a472b85d8b1",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "layout": "DCP405_basic_test"
-        },
-        {
-          "objID": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
-          "type": "CallActionActionComponent",
-          "left": -362,
-          "top": 138,
-          "width": 109,
-          "height": 54,
-          "customInputs": [],
-          "customOutputs": [],
-          "action": "start_all_tests"
-        },
-        {
-          "objID": "1e0a6684-bbb0-529a-72eb-86df12dccb51",
-          "type": "ConstantActionComponent",
-          "left": -515,
-          "top": 138,
-          "width": 87,
-          "height": 54,
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "\"All tests\""
-        },
-        {
-          "objID": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
-          "type": "CallActionActionComponent",
-          "left": 1544,
-          "top": 273,
-          "width": 87,
-          "height": 54,
-          "customInputs": [],
-          "customOutputs": [],
-          "action": "end_test"
-        },
-        {
-          "objID": "e5253755-7f85-1586-74f2-1efabc2b8efd",
-          "type": "WatchVariableActionComponent",
-          "left": -718,
-          "top": 353,
-          "width": 179,
-          "height": 55,
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "bb3_1.isConnected"
-        },
-        {
-          "objID": "20c76151-5e93-fc6f-f25a-cf13f174df71",
-          "type": "WatchVariableActionComponent",
-          "left": -718,
-          "top": 423,
-          "width": 179,
-          "height": 55,
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "bb3_2.isConnected"
-        },
-        {
-          "objID": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "type": "EvalJSExprActionComponent",
-          "left": -418,
-          "top": 392,
-          "width": 383,
-          "height": 92,
-          "customInputs": [
-            {
-              "objID": "0f0f7b7d-ffc0-1ca6-db93-adf6fe51b5a7",
-              "name": "bb3_1_connected",
-              "type": "object:Instrument"
-            },
-            {
-              "objID": "c8013dc7-2dde-5bc1-e28d-2a77bf737ea0",
-              "name": "bb3_2_connected",
-              "type": "object:Instrument"
-            },
-            {
-              "objID": "3c3fd67a-1b35-9cbe-e54b-186b7d45e40c",
-              "name": "test_status",
-              "type": "enum:Test_status"
-            }
-          ],
-          "customOutputs": [
-            {
-              "objID": "3337dd1f-aa0a-b52a-ed07-5d2fa306761c",
-              "name": "result",
-              "type": "any"
-            }
-          ],
-          "expression": "{bb3_1_connected} && \n{bb3_2_connected} && \n{test_status != Test_status.Running}"
-        },
-        {
-          "objID": "15fd0d2a-a918-99cf-fc62-a239b535921a",
-          "type": "CatchErrorActionComponent",
-          "left": 1356,
-          "top": 314,
-          "width": 93,
-          "height": 54,
-          "customInputs": [],
-          "customOutputs": []
-        },
-        {
-          "objID": "d9ea2e57-2a33-363d-cab3-773788512d74",
-          "type": "ConstantActionComponent",
-          "left": 1370,
-          "top": 220,
-          "width": 87,
-          "height": 54,
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "null"
-        },
-        {
-          "objID": "9e3feb48-4555-76c7-bd5e-98c09c1774d6",
-          "type": "WatchVariableActionComponent",
-          "left": -718,
-          "top": 492,
-          "width": 142,
-          "height": 55,
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "test_status"
-        },
-        {
-          "objID": "015dd77e-824c-79f2-4f36-bf036fb43340",
-          "type": "WatchVariableActionComponent",
-          "left": 310,
-          "top": -77,
-          "width": 142,
-          "height": 55,
-          "customInputs": [],
-          "customOutputs": [],
-          "variable": "test_status"
-        },
-        {
-          "objID": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "type": "ConstantActionComponent",
-          "left": -185,
-          "top": 281,
-          "width": 87,
-          "height": 54,
-          "customInputs": [],
-          "customOutputs": [],
-          "value": "\"-\""
-        },
-        {
-          "objID": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
-          "type": "LayoutViewWidget",
-          "left": 10,
-          "top": 588,
-          "width": 449,
-          "height": 136,
-          "customInputs": [],
-          "customOutputs": [],
-          "style": {
-            "objID": "6030c36c-6708-b40b-622a-b230dc412e72",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "layout": "DCP405_hw_ovp"
-        },
-        {
-          "objID": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
-          "type": "LayoutViewWidget",
-          "left": 459,
-          "top": 68,
-          "width": 400,
-          "height": 168,
-          "customInputs": [],
-          "customOutputs": [],
-          "style": {
-            "objID": "eb27ea87-4568-2cc2-eda5-626989b1d758",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "layout": "DCP405_rsense"
-        },
-        {
-          "objID": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
-          "type": "LayoutViewWidget",
-          "left": 459,
-          "top": 236,
-          "width": 400,
-          "height": 232,
-          "customInputs": [],
-          "customOutputs": [],
-          "style": {
-            "objID": "f72f850f-6f81-5c9c-155b-e5bd3fa3aec5",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "layout": "DCP405_rprog"
-        },
-        {
-          "objID": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
-          "type": "LayoutViewWidget",
-          "left": 459,
-          "top": 468,
-          "width": 400,
-          "height": 200,
-          "customInputs": [],
-          "customOutputs": [],
-          "style": {
-            "objID": "620a7790-8ae6-c53f-5c3e-e35e153f2d3e",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "layout": "DCP405_dp"
-        },
-        {
-          "objID": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
-          "type": "LayoutViewWidget",
-          "left": 859,
-          "top": 68,
-          "width": 428,
-          "height": 392,
-          "customInputs": [],
-          "customOutputs": [],
-          "style": {
-            "objID": "4c2b81ac-e089-4038-a5d9-737f80c6024f",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "layout": "DCP405_calibration"
-        },
-        {
-          "objID": "264099ea-2c83-dab0-f8ed-5d37b30765d5",
-          "type": "ShowPageActionComponent",
-          "left": -64,
-          "top": -172,
-          "width": 92,
-          "height": 55,
-          "customInputs": [],
-          "customOutputs": [],
-          "page": "main"
-        }
-      ],
-      "connectionLines": [
-        {
-          "objID": "600906e9-b5c7-0564-a88e-dd60294b4fdd",
-          "source": "e5253755-7f85-1586-74f2-1efabc2b8efd",
-          "output": "variable",
-          "target": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "input": "bb3_1_connected"
-        },
-        {
-          "objID": "ef9e82a7-731f-3a18-8bc2-10687a1ff434",
-          "source": "20c76151-5e93-fc6f-f25a-cf13f174df71",
-          "output": "variable",
-          "target": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "input": "bb3_2_connected"
-        },
-        {
-          "objID": "503aab81-dd7c-608c-b0b9-773c582c2c88",
-          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "output": "result",
-          "target": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
-          "input": "enabled"
-        },
-        {
-          "objID": "253a97a1-495d-f7cf-67d7-93e855b279a3",
-          "source": "15fd0d2a-a918-99cf-fc62-a239b535921a",
-          "output": "@seqout",
-          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
-          "input": "@seqin"
-        },
-        {
-          "objID": "9d5e50b5-9444-c850-644f-3abfdc6f9f78",
-          "source": "15fd0d2a-a918-99cf-fc62-a239b535921a",
-          "output": "Message",
-          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
-          "input": "a1abc25f-f437-b940-012e-5534bda471ed"
-        },
-        {
-          "objID": "f0047323-36ad-ebad-18c4-135f1908a556",
-          "source": "d9ea2e57-2a33-363d-cab3-773788512d74",
-          "output": "value",
-          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
-          "input": "a1abc25f-f437-b940-012e-5534bda471ed"
-        },
-        {
-          "objID": "c43ff34e-1767-bb90-b576-6e714c7dbba8",
-          "source": "d9ea2e57-2a33-363d-cab3-773788512d74",
-          "output": "@seqout",
-          "target": "3ea861d6-fb6c-ff2f-1962-bd002f14965e",
-          "input": "@seqin"
-        },
-        {
-          "objID": "065c818f-aaa0-512b-0293-b87163ba07e4",
-          "source": "9e3feb48-4555-76c7-bd5e-98c09c1774d6",
-          "output": "variable",
-          "target": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "input": "test_status"
-        },
-        {
-          "objID": "ff1d6824-add0-1e26-cc0d-939ee7936d53",
-          "source": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
-          "output": "action",
-          "target": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
-          "input": "@seqin"
-        },
-        {
-          "objID": "21be7b3b-953d-f102-2b05-733f13523c30",
-          "source": "015dd77e-824c-79f2-4f36-bf036fb43340",
-          "output": "variable",
-          "target": "164d74cc-1cc4-df91-41e4-6ef76f8c1282",
-          "input": "data"
-        },
-        {
-          "objID": "7c107781-7824-b686-84c8-3ab35fe69fb3",
-          "source": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
-          "output": "@seqout",
-          "target": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "input": "@seqin"
-        },
-        {
-          "objID": "def9e0f0-c981-80ee-b24f-751b22531a24",
-          "source": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
-          "output": "@seqout",
-          "target": "467b607a-f041-acca-18d6-253b9fa04722",
-          "input": "@seqin"
-        },
-        {
-          "objID": "78564849-6cb8-49dd-8f51-ab7f401aecb1",
-          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "output": "result",
-          "target": "467b607a-f041-acca-18d6-253b9fa04722",
-          "input": "2cdaaf68-f417-c509-632f-f44932bcade2"
-        },
-        {
-          "objID": "b5b6f53b-a432-a552-5988-36da4b5cb4b0",
-          "source": "467b607a-f041-acca-18d6-253b9fa04722",
-          "output": "@seqout",
-          "target": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
-          "input": "@seqin"
-        },
-        {
-          "objID": "2fd3eb82-7e5e-7ae2-8908-fa16bdca8d7c",
-          "source": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
-          "output": "@seqout",
-          "target": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
-          "input": "@seqin"
-        },
-        {
-          "objID": "a1b70f9a-f769-4587-0075-dffa89cc8c57",
-          "source": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
-          "output": "@seqout",
-          "target": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
-          "input": "@seqin"
-        },
-        {
-          "objID": "fc68fe02-1b6e-f006-d3b4-963129ce1a57",
-          "source": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
-          "output": "@seqout",
-          "target": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
-          "input": "@seqin"
-        },
-        {
-          "objID": "9ff9c644-ab88-9f27-6e77-f114eecd3b99",
-          "source": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
-          "output": "@seqout",
-          "target": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
-          "input": "@seqin"
-        },
-        {
-          "objID": "39d175b6-f51f-8efd-cec1-f4cd26efe5b7",
-          "source": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
-          "output": "@seqout",
-          "target": "d9ea2e57-2a33-363d-cab3-773788512d74",
-          "input": "@seqin"
-        },
-        {
-          "objID": "296f0efe-7e56-6f69-db8a-cdcf8064ec3b",
-          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "output": "value",
-          "target": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
-          "input": "92ebc443-4a6d-e37a-5bcf-1669322b37c9"
-        },
-        {
-          "objID": "6ef79346-9cec-734d-97d9-5da6f9019ee6",
-          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "output": "result",
-          "target": "13539db0-bdcc-a89b-d8aa-3884e3bbdb09",
-          "input": "348f3b4a-2395-5bab-07cf-4a42a9ed9091"
-        },
-        {
-          "objID": "c620fccf-9f3c-5c58-10ff-699eb24e4431",
-          "source": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
-          "output": "action",
-          "target": "264099ea-2c83-dab0-f8ed-5d37b30765d5",
-          "input": "@seqin"
-        },
-        {
-          "objID": "d18a826e-5540-4bed-a234-e3af0c5790b7",
-          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "output": "value",
-          "target": "467b607a-f041-acca-18d6-253b9fa04722",
-          "input": "d9ebbd80-7133-f861-70d3-aeda6ecaa066"
-        },
-        {
-          "objID": "ca406e0d-cc2b-4326-a2a1-b344e5a4f461",
-          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "output": "value",
-          "target": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
-          "input": "7d69b346-fed5-367b-6f4f-ff608274a494"
-        },
-        {
-          "objID": "6197fa75-e7a5-47d8-e72b-8ae25f702a6f",
-          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "output": "value",
-          "target": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
-          "input": "fb8c6738-c485-ae66-25e3-d3080418f790"
-        },
-        {
-          "objID": "905a6020-f2ce-4117-fbd9-429e9028cbb2",
-          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "output": "value",
-          "target": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
-          "input": "90f49331-6b24-90ad-2228-e533be20d94e"
-        },
-        {
-          "objID": "c3b50c7b-44a7-41e5-c681-266464ec6e08",
-          "source": "8bcbc03d-85bd-ccee-c99e-69665b23d41c",
-          "output": "value",
-          "target": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
-          "input": "cf09cc75-da2d-f34a-8016-b47c5ccad854"
-        },
-        {
-          "objID": "34cd27ce-967d-4a06-9f75-4e71f50a7f8c",
-          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "output": "result",
-          "target": "ad598660-9c9f-78d7-31ff-a6f98c08c796",
-          "input": "87c0696e-fcae-0fc7-2fa9-a802d153e188"
-        },
-        {
-          "objID": "401c788d-71ef-4623-ec3a-ae8a2c1d5e0b",
-          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "output": "result",
-          "target": "15e30a5c-bacc-4ab6-ea9a-74423177a967",
-          "input": "9b7ad703-5e47-155b-6370-b5daa305583c"
-        },
-        {
-          "objID": "c674dfe7-2092-429f-ceba-15efaf8e27a9",
-          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "output": "result",
-          "target": "e57f8cc2-6c1f-1f8f-6fd6-bc1bcbfdb1f5",
-          "input": "c77f1a28-2dd8-7472-2238-8aa8e10d8ba2"
-        },
-        {
-          "objID": "0b92cd95-c580-4c1b-b418-7248299b8656",
-          "source": "f0816f08-14f2-6c20-c73e-6934c41588e6",
-          "output": "result",
-          "target": "4cd7650c-0c61-edfb-d314-adaa7a1bf6ce",
-          "input": "82fc935d-c5f3-7669-e4d4-0bdeb3437127"
-        },
-        {
-          "objID": "21d5abb5-9fa9-45db-9461-3ea36aa05009",
-          "source": "1e0a6684-bbb0-529a-72eb-86df12dccb51",
-          "output": "value",
-          "target": "0c3a74ff-643f-dc15-4899-22ca9d38ca8d",
-          "input": "b5dcb8eb-7c79-3797-62d3-6903a5e41e30"
-        }
-      ],
-      "localVariables": [],
-      "name": "DCP405",
-      "style": "main_page",
-      "left": 0,
-      "top": 0,
-      "width": 1287,
-      "height": 724,
-      "lvglLocalStyles": {
-        "objID": "814894e8-c061-e01f-fd7e-f089516d45c3"
       }
     },
     {
@@ -18461,7 +18521,8 @@
             "objID": "9377c5d5-2519-aad7-8e90-9950608d93b4",
             "inheritFrom": "section-title"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "10326ab7-a86a-be40-74d7-657ec350b360",
@@ -18478,15 +18539,19 @@
             }
           ],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"Start This Test\"",
           "style": {
             "objID": "748cf509-975a-d939-ef6f-b35df2988748",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "6ee4d683-b7c0-9427-5fec-48ebbafc538b",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "enabled",
           "disabledStyle": {
             "objID": "86f8cebc-8d96-53bf-2a0a-66eba6c8bf21",
@@ -18507,7 +18572,8 @@
             "objID": "c332f252-99d5-cee3-09ca-7a28875b7105",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "11d192c2-8950-43e4-ef35-f7ee84913659",
@@ -18530,6 +18596,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18547,7 +18614,8 @@
             "objID": "4033cbfb-5f86-8aa7-3200-cec825925c9e",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "860a1d26-987d-ae0e-6248-9f9af8902f02",
@@ -18570,6 +18638,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18587,7 +18656,8 @@
             "objID": "c16f6060-062b-5181-f894-3390f27d60b6",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "ca0c5a30-6030-9381-ff04-0b2af65bdc73",
@@ -18610,6 +18680,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18627,7 +18698,8 @@
             "objID": "d0dcb565-1e81-5606-0815-e70f1d614614",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "1edb7434-2c13-359a-40fb-ced529324cd8",
@@ -18650,6 +18722,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18667,7 +18740,8 @@
             "objID": "3465a0fe-49bd-7ace-e598-330be562004c",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "7b91a606-783e-6280-81b4-60822bbd6dbf",
@@ -18690,6 +18764,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18707,7 +18782,8 @@
             "objID": "ac8712e4-9d9b-2d6f-1dec-2d9645d70400",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "71e00504-6918-865a-eede-114e09d381e8",
@@ -18730,6 +18806,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18747,7 +18824,8 @@
             "objID": "6a09159e-c9da-344d-0757-67e9eed11a10",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "0bc1d1f2-3c28-90cd-f1ce-132be402965f",
@@ -18770,6 +18848,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18787,7 +18866,8 @@
             "objID": "fbde604f-a201-8a02-88f3-5d8f7c1b694a",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "d0d66896-9258-c706-0b76-729482c4aa1f",
@@ -18810,6 +18890,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18827,7 +18908,8 @@
             "objID": "7b77e8bb-82c0-78d3-2e5e-ce4c0b1bfdfb",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "d49453e5-52f8-76f5-2617-3f76bfe2a1a0",
@@ -18850,6 +18932,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18867,7 +18950,8 @@
             "objID": "72bacd63-d24c-6a59-80aa-fd4f5836e614",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "197d5a92-93e4-928e-fec5-bdc2302cc3c3",
@@ -18890,6 +18974,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18907,7 +18992,8 @@
             "objID": "dc72462c-bc6c-e00f-3da3-1a8249ff5ee6",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "7aa2e3d8-6a7e-87ec-7a37-5a797173c11d",
@@ -18930,6 +19016,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18947,7 +19034,8 @@
             "objID": "13a90387-b6e9-3ebc-6ccd-36a39efbb1ae",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "dec6c0aa-9ae1-8e64-4f52-8303d13dd19a",
@@ -18970,6 +19058,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -18987,7 +19076,8 @@
             "objID": "fca13674-0ed6-e876-68db-03214d450cb7",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "c9a2bd73-3eb4-07ed-0fe1-b76757ee44ba",
@@ -19010,6 +19100,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -19027,7 +19118,8 @@
             "objID": "0a610368-6ccf-b7b9-78fe-3f735dfee132",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "8a6fa548-6377-5dc2-4286-3fc0cb8b99e3",
@@ -19050,6 +19142,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -19345,7 +19438,7 @@
         {
           "objID": "156e239b-eb4d-cfe5-6b19-b37aa3297442",
           "source": "10326ab7-a86a-be40-74d7-657ec350b360",
-          "output": "action",
+          "output": "CLICKED",
           "target": "b606e77f-b0c8-1edf-4816-c9554c06920e",
           "input": "@seqin"
         },
@@ -19377,7 +19470,7 @@
       "top": 0,
       "width": 449,
       "height": 520,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "2ea990e4-395b-2a0a-c728-e8bb77152627"
       }
@@ -19399,7 +19492,8 @@
             "objID": "206aa9a2-c30f-e87e-76e3-60efd5a9e9e3",
             "inheritFrom": "section-title"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "2492b966-5018-2863-61b8-c5f0488bc0ef",
@@ -19416,15 +19510,19 @@
             }
           ],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"Start This Test\"",
           "style": {
             "objID": "375620c0-7c7d-a3a6-c867-8bf4186a2cd3",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "1d16ae1b-af67-9c8d-8996-8a38946ce024",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "enabled",
           "disabledStyle": {
             "objID": "6c827361-030d-bf4f-db01-0f64158aeece",
@@ -19445,7 +19543,8 @@
             "objID": "61125d98-7f92-d08c-9051-77ec4a8089c5",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "5cf43a36-a925-4a0a-0d60-03525dc3b4a8",
@@ -19468,6 +19567,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -19485,7 +19585,8 @@
             "objID": "2c5626aa-f0d9-d03d-5b9b-8144aad39a62",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "98ee77a6-90ca-5e53-8295-c5fee6718874",
@@ -19508,6 +19609,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -19635,7 +19737,7 @@
         {
           "objID": "82a258cd-ae07-b975-11c7-d2468b7f5269",
           "source": "2492b966-5018-2863-61b8-c5f0488bc0ef",
-          "output": "action",
+          "output": "CLICKED",
           "target": "0ae5e30b-463b-2707-98d0-8173cd9457ef",
           "input": "@seqin"
         },
@@ -19667,7 +19769,7 @@
       "top": 0,
       "width": 449,
       "height": 136,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "8d755391-8b44-8ad1-fe3a-6a4686db3045"
       }
@@ -19689,7 +19791,8 @@
             "objID": "882fa1f7-043b-2644-8f7e-5870f905a607",
             "inheritFrom": "section-title"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "13939c2f-6955-bcbf-f0e8-7e5b5791cbc6",
@@ -19706,15 +19809,19 @@
             }
           ],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"Start This Test\"",
           "style": {
             "objID": "b2314b46-9586-7a19-9a6e-da09a270bef2",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "fb034dcd-131d-21d4-7e3c-6733f00c78bf",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "enabled",
           "disabledStyle": {
             "objID": "f2ea0b5d-3d1f-4ed7-9818-0c4e5631c4e0",
@@ -19735,7 +19842,8 @@
             "objID": "ab77a4e0-974e-1cd9-3d5d-3aa3d04f2c3b",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "5b134242-146d-904a-a285-f35fa99e3e2b",
@@ -19758,6 +19866,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -19775,7 +19884,8 @@
             "objID": "3bf21fd3-8a75-b804-ebee-a557b7c2f72b",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "e2473a64-7a8e-4e74-66cf-39575ed2d1d0",
@@ -19798,6 +19908,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -19815,7 +19926,8 @@
             "objID": "a2f635f1-83f7-864d-bad4-d761c9ed2055",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "55a441c3-859a-3f18-162a-9148f0c13885",
@@ -19838,6 +19950,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -19993,7 +20106,7 @@
         {
           "objID": "ce8ceafe-a575-9c3c-be54-c9967f4d2230",
           "source": "13939c2f-6955-bcbf-f0e8-7e5b5791cbc6",
-          "output": "action",
+          "output": "CLICKED",
           "target": "030f0c2a-bb41-b644-534e-e1100652df7c",
           "input": "@seqin"
         },
@@ -20011,7 +20124,7 @@
       "top": 0,
       "width": 400,
       "height": 168,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "931a0746-bc62-160f-2797-229b15b6525d"
       }
@@ -20033,7 +20146,8 @@
             "objID": "71d9f7db-86e2-0bb5-2ee6-d7082a9ab328",
             "inheritFrom": "section-title"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "256cf6bc-6682-a828-8521-64c6a7fab43b",
@@ -20050,15 +20164,19 @@
             }
           ],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"Start This Test\"",
           "style": {
             "objID": "457b18e7-678f-da78-ad93-2ecf980acbbb",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "ba0600b6-3f12-73cd-7281-d05516523933",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "enabled",
           "disabledStyle": {
             "objID": "65c6f630-a0d5-2da4-e744-a19c16e6088c",
@@ -20079,7 +20197,8 @@
             "objID": "f99b8b00-00e2-d038-56d9-4dc604ffd899",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "f3b62d72-d22c-f103-ddf6-6a110a1ccd99",
@@ -20102,6 +20221,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20119,7 +20239,8 @@
             "objID": "b979d726-06a5-0979-63fe-a07f520d64a8",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "e514e769-1a00-1eb6-9a8f-711ae9818da0",
@@ -20142,6 +20263,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20159,7 +20281,8 @@
             "objID": "fbde0b1e-d20d-9f5b-6c4f-1f9021e61028",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "9a518a16-9eb9-6196-6441-8175a4540b3c",
@@ -20182,6 +20305,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20199,7 +20323,8 @@
             "objID": "a45709b5-2523-ebab-007f-9f0e1b4ee0a6",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "fe9a8a7e-5493-0f13-0648-8c00612be6ff",
@@ -20222,6 +20347,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20239,7 +20365,8 @@
             "objID": "f3204545-4767-1196-b577-976373c03c7c",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "e06480d5-ef00-8e9d-93b6-90bbfc2772eb",
@@ -20262,6 +20389,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20361,7 +20489,7 @@
         {
           "objID": "8b3cd38d-382d-8d88-a369-a4a93091fe55",
           "source": "256cf6bc-6682-a828-8521-64c6a7fab43b",
-          "output": "action",
+          "output": "CLICKED",
           "target": "f143ea02-d01d-b84a-d511-3d2815f231a7",
           "input": "@seqin"
         },
@@ -20463,7 +20591,7 @@
       "top": 0,
       "width": 400,
       "height": 232,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "43fbfc24-ebc9-12ee-6f32-dab0e138f072"
       }
@@ -20485,7 +20613,8 @@
             "objID": "6cdcf05e-3ec2-118d-c414-74231d544998",
             "inheritFrom": "section-title"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "8213d032-ff4c-39b3-212f-1ae8537c06fb",
@@ -20502,15 +20631,19 @@
             }
           ],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"Start This Test\"",
           "style": {
             "objID": "cdc6e122-8a49-0865-2ed3-1abbce1b50cb",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "7ae41e65-1143-5370-6e59-f213edb8e1ca",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "enabled",
           "disabledStyle": {
             "objID": "fadc3ae2-7a21-0503-3ba3-7045241b19cd",
@@ -20531,7 +20664,8 @@
             "objID": "38875c38-c449-38ec-9b0f-ba78e81b2d48",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "c7934a18-e1ea-def7-167f-60d749f537b7",
@@ -20554,6 +20688,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20571,7 +20706,8 @@
             "objID": "635e93a3-1bcc-7e9e-1585-f84ff0343b83",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "8cfa0d98-cc30-a078-0076-808d88777d70",
@@ -20594,6 +20730,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20611,7 +20748,8 @@
             "objID": "f098e73d-ace7-7b87-4e92-356b2dea12bf",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "15179d7d-2c68-6d22-f0b0-bc2b0d2172ec",
@@ -20634,6 +20772,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20651,7 +20790,8 @@
             "objID": "acf0ea16-a961-3fa7-683e-16a642da87be",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "fc0d9466-84ca-470f-b1f8-8c6e7fa5bee9",
@@ -20674,6 +20814,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20808,7 +20949,7 @@
         {
           "objID": "73fbc2e7-38e2-242e-c2ee-0c82bf5d6825",
           "source": "8213d032-ff4c-39b3-212f-1ae8537c06fb",
-          "output": "action",
+          "output": "CLICKED",
           "target": "1ffc7cfe-61bc-1eba-f90b-7bbc2a1c8936",
           "input": "@seqin"
         },
@@ -20861,7 +21002,7 @@
       "top": 0,
       "width": 400,
       "height": 200,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "c2bba230-eaac-a14d-012b-cfed8ee5b395"
       }
@@ -20883,7 +21024,8 @@
             "objID": "255567bc-099a-2019-f417-4a825601d43c",
             "inheritFrom": "section-title"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "1b3cbcc1-48dc-5f52-a4af-e94fc22c3cfe",
@@ -20900,15 +21042,19 @@
             }
           ],
           "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
           "data": "\"Start This Test\"",
           "style": {
             "objID": "fff43da8-cc89-636a-8827-34d340dc2035",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "b683ef78-6f6b-20df-05c1-72bfe9f9f7de",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
           "enabled": "enabled",
           "disabledStyle": {
             "objID": "9548cbf9-51c4-f4bb-a6a8-ebcf4f98e07b",
@@ -20929,7 +21075,8 @@
             "objID": "f250cd6e-5f64-b27a-0cb0-b4d97b77c86a",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "4973d14f-4a4d-8203-bdf0-ceed3f482fde",
@@ -20952,6 +21099,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -20969,7 +21117,8 @@
             "objID": "e5fd2fc1-e255-6af5-273f-578e265d1c9c",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "cc162f48-bd68-8bb6-2fbf-b4d7f8599f46",
@@ -20992,6 +21141,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21009,7 +21159,8 @@
             "objID": "cdd3a0fe-f38d-8f9a-e07e-0411d12a4605",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "8298bc0c-a34a-7080-9825-72eefa820520",
@@ -21032,6 +21183,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21049,7 +21201,8 @@
             "objID": "de8cd77d-39fc-08e5-0f3a-650e5df467e6",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "841f6d95-e94e-65ff-4ce4-2431c8b8e0ab",
@@ -21072,6 +21225,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21166,7 +21320,8 @@
             "objID": "f50304d6-aaf5-ae54-b9c0-c526956d2ad5",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "8d09906f-0acb-46d1-3311-788339f5f528",
@@ -21189,6 +21344,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21206,7 +21362,8 @@
             "objID": "d323dcb3-28c3-20b8-14c1-07d8c7a6b91d",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "5b663eed-a346-84f6-0ef3-b79a14b63607",
@@ -21229,6 +21386,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21246,7 +21404,8 @@
             "objID": "2098e390-ca78-89e5-4536-5c283a1a8f34",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "461f284d-de30-642b-6627-960e0939000a",
@@ -21269,6 +21428,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21286,7 +21446,8 @@
             "objID": "18fa45d5-a470-8040-af77-6ab0357204a3",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "a91dd494-d53d-7817-c81b-7d3ed6b63b36",
@@ -21309,6 +21470,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21326,7 +21488,8 @@
             "objID": "a23e0297-c598-afb5-6cb7-a35310b6aac7",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "2c5b96cb-b7b5-a756-0064-1199762cd388",
@@ -21349,6 +21512,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         },
@@ -21366,7 +21530,8 @@
             "objID": "027ce8a7-25e8-5d39-9513-41b815d480a9",
             "inheritFrom": "default"
           },
-          "timeline": []
+          "timeline": [],
+          "eventHandlers": []
         },
         {
           "objID": "285c8317-b2f2-c346-5308-419f72fedcdd",
@@ -21389,6 +21554,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "name": "result",
           "text": ""
         }
@@ -21439,7 +21605,7 @@
         {
           "objID": "ee645cf3-37a7-6c2d-5573-0ebf5919704d",
           "source": "1b3cbcc1-48dc-5f52-a4af-e94fc22c3cfe",
-          "output": "action",
+          "output": "CLICKED",
           "target": "9c59d378-e2df-2010-60c1-ee35f18f717d",
           "input": "@seqin"
         },
@@ -21583,7 +21749,7 @@
       "top": 0,
       "width": 428,
       "height": 392,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "f712a79a-cee8-a72b-a42b-341a7265a44a"
       }

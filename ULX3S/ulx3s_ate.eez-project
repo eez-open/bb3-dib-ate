@@ -6,7 +6,14 @@
       "objID": "fd434352-2277-c4a8-e87e-e96cfcbf2305",
       "projectVersion": "v3",
       "projectType": "dashboard",
-      "imports": []
+      "extensions": [
+        {
+          "objID": "c9f2e06b-b2c5-4984-bfea-c7033f1770b7",
+          "extensionName": "eez-flow-ext-postgres"
+        }
+      ],
+      "imports": [],
+      "resourceFiles": []
     },
     "build": {
       "objID": "72794a43-a0fc-13c2-7eb5-67dd952141a4",
@@ -1342,7 +1349,7 @@
           "left": 450,
           "top": 57,
           "width": 221,
-          "height": 73,
+          "height": 92,
           "customInputs": [
             {
               "objID": "9134a4ee-db8f-2225-8161-7805f3c3fad6",
@@ -10526,7 +10533,7 @@
       "implementationType": "flow"
     }
   ],
-  "pages": [
+  "userPages": [
     {
       "objID": "7fbe6d97-7c53-e6fd-03dd-2ba7a95a3551",
       "components": [
@@ -10555,6 +10562,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "itemWidget": {
             "objID": "b4418495-5bf6-a0e8-a537-1920875f7f06",
             "type": "Container",
@@ -10570,6 +10578,7 @@
               "inheritFrom": "default"
             },
             "timeline": [],
+            "eventHandlers": [],
             "widgets": [
               {
                 "objID": "d69ad6a2-62f3-2923-e395-63da06843d39",
@@ -10585,10 +10594,11 @@
                   "inheritFrom": "device"
                 },
                 "timeline": [],
+                "eventHandlers": [],
                 "widgets": [
                   {
                     "objID": "ff2e4591-6e7a-6940-3065-1bbcf5ee74a9",
-                    "type": "LayoutViewWidget",
+                    "type": "UserWidgetWidget",
                     "left": 5,
                     "top": 0,
                     "width": 470,
@@ -10600,7 +10610,8 @@
                       "inheritFrom": "default"
                     },
                     "timeline": [],
-                    "layout": "device"
+                    "eventHandlers": [],
+                    "userWidgetPageName": "device"
                   }
                 ],
                 "layout": "static"
@@ -10620,13 +10631,13 @@
           "height": 22,
           "customInputs": [],
           "customOutputs": [],
-          "asOutputProperties": [],
           "data": "automatic_testing",
           "style": {
             "objID": "cdbcd671-bbcc-389e-954e-de0c2ea9c9dc",
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "label": "\"Automatic testing\""
         },
         {
@@ -10643,6 +10654,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "widgets": [
             {
               "objID": "ecdf5003-4ebe-6074-0dce-5baf2af98c1a",
@@ -10653,15 +10665,19 @@
               "height": 32,
               "customInputs": [],
               "customOutputs": [],
-              "asOutputProperties": [
-                "action"
-              ],
               "data": "\"Refresh\"",
               "style": {
                 "objID": "ff6442e7-f30e-cf61-31ed-54f3ebf3a65c",
                 "inheritFrom": "button"
               },
               "timeline": [],
+              "eventHandlers": [
+                {
+                  "objID": "4cd24a69-92db-4998-f1e2-0bf0a6c0ba5a",
+                  "eventName": "CLICKED",
+                  "handlerType": "flow"
+                }
+              ],
               "enabled": "refresh_enabled && !refresh_in_progress",
               "disabledStyle": {
                 "objID": "34d0997e-f46a-5bc7-f4c3-99e98418641c",
@@ -10677,15 +10693,19 @@
               "height": 32,
               "customInputs": [],
               "customOutputs": [],
-              "asOutputProperties": [
-                "action"
-              ],
               "data": "\"Help\"",
               "style": {
                 "objID": "0684cd59-0231-03e5-1fea-d837e1bf2287",
                 "inheritFrom": "button"
               },
               "timeline": [],
+              "eventHandlers": [
+                {
+                  "objID": "b3702089-851a-8f78-adce-71825837e20a",
+                  "eventName": "CLICKED",
+                  "handlerType": "flow"
+                }
+              ],
               "disabledStyle": {
                 "objID": "1350530d-9235-88ca-61f4-fcb4fde4e0f9",
                 "inheritFrom": "default"
@@ -10700,15 +10720,19 @@
               "height": 32,
               "customInputs": [],
               "customOutputs": [],
-              "asOutputProperties": [
-                "action"
-              ],
               "data": "\"Settings\"",
               "style": {
                 "objID": "564ece27-d03c-af30-3fa2-fd067a3263d0",
                 "inheritFrom": "button"
               },
               "timeline": [],
+              "eventHandlers": [
+                {
+                  "objID": "039958e0-9b0c-7195-14b2-1bf73564b9c7",
+                  "eventName": "CLICKED",
+                  "handlerType": "flow"
+                }
+              ],
               "disabledStyle": {
                 "objID": "2a96349f-1645-5759-d388-a5a2fd072be3",
                 "inheritFrom": "default"
@@ -10731,6 +10755,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "widgets": [
             {
               "objID": "1da8b3d7-af07-b560-4520-59b9b9734381",
@@ -10747,6 +10772,7 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": ""
             },
             {
@@ -10769,7 +10795,8 @@
                 "objID": "8c05f335-d823-6a87-f019-f8d6fe208e84",
                 "inheritFrom": "default"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             },
             {
               "objID": "2fdf2555-534c-0026-40d5-2bf852eb5f70",
@@ -10786,6 +10813,7 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
+              "eventHandlers": [],
               "name": ""
             },
             {
@@ -10808,7 +10836,8 @@
                 "objID": "c5e10285-f190-a351-e2d4-3227273186fb",
                 "inheritFrom": "default"
               },
-              "timeline": []
+              "timeline": [],
+              "eventHandlers": []
             }
           ],
           "layout": "static"
@@ -10893,14 +10922,14 @@
         {
           "objID": "b8f91348-5463-3225-833b-8aad757d9d9f",
           "source": "09799885-27d5-19b8-f7b6-29ed0a9fb956",
-          "output": "action",
+          "output": "CLICKED",
           "target": "9928539e-ace8-3aa6-dcc9-ffdf62bf6708",
           "input": "@seqin"
         },
         {
           "objID": "cbf2af9b-a321-ac06-1db5-4503f162563f",
           "source": "ecdf5003-4ebe-6074-0dce-5baf2af98c1a",
-          "output": "action",
+          "output": "CLICKED",
           "target": "65ed2992-be4b-7a4c-f423-578e05f582f3",
           "input": "@seqin"
         },
@@ -10956,7 +10985,7 @@
         {
           "objID": "97c18dc4-6b97-35b1-6ccc-fd4d107c6c8c",
           "source": "c300445c-ae06-37ab-5e3a-795a02bbacea",
-          "output": "action",
+          "output": "CLICKED",
           "target": "da721dd5-7a45-4d91-0d3f-bb4336957e03",
           "input": "@seqin"
         }
@@ -10972,6 +11001,240 @@
         "objID": "78b75884-99c0-4bb4-1e65-489db0d76fff"
       }
     },
+    {
+      "objID": "2981b447-3e0b-d8ba-5fd9-fb0f6107c97b",
+      "components": [
+        {
+          "objID": "c39fc4e7-4c7a-f23f-fbeb-7e94cf329e66",
+          "type": "CheckboxWidget",
+          "left": 20,
+          "top": 20,
+          "width": 160,
+          "height": 20,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "update_database",
+          "style": {
+            "objID": "489cfdd2-b237-059a-fe48-18eb49297b28",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "label": "\"Update database\""
+        },
+        {
+          "objID": "c385b6be-2dfa-572d-5b86-e2135ccfe94a",
+          "type": "TextWidget",
+          "left": 201,
+          "top": 20,
+          "width": 187,
+          "height": 20,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"Enabled tests:\"",
+          "style": {
+            "objID": "b59e191e-9369-10e9-f614-07b59c88d967",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": []
+        },
+        {
+          "objID": "41af81d1-5381-1a07-3094-f29e67866b0e",
+          "type": "List",
+          "left": 220,
+          "top": 45,
+          "width": 208,
+          "height": 264,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "test_steps",
+          "style": {
+            "objID": "aed92ef4-4793-6a21-4114-d17f9d862bfd",
+            "inheritFrom": "default"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "itemWidget": {
+            "objID": "93567666-ca97-5208-630a-bb001719633f",
+            "type": "Container",
+            "left": 0,
+            "top": 0,
+            "width": 208,
+            "height": 24,
+            "customInputs": [],
+            "customOutputs": [],
+            "style": {
+              "objID": "a42acd8e-66a2-5c67-bbf5-5fb346128f43",
+              "inheritFrom": "default"
+            },
+            "timeline": [],
+            "eventHandlers": [],
+            "widgets": [
+              {
+                "objID": "dd92fd48-e1d0-460b-2e30-a34c10378955",
+                "type": "CheckboxWidget",
+                "left": 0,
+                "top": 0,
+                "width": 208,
+                "height": 20,
+                "customInputs": [],
+                "customOutputs": [],
+                "data": "test_step_enabled[$index]",
+                "style": {
+                  "objID": "367aadd1-6334-6bfd-52a6-fa3e1110b57f",
+                  "inheritFrom": "default"
+                },
+                "timeline": [],
+                "eventHandlers": [],
+                "label": "($index + 1) + \": \" + test_steps[$index].name"
+              }
+            ],
+            "layout": "static"
+          },
+          "listType": "vertical",
+          "gap": 0
+        },
+        {
+          "objID": "13a51c15-f473-fbd9-3f53-49b5454e7e26",
+          "type": "ButtonWidget",
+          "left": 152,
+          "top": 318,
+          "width": 120,
+          "height": 32,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"Close\"",
+          "style": {
+            "objID": "9842b951-7a91-ba65-cb6f-1954d7e5f271",
+            "inheritFrom": "button"
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "df19cd55-7c7c-96f3-4970-973b6f7858f1",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
+          "disabledStyle": {
+            "objID": "0632059e-b320-d35b-2be3-863f583afced",
+            "inheritFrom": "default"
+          }
+        },
+        {
+          "objID": "ac01131a-6695-9c79-5eb0-0a83f59fc01c",
+          "type": "ShowPageActionComponent",
+          "left": 456,
+          "top": 295,
+          "width": 97,
+          "height": 53,
+          "customInputs": [],
+          "customOutputs": [],
+          "page": "main_page"
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "20af5fc4-354e-9914-30b2-4ed4343015be",
+          "source": "13a51c15-f473-fbd9-3f53-49b5454e7e26",
+          "output": "CLICKED",
+          "target": "ac01131a-6695-9c79-5eb0-0a83f59fc01c",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "name": "settings_page",
+      "style": "page",
+      "left": 0,
+      "top": 0,
+      "width": 448,
+      "height": 370,
+      "lvglLocalStyles": {
+        "objID": "ccc257e3-ea25-1245-2a0c-921e104a5b4a"
+      }
+    },
+    {
+      "objID": "31d3eba9-df82-6541-2ce7-3f9ebc57a13b",
+      "components": [
+        {
+          "objID": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
+          "type": "ButtonWidget",
+          "left": 411,
+          "top": 818,
+          "width": 120,
+          "height": 32,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"Close\"",
+          "style": {
+            "objID": "a2b15f79-a3dc-53a1-8f19-0ce6c7876c93",
+            "inheritFrom": "button"
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "e9c8b8f2-ed0b-3b4d-d33e-d3073b5b4f75",
+              "eventName": "CLICKED",
+              "handlerType": "flow"
+            }
+          ],
+          "disabledStyle": {
+            "objID": "95c77394-b603-8215-0458-6e1511810894",
+            "inheritFrom": "default"
+          }
+        },
+        {
+          "objID": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
+          "type": "ShowPageActionComponent",
+          "left": 765,
+          "top": 881,
+          "width": 97,
+          "height": 53,
+          "customInputs": [],
+          "customOutputs": [],
+          "page": "main_page"
+        },
+        {
+          "objID": "164d74cc-1cc4-df91-41e4-6ef76f8c1282",
+          "type": "MarkdownWidget",
+          "left": 20,
+          "top": 20,
+          "width": 870,
+          "height": 778,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "77eded15-9545-00f6-5397-98e243e932ba",
+            "inheritFrom": "help"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "text": "BOM lista: https://github.com/emard/ulx3s/blob/master/1-click-bom.tsv\n\nAssembly guide: https://kitspace.org/interactive_bom/?github.com/emard/ulx3s\n\nČeste greške u proizvodnji:\n\n- HDMI ne sjedne do kraja pa se ne zalemi dobro\n- ADC čip krivo okrenut (postoji šansa da ih u pakiranju krivo okrenu pa pazite)\n- Krivo okrenut 25MHz kristal - molim pogledajte na sample pločici koju sam poslao\n- D28 se ne montira\n- RV2 se ne montira\n- RV3 se new montira\n- USB zna biti nezalemljen ali rijetko\n- ADC i FTDI često budu odlemljeni\n- ESP32: pogledajte kako stoji na sample pločici koju sam poslao\n\nDo sada problemi sa 3.1.7 koje sam primjetio:\n\n- Wrong ID - fujprog ne radi - FTDI čip nije zalemljen - FPGA nije zalemljen\n- Ne pali se - vjerojatno nije dobro zalemljen ili je US1 loše zalemljen - brika na BGA\n- HDMI - fale boje, EDID fail - nema slike\n- Ne pali kada je spojeno na US2 konektoru - US2 nije dobro zalemljen\n- ADC - ne radi neki od kanala ili ne radi niti jedan kanal - ADC nije dobro spojen - FPGA nije dobro zalemljen\n- Ne prolazi SDRAM memtest - FPGA ili SDRAM nisu dobro zalemljeni\n- Ne može se pristupiti ESP32 - HDMI je spojen pa su velike smetnje - ESP32 nije dobro spojen, FTDI nije dobro spojen - FPGA nije dobro spojen\n\n### Predkoraci prije uključivanja\n\n**Obavezno provjeriti da li je ADC dobro okrenut prije uključivanja, ako se uključi u USB ovisno kako je okrenut može izgoriti ADC čip ili FPGA.**\n     \nJa obično pogledam i HDMI pod mikroskopom, ali to se više manje vidi na testu ako nešto nije spojeno - nema slike ili nema neke boje.\n\n### Koraci koji se automatski testiraju\n\n1. FTDI programming\n\n\tAko ova naredba javi error - onda je vjerojatno FTDI ili US1 loše zalemljen.\n\n\tProbajte prvo na ispravnoj pločici. Ako ne prolazi na testnoj može biti i krivi driver instaliran.\n\thttps://github.com/kost/fujprog#change-ulx3s-driver-to-ftdi\n\thttps://ftdichip.com/drivers/d2xx-drivers/\n\n2. ESP32 passthru\n\n     Ako ovo javi error onda je vjerojatno loše zalemljen FTDI ili FPGA.\n     Obično javi neki krivi ID tipa ID 000000000 ili FFFFFFFFF - to znači da FPGA nije dobro spojen prema FPGA\n\n3. ESP32 erase\n\t\n4. ESP32 programming\n\n5. MP test\n\n6. Self-test programming\n\n7. Self-test\n\n     U ovom koraku potrebno je ubaciti SD card, pritisnuti sve buttone i spojiti HDMI kabel. Ako ledice ne rade \n\n     SDRAM možete provjeriti i sa - on će dati sliku na HDMI izlazu i smije smao brojati na zelenom brojaču - ledice se ne smiju paliti - ako se pale ledice ili broji crveno onda nešto ne radi sa SDRAM\n\n8. ESP32 passthru flash\n\n     Trajno programiranje passtrue - sa time isporučujemo korisniku.\n\n### Dodatni koraci koji se ručno obavljaju\n\n9. Odspojiti US1 - spoijiti US2 da se vidi da li napajanje preko US2 radi\n\n10. Pakiranje, itd.\n"
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "eefef559-60f2-dd85-e513-f9f554c87f0e",
+          "source": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
+          "output": "CLICKED",
+          "target": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "name": "help",
+      "style": "page",
+      "left": 0,
+      "top": 0,
+      "width": 910,
+      "height": 870,
+      "lvglLocalStyles": {
+        "objID": "f413ef16-8e84-4d0a-7dc3-9c6fa0a34d13"
+      }
+    }
+  ],
+  "userWidgets": [
     {
       "objID": "d44d7408-e7af-d9a4-6e13-42f9aeac7da9",
       "components": [
@@ -10990,6 +11253,7 @@
             "inheritFrom": "default"
           },
           "timeline": [],
+          "eventHandlers": [],
           "widgets": [
             {
               "objID": "71cdec0f-d615-d81d-b93a-6858dd55c516",
@@ -11005,6 +11269,7 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
+              "eventHandlers": [],
               "widgets": [
                 {
                   "objID": "61be1630-33dc-5f89-e80c-ee6cf1b37544",
@@ -11020,7 +11285,8 @@
                     "objID": "6c16a8a8-15c6-3efa-5a87-ddba4b1dd254",
                     "inheritFrom": "device_title"
                   },
-                  "timeline": []
+                  "timeline": [],
+                  "eventHandlers": []
                 },
                 {
                   "objID": "870b6222-22ca-ec21-28ff-fb88792006aa",
@@ -11037,6 +11303,7 @@
                     "inheritFrom": "default"
                   },
                   "timeline": [],
+                  "eventHandlers": [],
                   "widgets": [
                     {
                       "objID": "9338ca00-a513-9caa-7168-e7ff788a29d9",
@@ -11053,6 +11320,7 @@
                         "inheritFrom": "default"
                       },
                       "timeline": [],
+                      "eventHandlers": [],
                       "widgets": [
                         {
                           "objID": "6b544c7b-596d-e239-6f12-ed7d814b3292",
@@ -11063,15 +11331,19 @@
                           "height": 24,
                           "customInputs": [],
                           "customOutputs": [],
-                          "asOutputProperties": [
-                            "action"
-                          ],
                           "data": "\"<\"",
                           "style": {
                             "objID": "99bac98b-54aa-342b-9ab3-4c88d18608fb",
                             "inheritFrom": "button"
                           },
                           "timeline": [],
+                          "eventHandlers": [
+                            {
+                              "objID": "a04ff496-b6e1-196d-55c0-fae0d998efb5",
+                              "eventName": "CLICKED",
+                              "handlerType": "flow"
+                            }
+                          ],
                           "enabled": "",
                           "disabledStyle": {
                             "objID": "fe869d93-2207-eda7-82e4-4a4c587e22d0",
@@ -11087,15 +11359,19 @@
                           "height": 24,
                           "customInputs": [],
                           "customOutputs": [],
-                          "asOutputProperties": [
-                            "action"
-                          ],
                           "data": "\">\"",
                           "style": {
                             "objID": "5263fe2b-e332-ed8e-b891-533518307865",
                             "inheritFrom": "button"
                           },
                           "timeline": [],
+                          "eventHandlers": [
+                            {
+                              "objID": "843e16fc-9bbb-7862-3782-4db08fa0da57",
+                              "eventName": "CLICKED",
+                              "handlerType": "flow"
+                            }
+                          ],
                           "enabled": "",
                           "disabledStyle": {
                             "objID": "9583247a-f761-e3b6-3da1-cd8b84aeabd0",
@@ -11111,15 +11387,19 @@
                           "height": 24,
                           "customInputs": [],
                           "customOutputs": [],
-                          "asOutputProperties": [
-                            "action"
-                          ],
                           "data": "\"Run\"",
                           "style": {
                             "objID": "72e4a42a-d1f5-6423-4340-7cf78e7a52b9",
                             "inheritFrom": "button"
                           },
                           "timeline": [],
+                          "eventHandlers": [
+                            {
+                              "objID": "9584f0b8-0729-8700-ef57-acac4009cf06",
+                              "eventName": "CLICKED",
+                              "handlerType": "flow"
+                            }
+                          ],
                           "enabled": "test_step_enabled[devices[$index].currentStep]",
                           "disabledStyle": {
                             "objID": "2e1c7f0f-61d3-e602-98a7-fe28f72df793",
@@ -11144,6 +11424,7 @@
                         "inheritFrom": "default"
                       },
                       "timeline": [],
+                      "eventHandlers": [],
                       "widgets": [
                         {
                           "objID": "376e0d59-a645-47dc-7ce6-6675f3746185",
@@ -11154,15 +11435,19 @@
                           "height": 24,
                           "customInputs": [],
                           "customOutputs": [],
-                          "asOutputProperties": [
-                            "action"
-                          ],
                           "data": "\"Try again\"",
                           "style": {
                             "objID": "e2f23c8a-9a30-5bdd-3891-6b853484dc74",
                             "inheritFrom": "button"
                           },
                           "timeline": [],
+                          "eventHandlers": [
+                            {
+                              "objID": "c738a2dc-a1fc-f41d-fb73-cf74286e845c",
+                              "eventName": "CLICKED",
+                              "handlerType": "flow"
+                            }
+                          ],
                           "enabled": "test_step_enabled[devices[$index].currentStep]",
                           "disabledStyle": {
                             "objID": "87c7f0a3-308a-c67d-763f-b7e646f57c33",
@@ -11186,6 +11471,7 @@
                         "inheritFrom": "default"
                       },
                       "timeline": [],
+                      "eventHandlers": [],
                       "widgets": [],
                       "layout": "static"
                     }
@@ -11205,6 +11491,7 @@
                     "inheritFrom": "default"
                   },
                   "timeline": [],
+                  "eventHandlers": [],
                   "widgets": [
                     {
                       "objID": "dd00ff6b-0ce9-d37e-df55-e438cad6a91c",
@@ -11220,7 +11507,8 @@
                         "objID": "949c3cc4-a022-9809-7ef3-a740cc5dba3e",
                         "inheritFrom": "default"
                       },
-                      "timeline": []
+                      "timeline": [],
+                      "eventHandlers": []
                     }
                   ],
                   "layout": "static"
@@ -11240,6 +11528,7 @@
                     "inheritFrom": "default"
                   },
                   "timeline": [],
+                  "eventHandlers": [],
                   "widgets": [
                     {
                       "objID": "82fc6707-7f7f-2e79-f4c2-d1be397d28dc",
@@ -11255,7 +11544,8 @@
                         "objID": "c138a2a2-2b15-fd75-506a-6bf374331b39",
                         "inheritFrom": "default"
                       },
-                      "timeline": []
+                      "timeline": [],
+                      "eventHandlers": []
                     },
                     {
                       "objID": "46e47a95-e193-7931-18e0-eb9a7de2587a",
@@ -11272,6 +11562,7 @@
                         "inheritFrom": "default"
                       },
                       "timeline": [],
+                      "eventHandlers": [],
                       "widgets": [
                         {
                           "objID": "3d2b6f2f-7430-46e1-051b-8ffc3fcd88a7",
@@ -11287,6 +11578,7 @@
                             "inheritFrom": "default"
                           },
                           "timeline": [],
+                          "eventHandlers": [],
                           "widgets": [
                             {
                               "objID": "05471448-314d-3cf6-f2af-e6397e792445",
@@ -11298,12 +11590,12 @@
                               "customInputs": [],
                               "customOutputs": [],
                               "data": "devices[$index].stepStatus.selfTest && devices[$index].stepStatus.selfTest.DAC ? 1: 0",
-                              "action": "",
                               "style": {
                                 "objID": "702f8633-9dd1-3165-196d-ef83dd00a793",
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "0e558c24-b3cc-e585-1bc4-ce159e4b1a56",
@@ -11315,12 +11607,12 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"DAC\"",
-                                  "action": "",
                                   "style": {
                                     "objID": "16d48bf1-ec85-2127-7ae6-ec2e9bdf82df",
                                     "inheritFrom": "blink_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 },
                                 {
@@ -11333,12 +11625,12 @@
                                   "customInputs": [],
                                   "customOutputs": [],
                                   "data": "\"DAC\"",
-                                  "action": "",
                                   "style": {
                                     "objID": "295572ff-d488-2234-76f6-e069491b9be8",
                                     "inheritFrom": "success_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 }
                               ]
@@ -11358,6 +11650,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "575173c3-a655-4048-56a6-8fc9b35d862a",
@@ -11374,6 +11667,7 @@
                                     "inheritFrom": "blink_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 },
                                 {
@@ -11391,6 +11685,7 @@
                                     "inheritFrom": "success_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 }
                               ]
@@ -11410,6 +11705,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "1546bd9b-fce8-17a4-1f33-6a5ff5875a85",
@@ -11426,6 +11722,7 @@
                                     "inheritFrom": "blink_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 },
                                 {
@@ -11443,6 +11740,7 @@
                                     "inheritFrom": "success_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 }
                               ]
@@ -11462,6 +11760,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "a1db82a5-e0a0-200b-7fbf-509e3f021c0d",
@@ -11478,6 +11777,7 @@
                                     "inheritFrom": "blink_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 },
                                 {
@@ -11495,6 +11795,7 @@
                                     "inheritFrom": "success_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 }
                               ]
@@ -11514,6 +11815,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "17159367-5e8f-5b73-5442-0ddd001e1773",
@@ -11530,6 +11832,7 @@
                                     "inheritFrom": "blink_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 },
                                 {
@@ -11547,6 +11850,7 @@
                                     "inheritFrom": "success_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 }
                               ]
@@ -11566,6 +11870,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "a8aee287-e555-f56a-3028-0882996b7fad",
@@ -11582,6 +11887,7 @@
                                     "inheritFrom": "blink_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 },
                                 {
@@ -11599,6 +11905,7 @@
                                     "inheritFrom": "success_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 }
                               ]
@@ -11618,6 +11925,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "2193e3f8-7ba3-58f2-3454-808b2f33323c",
@@ -11633,7 +11941,8 @@
                                     "objID": "4cadd26f-c6eb-2c93-a1ef-9290006918ec",
                                     "inheritFrom": "blink_status"
                                   },
-                                  "timeline": []
+                                  "timeline": [],
+                                  "eventHandlers": []
                                 },
                                 {
                                   "objID": "d3ee9a19-abcc-0bf3-89c6-3b54913617a1",
@@ -11649,7 +11958,8 @@
                                     "objID": "7cfccd0c-f0e5-7ebc-d5fd-ec42be72ef7b",
                                     "inheritFrom": "success_status"
                                   },
-                                  "timeline": []
+                                  "timeline": [],
+                                  "eventHandlers": []
                                 }
                               ]
                             },
@@ -11668,6 +11978,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "widgets": [
                                 {
                                   "objID": "94a62b11-1c4e-1b6b-ddb4-1c0870350ed8",
@@ -11684,6 +11995,7 @@
                                     "inheritFrom": "blink_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 },
                                 {
@@ -11701,6 +12013,7 @@
                                     "inheritFrom": "success_status"
                                   },
                                   "timeline": [],
+                                  "eventHandlers": [],
                                   "name": ""
                                 }
                               ]
@@ -11720,7 +12033,8 @@
                                 "inheritFrom": "test_info"
                               },
                               "allowOutside": true,
-                              "timeline": []
+                              "timeline": [],
+                              "eventHandlers": []
                             },
                             {
                               "objID": "edbf987c-a3e7-7b9b-206b-143652d3a25f",
@@ -11731,9 +12045,6 @@
                               "height": 24,
                               "customInputs": [],
                               "customOutputs": [],
-                              "asOutputProperties": [
-                                "action"
-                              ],
                               "data": "\"Abort\"",
                               "style": {
                                 "objID": "599932a5-92dd-1130-7d2c-48ca9d330c20",
@@ -11741,6 +12052,13 @@
                               },
                               "allowOutside": true,
                               "timeline": [],
+                              "eventHandlers": [
+                                {
+                                  "objID": "92930dfa-2b3b-696c-a783-10c86257bc2a",
+                                  "eventName": "CLICKED",
+                                  "handlerType": "flow"
+                                }
+                              ],
                               "disabledStyle": {
                                 "objID": "d6ed411e-eb10-87d6-f709-8103183f4abb",
                                 "inheritFrom": "default"
@@ -11763,6 +12081,7 @@
                             "inheritFrom": "default"
                           },
                           "timeline": [],
+                          "eventHandlers": [],
                           "widgets": [
                             {
                               "objID": "2cb20d16-e733-e138-c378-b75b5bedf341",
@@ -11779,7 +12098,8 @@
                                 "inheritFrom": "blink_status"
                               },
                               "allowOutside": true,
-                              "timeline": []
+                              "timeline": [],
+                              "eventHandlers": []
                             },
                             {
                               "objID": "7d76ea6a-2475-720d-afac-6964caf838aa",
@@ -11790,9 +12110,6 @@
                               "height": 28,
                               "customInputs": [],
                               "customOutputs": [],
-                              "asOutputProperties": [
-                                "action"
-                              ],
                               "data": "\"Yes\"",
                               "style": {
                                 "objID": "66233410-8914-e025-28bf-b1018ea5a250",
@@ -11800,6 +12117,13 @@
                               },
                               "allowOutside": true,
                               "timeline": [],
+                              "eventHandlers": [
+                                {
+                                  "objID": "f5d9d1b6-5e07-0d3a-5898-3bba9c99f486",
+                                  "eventName": "CLICKED",
+                                  "handlerType": "flow"
+                                }
+                              ],
                               "disabledStyle": {
                                 "objID": "55b08165-8564-52ac-6003-5f868baf9315",
                                 "inheritFrom": "default"
@@ -11814,9 +12138,6 @@
                               "height": 28,
                               "customInputs": [],
                               "customOutputs": [],
-                              "asOutputProperties": [
-                                "action"
-                              ],
                               "data": "\"No\"",
                               "style": {
                                 "objID": "c30d2219-0083-0f4c-1bb4-22285a68b16c",
@@ -11824,6 +12145,13 @@
                               },
                               "allowOutside": true,
                               "timeline": [],
+                              "eventHandlers": [
+                                {
+                                  "objID": "0c5474b4-6e92-9edf-d62b-1d00c8003333",
+                                  "eventName": "CLICKED",
+                                  "handlerType": "flow"
+                                }
+                              ],
                               "disabledStyle": {
                                 "objID": "a7a8e45c-f99a-0a9a-121f-e48c76b9d4f4",
                                 "inheritFrom": "default"
@@ -11846,6 +12174,7 @@
                             "inheritFrom": "default"
                           },
                           "timeline": [],
+                          "eventHandlers": [],
                           "widgets": [
                             {
                               "objID": "6245a930-7a6c-943e-eb79-6d0efeb8adba",
@@ -11862,6 +12191,7 @@
                                 "inheritFrom": "default"
                               },
                               "timeline": [],
+                              "eventHandlers": [],
                               "min": "0",
                               "max": "100",
                               "orientation": "horizontal"
@@ -11885,7 +12215,8 @@
                         "objID": "5d38ddc6-86c1-0152-ec99-4baa2d470fb3",
                         "inheritFrom": "success"
                       },
-                      "timeline": []
+                      "timeline": [],
+                      "eventHandlers": []
                     },
                     {
                       "objID": "23204068-5c82-6483-f089-a1d9311cb7b4",
@@ -11901,7 +12232,8 @@
                         "objID": "014607a0-a6b7-8e23-940e-bb46d32f8b97",
                         "inheritFrom": "error"
                       },
-                      "timeline": []
+                      "timeline": [],
+                      "eventHandlers": []
                     }
                   ]
                 }
@@ -11922,6 +12254,7 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
+              "eventHandlers": [],
               "widgets": [
                 {
                   "objID": "a9d380a6-98bc-dd67-e83b-772a5d65cba1",
@@ -11937,7 +12270,8 @@
                     "objID": "31816564-ec17-711c-ba87-c0bb0e4b98fb",
                     "inheritFrom": "device_title"
                   },
-                  "timeline": []
+                  "timeline": [],
+                  "eventHandlers": []
                 },
                 {
                   "objID": "b1ee504e-d02c-2944-4d60-9b89e69f2b7a",
@@ -11949,12 +12283,12 @@
                   "customInputs": [],
                   "customOutputs": [],
                   "data": "\"All tests OK\"",
-                  "action": "",
                   "style": {
                     "objID": "27cce1e1-b726-6f4b-0100-92e8f551acb7",
                     "inheritFrom": "success"
                   },
                   "timeline": [],
+                  "eventHandlers": [],
                   "name": ""
                 }
               ],
@@ -11974,6 +12308,7 @@
                 "inheritFrom": "default"
               },
               "timeline": [],
+              "eventHandlers": [],
               "widgets": [],
               "layout": "static"
             }
@@ -12048,7 +12383,7 @@
             {
               "objID": "70d75a56-9ad5-4bb8-2345-82d978a8d980",
               "name": "action",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -12071,7 +12406,7 @@
             {
               "objID": "4d297fc9-aa02-cf29-8bff-3144cbc9cab7",
               "name": "action",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -12094,7 +12429,7 @@
             {
               "objID": "109c000f-1756-eb2e-4bbc-17d34b4e0abd",
               "name": "action",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -12117,7 +12452,7 @@
             {
               "objID": "1c7e2e76-8c69-c354-0318-7f9e713ee2ad",
               "name": "action",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -12134,7 +12469,7 @@
             {
               "objID": "ae93d78a-f4e3-15e1-9ca0-087ea10e2532",
               "name": "action",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -12151,7 +12486,7 @@
             {
               "objID": "7d13db19-d3fd-4bee-96c8-2e858835e30d",
               "name": "action",
-              "type": "struct:$ActionParams"
+              "type": "struct:$ClickEvent"
             }
           ],
           "customOutputs": [],
@@ -12199,42 +12534,42 @@
         {
           "objID": "def9daf5-76fc-a5fe-2675-7bd702d6dd03",
           "source": "3313a35f-6aee-cb9f-f7c6-91b94207f8d6",
-          "output": "action",
+          "output": "CLICKED",
           "target": "f88c3278-f1c7-1310-b2bb-fe6f746e9c71",
           "input": "action"
         },
         {
           "objID": "f30447c3-9b86-7037-6ff2-3f54af966e5f",
           "source": "6b544c7b-596d-e239-6f12-ed7d814b3292",
-          "output": "action",
+          "output": "CLICKED",
           "target": "d07682f7-89e7-cc5e-b4d1-6fdd2f6e0415",
           "input": "action"
         },
         {
           "objID": "5f6313e4-77a9-ee46-3c4c-e8481c76bb12",
           "source": "376e0d59-a645-47dc-7ce6-6675f3746185",
-          "output": "action",
+          "output": "CLICKED",
           "target": "49c2362a-7802-b78c-487a-66eb91c350b0",
           "input": "action"
         },
         {
           "objID": "608250d6-a96b-ef24-7247-93c821407ee2",
           "source": "7d76ea6a-2475-720d-afac-6964caf838aa",
-          "output": "action",
+          "output": "CLICKED",
           "target": "c3d3c921-14a2-d3d0-93bd-8ebcea342a09",
           "input": "action"
         },
         {
           "objID": "3e22f369-dd1f-b2a4-05e0-97533f090ff7",
           "source": "cb22463e-7702-f874-cc03-225d7f34a4bc",
-          "output": "action",
+          "output": "CLICKED",
           "target": "a42134df-2176-52c0-c21c-4d0a54559c34",
           "input": "action"
         },
         {
           "objID": "f300016c-2015-ae61-48de-683ac7e92fbd",
           "source": "edbf987c-a3e7-7b9b-206b-143652d3a25f",
-          "output": "action",
+          "output": "CLICKED",
           "target": "258924eb-500d-ad60-f1a9-7edf17ea56d9",
           "input": "action"
         },
@@ -12255,7 +12590,7 @@
         {
           "objID": "4ba74561-837c-fdf9-bf98-5ac55c7ea4a0",
           "source": "cf3e86f3-a713-db37-c67c-ac9dc2a7806a",
-          "output": "action",
+          "output": "CLICKED",
           "target": "49c2362a-7802-b78c-487a-66eb91c350b0",
           "input": "action"
         },
@@ -12287,229 +12622,9 @@
       "top": 0,
       "width": 470,
       "height": 76,
-      "isUsedAsCustomWidget": true,
+      "isUsedAsUserWidget": true,
       "lvglLocalStyles": {
         "objID": "ece823f5-cf3a-fe24-4ef7-15e51df26a13"
-      }
-    },
-    {
-      "objID": "2981b447-3e0b-d8ba-5fd9-fb0f6107c97b",
-      "components": [
-        {
-          "objID": "c39fc4e7-4c7a-f23f-fbeb-7e94cf329e66",
-          "type": "CheckboxWidget",
-          "left": 20,
-          "top": 20,
-          "width": 160,
-          "height": 20,
-          "customInputs": [],
-          "customOutputs": [],
-          "asOutputProperties": [],
-          "data": "update_database",
-          "style": {
-            "objID": "489cfdd2-b237-059a-fe48-18eb49297b28",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "label": "\"Update database\""
-        },
-        {
-          "objID": "c385b6be-2dfa-572d-5b86-e2135ccfe94a",
-          "type": "TextWidget",
-          "left": 201,
-          "top": 20,
-          "width": 187,
-          "height": 20,
-          "customInputs": [],
-          "customOutputs": [],
-          "data": "\"Enabled tests:\"",
-          "style": {
-            "objID": "b59e191e-9369-10e9-f614-07b59c88d967",
-            "inheritFrom": "default"
-          },
-          "timeline": []
-        },
-        {
-          "objID": "41af81d1-5381-1a07-3094-f29e67866b0e",
-          "type": "List",
-          "left": 220,
-          "top": 45,
-          "width": 208,
-          "height": 264,
-          "customInputs": [],
-          "customOutputs": [],
-          "data": "test_steps",
-          "style": {
-            "objID": "aed92ef4-4793-6a21-4114-d17f9d862bfd",
-            "inheritFrom": "default"
-          },
-          "timeline": [],
-          "itemWidget": {
-            "objID": "93567666-ca97-5208-630a-bb001719633f",
-            "type": "Container",
-            "left": 0,
-            "top": 0,
-            "width": 208,
-            "height": 24,
-            "customInputs": [],
-            "customOutputs": [],
-            "style": {
-              "objID": "a42acd8e-66a2-5c67-bbf5-5fb346128f43",
-              "inheritFrom": "default"
-            },
-            "timeline": [],
-            "widgets": [
-              {
-                "objID": "dd92fd48-e1d0-460b-2e30-a34c10378955",
-                "type": "CheckboxWidget",
-                "left": 0,
-                "top": 0,
-                "width": 208,
-                "height": 20,
-                "customInputs": [],
-                "customOutputs": [],
-                "asOutputProperties": [],
-                "data": "test_step_enabled[$index]",
-                "style": {
-                  "objID": "367aadd1-6334-6bfd-52a6-fa3e1110b57f",
-                  "inheritFrom": "default"
-                },
-                "timeline": [],
-                "label": "($index + 1) + \": \" + test_steps[$index].name"
-              }
-            ],
-            "layout": "static"
-          },
-          "listType": "vertical",
-          "gap": 0
-        },
-        {
-          "objID": "13a51c15-f473-fbd9-3f53-49b5454e7e26",
-          "type": "ButtonWidget",
-          "left": 152,
-          "top": 318,
-          "width": 120,
-          "height": 32,
-          "customInputs": [],
-          "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
-          "data": "\"Close\"",
-          "style": {
-            "objID": "9842b951-7a91-ba65-cb6f-1954d7e5f271",
-            "inheritFrom": "button"
-          },
-          "timeline": [],
-          "disabledStyle": {
-            "objID": "0632059e-b320-d35b-2be3-863f583afced",
-            "inheritFrom": "default"
-          }
-        },
-        {
-          "objID": "ac01131a-6695-9c79-5eb0-0a83f59fc01c",
-          "type": "ShowPageActionComponent",
-          "left": 456,
-          "top": 295,
-          "width": 97,
-          "height": 53,
-          "customInputs": [],
-          "customOutputs": [],
-          "page": "main_page"
-        }
-      ],
-      "connectionLines": [
-        {
-          "objID": "20af5fc4-354e-9914-30b2-4ed4343015be",
-          "source": "13a51c15-f473-fbd9-3f53-49b5454e7e26",
-          "output": "action",
-          "target": "ac01131a-6695-9c79-5eb0-0a83f59fc01c",
-          "input": "@seqin"
-        }
-      ],
-      "localVariables": [],
-      "name": "settings_page",
-      "style": "page",
-      "left": 0,
-      "top": 0,
-      "width": 448,
-      "height": 370,
-      "lvglLocalStyles": {
-        "objID": "ccc257e3-ea25-1245-2a0c-921e104a5b4a"
-      }
-    },
-    {
-      "objID": "31d3eba9-df82-6541-2ce7-3f9ebc57a13b",
-      "components": [
-        {
-          "objID": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
-          "type": "ButtonWidget",
-          "left": 411,
-          "top": 818,
-          "width": 120,
-          "height": 32,
-          "customInputs": [],
-          "customOutputs": [],
-          "asOutputProperties": [
-            "action"
-          ],
-          "data": "\"Close\"",
-          "style": {
-            "objID": "a2b15f79-a3dc-53a1-8f19-0ce6c7876c93",
-            "inheritFrom": "button"
-          },
-          "timeline": [],
-          "disabledStyle": {
-            "objID": "95c77394-b603-8215-0458-6e1511810894",
-            "inheritFrom": "default"
-          }
-        },
-        {
-          "objID": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
-          "type": "ShowPageActionComponent",
-          "left": 765,
-          "top": 881,
-          "width": 97,
-          "height": 53,
-          "customInputs": [],
-          "customOutputs": [],
-          "page": "main_page"
-        },
-        {
-          "objID": "164d74cc-1cc4-df91-41e4-6ef76f8c1282",
-          "type": "MarkdownWidget",
-          "left": 20,
-          "top": 20,
-          "width": 870,
-          "height": 778,
-          "customInputs": [],
-          "customOutputs": [],
-          "style": {
-            "objID": "77eded15-9545-00f6-5397-98e243e932ba",
-            "inheritFrom": "help"
-          },
-          "timeline": [],
-          "text": "BOM lista: https://github.com/emard/ulx3s/blob/master/1-click-bom.tsv\n\nAssembly guide: https://kitspace.org/interactive_bom/?github.com/emard/ulx3s\n\nČeste greške u proizvodnji:\n\n- HDMI ne sjedne do kraja pa se ne zalemi dobro\n- ADC čip krivo okrenut (postoji šansa da ih u pakiranju krivo okrenu pa pazite)\n- Krivo okrenut 25MHz kristal - molim pogledajte na sample pločici koju sam poslao\n- D28 se ne montira\n- RV2 se ne montira\n- RV3 se new montira\n- USB zna biti nezalemljen ali rijetko\n- ADC i FTDI često budu odlemljeni\n- ESP32: pogledajte kako stoji na sample pločici koju sam poslao\n\nDo sada problemi sa 3.1.7 koje sam primjetio:\n\n- Wrong ID - fujprog ne radi - FTDI čip nije zalemljen - FPGA nije zalemljen\n- Ne pali se - vjerojatno nije dobro zalemljen ili je US1 loše zalemljen - brika na BGA\n- HDMI - fale boje, EDID fail - nema slike\n- Ne pali kada je spojeno na US2 konektoru - US2 nije dobro zalemljen\n- ADC - ne radi neki od kanala ili ne radi niti jedan kanal - ADC nije dobro spojen - FPGA nije dobro zalemljen\n- Ne prolazi SDRAM memtest - FPGA ili SDRAM nisu dobro zalemljeni\n- Ne može se pristupiti ESP32 - HDMI je spojen pa su velike smetnje - ESP32 nije dobro spojen, FTDI nije dobro spojen - FPGA nije dobro spojen\n\n### Predkoraci prije uključivanja\n\n**Obavezno provjeriti da li je ADC dobro okrenut prije uključivanja, ako se uključi u USB ovisno kako je okrenut može izgoriti ADC čip ili FPGA.**\n     \nJa obično pogledam i HDMI pod mikroskopom, ali to se više manje vidi na testu ako nešto nije spojeno - nema slike ili nema neke boje.\n\n### Koraci koji se automatski testiraju\n\n1. FTDI programming\n\n\tAko ova naredba javi error - onda je vjerojatno FTDI ili US1 loše zalemljen.\n\n\tProbajte prvo na ispravnoj pločici. Ako ne prolazi na testnoj može biti i krivi driver instaliran.\n\thttps://github.com/kost/fujprog#change-ulx3s-driver-to-ftdi\n\thttps://ftdichip.com/drivers/d2xx-drivers/\n\n2. ESP32 passthru\n\n     Ako ovo javi error onda je vjerojatno loše zalemljen FTDI ili FPGA.\n     Obično javi neki krivi ID tipa ID 000000000 ili FFFFFFFFF - to znači da FPGA nije dobro spojen prema FPGA\n\n3. ESP32 erase\n\t\n4. ESP32 programming\n\n5. MP test\n\n6. Self-test programming\n\n7. Self-test\n\n     U ovom koraku potrebno je ubaciti SD card, pritisnuti sve buttone i spojiti HDMI kabel. Ako ledice ne rade \n\n     SDRAM možete provjeriti i sa - on će dati sliku na HDMI izlazu i smije smao brojati na zelenom brojaču - ledice se ne smiju paliti - ako se pale ledice ili broji crveno onda nešto ne radi sa SDRAM\n\n8. ESP32 passthru flash\n\n     Trajno programiranje passtrue - sa time isporučujemo korisniku.\n\n### Dodatni koraci koji se ručno obavljaju\n\n9. Odspojiti US1 - spoijiti US2 da se vidi da li napajanje preko US2 radi\n\n10. Pakiranje, itd.\n"
-        }
-      ],
-      "connectionLines": [
-        {
-          "objID": "eefef559-60f2-dd85-e513-f9f554c87f0e",
-          "source": "e9da3a7c-2908-592f-d3a9-00b2fb3d1ec5",
-          "output": "action",
-          "target": "cc60e1ed-5374-e61c-b012-a66b5d8a49f5",
-          "input": "@seqin"
-        }
-      ],
-      "localVariables": [],
-      "name": "help",
-      "style": "page",
-      "left": 0,
-      "top": 0,
-      "width": 910,
-      "height": 870,
-      "lvglLocalStyles": {
-        "objID": "f413ef16-8e84-4d0a-7dc3-9c6fa0a34d13"
       }
     }
   ],
