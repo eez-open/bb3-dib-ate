@@ -1,0 +1,74 @@
+
+COM Name Arbiter Tool V1.0.5 - gives manual control over reserved COM port numbers
+Freeware by Uwe Sieber - www.uwe-sieber.de
+
+
+Whenever a new COM port is installed, Windows looks for the first
+never used number. This ensures that there are no conflicts when
+two of the devices are attached at the same time.
+
+When COM device is uninstalled the reservation of its COM port isn't removed,
+the result are endless increasing port numbers.
+
+Since Windows 10 version 1903 there is a sub-key "Devices" here where it keeps
+track of COM-ports and their devices and removes the reservation when a COM-port
+device is uninstalled. Finally after 25 years... So under Windows 10 version 1903
+and newer this tool should be not needed.
+
+
+
+Windows stores used COM port numbers in the registry here:
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\COM Name Arbiter
+
+By default there are 32 bytes with 8 bits in each byte. A set bit makes a
+port number (1..256) reserved. Over time Windows might exceed 256 ports,
+COM Name Arbiter Tool can handle this. Windows supports 4096 ports here.
+
+Removing the reservation does not do anything else than making Windows
+reassign the number to a new device when it is attached and offer it
+for manual reassignment.
+As long as the new device is not attached at the same time as the
+device which had these COM port before there is no problem.
+
+If the devices are attached at the same time then one of them will not
+work. I've seen three diffent behaviours:
+1: The second device fails to start because it cannot create the COMx symbolic link.
+2: The second device starts but will not get assigned a COMx symbolic link, so it
+   is operational but the serial port isn't accessible from Win32 apps.
+3: The second device's driver removes the COMx symbolic link of the first device
+   and creates it's own (seen with FTDI).
+
+"Clear unused reservations" removes the reservation for all port for which no device
+is found, currently attached or as phantom devices in the Device Manager.
+
+"Remove non-present devices" uninstalls all currently non-present COM port devices from
+the Device Manager.
+
+
+Started with parameter /c it performs silently the "Clear unused reservations" operation.
+Started with parameter /r it performs silently the "Remove non-present devices" operation.
+
+
+
+
+Licence
+
+
+COM Name Arbiter Tool is Freeware.
+
+Allowed:
+- usage in any environment, including commercial
+- include in software products, including commercial
+- include on CD/DVD of computer magazines
+
+Not allowed:
+- changing any of the files
+
+
+
+
+Uwe Sieber
+Nov 2021
+
+
+
