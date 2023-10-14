@@ -11471,9 +11471,10 @@
           "style": {
             "objID": "f047e73f-8aa4-4e6b-8c4e-2328cbe3cf8a",
             "useStyle": "default",
-            "childStyles": []
+            "childStyles": [],
+            "css": "z-index: 1;"
           },
-          "hiddenInEditor": true,
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "userWidgetPageName": "help"
