@@ -16921,9 +16921,9 @@
         {
           "objID": "98e55339-7865-4d3a-ce6e-07f780316281",
           "type": "ShowPageActionComponent",
-          "left": 1998,
-          "top": -98,
-          "width": 94,
+          "left": 2016,
+          "top": 1309,
+          "width": 95,
           "height": 54,
           "customInputs": [],
           "customOutputs": [],
@@ -17008,8 +17008,8 @@
         {
           "objID": "8c14cbba-28d2-4fcc-f97b-fe32858dc689",
           "type": "ShowPageActionComponent",
-          "left": 1955,
-          "top": -93,
+          "left": 1999,
+          "top": 1312,
           "width": 95,
           "height": 54,
           "customInputs": [],
