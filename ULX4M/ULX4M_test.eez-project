@@ -46,7 +46,7 @@
         "objID": "59274f4e-d516-46ae-aa72-da9c6da23d02",
         "name": "BB3_INSTRUMENT_ID",
         "type": "integer",
-        "defaultValue": "0",
+        "defaultValue": "1",
         "persistent": true,
         "native": false
       },
@@ -79,7 +79,7 @@
         "name": "bb3",
         "type": "object:Instrument",
         "defaultValue": "null",
-        "persistent": false,
+        "persistent": true,
         "native": false
       },
       {
@@ -94,7 +94,7 @@
         "objID": "27f472dd-1dd8-454e-8d54-940ba92a3f61",
         "name": "devices",
         "type": "array:struct:Device",
-        "defaultValue": "[\n  { index: 0, is_detected: false },\n  { index: 1, is_detected: false },\n  { index: 2, is_detected: false },\n  { index: 3, is_detected: false },\n]",
+        "defaultValue": "[\n  { index: 0, is_detected: false, is_on: false, load_fw: TestResult.None, test_gpio: TestResult.None, test_mem: TestResult.None, test_eth: TestResult.None, test_usb: TestResult.None },\n  { index: 1, is_detected: false, is_on: false, load_fw: TestResult.None, test_gpio: TestResult.None, test_mem: TestResult.None, test_eth: TestResult.None, test_usb: TestResult.None },\n  { index: 2, is_detected: false, is_on: false, load_fw: TestResult.None, test_gpio: TestResult.None, test_mem: TestResult.None, test_eth: TestResult.None, test_usb: TestResult.None },\n  { index: 3, is_detected: false, is_on: false, load_fw: TestResult.None, test_gpio: TestResult.None, test_mem: TestResult.None, test_eth: TestResult.None, test_usb: TestResult.None },\n]",
         "persistent": false,
         "native": false
       },
@@ -121,6 +121,22 @@
         "defaultValue": "\"\"",
         "persistent": false,
         "native": false
+      },
+      {
+        "objID": "209353b9-d706-4baf-98d6-ef5eeb520518",
+        "name": "BITSTREAM_FILE_PATHS",
+        "type": "string",
+        "defaultValue": "\"/home/goran/Projects/pico-dirtyJtag/bitstreams/\"",
+        "persistent": false,
+        "native": false
+      },
+      {
+        "objID": "16be07de-22eb-4aab-9438-969e9ee0c965",
+        "name": "show_invalid_voltage_popup",
+        "type": "boolean",
+        "defaultValue": "false",
+        "persistent": false,
+        "native": false
       }
     ],
     "structures": [
@@ -136,6 +152,11 @@
           {
             "objID": "b8c02403-57d4-4fa9-cb61-a6941f681b41",
             "name": "is_detected",
+            "type": "boolean"
+          },
+          {
+            "objID": "72319e6e-bc54-4f16-ae19-73bb9caced0b",
+            "name": "is_on",
             "type": "boolean"
           },
           {
@@ -162,21 +183,421 @@
             "objID": "8924f0f5-2cf2-4048-932f-1728e70735bd",
             "name": "irlength",
             "type": "string"
+          },
+          {
+            "objID": "96ae5028-e460-4b57-a78b-de8905bd0c9c",
+            "name": "load_fw",
+            "type": "enum:TestResult"
+          },
+          {
+            "objID": "4eb51d99-26f6-457a-e655-947774308409",
+            "name": "test_gpio",
+            "type": "enum:TestResult"
+          },
+          {
+            "objID": "275c2bc1-dac0-4175-b21c-762626c21dac",
+            "name": "test_mem",
+            "type": "enum:TestResult"
+          },
+          {
+            "objID": "1ea50fc9-daca-4c2d-e083-29ee57d860e3",
+            "name": "test_eth",
+            "type": "enum:TestResult"
+          },
+          {
+            "objID": "b7ca5ef5-7662-4f64-feb5-03a762591940",
+            "name": "test_usb",
+            "type": "enum:TestResult"
           }
         ]
       }
     ],
-    "enums": []
+    "enums": [
+      {
+        "objID": "2f108547-153a-4dcc-c719-6036661718bd",
+        "name": "TestResult",
+        "members": [
+          {
+            "objID": "8a895f76-40af-4d2d-dd43-9420cd348b09",
+            "name": "None",
+            "value": 0
+          },
+          {
+            "objID": "74b7177e-a67e-4c2e-c844-847252023c2b",
+            "name": "Testing",
+            "value": 1
+          },
+          {
+            "objID": "2c25605e-f987-4b43-f0ed-7cf7b4a7e3ff",
+            "name": "Success",
+            "value": 2
+          },
+          {
+            "objID": "f37e1d0b-5455-453d-db10-8a0f12de9564",
+            "name": "Fail",
+            "value": 3
+          }
+        ]
+      }
+    ]
   },
   "actions": [
+    {
+      "objID": "c565493c-af9c-49dd-a6a4-35cb3cfbf33e",
+      "components": [
+        {
+          "objID": "629f6254-b44d-4d96-c7b9-1b6a5fa5f7ea",
+          "type": "StartActionComponent",
+          "left": -311,
+          "top": -15,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "ef50c185-a978-48f5-c1f0-abac21cd66a1",
+          "type": "IsTrueActionComponent",
+          "left": -131,
+          "top": -14,
+          "width": 141,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "bb3.isConnected"
+        },
+        {
+          "objID": "b34a0e0d-b483-40e2-b193-a8725ea0ae93",
+          "type": "DelayActionComponent",
+          "left": 71,
+          "top": 101,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "500"
+        },
+        {
+          "objID": "b12ab094-043b-4dba-82a1-b514cbce255a",
+          "type": "SCPIActionComponent",
+          "left": 842,
+          "top": -22,
+          "width": 120,
+          "height": 67,
+          "customInputs": [],
+          "customOutputs": [],
+          "instrument": "bb3",
+          "scpi": "inst ch1\nvolt = meas:volt?",
+          "timeout": "null",
+          "delay": "null"
+        },
+        {
+          "objID": "9d079fd6-538a-4deb-e58c-1148e5b3228a",
+          "type": "IsTrueActionComponent",
+          "left": 1003,
+          "top": -22,
+          "width": 98,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "volt < 3"
+        },
+        {
+          "objID": "c29ae6d4-e433-4f56-d0ae-e42b1138844b",
+          "type": "SerialWrite",
+          "left": 1795,
+          "top": -160,
+          "width": 237,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "description": "OFF",
+          "connection": "serial_conn",
+          "data": "`SETPWR;MOD_${device_index+1};0\\n\\r`"
+        },
+        {
+          "objID": "fea08f6d-eb81-43fb-f890-13b4adf74d61",
+          "type": "LoopActionComponent",
+          "left": 1172,
+          "top": -160,
+          "width": 298,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "variable": "device_index",
+          "from": "0",
+          "to": "4 - 1",
+          "step": "1",
+          "version": 1
+        },
+        {
+          "objID": "9d112047-2a28-42e6-95c7-b3433e36ef6e",
+          "type": "DelayActionComponent",
+          "left": 2421,
+          "top": -160,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "100"
+        },
+        {
+          "objID": "f85ef90c-f91b-469e-83fc-cda632f4e361",
+          "type": "SetVariableActionComponent",
+          "left": 2091,
+          "top": -160,
+          "width": 263,
+          "height": 79,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "6d8d14f3-e424-4059-c66a-e8142c043dbb",
+              "variable": "devices[device_index].is_on",
+              "value": "false"
+            },
+            {
+              "objID": "abab8992-9d53-40f3-f1d4-c22e54c0358c",
+              "variable": "show_invalid_voltage_popup",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "objID": "7ea8a054-87d6-4cee-c639-001ef8d831d9",
+          "type": "SCPIActionComponent",
+          "left": 256,
+          "top": -18,
+          "width": 90,
+          "height": 67,
+          "customInputs": [],
+          "customOutputs": [],
+          "instrument": "bb3",
+          "scpi": "inst ch1\noutp = outp?",
+          "timeout": "null",
+          "delay": "null"
+        },
+        {
+          "objID": "2d8ebd19-51e9-4963-a06c-a5ed33a493dc",
+          "type": "IsTrueActionComponent",
+          "left": 413,
+          "top": -18,
+          "width": 87,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "outp"
+        },
+        {
+          "objID": "2e764da1-8296-4666-8896-6959d976bbff",
+          "type": "SCPIActionComponent",
+          "left": 564,
+          "top": 49,
+          "width": 87,
+          "height": 67,
+          "customInputs": [],
+          "customOutputs": [],
+          "instrument": "bb3",
+          "scpi": "inst ch1\noutp 1",
+          "timeout": "null",
+          "delay": "null"
+        },
+        {
+          "objID": "065f31d8-8621-4ddf-f8e2-4288e571c9d7",
+          "type": "DelayActionComponent",
+          "left": 695,
+          "top": 49,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "100"
+        },
+        {
+          "objID": "ce457e7b-2826-4631-df64-210103ee7043",
+          "type": "IsTrueActionComponent",
+          "left": 1517,
+          "top": -159,
+          "width": 215,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "devices[device_index].is_on"
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "3986d956-b2e7-4fb4-a013-599e7776c03c",
+          "source": "629f6254-b44d-4d96-c7b9-1b6a5fa5f7ea",
+          "output": "@seqout",
+          "target": "ef50c185-a978-48f5-c1f0-abac21cd66a1",
+          "input": "@seqin"
+        },
+        {
+          "objID": "6b710c52-8337-4973-9c86-f3ec4c61d5fa",
+          "source": "ef50c185-a978-48f5-c1f0-abac21cd66a1",
+          "output": "False",
+          "target": "b34a0e0d-b483-40e2-b193-a8725ea0ae93",
+          "input": "@seqin"
+        },
+        {
+          "objID": "81553c95-e18f-4e0c-c57a-3ea68b66532a",
+          "source": "b34a0e0d-b483-40e2-b193-a8725ea0ae93",
+          "output": "@seqout",
+          "target": "ef50c185-a978-48f5-c1f0-abac21cd66a1",
+          "input": "@seqin"
+        },
+        {
+          "objID": "00aab0f0-b4ef-4e4d-9afa-b19b81085a17",
+          "source": "ef50c185-a978-48f5-c1f0-abac21cd66a1",
+          "output": "True",
+          "target": "7ea8a054-87d6-4cee-c639-001ef8d831d9",
+          "input": "@seqin"
+        },
+        {
+          "objID": "4c6402e3-7a14-4668-bddb-6e98929132be",
+          "source": "b12ab094-043b-4dba-82a1-b514cbce255a",
+          "output": "@seqout",
+          "target": "9d079fd6-538a-4deb-e58c-1148e5b3228a",
+          "input": "@seqin"
+        },
+        {
+          "objID": "273ba3f9-9113-4b5e-9e91-1406a55b79f2",
+          "source": "9d079fd6-538a-4deb-e58c-1148e5b3228a",
+          "output": "True",
+          "target": "fea08f6d-eb81-43fb-f890-13b4adf74d61",
+          "input": "start"
+        },
+        {
+          "objID": "d1604576-d216-48e0-d8e0-27027387b8e5",
+          "source": "fea08f6d-eb81-43fb-f890-13b4adf74d61",
+          "output": "@seqout",
+          "target": "ce457e7b-2826-4631-df64-210103ee7043",
+          "input": "@seqin"
+        },
+        {
+          "objID": "c271ad07-82bf-437d-c7c4-e2fa9539f724",
+          "source": "c29ae6d4-e433-4f56-d0ae-e42b1138844b",
+          "output": "@seqout",
+          "target": "f85ef90c-f91b-469e-83fc-cda632f4e361",
+          "input": "@seqin"
+        },
+        {
+          "objID": "b7a6b480-a471-498a-df15-f784bc96cb39",
+          "source": "9d112047-2a28-42e6-95c7-b3433e36ef6e",
+          "output": "@seqout",
+          "target": "fea08f6d-eb81-43fb-f890-13b4adf74d61",
+          "input": "next"
+        },
+        {
+          "objID": "bd346cda-48ed-48e6-fcf7-da47ddef205e",
+          "source": "fea08f6d-eb81-43fb-f890-13b4adf74d61",
+          "output": "done",
+          "target": "ef50c185-a978-48f5-c1f0-abac21cd66a1",
+          "input": "@seqin"
+        },
+        {
+          "objID": "1e2d4c5f-5d6b-47ee-c011-b948c1bc07e7",
+          "source": "f85ef90c-f91b-469e-83fc-cda632f4e361",
+          "output": "@seqout",
+          "target": "9d112047-2a28-42e6-95c7-b3433e36ef6e",
+          "input": "@seqin"
+        },
+        {
+          "objID": "d54f43c7-b3cb-47d7-b230-46b6c7b8cca0",
+          "source": "9d079fd6-538a-4deb-e58c-1148e5b3228a",
+          "output": "False",
+          "target": "b34a0e0d-b483-40e2-b193-a8725ea0ae93",
+          "input": "@seqin"
+        },
+        {
+          "objID": "e9ad1bf8-99dd-426a-c045-744d68474f12",
+          "source": "7ea8a054-87d6-4cee-c639-001ef8d831d9",
+          "output": "@seqout",
+          "target": "2d8ebd19-51e9-4963-a06c-a5ed33a493dc",
+          "input": "@seqin"
+        },
+        {
+          "objID": "57ae7f2b-dc27-4a91-81ad-7fa8bf36240b",
+          "source": "2d8ebd19-51e9-4963-a06c-a5ed33a493dc",
+          "output": "@seqout",
+          "target": "b12ab094-043b-4dba-82a1-b514cbce255a",
+          "input": "@seqin"
+        },
+        {
+          "objID": "75ed45c6-2f18-4b08-f759-3525ec7df298",
+          "source": "2d8ebd19-51e9-4963-a06c-a5ed33a493dc",
+          "output": "False",
+          "target": "2e764da1-8296-4666-8896-6959d976bbff",
+          "input": "@seqin"
+        },
+        {
+          "objID": "e17f2863-201e-494c-af7c-1a6e663a65bd",
+          "source": "2e764da1-8296-4666-8896-6959d976bbff",
+          "output": "@seqout",
+          "target": "065f31d8-8621-4ddf-f8e2-4288e571c9d7",
+          "input": "@seqin"
+        },
+        {
+          "objID": "c0c06f0d-24e6-4b16-e6d9-dbfd9fd287d8",
+          "source": "065f31d8-8621-4ddf-f8e2-4288e571c9d7",
+          "output": "@seqout",
+          "target": "b12ab094-043b-4dba-82a1-b514cbce255a",
+          "input": "@seqin"
+        },
+        {
+          "objID": "33e92cb3-f658-4b7d-9866-3d20840b340c",
+          "source": "ce457e7b-2826-4631-df64-210103ee7043",
+          "output": "True",
+          "target": "c29ae6d4-e433-4f56-d0ae-e42b1138844b",
+          "input": "@seqin"
+        },
+        {
+          "objID": "19b28af1-6ea3-423b-fc53-ae453283d026",
+          "source": "ce457e7b-2826-4631-df64-210103ee7043",
+          "output": "False",
+          "target": "fea08f6d-eb81-43fb-f890-13b4adf74d61",
+          "input": "next"
+        }
+      ],
+      "localVariables": [
+        {
+          "objID": "c45e2a84-cfef-4017-ae63-46682907faf5",
+          "name": "volt",
+          "type": "float",
+          "defaultValue": "0",
+          "persistent": false,
+          "native": false
+        },
+        {
+          "objID": "d4415710-b4b2-486f-ccb6-27da031df5f2",
+          "name": "device_index",
+          "type": "integer",
+          "defaultValue": "0",
+          "persistent": false,
+          "native": false
+        },
+        {
+          "objID": "cc675694-0b31-449e-f10d-efbe01f1230c",
+          "name": "outp",
+          "type": "integer",
+          "defaultValue": "0",
+          "persistent": false,
+          "native": false
+        }
+      ],
+      "userProperties": [],
+      "name": "check_bb3",
+      "implementationType": "flow"
+    },
     {
       "objID": "81089afd-62db-4e67-b3b4-ffc75da7271a",
       "components": [
         {
           "objID": "3d373f09-4d2e-4922-d429-9ffd73c9f212",
           "type": "ExecuteCommand",
-          "left": -530,
-          "top": 16,
+          "left": -508,
+          "top": 67,
           "width": 144,
           "height": 88,
           "customInputs": [],
@@ -220,10 +641,10 @@
         {
           "objID": "c04dc64b-c899-439d-e837-6f333ed55cc9",
           "type": "SetVariableActionComponent",
-          "left": -190,
-          "top": -163,
+          "left": -145,
+          "top": -339,
           "width": 300,
-          "height": 57,
+          "height": 167,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
@@ -231,6 +652,31 @@
               "objID": "6ca544ab-e5d1-42a9-c09f-ed767c14b21a",
               "variable": "devices[device_index].is_detected",
               "value": "false"
+            },
+            {
+              "objID": "17d20a09-9e3d-4243-9c51-1d217afa860f",
+              "variable": "devices[device_index].idcode",
+              "value": "\"\""
+            },
+            {
+              "objID": "0b8f8d54-a618-4c14-8216-50952c585a98",
+              "variable": "devices[device_index].manufacturer",
+              "value": "\"\""
+            },
+            {
+              "objID": "422066b2-9914-4341-af0e-691cbaabe5b7",
+              "variable": "devices[device_index].family",
+              "value": "\"\""
+            },
+            {
+              "objID": "67d7ec81-8324-4751-98f0-84b0407b4ce1",
+              "variable": "devices[device_index].model",
+              "value": "\"\""
+            },
+            {
+              "objID": "3fccf4b1-1f79-4fd2-eca7-d88f6ead0eac",
+              "variable": "devices[device_index].irlength",
+              "value": "\"\""
             }
           ]
         },
@@ -472,20 +918,53 @@
         {
           "objID": "2a73c075-aea2-4239-80d5-096a6e5ebcfc",
           "type": "SetVariableActionComponent",
-          "left": -962,
-          "top": 16,
-          "width": 337,
-          "height": 115,
+          "left": -950,
+          "top": 158,
+          "width": 275,
+          "height": 128,
           "customInputs": [],
           "customOutputs": [],
           "entries": [
             {
               "objID": "d0e1fadc-f817-46db-adc3-8fbccfbcd57d",
               "variable": "term_command",
-              "value": "simulation ? WIN_CMD : LINUX_CMD"
+              "value": "\"sudo\""
             },
             {
               "objID": "413b6f5c-0f28-4518-fc52-80f68301304f",
+              "variable": "term_args",
+              "value": "[\n  LINUX_CMD,\n  \"--cable\", \"dirtyJtag\",\n  \"--detect\"\n]"
+            }
+          ]
+        },
+        {
+          "objID": "cfcfe413-ca5f-4cb9-eb71-40e4055090c9",
+          "type": "IsTrueActionComponent",
+          "left": -1119,
+          "top": 16,
+          "width": 110,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "simulation"
+        },
+        {
+          "objID": "b2709c5f-caa5-4ada-af26-726c839be303",
+          "type": "SetVariableActionComponent",
+          "left": -950,
+          "top": 16,
+          "width": 275,
+          "height": 115,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "054634d1-9a8b-487c-86db-8f861ead9360",
+              "variable": "term_command",
+              "value": "WIN_CMD"
+            },
+            {
+              "objID": "d43e0d67-63e2-4cfb-934c-7abaa2413f3b",
               "variable": "term_args",
               "value": "[\n  \"--cable\", \"dirtyJtag\",\n  \"--detect\"\n]"
             }
@@ -504,7 +983,7 @@
           "objID": "5f79c370-1af2-4fda-a525-f388356257a2",
           "source": "d736b715-68ab-4a21-cd4f-912da7426fd3",
           "output": "done",
-          "target": "2a73c075-aea2-4239-80d5-096a6e5ebcfc",
+          "target": "cfcfe413-ca5f-4cb9-eb71-40e4055090c9",
           "input": "@seqin"
         },
         {
@@ -625,6 +1104,27 @@
           "output": "@seqout",
           "target": "3d373f09-4d2e-4922-d429-9ffd73c9f212",
           "input": "@seqin"
+        },
+        {
+          "objID": "7f5aa46b-d2ed-4029-b92d-5f2f210b5d58",
+          "source": "b2709c5f-caa5-4ada-af26-726c839be303",
+          "output": "@seqout",
+          "target": "3d373f09-4d2e-4922-d429-9ffd73c9f212",
+          "input": "@seqin"
+        },
+        {
+          "objID": "26f5c695-03d8-46da-d1b1-b500be7c4b85",
+          "source": "cfcfe413-ca5f-4cb9-eb71-40e4055090c9",
+          "output": "True",
+          "target": "b2709c5f-caa5-4ada-af26-726c839be303",
+          "input": "@seqin"
+        },
+        {
+          "objID": "11af41bb-f072-47c6-a521-a144af09378e",
+          "source": "cfcfe413-ca5f-4cb9-eb71-40e4055090c9",
+          "output": "False",
+          "target": "2a73c075-aea2-4239-80d5-096a6e5ebcfc",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -663,7 +1163,7 @@
         {
           "objID": "71a67d65-761f-447b-9c6a-69e5777e01e0",
           "type": "ExecuteCommand",
-          "left": 195,
+          "left": 296,
           "top": -72,
           "width": 144,
           "height": 88,
@@ -674,27 +1174,10 @@
           "arguments": "term_args"
         },
         {
-          "objID": "c0c42d01-1540-4a90-b4a8-d8fed8ab2c28",
-          "type": "LogActionComponent",
-          "left": 393,
-          "top": -7,
-          "width": 217,
-          "height": 54,
-          "customInputs": [
-            {
-              "objID": "e83613f8-bcaa-40a9-abc2-ef738031b7ff",
-              "name": "value",
-              "type": "integer"
-            }
-          ],
-          "customOutputs": [],
-          "value": "\"Command result: \" + value"
-        },
-        {
           "objID": "a89e1ab8-3882-4c69-ecfb-8d9f6abe8e70",
           "type": "OutputActionComponent",
-          "left": 393,
-          "top": -72,
+          "left": 517,
+          "top": -60,
           "width": 87,
           "height": 24,
           "customInputs": [],
@@ -703,51 +1186,9 @@
           "outputType": "stream"
         },
         {
-          "objID": "9606b49b-f9a0-419e-ecc1-39405e80796d",
-          "type": "SwitchActionComponent",
-          "left": -685,
-          "top": -72,
-          "width": 357,
-          "height": 130,
-          "customInputs": [],
-          "customOutputs": [],
-          "tests": [
-            {
-              "objID": "a5834f8a-83ed-40e2-9c0f-af5dbf6e01bb",
-              "condition": "devices[device_index].model == \"LFE5UM - 85\"",
-              "outputName": "model1",
-              "outputValue": "\"model1_file\""
-            },
-            {
-              "objID": "2cf8971e-c626-4a7f-c464-521da26620b9",
-              "condition": "devices[device_index].model == \"model2\"",
-              "outputName": "model2",
-              "outputValue": "\"model2_file\""
-            },
-            {
-              "objID": "2a2a105a-b458-468b-8f96-64f2944bf320",
-              "condition": "devices[device_index].model == \"model3\"",
-              "outputName": "model3",
-              "outputValue": "\"model3_file\""
-            },
-            {
-              "objID": "46a07ce6-f1d8-4270-9c2b-ab823cfa52b7",
-              "condition": "devices[device_index].model == \"model4\"",
-              "outputName": "model4",
-              "outputValue": "\"model4_file\""
-            },
-            {
-              "objID": "1bb15900-c6fd-4376-8e6a-c6a4829f728a",
-              "condition": "devices[device_index].model == \"model5\"",
-              "outputName": "model5",
-              "outputValue": "\"model5_file\""
-            }
-          ]
-        },
-        {
           "objID": "89d9f670-49c1-4033-a460-a58a182f501b",
           "type": "StartActionComponent",
-          "left": -809,
+          "left": -942,
           "top": -72,
           "width": 87,
           "height": 24,
@@ -759,92 +1200,232 @@
           "type": "SetVariableActionComponent",
           "left": -278,
           "top": -72,
-          "width": 433,
-          "height": 154,
-          "customInputs": [
-            {
-              "objID": "e838a6a6-7c61-419f-b8fe-aff8316aa7ad",
-              "name": "bitstream_file",
-              "type": "string"
-            }
-          ],
+          "width": 497,
+          "height": 141,
+          "customInputs": [],
           "customOutputs": [],
           "entries": [
             {
               "objID": "1d670afc-8771-4d74-8b41-5f95e5f22467",
               "variable": "term_command",
-              "value": "simulation ? WIN_CMD : LINUX_CMD"
+              "value": "WIN_CMD"
             },
             {
               "objID": "3181d141-b379-46e1-8d6c-87d2d068c9e7",
               "variable": "term_args",
-              "value": "[\n  \"--cable\", \"dirtyJtag\",\n  \"--index-chain\", device_index + \"\",\n  \"--bitstream\", \n  bitstream_file,\n  \"-f\"\n]"
+              "value": "[\n  \"--cable\", \"dirtyJtag\",\n  \"--index-chain\", device_index + \"\",\n  \"--bitstream\", \n  BITSTREAM_FILE_PATHS + devices[device_index].model + \".bit\"\n]"
+            }
+          ]
+        },
+        {
+          "objID": "9e76c9d3-577a-4208-edb5-3147b98f0520",
+          "type": "OutputActionComponent",
+          "left": 517,
+          "top": -20,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "stderr",
+          "outputType": "stream"
+        },
+        {
+          "objID": "84bbecf5-b506-4910-bfa7-af7c163f5c27",
+          "type": "SetVariableActionComponent",
+          "left": -277,
+          "top": 107,
+          "width": 497,
+          "height": 154,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "4c81433e-7c20-4b80-8105-ee2746d8d918",
+              "variable": "term_command",
+              "value": "\"sudo\""
+            },
+            {
+              "objID": "aa7dbab3-bfa1-425c-ed87-b0c910653d07",
+              "variable": "term_args",
+              "value": "[\n  LINUX_CMD,\n  \"--cable\", \"dirtyJtag\",\n  \"--index-chain\", device_index + \"\",\n  \"--bitstream\", \n  BITSTREAM_FILE_PATHS + devices[device_index].model + \".bit\"\n]"
+            }
+          ]
+        },
+        {
+          "objID": "81bb49e0-dbb1-412d-f908-1a94f263d696",
+          "type": "IsTrueActionComponent",
+          "left": -427,
+          "top": -72,
+          "width": 110,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "simulation"
+        },
+        {
+          "objID": "25b6686d-df76-4287-ac1a-e1d9c228d65f",
+          "type": "IsTrueActionComponent",
+          "left": 517,
+          "top": 26,
+          "width": 87,
+          "height": 70,
+          "customInputs": [
+            {
+              "objID": "760a588c-54a9-406e-ab2a-93d1d0f1579b",
+              "name": "value",
+              "type": "any"
+            }
+          ],
+          "customOutputs": [],
+          "value": "value"
+        },
+        {
+          "objID": "abd85988-a701-475c-c134-107456487679",
+          "type": "OutputActionComponent",
+          "left": 1055,
+          "top": 103,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "success",
+          "outputType": "any"
+        },
+        {
+          "objID": "d53bdca7-d868-4305-ea33-6c5a07f43593",
+          "type": "SetVariableActionComponent",
+          "left": -819,
+          "top": -72,
+          "width": 355,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "5078a06f-56b1-4b9d-ed9b-cc138c8a0352",
+              "variable": "devices[device_index].load_fw",
+              "value": "TestResult.Testing"
+            }
+          ]
+        },
+        {
+          "objID": "a2ce072e-e5c7-4650-ba6f-726d426694e7",
+          "type": "SetVariableActionComponent",
+          "left": 672,
+          "top": 26,
+          "width": 337,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "d6e897ac-23d2-407e-a47d-dd12fc27605c",
+              "variable": "devices[device_index].load_fw",
+              "value": "TestResult.Fail"
+            }
+          ]
+        },
+        {
+          "objID": "a95a76f9-5d88-47ec-e620-69e7cfd6cede",
+          "type": "SetVariableActionComponent",
+          "left": 672,
+          "top": 103,
+          "width": 355,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "5f671489-8c2c-4fdd-d26f-b351b1512a79",
+              "variable": "devices[device_index].load_fw",
+              "value": "TestResult.Success"
             }
           ]
         }
       ],
       "connectionLines": [
         {
-          "objID": "ca224581-cf6a-45eb-b2e0-c1980429af8f",
-          "source": "71a67d65-761f-447b-9c6a-69e5777e01e0",
-          "output": "finished",
-          "target": "c0c42d01-1540-4a90-b4a8-d8fed8ab2c28",
-          "input": "value"
+          "objID": "edc41a35-2dd1-4f5c-ede6-72a8e78564b5",
+          "source": "0449e9db-4993-46ff-8819-708e5526e51d",
+          "output": "@seqout",
+          "target": "71a67d65-761f-447b-9c6a-69e5777e01e0",
+          "input": "@seqin"
         },
         {
-          "objID": "068b16de-0f26-4c76-984c-a669fbfc57af",
+          "objID": "c5e75c3c-bd76-4e0c-c832-cebb6003fdc8",
+          "source": "89d9f670-49c1-4033-a460-a58a182f501b",
+          "output": "@seqout",
+          "target": "d53bdca7-d868-4305-ea33-6c5a07f43593",
+          "input": "@seqin"
+        },
+        {
+          "objID": "fd5b4841-43c5-4e10-8c36-14a82c72067d",
           "source": "71a67d65-761f-447b-9c6a-69e5777e01e0",
           "output": "stdout",
           "target": "a89e1ab8-3882-4c69-ecfb-8d9f6abe8e70",
           "input": "@seqin"
         },
         {
-          "objID": "54f90b80-ce06-4188-e2c4-a6432c9fff8b",
-          "source": "9606b49b-f9a0-419e-ecc1-39405e80796d",
-          "output": "model1",
-          "target": "0449e9db-4993-46ff-8819-708e5526e51d",
-          "input": "bitstream_file"
-        },
-        {
-          "objID": "487bead1-7549-4a27-9339-442a951725c0",
-          "source": "9606b49b-f9a0-419e-ecc1-39405e80796d",
-          "output": "model2",
-          "target": "0449e9db-4993-46ff-8819-708e5526e51d",
-          "input": "bitstream_file"
-        },
-        {
-          "objID": "171a8ed4-bc0d-4f45-acdb-725a84c44cba",
-          "source": "9606b49b-f9a0-419e-ecc1-39405e80796d",
-          "output": "model3",
-          "target": "0449e9db-4993-46ff-8819-708e5526e51d",
-          "input": "bitstream_file"
-        },
-        {
-          "objID": "0bf10ce1-62b4-4aab-bf23-a705e749ffb4",
-          "source": "9606b49b-f9a0-419e-ecc1-39405e80796d",
-          "output": "model4",
-          "target": "0449e9db-4993-46ff-8819-708e5526e51d",
-          "input": "bitstream_file"
-        },
-        {
-          "objID": "7a109d2e-2252-4080-8d93-1f6aec75132a",
-          "source": "9606b49b-f9a0-419e-ecc1-39405e80796d",
-          "output": "model5",
-          "target": "0449e9db-4993-46ff-8819-708e5526e51d",
-          "input": "bitstream_file"
-        },
-        {
-          "objID": "9f31be8b-6df8-4538-af60-96b00b3cfc07",
-          "source": "89d9f670-49c1-4033-a460-a58a182f501b",
-          "output": "@seqout",
-          "target": "9606b49b-f9a0-419e-ecc1-39405e80796d",
+          "objID": "06fa78a2-0926-4b64-bf9d-b461568cd930",
+          "source": "71a67d65-761f-447b-9c6a-69e5777e01e0",
+          "output": "stderr",
+          "target": "9e76c9d3-577a-4208-edb5-3147b98f0520",
           "input": "@seqin"
         },
         {
-          "objID": "edc41a35-2dd1-4f5c-ede6-72a8e78564b5",
-          "source": "0449e9db-4993-46ff-8819-708e5526e51d",
+          "objID": "b4d14281-a276-40dd-ffa5-d4bd9c40cb03",
+          "source": "81bb49e0-dbb1-412d-f908-1a94f263d696",
+          "output": "True",
+          "target": "0449e9db-4993-46ff-8819-708e5526e51d",
+          "input": "@seqin"
+        },
+        {
+          "objID": "79ecb05a-1f07-4a2f-9a72-6fa3993a61e0",
+          "source": "81bb49e0-dbb1-412d-f908-1a94f263d696",
+          "output": "False",
+          "target": "84bbecf5-b506-4910-bfa7-af7c163f5c27",
+          "input": "@seqin"
+        },
+        {
+          "objID": "5a3ae274-6fd4-4bd1-c1c1-4d4507fc9cf2",
+          "source": "84bbecf5-b506-4910-bfa7-af7c163f5c27",
           "output": "@seqout",
           "target": "71a67d65-761f-447b-9c6a-69e5777e01e0",
+          "input": "@seqin"
+        },
+        {
+          "objID": "7daefc5c-3cb2-4643-de31-968b51219d90",
+          "source": "71a67d65-761f-447b-9c6a-69e5777e01e0",
+          "output": "finished",
+          "target": "25b6686d-df76-4287-ac1a-e1d9c228d65f",
+          "input": "value"
+        },
+        {
+          "objID": "2d658900-f5b3-41c7-d83e-e3a05b707c35",
+          "source": "25b6686d-df76-4287-ac1a-e1d9c228d65f",
+          "output": "False",
+          "target": "a95a76f9-5d88-47ec-e620-69e7cfd6cede",
+          "input": "@seqin"
+        },
+        {
+          "objID": "dd6fc183-4027-4de2-d9a6-2eec5fa294c8",
+          "source": "d53bdca7-d868-4305-ea33-6c5a07f43593",
+          "output": "@seqout",
+          "target": "81bb49e0-dbb1-412d-f908-1a94f263d696",
+          "input": "@seqin"
+        },
+        {
+          "objID": "138b1a98-7651-43bf-89cb-2ce51f0e0e84",
+          "source": "25b6686d-df76-4287-ac1a-e1d9c228d65f",
+          "output": "True",
+          "target": "a2ce072e-e5c7-4650-ba6f-726d426694e7",
+          "input": "@seqin"
+        },
+        {
+          "objID": "5fee3816-4c0f-421e-a55a-cbdae4528fd9",
+          "source": "a95a76f9-5d88-47ec-e620-69e7cfd6cede",
+          "output": "@seqout",
+          "target": "abd85988-a701-475c-c134-107456487679",
           "input": "@seqin"
         }
       ],
@@ -859,6 +1440,579 @@
         }
       ],
       "name": "load_firmware",
+      "implementationType": "flow"
+    },
+    {
+      "objID": "e0070373-fa83-4b22-abd1-305ba4213fdd",
+      "components": [
+        {
+          "objID": "93fb796e-2a68-41ab-8cea-647d9e6bc37c",
+          "type": "StartActionComponent",
+          "left": -378,
+          "top": -9,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "0e6d14df-123f-43f8-854b-20e5a9d87637",
+          "type": "CallActionActionComponent",
+          "left": -257,
+          "top": -9,
+          "width": 196,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "test_gpio",
+          "userPropertyValues": {
+            "objID": "f7a546ab-c2cf-4678-ed14-e9420f300277",
+            "values": {
+              "64f31a0e-046f-4cda-abe2-4d6fed2a8f2e": "device_index"
+            }
+          }
+        },
+        {
+          "objID": "0dee90e0-0218-4cfb-88f7-3a80497512a2",
+          "type": "CallActionActionComponent",
+          "left": -28,
+          "top": -9,
+          "width": 196,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "test_mem",
+          "userPropertyValues": {
+            "objID": "cd40e036-7384-4106-b086-eba3f397a4c9",
+            "values": {
+              "0f06dc8d-b8f5-4a7f-cc77-1cc6e221be9b": "device_index"
+            }
+          }
+        },
+        {
+          "objID": "0176cd15-8691-4571-a86f-4038b3bbea75",
+          "type": "CallActionActionComponent",
+          "left": 202,
+          "top": -9,
+          "width": 196,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "test_eth",
+          "userPropertyValues": {
+            "objID": "d73b2fd8-c186-4f29-9ce7-5dd3d129ae8d",
+            "values": {
+              "6b333159-acd4-4e8b-afb8-51ab2feb58ad": "device_index"
+            }
+          }
+        },
+        {
+          "objID": "627d0fa5-d0ab-4618-e3f6-eece1d8f6236",
+          "type": "CallActionActionComponent",
+          "left": 431,
+          "top": -9,
+          "width": 196,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "test_usb",
+          "userPropertyValues": {
+            "objID": "104b5925-8efe-41a1-f3e5-c46d6fbf1f69",
+            "values": {
+              "0b6f56f5-7994-4125-d569-3f578548e519": "device_index"
+            }
+          }
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "2e50f459-182e-407e-e0b3-0865ca0a78ac",
+          "source": "93fb796e-2a68-41ab-8cea-647d9e6bc37c",
+          "output": "@seqout",
+          "target": "0e6d14df-123f-43f8-854b-20e5a9d87637",
+          "input": "@seqin"
+        },
+        {
+          "objID": "175fc376-b720-4a78-dfb4-36aa3da2ac9f",
+          "source": "0e6d14df-123f-43f8-854b-20e5a9d87637",
+          "output": "@seqout",
+          "target": "0dee90e0-0218-4cfb-88f7-3a80497512a2",
+          "input": "@seqin"
+        },
+        {
+          "objID": "862ef281-f65c-4d0e-bb4c-e4a0ca922c4b",
+          "source": "0dee90e0-0218-4cfb-88f7-3a80497512a2",
+          "output": "@seqout",
+          "target": "0176cd15-8691-4571-a86f-4038b3bbea75",
+          "input": "@seqin"
+        },
+        {
+          "objID": "91fd278a-a6ca-48c3-f484-39c0749a43f1",
+          "source": "0176cd15-8691-4571-a86f-4038b3bbea75",
+          "output": "@seqout",
+          "target": "627d0fa5-d0ab-4618-e3f6-eece1d8f6236",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "userProperties": [
+        {
+          "id": "e6aac86a-6dd3-4af9-d989-1cf8ccb27831",
+          "objID": "93cb3878-32dd-433a-a99b-b96e5955f4b7",
+          "name": "device_index",
+          "type": "integer",
+          "assignable": false
+        }
+      ],
+      "name": "test",
+      "implementationType": "flow"
+    },
+    {
+      "objID": "b850c50b-7e77-43f3-da76-a14350c56457",
+      "components": [
+        {
+          "objID": "314d3c53-96f3-48eb-b500-0bc0e092904b",
+          "type": "StartActionComponent",
+          "left": -266,
+          "top": -18,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "d277391d-f13c-4709-c945-22b408479f34",
+          "type": "EndActionComponent",
+          "left": 285,
+          "top": 71,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "90c4c9f2-f591-4a9b-917a-1edf17a7210b",
+          "type": "SetVariableActionComponent",
+          "left": -133,
+          "top": -18,
+          "width": 368,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "11254287-6953-4c04-b9b4-2635045498cc",
+              "variable": "devices[device_index].test_gpio",
+              "value": "TestResult.Testing"
+            }
+          ]
+        },
+        {
+          "objID": "c7431009-c07d-4296-bc2b-90eb41d9c298",
+          "type": "DelayActionComponent",
+          "left": 285,
+          "top": -18,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "300"
+        },
+        {
+          "objID": "a8034f23-2dea-4f40-b55a-637fc36ee85f",
+          "type": "SetVariableActionComponent",
+          "left": -133,
+          "top": 71,
+          "width": 368,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "a26f8f50-409a-4611-cfcd-9ec25d5c6c05",
+              "variable": "devices[device_index].test_gpio",
+              "value": "TestResult.Success"
+            }
+          ]
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "aa91ac38-cafa-408a-e14a-871df4145e0f",
+          "source": "314d3c53-96f3-48eb-b500-0bc0e092904b",
+          "output": "@seqout",
+          "target": "90c4c9f2-f591-4a9b-917a-1edf17a7210b",
+          "input": "@seqin"
+        },
+        {
+          "objID": "f59cd5e3-0c4b-4469-fed1-04895ee586e4",
+          "source": "90c4c9f2-f591-4a9b-917a-1edf17a7210b",
+          "output": "@seqout",
+          "target": "c7431009-c07d-4296-bc2b-90eb41d9c298",
+          "input": "@seqin"
+        },
+        {
+          "objID": "47986772-29e6-45c5-eb07-c8388397b307",
+          "source": "a8034f23-2dea-4f40-b55a-637fc36ee85f",
+          "output": "@seqout",
+          "target": "d277391d-f13c-4709-c945-22b408479f34",
+          "input": "@seqin"
+        },
+        {
+          "objID": "29d05bd8-8fa5-4f8e-a5bd-d9db42018511",
+          "source": "c7431009-c07d-4296-bc2b-90eb41d9c298",
+          "output": "@seqout",
+          "target": "a8034f23-2dea-4f40-b55a-637fc36ee85f",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "userProperties": [
+        {
+          "id": "64f31a0e-046f-4cda-abe2-4d6fed2a8f2e",
+          "objID": "4cfb7454-77c5-49cb-a0d2-a72572fc0f42",
+          "name": "device_index",
+          "type": "integer",
+          "assignable": false
+        }
+      ],
+      "name": "test_gpio",
+      "implementationType": "flow"
+    },
+    {
+      "objID": "54b7fdd5-f8c0-4034-a564-5fa72e1f269f",
+      "components": [
+        {
+          "objID": "c312826b-1910-44b3-be48-11e5c69ab32f",
+          "type": "StartActionComponent",
+          "left": -309,
+          "top": -68,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "5a655c8d-7860-4223-e58a-d2bdd186c47e",
+          "type": "EndActionComponent",
+          "left": 242,
+          "top": 21,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "58c68cf6-8b56-424d-af0a-4945abdb2c65",
+          "type": "SetVariableActionComponent",
+          "left": -176,
+          "top": -68,
+          "width": 361,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "a77fe3bc-d314-4ddb-9935-dbbb37d81d16",
+              "variable": "devices[device_index].test_mem",
+              "value": "TestResult.Testing"
+            }
+          ]
+        },
+        {
+          "objID": "be716270-5e29-4b33-d648-f04f0bce7056",
+          "type": "DelayActionComponent",
+          "left": 242,
+          "top": -68,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "400"
+        },
+        {
+          "objID": "ea3eaee8-9d4c-4913-cee5-848a0cf14d7d",
+          "type": "SetVariableActionComponent",
+          "left": -176,
+          "top": 21,
+          "width": 361,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "8eb85e49-dcfc-412e-c680-75fbbff20581",
+              "variable": "devices[device_index].test_mem",
+              "value": "TestResult.Success"
+            }
+          ]
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "9013614a-0977-4987-eb73-f0eb3c001109",
+          "source": "c312826b-1910-44b3-be48-11e5c69ab32f",
+          "output": "@seqout",
+          "target": "58c68cf6-8b56-424d-af0a-4945abdb2c65",
+          "input": "@seqin"
+        },
+        {
+          "objID": "bfc501f0-21be-4307-89f2-29426d5c37c2",
+          "source": "58c68cf6-8b56-424d-af0a-4945abdb2c65",
+          "output": "@seqout",
+          "target": "be716270-5e29-4b33-d648-f04f0bce7056",
+          "input": "@seqin"
+        },
+        {
+          "objID": "556ba9d7-9b2e-4e8c-dd07-d9e2d21d9579",
+          "source": "ea3eaee8-9d4c-4913-cee5-848a0cf14d7d",
+          "output": "@seqout",
+          "target": "5a655c8d-7860-4223-e58a-d2bdd186c47e",
+          "input": "@seqin"
+        },
+        {
+          "objID": "18c89d2d-a293-41be-bae9-5e3e0c691aa4",
+          "source": "be716270-5e29-4b33-d648-f04f0bce7056",
+          "output": "@seqout",
+          "target": "ea3eaee8-9d4c-4913-cee5-848a0cf14d7d",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "userProperties": [
+        {
+          "id": "0f06dc8d-b8f5-4a7f-cc77-1cc6e221be9b",
+          "objID": "a6eb27aa-1ece-4e3a-f95a-fcb18bd84bc2",
+          "name": "device_index",
+          "type": "integer",
+          "assignable": false
+        }
+      ],
+      "name": "test_mem",
+      "implementationType": "flow"
+    },
+    {
+      "objID": "23d1ea1b-3477-4985-c8a3-0e6016558420",
+      "components": [
+        {
+          "objID": "dd6f38dc-11eb-4079-f4af-6c10cae93462",
+          "type": "StartActionComponent",
+          "left": -319,
+          "top": -72.5,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "175bfeb0-f681-4797-e2db-a7efae0ce1ed",
+          "type": "EndActionComponent",
+          "left": 232,
+          "top": 16.5,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "2e9a9a1c-668c-4631-c816-9d960483700b",
+          "type": "SetVariableActionComponent",
+          "left": -186,
+          "top": -72.5,
+          "width": 361,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "c6245b8b-19b2-4a72-e95b-8fbc32525031",
+              "variable": "devices[device_index].test_eth",
+              "value": "TestResult.Testing"
+            }
+          ]
+        },
+        {
+          "objID": "6a4f8e72-c73d-453d-8306-a72a66915e9d",
+          "type": "DelayActionComponent",
+          "left": 232,
+          "top": -72.5,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "800"
+        },
+        {
+          "objID": "df9ad544-5dad-41a9-e386-39235b8dd3fa",
+          "type": "SetVariableActionComponent",
+          "left": -186,
+          "top": 16.5,
+          "width": 361,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "4bc4c716-2a81-4a78-89d9-efaac085aa95",
+              "variable": "devices[device_index].test_eth",
+              "value": "TestResult.Success"
+            }
+          ]
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "f62c31b5-467c-4289-8d14-900b33118985",
+          "source": "dd6f38dc-11eb-4079-f4af-6c10cae93462",
+          "output": "@seqout",
+          "target": "2e9a9a1c-668c-4631-c816-9d960483700b",
+          "input": "@seqin"
+        },
+        {
+          "objID": "dfe09dcb-4104-4b73-dffa-4df242b14f02",
+          "source": "2e9a9a1c-668c-4631-c816-9d960483700b",
+          "output": "@seqout",
+          "target": "6a4f8e72-c73d-453d-8306-a72a66915e9d",
+          "input": "@seqin"
+        },
+        {
+          "objID": "b61342d6-d43e-4a31-df32-11f6d6484f5f",
+          "source": "df9ad544-5dad-41a9-e386-39235b8dd3fa",
+          "output": "@seqout",
+          "target": "175bfeb0-f681-4797-e2db-a7efae0ce1ed",
+          "input": "@seqin"
+        },
+        {
+          "objID": "70174fe5-1c65-4d0c-e49b-7cbdea3b485b",
+          "source": "6a4f8e72-c73d-453d-8306-a72a66915e9d",
+          "output": "@seqout",
+          "target": "df9ad544-5dad-41a9-e386-39235b8dd3fa",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "userProperties": [
+        {
+          "id": "6b333159-acd4-4e8b-afb8-51ab2feb58ad",
+          "objID": "d8d5f7eb-673c-4afe-92e3-d7239db99cae",
+          "name": "device_index",
+          "type": "integer",
+          "assignable": false
+        }
+      ],
+      "name": "test_eth",
+      "implementationType": "flow"
+    },
+    {
+      "objID": "87a52ed4-9514-4c1d-f162-522502313800",
+      "components": [
+        {
+          "objID": "192ebe6d-a936-4f8c-f0ea-0c969af4343a",
+          "type": "StartActionComponent",
+          "left": -322,
+          "top": -40,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "8cd28a0b-29aa-4154-95c4-89f63629838b",
+          "type": "EndActionComponent",
+          "left": 229,
+          "top": 49,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": []
+        },
+        {
+          "objID": "29d7048b-c2fb-4531-8e78-f9009d93565f",
+          "type": "SetVariableActionComponent",
+          "left": -189,
+          "top": -40,
+          "width": 361,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "edb1fb73-585d-4f5e-90d0-7ab629806db5",
+              "variable": "devices[device_index].test_usb",
+              "value": "TestResult.Testing"
+            }
+          ]
+        },
+        {
+          "objID": "0b82f4ee-42d8-48cb-933d-4eeae7459b48",
+          "type": "DelayActionComponent",
+          "left": 229,
+          "top": -40,
+          "width": 87,
+          "height": 54,
+          "customInputs": [],
+          "customOutputs": [],
+          "milliseconds": "500"
+        },
+        {
+          "objID": "c59fc41b-e459-4faf-8e08-1a59f77aa986",
+          "type": "SetVariableActionComponent",
+          "left": -189,
+          "top": 49,
+          "width": 361,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "fe71f36a-e5df-4ca4-f14e-7a73ffe0d67d",
+              "variable": "devices[device_index].test_usb",
+              "value": "TestResult.Success"
+            }
+          ]
+        }
+      ],
+      "connectionLines": [
+        {
+          "objID": "114a5d83-4291-44f7-b01d-4cd4ad015434",
+          "source": "192ebe6d-a936-4f8c-f0ea-0c969af4343a",
+          "output": "@seqout",
+          "target": "29d7048b-c2fb-4531-8e78-f9009d93565f",
+          "input": "@seqin"
+        },
+        {
+          "objID": "5ca6244d-9496-4b2a-abbc-d26157688a55",
+          "source": "29d7048b-c2fb-4531-8e78-f9009d93565f",
+          "output": "@seqout",
+          "target": "0b82f4ee-42d8-48cb-933d-4eeae7459b48",
+          "input": "@seqin"
+        },
+        {
+          "objID": "3c1b1c8c-5807-485b-b3db-c84d2f00c9a3",
+          "source": "c59fc41b-e459-4faf-8e08-1a59f77aa986",
+          "output": "@seqout",
+          "target": "8cd28a0b-29aa-4154-95c4-89f63629838b",
+          "input": "@seqin"
+        },
+        {
+          "objID": "6ea3ecd9-56b4-49b1-f8c9-cc3927888bc4",
+          "source": "0b82f4ee-42d8-48cb-933d-4eeae7459b48",
+          "output": "@seqout",
+          "target": "c59fc41b-e459-4faf-8e08-1a59f77aa986",
+          "input": "@seqin"
+        }
+      ],
+      "localVariables": [],
+      "userProperties": [
+        {
+          "id": "0b6f56f5-7994-4125-d569-3f578548e519",
+          "objID": "b1bc42ea-62e7-4250-a904-32804bf2f6d9",
+          "name": "device_index",
+          "type": "integer",
+          "assignable": false
+        }
+      ],
+      "name": "test_usb",
       "implementationType": "flow"
     }
   ],
@@ -910,8 +2064,9 @@
             "childStyles": [],
             "fontSize": "200%",
             "fontWeight": "bold",
-            "color": "#0c8c9d"
+            "color": "#035ebd"
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": []
         },
@@ -931,6 +2086,7 @@
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [
             {
@@ -956,13 +2112,14 @@
           "height": 150,
           "customInputs": [],
           "customOutputs": [],
-          "visible": "devices[0].is_detected",
+          "visible": "",
           "style": {
             "objID": "82459082-add0-4cc5-b88e-4944f7e82675",
             "useStyle": "default",
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "userWidgetPageName": "device",
@@ -982,13 +2139,14 @@
           "height": 150,
           "customInputs": [],
           "customOutputs": [],
-          "visible": "devices[1].is_detected",
+          "visible": "",
           "style": {
             "objID": "ab4425cc-c722-4af5-a6dd-e308c699bb0e",
             "useStyle": "default",
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "userWidgetPageName": "device",
@@ -1008,13 +2166,14 @@
           "height": 150,
           "customInputs": [],
           "customOutputs": [],
-          "visible": "devices[2].is_detected",
+          "visible": "",
           "style": {
             "objID": "17b9e98c-8d12-4925-eff1-53cf85150ce8",
             "useStyle": "default",
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "userWidgetPageName": "device",
@@ -1034,13 +2193,14 @@
           "height": 150,
           "customInputs": [],
           "customOutputs": [],
-          "visible": "devices[3].is_detected",
+          "visible": "",
           "style": {
             "objID": "fc5859cb-a506-48f7-9b6c-4038b49608f8",
             "useStyle": "default",
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "userWidgetPageName": "device",
@@ -1094,6 +2254,7 @@
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "widgets": [
@@ -1216,7 +2377,7 @@
         {
           "objID": "fcade6a7-8641-4113-dec4-94bb87d7e8b1",
           "type": "StartActionComponent",
-          "left": 119,
+          "left": 54,
           "top": -370,
           "width": 87,
           "height": 24,
@@ -1226,7 +2387,7 @@
         {
           "objID": "137b4ce4-c5ef-4b72-813a-1c9131b60f3f",
           "type": "IsTrueActionComponent",
-          "left": 267,
+          "left": 202,
           "top": -370,
           "width": 110,
           "height": 70,
@@ -1295,6 +2456,7 @@
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "label": "\"Simulation\""
@@ -1485,6 +2647,7 @@
             "conditionalStyles": [],
             "childStyles": []
           },
+          "hiddenInEditor": false,
           "timeline": [],
           "eventHandlers": [],
           "widgets": [
@@ -1503,7 +2666,8 @@
                 "useStyle": "default",
                 "conditionalStyles": [],
                 "childStyles": [],
-                "fontFamily": "Courier New"
+                "fontFamily": "Courier New",
+                "css": "user-select: all;"
               },
               "timeline": [],
               "eventHandlers": []
@@ -1514,7 +2678,7 @@
               "left": 0,
               "top": 60,
               "width": 686,
-              "height": 584,
+              "height": 275,
               "customInputs": [
                 {
                   "objID": "a1150a23-1793-45e7-f55a-6fa6eaa442d8",
@@ -1532,6 +2696,115 @@
               },
               "timeline": [],
               "eventHandlers": []
+            },
+            {
+              "objID": "9483a90c-d2d7-4a16-e9f2-fadea3ffac24",
+              "type": "TerminalWidget",
+              "left": 0,
+              "top": 335,
+              "width": 684,
+              "height": 263,
+              "customInputs": [
+                {
+                  "objID": "fecdf176-5561-4b1f-a43e-bad9848239c9",
+                  "name": "data",
+                  "type": "any"
+                }
+              ],
+              "customOutputs": [],
+              "data": "data",
+              "style": {
+                "objID": "80fdcaa7-6cd7-4f0d-ab48-1fe106c88ee8",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "hiddenInEditor": false,
+              "timeline": [],
+              "eventHandlers": []
+            }
+          ],
+          "layout": "static"
+        },
+        {
+          "objID": "a8a810fd-ea68-41fe-e555-2817738c6402",
+          "type": "ContainerWidget",
+          "left": 320,
+          "top": 260,
+          "width": 560,
+          "height": 200,
+          "customInputs": [],
+          "customOutputs": [],
+          "visible": "show_invalid_voltage_popup",
+          "style": {
+            "objID": "4f895b41-79af-48a0-af0b-ef3bb503fa0e",
+            "useStyle": "default",
+            "conditionalStyles": [],
+            "childStyles": [],
+            "backgroundColor": "white",
+            "css": "box-shadow: rgba(132, 132, 132, 0.2) 2px 2px 16px 0px;\nborder: 1px solid #eee;\nborder-radius: 12px;\n\nbackground-color: white;"
+          },
+          "hiddenInEditor": true,
+          "timeline": [],
+          "eventHandlers": [],
+          "widgets": [
+            {
+              "objID": "d43bfa46-cef9-4712-d998-069527b35841",
+              "type": "TextDashboardWidget",
+              "left": 110,
+              "top": 42,
+              "width": 340,
+              "height": 32,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"VOLTAGE DROP DETECTED!\"",
+              "style": {
+                "objID": "1c7525c1-3ab8-410e-d8b2-ac7abb715af0",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": [],
+                "fontSize": "150%",
+                "fontWeight": "bold",
+                "alignHorizontal": "center",
+                "color": "red",
+                "blink": true
+              },
+              "hiddenInEditor": true,
+              "timeline": [],
+              "eventHandlers": []
+            },
+            {
+              "objID": "8c413085-6de2-41d0-d1f3-7ca1d2302f51",
+              "type": "ButtonDashboardWidget",
+              "left": 240,
+              "top": 123,
+              "width": 80,
+              "height": 40,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"Close\"",
+              "style": {
+                "objID": "ee681427-9406-4376-8bfb-e03c156ffd23",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "hiddenInEditor": true,
+              "timeline": [],
+              "eventHandlers": [
+                {
+                  "objID": "ff173db0-73a5-43bd-ad98-493c15df3112",
+                  "eventName": "CLICKED",
+                  "handlerType": "flow",
+                  "userData": 0
+                }
+              ],
+              "disabledStyle": {
+                "objID": "e18e8790-7f2c-4dc4-e0f0-0347dc8ae9b3",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              }
             }
           ],
           "layout": "static"
@@ -1548,6 +2821,129 @@
           "text": "<div><!--block-->build term_args_str</div>",
           "collapsed": false,
           "expandedWidth": 435
+        },
+        {
+          "objID": "6d5df23d-a2be-40a2-c010-faec77310108",
+          "type": "IsTrueActionComponent",
+          "left": 446,
+          "top": -488,
+          "width": 87,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "false"
+        },
+        {
+          "objID": "e4dad37d-9475-412b-edeb-9d811c68340f",
+          "type": "CollectStream",
+          "left": 1285,
+          "top": 572,
+          "width": 114,
+          "height": 52,
+          "customInputs": [
+            {
+              "objID": "51c6ff91-f8b8-48d1-e341-9572e54db510",
+              "name": "stream",
+              "type": "stream"
+            }
+          ],
+          "customOutputs": [],
+          "stream": "stream"
+        },
+        {
+          "objID": "7edd1931-a732-4a38-97a3-73203b2394f8",
+          "type": "EvalJSExprActionComponent",
+          "left": 1467,
+          "top": 572,
+          "width": 286,
+          "height": 54,
+          "customInputs": [
+            {
+              "objID": "bc2822bd-d30a-41ef-d489-f8c57a64e4f2",
+              "name": "data",
+              "type": "string"
+            }
+          ],
+          "customOutputs": [
+            {
+              "objID": "e3d8297a-e02b-43c6-b950-1757decd21ea",
+              "name": "result",
+              "type": "any"
+            }
+          ],
+          "expression": "{data}.replaceAll(\"\\n\", \"\\r\\n\")"
+        },
+        {
+          "objID": "372a9e79-d2e1-4aad-a17a-b2a0c2834835",
+          "type": "CallActionActionComponent",
+          "left": 202,
+          "top": -477,
+          "width": 95,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "check_bb3",
+          "userPropertyValues": {
+            "objID": "9c1bd591-6853-4bd7-e161-4f1999ead4e2",
+            "values": {}
+          }
+        },
+        {
+          "objID": "8998ee9f-1f28-471e-bece-01a5092742d7",
+          "type": "SetVariableActionComponent",
+          "left": 869,
+          "top": 786,
+          "width": 257,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "7badea40-b38e-45cd-842e-0a668137c45c",
+              "variable": "show_invalid_voltage_popup",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "objID": "e2a98eca-2e14-4b3c-902c-afeed8e4304b",
+          "type": "BitmapDashboardWidget",
+          "left": 983,
+          "top": 655,
+          "width": 197,
+          "height": 52,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "271b2c85-dd25-44b7-b63f-d06bb40dc358",
+            "useStyle": "default",
+            "conditionalStyles": [],
+            "childStyles": [],
+            "css": "img {\n    width: 100%;\n    height: 100%;\n    object-fit: contain;\n}"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "bitmap": "logo_eez"
+        },
+        {
+          "objID": "f8b9e327-c62a-4bbd-cebc-8c53fec38037",
+          "type": "BitmapDashboardWidget",
+          "left": 498,
+          "top": 668,
+          "width": 427,
+          "height": 39,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "a6b5a338-7f77-4747-db13-4febdad0e815",
+            "useStyle": "default",
+            "conditionalStyles": [],
+            "childStyles": [],
+            "css": "img {\n    width: 100%;\n    height: 100%;\n    object-fit: contain;\n}"
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "bitmap": "logo_intergalaktik"
         }
       ],
       "connectionLines": [
@@ -1611,7 +3007,7 @@
           "objID": "53610c2e-c3c2-40b7-b420-a7ae1a30f8f7",
           "source": "137b4ce4-c5ef-4b72-813a-1c9131b60f3f",
           "output": "False",
-          "target": "c20a34f2-4732-4f23-bb1e-4c4296582f19",
+          "target": "6d5df23d-a2be-40a2-c010-faec77310108",
           "input": "@seqin"
         },
         {
@@ -1781,6 +3177,104 @@
           "output": "@seqout",
           "target": "72c981fc-bf7a-4054-9afc-d6237d99bc09",
           "input": "start"
+        },
+        {
+          "objID": "a7e3149d-bad7-4296-f91d-32812a4103ba",
+          "source": "6d5df23d-a2be-40a2-c010-faec77310108",
+          "output": "True",
+          "target": "c20a34f2-4732-4f23-bb1e-4c4296582f19",
+          "input": "@seqin"
+        },
+        {
+          "objID": "5097cf21-af01-46bf-db06-9f0f20bf072d",
+          "source": "e4dad37d-9475-412b-edeb-9d811c68340f",
+          "output": "data",
+          "target": "7edd1931-a732-4a38-97a3-73203b2394f8",
+          "input": "data"
+        },
+        {
+          "objID": "192f850e-45d3-4d98-d1ff-3666902ed2c6",
+          "source": "7edd1931-a732-4a38-97a3-73203b2394f8",
+          "output": "result",
+          "target": "9483a90c-d2d7-4a16-e9f2-fadea3ffac24",
+          "input": "data"
+        },
+        {
+          "objID": "8dbc0e49-b393-475e-a469-2de06d5feaf3",
+          "source": "535fc8dd-584a-43c7-b56c-1000721fd047",
+          "output": "6c418186-32ba-4b16-a5f1-32bc5949a831",
+          "target": "9483a90c-d2d7-4a16-e9f2-fadea3ffac24",
+          "input": "clear"
+        },
+        {
+          "objID": "f420e052-3e44-4f4b-ae6e-c14f485cadb4",
+          "source": "fbe90674-d21c-496f-8087-5bbdac2c919c",
+          "output": "6c418186-32ba-4b16-a5f1-32bc5949a831",
+          "target": "9483a90c-d2d7-4a16-e9f2-fadea3ffac24",
+          "input": "clear"
+        },
+        {
+          "objID": "2ace005b-d9ac-4bb2-d1aa-9ccbf3122db2",
+          "source": "8de7ff37-68b3-432c-bca9-cc0b065f1ada",
+          "output": "6c418186-32ba-4b16-a5f1-32bc5949a831",
+          "target": "9483a90c-d2d7-4a16-e9f2-fadea3ffac24",
+          "input": "clear"
+        },
+        {
+          "objID": "efab6e11-3245-4955-b93b-0c68f7a03e64",
+          "source": "568aa688-52a4-471f-9ef3-616648831633",
+          "output": "6c418186-32ba-4b16-a5f1-32bc5949a831",
+          "target": "9483a90c-d2d7-4a16-e9f2-fadea3ffac24",
+          "input": "clear"
+        },
+        {
+          "objID": "65e9b53f-9f8d-4c53-8ee8-81e530b5c4f9",
+          "source": "535fc8dd-584a-43c7-b56c-1000721fd047",
+          "output": "4048e4fb-15a3-43c9-8ab6-6940f7887b0a",
+          "target": "e4dad37d-9475-412b-edeb-9d811c68340f",
+          "input": "stream"
+        },
+        {
+          "objID": "205bcc27-7055-437d-fd4e-727f84790a91",
+          "source": "fbe90674-d21c-496f-8087-5bbdac2c919c",
+          "output": "4048e4fb-15a3-43c9-8ab6-6940f7887b0a",
+          "target": "e4dad37d-9475-412b-edeb-9d811c68340f",
+          "input": "stream"
+        },
+        {
+          "objID": "97915a14-9b19-4d5f-e69f-abdd15a9e95b",
+          "source": "8de7ff37-68b3-432c-bca9-cc0b065f1ada",
+          "output": "4048e4fb-15a3-43c9-8ab6-6940f7887b0a",
+          "target": "e4dad37d-9475-412b-edeb-9d811c68340f",
+          "input": "stream"
+        },
+        {
+          "objID": "f159669f-2c07-449b-df3d-fdc1117492a7",
+          "source": "568aa688-52a4-471f-9ef3-616648831633",
+          "output": "4048e4fb-15a3-43c9-8ab6-6940f7887b0a",
+          "target": "e4dad37d-9475-412b-edeb-9d811c68340f",
+          "input": "stream"
+        },
+        {
+          "objID": "03bee12e-c99b-41c8-ef38-1ded082faadd",
+          "source": "9483a90c-d2d7-4a16-e9f2-fadea3ffac24",
+          "output": "onData",
+          "target": "8cf67bec-f6a9-4d79-d74a-3b947f10f0f7",
+          "input": "value"
+        },
+        {
+          "objID": "7b4239d1-10c3-4b94-d375-688c3af1f82e",
+          "source": "fcade6a7-8641-4113-dec4-94bb87d7e8b1",
+          "output": "@seqout",
+          "target": "372a9e79-d2e1-4aad-a17a-b2a0c2834835",
+          "input": "@seqin"
+        },
+        {
+          "objID": "756911ec-9c2e-4d22-ab57-7bf33c8b50bc",
+          "source": "8c413085-6de2-41d0-d1f3-7ca1d2302f51",
+          "output": "CLICKED",
+          "target": "8998ee9f-1f28-471e-bece-01a5092742d7",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
@@ -1827,11 +3321,11 @@
           "type": "TextDashboardWidget",
           "left": 8,
           "top": 8,
-          "width": 100,
+          "width": 80,
           "height": 32,
           "customInputs": [],
           "customOutputs": [],
-          "data": "`Device ${device_index+1}`",
+          "data": "`Device ${device_index}`",
           "style": {
             "objID": "5964c98d-a808-4be9-a82a-d2b6788a8b74",
             "useStyle": "device_title",
@@ -1845,8 +3339,8 @@
         {
           "objID": "a80d5aee-4e6b-4869-8b9c-a1b49807dbad",
           "type": "SerialWrite",
-          "left": 734,
-          "top": -347,
+          "left": 731,
+          "top": -443,
           "width": 237,
           "height": 54,
           "customInputs": [],
@@ -1854,70 +3348,6 @@
           "description": "ON",
           "connection": "serial_conn",
           "data": "`SETPWR;MOD_${device_index+1};1\\n\\r`"
-        },
-        {
-          "objID": "a44589b9-07df-485c-dfdc-708a0ca1b173",
-          "type": "ButtonDashboardWidget",
-          "left": 317,
-          "top": 8,
-          "width": 60,
-          "height": 30,
-          "customInputs": [],
-          "customOutputs": [],
-          "data": "\"ON\"",
-          "style": {
-            "objID": "865550f6-8a7b-4381-fefc-4d5fd8e83cda",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          },
-          "timeline": [],
-          "eventHandlers": [
-            {
-              "objID": "4e97c966-93d2-4502-fc58-3c721e0da0af",
-              "eventName": "CLICKED",
-              "handlerType": "flow",
-              "userData": 0
-            }
-          ],
-          "disabledStyle": {
-            "objID": "afaed26c-b29b-4cab-9632-500861439bcc",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          }
-        },
-        {
-          "objID": "ce025a40-a51f-4034-8452-52448488e254",
-          "type": "ButtonDashboardWidget",
-          "left": 386,
-          "top": 8,
-          "width": 60,
-          "height": 30,
-          "customInputs": [],
-          "customOutputs": [],
-          "data": "\"OFF\"",
-          "style": {
-            "objID": "e8c9dd26-d981-42d1-94d0-fd9a508f162a",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          },
-          "timeline": [],
-          "eventHandlers": [
-            {
-              "objID": "818c2d45-b562-48b2-9a59-a3866952033a",
-              "eventName": "CLICKED",
-              "handlerType": "flow",
-              "userData": 0
-            }
-          ],
-          "disabledStyle": {
-            "objID": "ed77c9e7-04e7-48bb-dd77-becdc8296b5d",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          }
         },
         {
           "objID": "1dff65e9-d63e-41f8-f158-6bef667eb65b",
@@ -1933,38 +3363,6 @@
           "data": "`SETPWR;MOD_${device_index+1};0\\n\\r`"
         },
         {
-          "objID": "0e228165-70c1-4cdf-8d48-6cdd32a55e83",
-          "type": "ButtonDashboardWidget",
-          "left": 386,
-          "top": 44,
-          "width": 60,
-          "height": 30,
-          "customInputs": [],
-          "customOutputs": [],
-          "data": "\"ADC\"",
-          "style": {
-            "objID": "b77bf484-9440-4126-e2b8-a72b23a2eac2",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          },
-          "timeline": [],
-          "eventHandlers": [
-            {
-              "objID": "e2767433-1214-490d-acfe-d972ed7140e8",
-              "eventName": "CLICKED",
-              "handlerType": "flow",
-              "userData": 0
-            }
-          ],
-          "disabledStyle": {
-            "objID": "11748dfd-cc45-4523-ce75-70a92bceb705",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          }
-        },
-        {
           "objID": "40a89153-0606-4c25-c777-a670ce6aa126",
           "type": "SerialWrite",
           "left": 734,
@@ -1978,42 +3376,10 @@
           "data": "\"GETADC;MOD_${device_index+1};?\\n\\r\""
         },
         {
-          "objID": "3c06c29e-659c-4b98-e123-fb6f2229ea7b",
-          "type": "ButtonDashboardWidget",
-          "left": 316,
-          "top": 81,
-          "width": 130,
-          "height": 30,
-          "customInputs": [],
-          "customOutputs": [],
-          "data": "\"Load Firmware\"",
-          "style": {
-            "objID": "f2279791-2137-410c-b55c-8e50d6bee686",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          },
-          "timeline": [],
-          "eventHandlers": [
-            {
-              "objID": "294c34bb-adf2-4b4f-d3b0-ac302c386906",
-              "eventName": "CLICKED",
-              "handlerType": "flow",
-              "userData": 0
-            }
-          ],
-          "disabledStyle": {
-            "objID": "d11ca91d-6895-4c7e-e0f2-f25b5bf679ac",
-            "useStyle": "button",
-            "conditionalStyles": [],
-            "childStyles": []
-          }
-        },
-        {
           "objID": "3f9277b3-9bfd-481a-c731-7222eab0547d",
           "type": "IsTrueActionComponent",
-          "left": 558,
-          "top": -347,
+          "left": 546,
+          "top": -513,
           "width": 110,
           "height": 70,
           "customInputs": [],
@@ -2024,7 +3390,7 @@
           "objID": "9080fe4f-66d0-4001-b0a6-085059fc450a",
           "type": "IsTrueActionComponent",
           "left": 558,
-          "top": -243,
+          "top": -325,
           "width": 110,
           "height": 70,
           "customInputs": [],
@@ -2045,9 +3411,9 @@
         {
           "objID": "b65b7261-0694-4277-9d5d-d218b020e0e9",
           "type": "Container",
-          "left": 32,
-          "top": 47,
-          "width": 296,
+          "left": 99,
+          "top": 8,
+          "width": 180,
           "height": 80,
           "customInputs": [],
           "customOutputs": [],
@@ -2055,7 +3421,8 @@
             "objID": "10bd173e-10d9-4758-fa1b-df18bd726ecb",
             "useStyle": "default",
             "conditionalStyles": [],
-            "childStyles": []
+            "childStyles": [],
+            "css": ""
           },
           "timeline": [],
           "eventHandlers": [],
@@ -2065,7 +3432,7 @@
               "type": "TextDashboardWidget",
               "left": 0,
               "top": 0,
-              "width": 78,
+              "width": 86,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2083,9 +3450,9 @@
             {
               "objID": "2f529a49-abfe-4302-9000-65c8065c7239",
               "type": "TextDashboardWidget",
-              "left": 89,
+              "left": 86,
               "top": 0,
-              "width": 207,
+              "width": 94,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2104,7 +3471,7 @@
               "type": "TextDashboardWidget",
               "left": 0,
               "top": 16,
-              "width": 78,
+              "width": 86,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2122,9 +3489,9 @@
             {
               "objID": "8acfadbe-0533-41df-e90b-477ffefc9149",
               "type": "TextDashboardWidget",
-              "left": 89,
+              "left": 86,
               "top": 16,
-              "width": 207,
+              "width": 94,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2143,7 +3510,7 @@
               "type": "TextDashboardWidget",
               "left": 0,
               "top": 32,
-              "width": 78,
+              "width": 86,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2161,9 +3528,9 @@
             {
               "objID": "59601c1e-5d60-45a7-c034-922c2047cdd6",
               "type": "TextDashboardWidget",
-              "left": 89,
+              "left": 86,
               "top": 32,
-              "width": 207,
+              "width": 94,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2182,7 +3549,7 @@
               "type": "TextDashboardWidget",
               "left": 0,
               "top": 48,
-              "width": 78,
+              "width": 86,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2200,9 +3567,9 @@
             {
               "objID": "4710eddc-6a76-4913-92a2-6ae5d35a8460",
               "type": "TextDashboardWidget",
-              "left": 89,
+              "left": 86,
               "top": 48,
-              "width": 207,
+              "width": 94,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2221,7 +3588,7 @@
               "type": "TextDashboardWidget",
               "left": 0,
               "top": 64,
-              "width": 78,
+              "width": 86,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2239,9 +3606,9 @@
             {
               "objID": "22ff76c9-ff58-4a18-d5df-57ca842c5221",
               "type": "TextDashboardWidget",
-              "left": 89,
+              "left": 86,
               "top": 64,
-              "width": 207,
+              "width": 94,
               "height": 16,
               "customInputs": [],
               "customOutputs": [],
@@ -2263,8 +3630,8 @@
           "type": "CallActionActionComponent",
           "left": 538,
           "top": 110,
-          "width": 242,
-          "height": 57,
+          "width": 252,
+          "height": 88,
           "customInputs": [],
           "customOutputs": [],
           "action": "load_firmware",
@@ -2278,8 +3645,8 @@
         {
           "objID": "2cc3a6e1-820b-4bff-c070-139f0ef4ed13",
           "type": "OutputActionComponent",
-          "left": 830,
-          "top": 110,
+          "left": 871,
+          "top": 85,
           "width": 87,
           "height": 24,
           "customInputs": [],
@@ -2298,6 +3665,1101 @@
           "customOutputs": [],
           "name": "clear_terminal",
           "outputType": "stream"
+        },
+        {
+          "objID": "4048e4fb-15a3-43c9-8ab6-6940f7887b0a",
+          "type": "OutputActionComponent",
+          "left": 871,
+          "top": 126,
+          "width": 87,
+          "height": 24,
+          "customInputs": [],
+          "customOutputs": [],
+          "name": "stderr",
+          "outputType": "stream"
+        },
+        {
+          "objID": "f34cf8fe-5fda-41b8-b74c-3e9bcfb6e916",
+          "type": "SetVariableActionComponent",
+          "left": 1031,
+          "top": -487,
+          "width": 257,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "247e8169-390f-4e7a-be90-002db2c17863",
+              "variable": "devices[device_index].is_on",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "objID": "cd7be280-1c19-459e-f012-4b430ed8211f",
+          "type": "SetVariableActionComponent",
+          "left": 1031,
+          "top": -300,
+          "width": 263,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "entries": [
+            {
+              "objID": "76b98a36-14a4-44cc-8cdb-cca8ee5ae920",
+              "variable": "devices[device_index].is_on",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "objID": "5aa9031a-1639-4ee7-a5f2-e08cae2c38c6",
+          "type": "Select",
+          "left": 298,
+          "top": 8,
+          "width": 30,
+          "height": 30,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "devices[device_index].is_on",
+          "style": {
+            "objID": "a1adf51b-0bcd-4fc3-8329-30a28a2c3e96",
+            "useStyle": "default",
+            "conditionalStyles": [],
+            "childStyles": []
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "widgets": [
+            {
+              "objID": "a263deb8-2019-4972-dc6a-6eabfd90ea91",
+              "type": "TextDashboardWidget",
+              "left": 0,
+              "top": 0,
+              "width": 30,
+              "height": 30,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"OFF\"",
+              "style": {
+                "objID": "32f5c739-e8fc-48f8-fdd2-68781bceb2a0",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": [],
+                "fontSize": "150%",
+                "fontWeight": "bolder",
+                "alignHorizontal": "center",
+                "alignVertical": "center",
+                "color": "red"
+              },
+              "timeline": [],
+              "eventHandlers": []
+            },
+            {
+              "objID": "b6af18c5-c5b4-4275-8b74-ea5965321417",
+              "type": "TextDashboardWidget",
+              "left": 0,
+              "top": 0,
+              "width": 30,
+              "height": 30,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"ON\"",
+              "style": {
+                "objID": "d3e44702-f4a4-4813-c99e-1064e7b78d91",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": [],
+                "fontSize": "150%",
+                "fontWeight": "bolder",
+                "alignHorizontal": "center",
+                "alignVertical": "center",
+                "color": "green"
+              },
+              "timeline": [],
+              "eventHandlers": []
+            }
+          ]
+        },
+        {
+          "objID": "a44589b9-07df-485c-dfdc-708a0ca1b173",
+          "type": "ButtonDashboardWidget",
+          "left": 347,
+          "top": 8,
+          "width": 40,
+          "height": 30,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"ON\"",
+          "style": {
+            "objID": "865550f6-8a7b-4381-fefc-4d5fd8e83cda",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "4e97c966-93d2-4502-fc58-3c721e0da0af",
+              "eventName": "CLICKED",
+              "handlerType": "flow",
+              "userData": 0
+            }
+          ],
+          "enabled": "!devices[device_index].is_on",
+          "disabledStyle": {
+            "objID": "afaed26c-b29b-4cab-9632-500861439bcc",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          }
+        },
+        {
+          "objID": "ce025a40-a51f-4034-8452-52448488e254",
+          "type": "ButtonDashboardWidget",
+          "left": 401,
+          "top": 8,
+          "width": 40,
+          "height": 30,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"OFF\"",
+          "style": {
+            "objID": "e8c9dd26-d981-42d1-94d0-fd9a508f162a",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "818c2d45-b562-48b2-9a59-a3866952033a",
+              "eventName": "CLICKED",
+              "handlerType": "flow",
+              "userData": 0
+            }
+          ],
+          "enabled": "devices[device_index].is_on",
+          "disabledStyle": {
+            "objID": "ed77c9e7-04e7-48bb-dd77-becdc8296b5d",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          }
+        },
+        {
+          "objID": "0e228165-70c1-4cdf-8d48-6cdd32a55e83",
+          "type": "ButtonDashboardWidget",
+          "left": 401,
+          "top": 50,
+          "width": 40,
+          "height": 30,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"ADC\"",
+          "style": {
+            "objID": "b77bf484-9440-4126-e2b8-a72b23a2eac2",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "e2767433-1214-490d-acfe-d972ed7140e8",
+              "eventName": "CLICKED",
+              "handlerType": "flow",
+              "userData": 0
+            }
+          ],
+          "enabled": "devices[device_index].is_on",
+          "disabledStyle": {
+            "objID": "11748dfd-cc45-4523-ce75-70a92bceb705",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          }
+        },
+        {
+          "objID": "3c06c29e-659c-4b98-e123-fb6f2229ea7b",
+          "type": "ButtonDashboardWidget",
+          "left": 8,
+          "top": 107,
+          "width": 129,
+          "height": 30,
+          "customInputs": [],
+          "customOutputs": [],
+          "data": "\"Start Test\"",
+          "style": {
+            "objID": "f2279791-2137-410c-b55c-8e50d6bee686",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          },
+          "timeline": [],
+          "eventHandlers": [
+            {
+              "objID": "294c34bb-adf2-4b4f-d3b0-ac302c386906",
+              "eventName": "CLICKED",
+              "handlerType": "flow",
+              "userData": 0
+            }
+          ],
+          "enabled": "devices[device_index].is_on",
+          "disabledStyle": {
+            "objID": "d11ca91d-6895-4c7e-e0f2-f25b5bf679ac",
+            "useStyle": "button",
+            "conditionalStyles": [],
+            "childStyles": []
+          }
+        },
+        {
+          "objID": "8279084e-6d54-40fb-a9c6-35de54648b05",
+          "type": "Container",
+          "left": 181,
+          "top": 101,
+          "width": 56,
+          "height": 42,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "b7e60729-95f5-4478-c7eb-a03b80078093",
+            "useStyle": "default",
+            "conditionalStyles": [],
+            "childStyles": []
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "widgets": [
+            {
+              "objID": "5ff5eaa2-adf1-4ea6-e74d-dbfda7b46490",
+              "type": "TextDashboardWidget",
+              "left": 0,
+              "top": 0,
+              "width": 56,
+              "height": 16,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "\"LOAD FW\"",
+              "style": {
+                "objID": "8daf19da-64f9-40b0-ff43-26d19a091099",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": [],
+                "alignHorizontal": "center",
+                "alignVertical": "center",
+                "color": "#666"
+              },
+              "timeline": [],
+              "eventHandlers": []
+            },
+            {
+              "objID": "00b19064-bbf9-4d29-fbb1-f657cdf5ec09",
+              "type": "Select",
+              "left": 0,
+              "top": 16,
+              "width": 56,
+              "height": 26,
+              "customInputs": [],
+              "customOutputs": [],
+              "data": "devices[device_index].load_fw",
+              "visible": "",
+              "style": {
+                "objID": "27230fa2-e84a-44f2-82c5-635392622647",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "widgets": [
+                {
+                  "objID": "04520aca-bc25-446b-8201-bd6e35a46626",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 56,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"-\"",
+                  "style": {
+                    "objID": "24902c7e-610a-41bd-af0e-665c37b58f8a",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "fontSize": "140%",
+                    "fontWeight": "bold",
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "blink": false
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                },
+                {
+                  "objID": "11044d9a-5af3-4de5-f7b5-774f06c486d1",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 56,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"...\"",
+                  "style": {
+                    "objID": "690db939-57d5-437c-fe1b-2c2797d3bb38",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "fontSize": "140%",
+                    "fontWeight": "bold",
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "blink": true
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                },
+                {
+                  "objID": "fc50a3e5-21f2-42fc-de4f-b0c048526ce7",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 56,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"OK\"",
+                  "style": {
+                    "objID": "3d6bf873-88fc-492a-90cd-90d7726b19b0",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "fontSize": "140%",
+                    "fontWeight": "bold",
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "color": "green"
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                },
+                {
+                  "objID": "f6109716-de60-415f-aaae-157b341072d2",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 56,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"FAIL\"",
+                  "style": {
+                    "objID": "18ae31ed-f9df-4c81-f99a-231b12db9b27",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "fontSize": "140%",
+                    "fontWeight": "bold",
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "color": "red",
+                    "blink": false
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                }
+              ]
+            }
+          ],
+          "layout": "static"
+        },
+        {
+          "objID": "cabd1d4f-fb78-4afa-d4d7-f045d41dbefd",
+          "type": "Container",
+          "left": 264,
+          "top": 101,
+          "width": 177,
+          "height": 42,
+          "customInputs": [],
+          "customOutputs": [],
+          "style": {
+            "objID": "caee16b9-822f-4e92-afa4-7f55324b68da",
+            "useStyle": "default",
+            "conditionalStyles": [],
+            "childStyles": []
+          },
+          "timeline": [],
+          "eventHandlers": [],
+          "widgets": [
+            {
+              "objID": "2af6776a-ff5c-44b0-d222-b2e5f2e3ed33",
+              "type": "Container",
+              "left": 0,
+              "top": 0,
+              "width": 32,
+              "height": 42,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "f61aadab-74c3-4c1e-944d-dd3b4d3f38fe",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "widgets": [
+                {
+                  "objID": "ab33080a-6ce1-4d67-9926-8d2206308f29",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 32,
+                  "height": 16,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"GPIO\"",
+                  "style": {
+                    "objID": "026f6df7-2596-4ba4-e95d-ad3a10fe87c2",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "color": "#666"
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                },
+                {
+                  "objID": "a4ae3f97-9b4d-4ec6-a899-fd3d241d0e89",
+                  "type": "Select",
+                  "left": 0,
+                  "top": 16,
+                  "width": 32,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "devices[device_index].test_gpio",
+                  "visible": "",
+                  "style": {
+                    "objID": "c240c11a-531d-4508-9985-761ef0129e1c",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": []
+                  },
+                  "timeline": [],
+                  "eventHandlers": [],
+                  "widgets": [
+                    {
+                      "objID": "a5f948f4-eca4-4200-f68d-ea0c1f18cc71",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"-\"",
+                      "style": {
+                        "objID": "094c9751-0f1f-4752-d89a-e0f66ead40b1",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "53614895-5fdd-4c4a-a698-3fc6b117f71b",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"...\"",
+                      "style": {
+                        "objID": "91aedb5e-56bf-4859-a39b-75c3e203ec84",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": true
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "10eb229a-9bb5-40e4-9627-7dca1214de11",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"OK\"",
+                      "style": {
+                        "objID": "44dba9e1-a3a3-4689-d43c-807cc14a24ae",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "green"
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "a8507957-afff-408c-b64d-a5570b5d0b7d",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"FAIL\"",
+                      "style": {
+                        "objID": "f3689f27-7716-4f7c-9070-60d6167e374b",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "red",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    }
+                  ]
+                }
+              ],
+              "layout": "static"
+            },
+            {
+              "objID": "d79cb094-4d30-44a1-d9b4-ec1b5c56fda5",
+              "type": "Container",
+              "left": 48,
+              "top": 0,
+              "width": 32,
+              "height": 42,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "61be78fe-9fdd-49ff-c353-f78bc564434e",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "widgets": [
+                {
+                  "objID": "1c6957d1-dd03-46f7-b640-fff52251cc56",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 32,
+                  "height": 16,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"MEM\"",
+                  "style": {
+                    "objID": "a5147d85-7c95-41bb-800f-7e7a61e96595",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "color": "#666"
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                },
+                {
+                  "objID": "c173adc4-d120-41d7-8242-68a0afbacf20",
+                  "type": "Select",
+                  "left": 0,
+                  "top": 16,
+                  "width": 32,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "devices[device_index].test_mem",
+                  "visible": "",
+                  "style": {
+                    "objID": "e32ed75d-95d9-492c-933c-ce34eaea8cf4",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": []
+                  },
+                  "timeline": [],
+                  "eventHandlers": [],
+                  "widgets": [
+                    {
+                      "objID": "767359b4-e767-4fea-bb2f-54443af9dd94",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"-\"",
+                      "style": {
+                        "objID": "e96d87fa-1aa0-429d-efcc-2f38de9c2284",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "cdac9c42-365d-4bab-a6f6-5816bcdbab28",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"...\"",
+                      "style": {
+                        "objID": "011ac4b9-387e-4815-934e-9b90aa00368c",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": true
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "13d46238-e987-4880-c10d-5e6e7d07baff",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"OK\"",
+                      "style": {
+                        "objID": "54126143-c9ad-4059-8737-7d1120f76734",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "green"
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "aa89b71d-4ea7-48ad-9c1f-1d547a7fa428",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"FAIL\"",
+                      "style": {
+                        "objID": "075366ed-88fc-45b4-ccf2-85d263c6a198",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "red",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    }
+                  ]
+                }
+              ],
+              "layout": "static"
+            },
+            {
+              "objID": "0b4e0d68-46ea-4b0c-ce9f-78528fdd5214",
+              "type": "Container",
+              "left": 97,
+              "top": 0,
+              "width": 32,
+              "height": 42,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "b56d738e-e783-434d-e5be-e1e84f97ad99",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "widgets": [
+                {
+                  "objID": "dc65ec9c-42d9-433f-ab6d-123604b61bba",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 32,
+                  "height": 16,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"ETH\"",
+                  "style": {
+                    "objID": "b767e2ee-d3e2-45d3-e90b-ee7fa3367f72",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "color": "#666"
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                },
+                {
+                  "objID": "149a4ab9-9b60-498f-9a69-c99c13b2a708",
+                  "type": "Select",
+                  "left": 0,
+                  "top": 16,
+                  "width": 32,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "devices[device_index].test_eth",
+                  "visible": "",
+                  "style": {
+                    "objID": "bc73ac5d-6b4c-4a9e-f630-3a44ddb1aa44",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": []
+                  },
+                  "timeline": [],
+                  "eventHandlers": [],
+                  "widgets": [
+                    {
+                      "objID": "4fd4d543-4651-4e2b-c749-551e50381864",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"-\"",
+                      "style": {
+                        "objID": "f325a72e-05c4-4eef-8132-a7118773f8b8",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "ee8eab47-99a0-4756-dcc8-598849c2e29a",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"...\"",
+                      "style": {
+                        "objID": "b0fd0954-cc3a-4354-9be2-ba50c92ba21c",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": true
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "d38204bf-53d7-40b3-f31c-77cdd552f8cb",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"OK\"",
+                      "style": {
+                        "objID": "0477d8fb-5c19-4360-ebab-5b25771bb483",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "green"
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "4600e66f-a24e-4978-ef8d-2394f6236624",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"FAIL\"",
+                      "style": {
+                        "objID": "dd90decb-38be-4a73-eeef-55591fe4ce85",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "red",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    }
+                  ]
+                }
+              ],
+              "layout": "static"
+            },
+            {
+              "objID": "0aecc158-9d30-46bc-92e5-724f8bc32094",
+              "type": "Container",
+              "left": 145,
+              "top": 0,
+              "width": 32,
+              "height": 42,
+              "customInputs": [],
+              "customOutputs": [],
+              "style": {
+                "objID": "1bf4e549-ac0a-475e-9f57-e51afcebb4c8",
+                "useStyle": "default",
+                "conditionalStyles": [],
+                "childStyles": []
+              },
+              "timeline": [],
+              "eventHandlers": [],
+              "widgets": [
+                {
+                  "objID": "4c6e793c-f743-4376-b2b2-d8764fd3c72b",
+                  "type": "TextDashboardWidget",
+                  "left": 0,
+                  "top": 0,
+                  "width": 32,
+                  "height": 16,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "\"USB\"",
+                  "style": {
+                    "objID": "cc7b0a72-d76e-49d0-c431-1bd1f89aa764",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": [],
+                    "alignHorizontal": "center",
+                    "alignVertical": "center",
+                    "color": "#666"
+                  },
+                  "timeline": [],
+                  "eventHandlers": []
+                },
+                {
+                  "objID": "40b9d840-d17c-45ee-841f-4357219509b3",
+                  "type": "Select",
+                  "left": 0,
+                  "top": 16,
+                  "width": 32,
+                  "height": 26,
+                  "customInputs": [],
+                  "customOutputs": [],
+                  "data": "devices[device_index].test_usb",
+                  "visible": "",
+                  "style": {
+                    "objID": "bace2785-d7cd-405c-f75d-fa2fff4b0530",
+                    "useStyle": "default",
+                    "conditionalStyles": [],
+                    "childStyles": []
+                  },
+                  "timeline": [],
+                  "eventHandlers": [],
+                  "widgets": [
+                    {
+                      "objID": "5fd37192-c6fb-4568-ae4b-591b49a60f1d",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"-\"",
+                      "style": {
+                        "objID": "2a9c684c-0558-4e3c-9cc6-e5998e33ea4f",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "3d6e9ac5-dec3-429c-95d4-c0dc0a05da40",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"...\"",
+                      "style": {
+                        "objID": "0c0decdf-3324-40de-cd9d-3e3f7bbd6f1e",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "blink": true
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "a300f02f-f8a9-43a4-9735-a1480535ba2a",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"OK\"",
+                      "style": {
+                        "objID": "5f2ee6a2-a8ee-478e-cdc8-c8fa464d22fb",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "green"
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    },
+                    {
+                      "objID": "df7c3c03-c19a-4add-ecab-758bf67cad1c",
+                      "type": "TextDashboardWidget",
+                      "left": 0,
+                      "top": 0,
+                      "width": 32,
+                      "height": 26,
+                      "customInputs": [],
+                      "customOutputs": [],
+                      "data": "\"FAIL\"",
+                      "style": {
+                        "objID": "b4d41c24-fca4-4d55-ef6f-7a1795250a02",
+                        "useStyle": "default",
+                        "conditionalStyles": [],
+                        "childStyles": [],
+                        "fontSize": "140%",
+                        "fontWeight": "bold",
+                        "alignHorizontal": "center",
+                        "alignVertical": "center",
+                        "color": "red",
+                        "blink": false
+                      },
+                      "timeline": [],
+                      "eventHandlers": []
+                    }
+                  ]
+                }
+              ],
+              "layout": "static"
+            }
+          ],
+          "layout": "static"
+        },
+        {
+          "objID": "f6c666ac-f725-4772-91e8-4e5f873a2c0e",
+          "type": "CallActionActionComponent",
+          "left": 871,
+          "top": 198,
+          "width": 196,
+          "height": 57,
+          "customInputs": [],
+          "customOutputs": [],
+          "action": "test",
+          "userPropertyValues": {
+            "objID": "c26da76c-d4e2-436d-d678-24ca7bbd4888",
+            "values": {
+              "e6aac86a-6dd3-4af9-d989-1cf8ccb27831": "device_index"
+            }
+          }
         }
       ],
       "connectionLines": [
@@ -2363,6 +4825,48 @@
           "output": "CLICKED",
           "target": "d6b6b7fc-9fdd-4652-f717-a425a4e36f7c",
           "input": "@seqin"
+        },
+        {
+          "objID": "f1aeef89-0619-4d30-f7f0-12e728d8fd76",
+          "source": "d6b6b7fc-9fdd-4652-f717-a425a4e36f7c",
+          "output": "9e76c9d3-577a-4208-edb5-3147b98f0520",
+          "target": "4048e4fb-15a3-43c9-8ab6-6940f7887b0a",
+          "input": "@seqin"
+        },
+        {
+          "objID": "35bd7758-3e19-4649-93f7-98b4db7afb18",
+          "source": "a80d5aee-4e6b-4869-8b9c-a1b49807dbad",
+          "output": "@seqout",
+          "target": "f34cf8fe-5fda-41b8-b74c-3e9bcfb6e916",
+          "input": "@seqin"
+        },
+        {
+          "objID": "82651400-d1bb-47a1-b995-e8a1fb1a20bf",
+          "source": "1dff65e9-d63e-41f8-f158-6bef667eb65b",
+          "output": "@seqout",
+          "target": "cd7be280-1c19-459e-f012-4b430ed8211f",
+          "input": "@seqin"
+        },
+        {
+          "objID": "ec9000cd-afa3-41f3-ef2a-6f4e7b4bd163",
+          "source": "3f9277b3-9bfd-481a-c731-7222eab0547d",
+          "output": "True",
+          "target": "f34cf8fe-5fda-41b8-b74c-3e9bcfb6e916",
+          "input": "@seqin"
+        },
+        {
+          "objID": "29aea487-9092-49d4-8758-2bb12abef728",
+          "source": "9080fe4f-66d0-4001-b0a6-085059fc450a",
+          "output": "True",
+          "target": "cd7be280-1c19-459e-f012-4b430ed8211f",
+          "input": "@seqin"
+        },
+        {
+          "objID": "a2c7f460-6ef8-460c-ad40-19a48188ebb5",
+          "source": "d6b6b7fc-9fdd-4652-f717-a425a4e36f7c",
+          "output": "abd85988-a701-475c-c134-107456487679",
+          "target": "f6c666ac-f725-4772-91e8-4e5f873a2c0e",
+          "input": "@seqin"
         }
       ],
       "localVariables": [],
@@ -2422,7 +4926,22 @@
       "css": "border: none;\nbackground-color: #ddd;\n\n&:not(:disabled) {\n  box-shadow: 3px 3px 4px 0px #aaa;\n\n  &:hover {\n    background-color: #ccc;\n  }\n\n  &:active {\n    box-shadow: none;\n    transform: translate(2px, 2px);\n  }\n}"
     }
   ],
-  "bitmaps": [],
+  "bitmaps": [
+    {
+      "objID": "9d6b4c5e-b2cd-4604-cf92-c948a9e281b6",
+      "name": "logo_eez",
+      "image": "data:image/png;base64,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",
+      "bpp": 32,
+      "alwaysBuild": false
+    },
+    {
+      "objID": "ffcf1e69-1eb5-4595-deb9-32ca1bfb5724",
+      "name": "logo_intergalaktik",
+      "image": "data:image/png;base64,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",
+      "bpp": 32,
+      "alwaysBuild": false
+    }
+  ],
   "colors": [
     {
       "objID": "e6c28e5a-fe7f-09ed-9223-17769968ebea",
