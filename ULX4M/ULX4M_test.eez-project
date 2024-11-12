@@ -1195,7 +1195,7 @@
           "customInputs": [],
           "customOutputs": [],
           "instrument": "bb3",
-          "scpi": "inst ch1\nvolt 5V\ncurr 500mA\noutp 1",
+          "scpi": "inst ch1\nvolt 5V\ncurr 2A\noutp 1",
           "timeout": "null",
           "delay": "null"
         },
