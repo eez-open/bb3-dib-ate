@@ -43,6 +43,14 @@
         "native": false
       },
       {
+        "objID": "59274f4e-d516-46ae-aa72-da9c6da23d02",
+        "name": "BB3_INSTRUMENT_ID",
+        "type": "integer",
+        "defaultValue": "0",
+        "persistent": true,
+        "native": false
+      },
+      {
         "objID": "8d39639e-c4f8-4ef2-d6f6-1876940a965f",
         "name": "LINUX_CMD",
         "type": "string",
@@ -1246,7 +1254,7 @@
           "height": 52,
           "customInputs": [],
           "customOutputs": [],
-          "instrumentId": "33"
+          "instrumentId": "BB3_INSTRUMENT_ID"
         },
         {
           "objID": "2d30d647-d369-4270-bfb6-d2e043688b12",
