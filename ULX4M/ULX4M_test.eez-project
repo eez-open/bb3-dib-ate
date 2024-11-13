@@ -305,8 +305,8 @@
         {
           "objID": "c29ae6d4-e433-4f56-d0ae-e42b1138844b",
           "type": "SerialWrite",
-          "left": 1795,
-          "top": -160,
+          "left": 1834,
+          "top": 89,
           "width": 237,
           "height": 54,
           "customInputs": [],
@@ -423,6 +423,17 @@
           "customInputs": [],
           "customOutputs": [],
           "value": "devices[device_index].is_on"
+        },
+        {
+          "objID": "96e887f2-1599-4e87-9876-06f25df5d167",
+          "type": "IsTrueActionComponent",
+          "left": 1821,
+          "top": -92,
+          "width": 110,
+          "height": 70,
+          "customInputs": [],
+          "customOutputs": [],
+          "value": "simulation"
         }
       ],
       "connectionLines": [
@@ -549,7 +560,7 @@
           "objID": "33e92cb3-f658-4b7d-9866-3d20840b340c",
           "source": "ce457e7b-2826-4631-df64-210103ee7043",
           "output": "True",
-          "target": "c29ae6d4-e433-4f56-d0ae-e42b1138844b",
+          "target": "96e887f2-1599-4e87-9876-06f25df5d167",
           "input": "@seqin"
         },
         {
@@ -558,6 +569,20 @@
           "output": "False",
           "target": "fea08f6d-eb81-43fb-f890-13b4adf74d61",
           "input": "next"
+        },
+        {
+          "objID": "f3e1eebe-ecad-4581-b95c-d1d3fe18cf7e",
+          "source": "96e887f2-1599-4e87-9876-06f25df5d167",
+          "output": "True",
+          "target": "f85ef90c-f91b-469e-83fc-cda632f4e361",
+          "input": "@seqin"
+        },
+        {
+          "objID": "428e7ff4-9d06-441a-ee78-53db9f8083e6",
+          "source": "96e887f2-1599-4e87-9876-06f25df5d167",
+          "output": "False",
+          "target": "c29ae6d4-e433-4f56-d0ae-e42b1138844b",
+          "input": "@seqin"
         }
       ],
       "localVariables": [
